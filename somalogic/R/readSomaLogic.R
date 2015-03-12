@@ -77,6 +77,7 @@ utils::globalVariables("Intensity")
 #' @importFrom data.table setkey
 #' @importFrom data.table setnames
 #' @importFrom stringr str_detect
+#' @author Richard Cotton
 readSomaLogic <- function(file, keepOnlyPasses = TRUE)
 {
   assert_any_are_true(c(is_a_string(file), is_readable_connection(file)))
@@ -246,6 +247,7 @@ readSomaLogic <- function(file, keepOnlyPasses = TRUE)
 #' @param x A character vector or factor.
 #' @return A logical vector, the same length as the input, which is \code{TRUE}
 #' whenever the input is the string "PASS".  Missing values return \code{FALSE}.
+#' @author Richard Cotton
 isPass <- function(x)
 {
   !is.na(x) & x == "PASS"
@@ -266,6 +268,7 @@ isPass <- function(x)
 #' @importFrom reshape2 melt
 #' @importFrom stringr str_detect
 #' @export
+#' @author Richard Cotton
 melt.WideSomaLogicData <- function(x)
 {
   isSeqColumn <- str_detect(colnames(x), "^SeqId\\.")
@@ -314,6 +317,7 @@ melt.WideSomaLogicData <- function(x)
 #' }
 #' @importFrom stringr str_detect
 #' @export
+#' @author Richard Cotton
 getIntensities <- function(x, ...)
 {
   UseMethod("getIntensities")
