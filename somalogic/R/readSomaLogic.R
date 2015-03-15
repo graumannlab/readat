@@ -77,6 +77,7 @@ utils::globalVariables("Intensity")
 #' @importFrom data.table setkey
 #' @importFrom data.table setnames
 #' @importFrom stringr str_detect
+#' @export
 #' @author Richard Cotton
 readSomaLogic <- function(file, keepOnlyPasses = TRUE)
 {
