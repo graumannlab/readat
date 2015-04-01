@@ -161,10 +161,10 @@ readSomaLogic <- function(file, keepOnlyPasses = TRUE)
       EntrezGeneSymbol = factor(EntrezGeneSymbol),
       Organism         = factor(Organism),
       Units            = factor(Units),
-      CalReference     = as.numeric(CalReference),
+#      CalReference     = as.numeric(CalReference),
 #      Cal_Set_A_RPT    = as.numeric(Cal_Set_A_RPT),
       ColCheck         = factor(ColCheck),
-      Dilution         = as.numeric(Dilution)
+#      Dilution         = as.numeric(Dilution)
     )    
   ]
   
