@@ -234,7 +234,7 @@ readSomaLogic <- function(file, keepOnlyPasses = TRUE)
   setattr(intensityData, "SequenceInfo", sequenceData)
   setattr(intensityData, "Metadata", header)
   setattr(intensityData, "Checksum", checksum)
-  # setattr(intensityData, "class", c("WideSomaLogicData", "data.table", "data.frame"))
+  setattr(intensityData, "class", c("WideSomaLogicData", "data.table", "data.frame"))
   intensityData
 }
 
