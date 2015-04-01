@@ -66,7 +66,6 @@ utils::globalVariables("Intensity")
 #' str(wide_soma_data, list.len = 35)
 #' unlink(soma_file)
 #' }
-#' @import bit64
 #' @importFrom assertive assert_any_are_true
 #' @importFrom assertive is_a_string
 #' @importFrom assertive is_readable_connection
@@ -109,7 +108,8 @@ readSomaLogic <- function(file, keepOnlyPasses = TRUE)
     sep    = "\t",
     nrows  = dataGroupRow[2] - dataGroupRow[1] - 1,
     header = FALSE,
-    skip   = dataGroupRow[1]
+    skip   = dataGroupRow[1],
+    integer64 = 'numeric'
   )
   header <- with(headerData, setNames(as.list(V2), substring(V1, 2)))
   header <- within(
@@ -131,7 +131,8 @@ readSomaLogic <- function(file, keepOnlyPasses = TRUE)
     colClasses       = "character",
     skip             = dataGroupRow[4],
     header           = FALSE,
-    stringsAsFactors = FALSE
+    stringsAsFactors = FALSE,
+    integer64 = 'numeric'
   )
   # Get the column that contains the headers
   sequenceHeaderColumnNumber <- nFields[dataGroupRow[3] + 1]
@@ -147,33 +148,29 @@ readSomaLogic <- function(file, keepOnlyPasses = TRUE)
   sequenceData <- as.data.table(t(sequenceData))
   setnames(sequenceData, sequenceHeaderNames)
   
-  # Update column types.
-  # Need to ascertain from SomaLogic if these columns will always be present
-  # For more robustness, add checks like if(colname exists) {col <- factor(col)}
-  sequenceData[
-    j = `:=`(
-      SeqId            = factor(SeqId),
-      SomaId           = factor(SomaId),
-      Target           = factor(Target),
-      TargetFullName   = factor(TargetFullName),
-      UniProt          = factor(UniProt),
-      EntrezGeneID     = factor(EntrezGeneID),
-      EntrezGeneSymbol = factor(EntrezGeneSymbol),
-      Organism         = factor(Organism),
-      Units            = factor(Units),
-#      CalReference     = as.numeric(CalReference),
-#      Cal_Set_A_RPT    = as.numeric(Cal_Set_A_RPT),
-      ColCheck         = factor(ColCheck),
-#      Dilution         = as.numeric(Dilution)
-    )    
-  ]
+  # Update column types. Columns change with different SOMA versions.
+  # Therefore, only update columns which we currently use, leave others unchanged  
+   sequenceData$SeqId            <- factor(sequenceData$SeqId)
+   sequenceData$SomaId           <- factor(sequenceData$SomaId)
+   sequenceData$Target           <- factor(sequenceData$Target)
+   sequenceData$TargetFullName   <- factor(sequenceData$TargetFullName)
+   sequenceData$UniProt          <- factor(sequenceData$UniProt)
+   sequenceData$EntrezGeneID     <- factor(sequenceData$EntrezGeneID)
+   sequenceData$EntrezGeneSymbol <- factor(sequenceData$EntrezGeneSymbol)
+   sequenceData$Organism         <- factor(sequenceData$Organism)
+   sequenceData$Units            <- factor(sequenceData$Units)
+   sequenceData$ColCheck         <- factor(sequenceData$ColCheck)
+   # sequenceData$CalReference  <- as.numeric(sequenceData$CalReference)
+   # sequenceData$Cal_Set_A_RPT <- as.numeric(sequenceData$Cal_Set_A_RPT)
+   # sequenceData$Dilution      <- as.numeric(sequenceData$Dilution)
   
   # Read row data
   intensityData <- fread(
     file, 
     sep              = "\t",
     nrows            = length(nFields) - dataGroupRow[4] - ncol(sequenceData), 
-    skip             = dataGroupRow[4] + ncol(sequenceData)
+    skip             = dataGroupRow[4] + ncol(sequenceData),
+    integer64 = 'numeric'
   )
   # Remove blank column between metadata and sequence data
   intensityData <- intensityData[, -sequenceHeaderColumnNumber, with = FALSE]
@@ -188,27 +185,26 @@ readSomaLogic <- function(file, keepOnlyPasses = TRUE)
       sep = "."
     )
   )
-  # As with sequence data, need to see if
-  intensityData[
-    j = `:=`(
-      PlateId           = factor(PlateId),
-      SlideId           = factor(SlideId),
-      SampleId          = factor(SampleId),
-      SampleType        = factor(SampleType),
-      SampleMatrix      = factor(SampleMatrix),
-      Barcode           = factor(Barcode),
-      Barcode2d         = factor(Barcode2d),
-      SampleNotes       = factor(SampleNotes),
-      SampleDescription = factor(SampleDescription),
-      TimePoint         = as.numeric(TimePoint),
-      ExtIdentifier     = factor(ExtIdentifier),
-      SampleGroup       = factor(SampleGroup),
-      SiteId            = factor(SiteId),
-      SampleUniqueID    = factor(SampleUniqueID),
-      Subject_ID        = factor(Subject_ID),
-      RowCheck          = factor(RowCheck)
-    )    
-  ]
+
+  # As with sequence data, ensure correct datatypes
+  # SOMA files change with different versions, so only do this for 
+  # variables that might be useful for data analysis
+  intensityData$PlateId           <- factor(intensityData$PlateId)
+  intensityData$SlideId           <- factor(intensityData$SlideId)
+  intensityData$SampleId          <- factor(intensityData$SampleId)
+  intensityData$SampleType        <- factor(intensityData$SampleType)
+  intensityData$SampleMatrix      <- factor(intensityData$SampleMatrix)
+  intensityData$Barcode           <- factor(intensityData$Barcode)
+  intensityData$Barcode2d         <- factor(intensityData$Barcode2d)
+  intensityData$SampleNotes       <- factor(intensityData$SampleNotes)
+  intensityData$SampleDescription <- factor(intensityData$SampleDescription)
+  intensityData$TimePoint         <- as.numeric(intensityData$TimePoint)
+  intensityData$ExtIdentifier     <- factor(intensityData$ExtIdentifier)
+  intensityData$SampleGroup       <- factor(intensityData$SampleGroup)
+  intensityData$SiteId            <- factor(intensityData$SiteId)
+#  intensityData$SampleUniqueID    <- factor(intensityData$SampleUniqueID) # no longer present in soma file version 1.2
+  intensityData$Subject_ID        <- factor(intensityData$Subject_ID)
+  intensityData$RowCheck          <- factor(intensityData$RowCheck)
   
   # Remove failures
   if(keepOnlyPasses)
@@ -225,7 +221,7 @@ readSomaLogic <- function(file, keepOnlyPasses = TRUE)
   }
   
   setkey(sequenceData, SeqId)
-  setkey(intensityData, SampleUniqueID)
+  setkey(intensityData, SampleId)
   
   # Return everything
 #   structure(
@@ -301,7 +297,7 @@ melt.WideSomaLogicData <- function(x)
 #' @param ... Variables passed from other methods. Currently 
 #' ignored.
 #' @return A numeric matrix of intensities for each protein. Row names are taken
-#' from the \code{SampleUniqueID} of the input.  Column names are the protein
+#' from the \code{SampleId} of the input.  Column names are the protein
 #' sequence IDs.
 #' @examples
 #' \donttest{
@@ -330,7 +326,7 @@ getIntensities.WideSomaLogicData <- function(x, ...)
   isSeqColumn <- str_detect(colnames(x), "^SeqId\\.")
   class(x) <- c("data.table", "data.frame")
   m <- as.matrix(x[, isSeqColumn, with = FALSE])
-  rownames(m) <- x$SampleUniqueID
+  rownames(m) <- x$SampleId
   colnames(m) <- substring(colnames(m), 7)
   m
 }
@@ -339,7 +335,7 @@ getIntensities.WideSomaLogicData <- function(x, ...)
 getIntensities.LongSomaLogicData <- function(x, ...)
 {
   class(x) <- c("data.table", "data.frame")
-  x[, list(SeqId, SampleUniqueID, Intensity)]
+  x[, list(SeqId, SampleId, Intensity)]
 }
 
 #' @rdname getIntensities
