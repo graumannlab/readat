@@ -162,7 +162,7 @@ readSomaLogic <- function(file, keepOnlyPasses = TRUE)
       Organism         = factor(Organism),
       Units            = factor(Units),
       CalReference     = as.numeric(CalReference),
-      Cal_Set_A_RPT    = as.numeric(Cal_Set_A_RPT),
+#      Cal_Set_A_RPT    = as.numeric(Cal_Set_A_RPT),
       ColCheck         = factor(ColCheck),
       Dilution         = as.numeric(Dilution)
     )    
