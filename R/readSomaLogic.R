@@ -28,19 +28,19 @@ utils::globalVariables("SampleUniqueID")
 utils::globalVariables("Subject_ID")
 utils::globalVariables("RowCheck")
 utils::globalVariables("Intensity")
-                       
+
 #' Read a SomaLogic data file
-#' 
+#'
 #' Reads a SomaLogic ADAT data file.
 #' @param file A string containing the path to the file to be read.
 #' @param keepOnlyPasses A logical value indicating whether or not to keep
-#' only the rows and columns where the data quality was considered to be 
+#' only the rows and columns where the data quality was considered to be
 #' passable.
 #' @return An object of class \code{WideSomaLogicData}, which inherits from
-#' \code{data.frame}.
-#' The return value consists of a data frame where each row represents a 
-#' sample.  Initial columns contain sample metadata and later columns contain 
-#' intensities of proteins.  The specific metadata columns are not fixed, but 
+#' \code{data.table}.
+#' The return value consists of a data frame where each row represents a
+#' sample.  Initial columns contain sample metadata and later columns contain
+#' intensities of proteins.  The specific metadata columns are not fixed, but
 #' the most useful ones described below should always be present.
 #' \describe{
 #' \item{SampleUniqueID}{A unique identifier for the sample.}
@@ -58,7 +58,7 @@ utils::globalVariables("Intensity")
 #' @examples
 #' \donttest{
 #' unzip(
-#'   system.file("extdata", "soma_atkin_diabetes.zip", package = "pdapmain"), 
+#'   system.file("extdata", "soma_atkin_diabetes.zip", package = "pdapmain"),
 #'   exdir = tempdir()
 #' )
 #' soma_file <- file.path(tempdir(), "soma_atkin_diabetes.adat")
@@ -81,13 +81,13 @@ utils::globalVariables("Intensity")
 readSomaLogic <- function(file, keepOnlyPasses = TRUE)
 {
   assert_any_are_true(c(is_a_string(file), is_readable_connection(file)))
-  
+
   # The file is split into several groups of data:
   # A checksum, header data, column data and row data.  Read each separately.
   nFields <- count.fields(file, sep = "\t", quote = "")
   dataGroupRow <- which(nFields == 1)
-  
-  
+
+
   # Read SHA1 checksum
   # For a single line, read.table is faster than data.table::fread. Compare
   # microbenchmark(
@@ -95,13 +95,13 @@ readSomaLogic <- function(file, keepOnlyPasses = TRUE)
   #   fread = fread(file, sep = "\t", nrows = 1, header = FALSE, stringsAsFactors = FALSE, skip = 0)
   # )
   checksum <- read.table(
-    file, 
-    sep              = "\t", 
-    nrows            = 1, 
+    file,
+    sep              = "\t",
+    nrows            = 1,
     stringsAsFactors = FALSE
   )$V2[1]
-  
-  
+
+
   # Read header
   headerData <- fread(
     file,
@@ -121,13 +121,13 @@ readSomaLogic <- function(file, keepOnlyPasses = TRUE)
       ProteinEffectiveDate <- as.Date(ProteinEffectiveDate)
     }
   )
-  
-  
+
+
   # Read column data
   sequenceData <- fread(
-    file, 
-    sep              = "\t", 
-    nrows            = nFields[dataGroupRow[2] + 1] - 1, 
+    file,
+    sep              = "\t",
+    nrows            = nFields[dataGroupRow[2] + 1] - 1,
     colClasses       = "character",
     skip             = dataGroupRow[4],
     header           = FALSE,
@@ -137,19 +137,19 @@ readSomaLogic <- function(file, keepOnlyPasses = TRUE)
   # Get the column that contains the headers
   sequenceHeaderColumnNumber <- nFields[dataGroupRow[3] + 1]
   sequenceHeaderNames <- sequenceData[[sequenceHeaderColumnNumber]]
-  
+
   # Remove leading blank columns
   sequenceData <- sequenceData[
-    j = -seq_len(sequenceHeaderColumnNumber), 
+    j = -seq_len(sequenceHeaderColumnNumber),
     with = FALSE
   ]
-  
+
   #Transpose, and undo the conversion to matrix
   sequenceData <- as.data.table(t(sequenceData))
   setnames(sequenceData, sequenceHeaderNames)
-  
+
   # Update column types. Columns change with different SOMA versions.
-  # Therefore, only update columns which we currently use, leave others unchanged  
+  # Therefore, only update columns which we currently use, leave others unchanged
    sequenceData$SeqId            <- factor(sequenceData$SeqId)
    sequenceData$SomaId           <- factor(sequenceData$SomaId)
    sequenceData$Target           <- factor(sequenceData$Target)
@@ -163,31 +163,31 @@ readSomaLogic <- function(file, keepOnlyPasses = TRUE)
    # sequenceData$CalReference  <- as.numeric(sequenceData$CalReference)
    # sequenceData$Cal_Set_A_RPT <- as.numeric(sequenceData$Cal_Set_A_RPT)
    # sequenceData$Dilution      <- as.numeric(sequenceData$Dilution)
-  
+
   # Read row data
   intensityData <- fread(
-    file, 
+    file,
     sep              = "\t",
-    nrows            = length(nFields) - dataGroupRow[4] - ncol(sequenceData), 
+    nrows            = length(nFields) - dataGroupRow[4] - ncol(sequenceData),
     skip             = dataGroupRow[4] + ncol(sequenceData),
     integer64 = 'numeric'
   )
   # Remove blank column between metadata and sequence data
   intensityData <- intensityData[, -sequenceHeaderColumnNumber, with = FALSE]
-  
+
   # Give intensity data columns a name
   setnames(
-    intensityData, 
+    intensityData,
     seq.int(sequenceHeaderColumnNumber, ncol(intensityData)),
     paste(
-      "SeqId", 
-      sequenceData$SeqId, 
+      "SeqId",
+      sequenceData$SeqId,
       sep = "."
     )
   )
 
   # As with sequence data, ensure correct datatypes
-  # SOMA files change with different versions, so only do this for 
+  # SOMA files change with different versions, so only do this for
   # variables that might be useful for data analysis
   intensityData$PlateId           <- factor(intensityData$PlateId)
   intensityData$SlideId           <- factor(intensityData$SlideId)
@@ -205,24 +205,24 @@ readSomaLogic <- function(file, keepOnlyPasses = TRUE)
 #  intensityData$SampleUniqueID    <- factor(intensityData$SampleUniqueID) # no longer present in soma file version 1.2
   intensityData$Subject_ID        <- factor(intensityData$Subject_ID)
   intensityData$RowCheck          <- factor(intensityData$RowCheck)
-  
+
   # Remove failures
   if(keepOnlyPasses)
-  {    
+  {
     okSeqColumns <- isPass(sequenceData$ColCheck)
     sequenceData <- sequenceData[okSeqColumns, ]
     okColumns <- !str_detect(colnames(intensityData), "^SeqId\\.") #metadata
     okColumns[!okColumns] <- okSeqColumns
     intensityData <- intensityData[
-      isPass(intensityData$RowCheck), 
+      isPass(intensityData$RowCheck),
       okColumns,
       with = FALSE
     ]
   }
-  
+
   setkey(sequenceData, SeqId)
   setkey(intensityData, SampleId)
-  
+
   # Return everything
 #   structure(
 #     intensityData,
@@ -239,7 +239,7 @@ readSomaLogic <- function(file, keepOnlyPasses = TRUE)
 }
 
 #' Is the value a pass
-#' 
+#'
 #' Checks if a string is "PASS".
 #' @param x A character vector or factor.
 #' @return A logical vector, the same length as the input, which is \code{TRUE}
@@ -251,10 +251,10 @@ isPass <- function(x)
 }
 
 #' Melt a WideSomaLogicData object
-#' 
+#'
 #' Convert a \code{WideSomaLogicData} object from wide format to long format.
 #' @param x An object of class \code{WideSomaLogicData}.
-#' @return An object of class \code{LongSomaLogicData} that inherits from 
+#' @return An object of class \code{LongSomaLogicData} that inherits from
 #' \code{data.frame}.
 #' This function melts the sample data contained in a \code{WideSomaLogicData}
 #' object so the sequence IDs are contained in a single column \code{SeqID},
@@ -269,7 +269,7 @@ isPass <- function(x)
 melt.WideSomaLogicData <- function(x)
 {
   isSeqColumn <- str_detect(colnames(x), "^SeqId\\.")
-  class(x) <- c("data.table", "data.frame") 
+  class(x) <- c("data.table", "data.frame")
   long <- melt(
     x,
     id.vars       = colnames(x)[!isSeqColumn],
@@ -281,7 +281,7 @@ melt.WideSomaLogicData <- function(x)
   setkey(long, SeqId)
   long <- long[attr(x, "SequenceInfo")]
   structure(
-    long,     
+    long,
     Metadata     = attr(x, "Metadata"),
     Checksum     = attr(x, "Checksum"),
     class        = c("LongSomaLogicData", "data.table", "data.frame")
@@ -289,12 +289,12 @@ melt.WideSomaLogicData <- function(x)
 }
 
 #' Get the intensities from a WideSomaLogicData or LongSomaLogicData object
-#' 
+#'
 #' Gets the intensities from an object of class \code{WideSomaLogicData} or
 #' \code{LongSomaLogicData}.
-#' @param x An object of class \code{WideSomaLogicData} or 
+#' @param x An object of class \code{WideSomaLogicData} or
 #' \code{LongSomaLogicData}.
-#' @param ... Variables passed from other methods. Currently 
+#' @param ... Variables passed from other methods. Currently
 #' ignored.
 #' @return A numeric matrix of intensities for each protein. Row names are taken
 #' from the \code{SampleId} of the input.  Column names are the protein
@@ -302,7 +302,7 @@ melt.WideSomaLogicData <- function(x)
 #' @examples
 #' \donttest{
 #' unzip(
-#'   system.file("extdata", "soma_atkin_diabetes.zip", package = "pdapmain"), 
+#'   system.file("extdata", "soma_atkin_diabetes.zip", package = "pdapmain"),
 #'   exdir = tempdir()
 #' )
 #' soma_file <- file.path(tempdir(), "soma_atkin_diabetes.adat")
@@ -346,12 +346,12 @@ as.matrix.WideSomaLogicData <- function(x, ...)
 }
 
 #' Get WideSomaLogicData attributes
-#' 
+#'
 #' Shortcut functions to get attributes of \code{WideSomaLogicData} objects.
 #' @param x An object of class \code{WideSomaLogicData}.
 #' @param value Value to set the attribute to.
 #' @return An attribute of the input.
-#' For inputs that are not \code{WideSomaLogicData} objects, the return value 
+#' For inputs that are not \code{WideSomaLogicData} objects, the return value
 #' may be \code{NULL}.
 #' @seealso \code{\link{readSomaLogic}}
 #' @name WideSomaLogicDataAttributes
@@ -361,21 +361,21 @@ NULL
 #' @export
 getSequenceInfo <- function(x)
 {
-  attr(x, "SequenceInfo", exact = TRUE) 
+  attr(x, "SequenceInfo", exact = TRUE)
 }
 
 #' @rdname WideSomaLogicDataAttributes
 #' @export
 getMetadata <- function(x)
 {
-  attr(x, "Metadata", exact = TRUE) 
+  attr(x, "Metadata", exact = TRUE)
 }
 
 #' @rdname WideSomaLogicDataAttributes
 #' @export
 getChecksum <- function(x)
 {
-  attr(x, "Checksum", exact = TRUE) 
+  attr(x, "Checksum", exact = TRUE)
 }
 
 #' @rdname WideSomaLogicDataAttributes
@@ -406,7 +406,7 @@ setChecksum <- function(x, value)
 }
 
 #' Indexing for WideSomaLogicData objects
-#' 
+#'
 #' Wrapper to \code{[.data.table}, ensuring that the \code{SequenceInfo},
 #' \code{Metadata} and \code{Checksum} attributes are preserved.
 #' @param x A \code{WideSomaLogicData} object.
