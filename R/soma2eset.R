@@ -6,15 +6,12 @@
 
 #' Convert WideSomaLogicData into ExpressionSet
 #' @param somaObj WideSomaLogicData object
-#' @param sampleDF dataframe with sample annotations
 #' @param log2Transform whether to log2 transform intensities or not
 #' @return ExpressionSet object
 #' @author Aditya Bhagwat
 #' @import Biobase
 #' @export
-soma2eset <- function(somaObj, 
-      sampleDF = data.frame(sampleId = somaObj$SampleId, row.names = somaObj$SampleId), 
-      log2Transform = TRUE){
+soma2eset <- function(somaObj, log2Transform = TRUE){
    
    # assayData
    myIntensities <- t(getIntensities(somaObj))
@@ -24,6 +21,12 @@ soma2eset <- function(somaObj,
    featureDF <- getSequenceInfo(somaObj)
    featureDF <- data.frame(featureDF)
    rownames(featureDF) <- featureDF$SeqId
+   
+   # pData
+   sampleDF <- data.frame(
+         soma_sample_id = somaObj$SampleId, 
+         soma_plate_id = somaObj$PlateId, 
+         row.names = somaObj$SampleId)
    
    # forge eset
    myEset <- ExpressionSet(myIntensities, AnnotatedDataFrame(sampleDF), AnnotatedDataFrame(featureDF))

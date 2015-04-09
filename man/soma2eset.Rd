@@ -4,13 +4,10 @@
 \alias{soma2eset}
 \title{Convert WideSomaLogicData into ExpressionSet}
 \usage{
-soma2eset(somaObj, sampleDF = data.frame(sampleId = somaObj$SampleId,
-  row.names = somaObj$SampleId), log2Transform = TRUE)
+soma2eset(somaObj, log2Transform = TRUE)
 }
 \arguments{
 \item{somaObj}{WideSomaLogicData object}
-
-\item{sampleDF}{dataframe with sample annotations}
 
 \item{log2Transform}{whether to log2 transform intensities or not}
 }

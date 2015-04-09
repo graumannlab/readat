@@ -15,7 +15,7 @@ passable.}
 }
 \value{
 An object of class \code{WideSomaLogicData}, which inherits from
-\code{data.frame}.
+\code{data.table}.
 The return value consists of a data frame where each row represents a
 sample.  Initial columns contain sample metadata and later columns contain
 intensities of proteins.  The specific metadata columns are not fixed, but
