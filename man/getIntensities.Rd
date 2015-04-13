@@ -7,7 +7,7 @@
 \usage{
 getIntensities(x, ...)
 
-\method{as.matrix}{WideSomaLogicData}(x, ...)
+as.matrix.WideSomaLogicData(x, ...)
 }
 \arguments{
 \item{x}{An object of class \code{WideSomaLogicData} or

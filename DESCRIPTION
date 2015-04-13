@@ -1,6 +1,6 @@
 Package: somalogic
 Title: Functionality to load somalogic data
-Version: 0.2.2
+Version: 0.2.3
 Authors@R: c(person("Richard", "Cotton", email = "rjc2003@qatar-med.cornell.edu", role = c("cre", "aut")), person("Aditya", "Bhagwat", email = "adb2018@qatar-med.cornell.edu", role = c("aut")))
 Description: This package contains functionality to load data from the SOMALOGIC platform
 Depends: R (>= 3.1.2), Biobase
