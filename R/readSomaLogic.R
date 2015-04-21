@@ -36,6 +36,9 @@ utils::globalVariables("Intensity")
 #' @param keepOnlyPasses A logical value indicating whether or not to keep
 #' only the rows and columns where the data quality was considered to be
 #' passable.
+#' @param dateFormat A string describing the format of the dates contained in
+#' the file's metadata.  See \code{\link[base]{strptime}} for how to specify
+#' these.
 #' @return An object of class \code{WideSomaLogicData}, which inherits from
 #' \code{data.table}.
 #' The return value consists of a data frame where each row represents a
@@ -78,7 +81,7 @@ utils::globalVariables("Intensity")
 #' @importFrom stringr str_detect
 #' @export
 #' @author Richard Cotton
-readSomaLogic <- function(file, keepOnlyPasses = TRUE)
+readSomaLogic <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
 {
   assert_any_are_true(c(is_a_string(file), is_readable_connection(file)))
 
@@ -105,10 +108,10 @@ readSomaLogic <- function(file, keepOnlyPasses = TRUE)
   # Read header
   headerData <- fread(
     file,
-    sep    = "\t",
-    nrows  = dataGroupRow[2] - dataGroupRow[1] - 1,
-    header = FALSE,
-    skip   = dataGroupRow[1],
+    sep       = "\t",
+    nrows     = dataGroupRow[2] - dataGroupRow[1] - 1,
+    header    = FALSE,
+    skip      = dataGroupRow[1],
     integer64 = 'numeric'
   )
   header <- with(headerData, setNames(as.list(V2), substring(V1, 2)))
@@ -116,9 +119,9 @@ readSomaLogic <- function(file, keepOnlyPasses = TRUE)
     header,
     {
       Version <- as.package_version(Version)
-      CreatedDate <- as.Date(CreatedDate)
-      ExpDate <- as.Date(ExpDate)
-      ProteinEffectiveDate <- as.Date(ProteinEffectiveDate)
+      CreatedDate <- as.Date(CreatedDate, format = dateFormat)
+      ExpDate <- as.Date(ExpDate, format = dateFormat)
+      ProteinEffectiveDate <- as.Date(ProteinEffectiveDate, format = dateFormat)
     }
   )
 
@@ -132,7 +135,7 @@ readSomaLogic <- function(file, keepOnlyPasses = TRUE)
     skip             = dataGroupRow[4],
     header           = FALSE,
     stringsAsFactors = FALSE,
-    integer64 = 'numeric'
+    integer64        = 'numeric'
   )
   # Get the column that contains the headers
   sequenceHeaderColumnNumber <- nFields[dataGroupRow[3] + 1]
