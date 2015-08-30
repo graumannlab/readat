@@ -90,6 +90,10 @@ readSomaLogic <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
   nFields <- count.fields(file, sep = "\t", quote = "")
   dataGroupRow <- which(nFields == 1)
 
+  if(length(dataGroupRow) < 4L)
+  {
+    stop("The input file is malformed; there should be four rows with only one column.")
+  }
 
   # Read SHA1 checksum
   # For a single line, read.table is faster than data.table::fread. Compare
