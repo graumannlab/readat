@@ -79,6 +79,7 @@ utils::globalVariables("Intensity")
 #' @importFrom data.table setkey
 #' @importFrom data.table setnames
 #' @importFrom stringr str_detect
+#' @importFrom stringr str_replace_all
 #' @export
 #' @author Richard Cotton
 readSomaLogic <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
@@ -161,7 +162,7 @@ readSomaLogic <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
    sequenceData$SomaId           <- factor(sequenceData$SomaId)
    sequenceData$Target           <- factor(sequenceData$Target)
    sequenceData$TargetFullName   <- factor(sequenceData$TargetFullName)
-   sequenceData$UniProt          <- factor(sequenceData$UniProt)
+   sequenceData$UniProt          <- factor(str_replace_all(sequenceData$UniProt, "[, ]+", " "))
    sequenceData$EntrezGeneID     <- factor(sequenceData$EntrezGeneID)
    sequenceData$EntrezGeneSymbol <- factor(sequenceData$EntrezGeneSymbol)
    sequenceData$Organism         <- factor(sequenceData$Organism)
