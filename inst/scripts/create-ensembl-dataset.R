@@ -3,18 +3,10 @@ library(magrittr)
 library(listless)
 library(dplyr)
 library(org.Hs.eg.db)
-library(biomaRt)
 
 source("somalogic/inst/scripts/backend.R")
 
-file <- "//acfs/proteomics/Projects/2014/SomaLogic/Data/Original data/WCQ-14-130_20140925/WCQ-14-130_Set_A_RPT.HybMedNormCal_20140925.adat"
-
-sl <- readSomaLogic(file, keepOnlyPasses = FALSE)
-
-seqInfo <- getSequenceInfo(sl)
-
-
-# Ensembl IDs
+load("somalogic/data/ids1129.rda")
 
 entrezGeneIds <- seqInfo %$%
   strsplit(as.character(EntrezGeneID), " ") %>%
@@ -39,16 +31,4 @@ saveRDS(ensemblIds, "somalogic/data/ensembl1129.rda")
 
 
 
-# GO terms
-
-uniProtIds <- seqInfo %>%
-  filter_(~ EntrezGeneSymbol != "Human-virus") %$%
-  strsplit(as.character(UniProt), " ") %>%
-  unlist %>%
-  unique
-
-ensemblMart <- useMart(
-  biomart = "ensembl",
-  dataset = "hsapiens_gene_ensembl" # ensembl code for humans
-)
 
