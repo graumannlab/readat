@@ -18,8 +18,7 @@ uniProtIds <- ids %>%
   unlist(UniProtId) %>%
   unique
 
-# chromosomalFiles <- downloadChromosomalData(uniProtIds)
-chromosomalFiles <- dir("D:\\workspace\\chromosomeec867892e40", full.names = TRUE)
+chromosomalFiles <- downloadChromosomalData(uniProtIds)
 
 chromosomalData <- lapply(chromosomalFiles, readRDS)
 
