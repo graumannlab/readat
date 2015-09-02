@@ -79,6 +79,7 @@ combineChromosomalData <- function(chromosomalData)
           return(
             data.frame(
               UniProtId = character(),
+              EntrezGeneId = character(),
               Chromosome = character(),
               StartPosition = integer(),
               EndPosition = integer(),
@@ -102,4 +103,106 @@ combineChromosomalData <- function(chromosomalData)
     ) %>%
     bind_rows() %>%
     as.data.table
+}
+
+downloadGoData <- function(ids, outdir = tempfile("GO"),
+  idType = c("UniProt", "EntrezGene"))
+{
+  idType <- match.arg(idType)
+  # Create the 'mart' (ensembl, people)
+  ensemblMart <- useMart(
+    biomart = "ensembl",
+    dataset = "hsapiens_gene_ensembl" # ensembl code for humans
+  )
+
+  # Choose the columns to fetch
+  ensemblAttrs <- listAttributes(ensemblMart)
+  goAttrs <- with(ensemblAttrs, name[str_detect(description, fixed("GO "))]) #space needed to exclude GOSlim terms
+  attrs <- c(
+    "uniprot_swissprot", "entrezgene",
+    goAttrs
+  )
+
+  # Create a place to put them
+  dir.create(outdir, recursive = TRUE)
+
+  message("Saving the GO files in ", normalizePath(outdir))
+
+  # Since connecting to databases is dangerous, download values one at a time,
+  # and save to file
+  oneToN <- seq_along(ids)
+  outfiles <- file.path(outdir, paste0(oneToN, "_GO_", ids, ".rds"))
+  tryCatch(
+    for(i in oneToN)
+    {
+      result <- getBM(
+        attributes = attrs,
+        filters    = switch(
+          idType,
+          UniProt    = "uniprot_swissprot",
+          EntrezGene = "entrezgene"
+        ),
+        values     = ids[i],
+        mart       = ensemblMart,
+        uniqueRows = TRUE
+      )
+      saveRDS(result, outfiles[i])
+    },
+    error = function(e)
+    {
+      message(
+        sprintf(
+          "Failed to retrieve data from ensembl on iteration %d (%s ID = %s).",
+          i,
+          idType,
+          ids[i]
+        )
+      )
+      print(e)
+    }
+  )
+
+  # Return location of downloaded files
+  invisible(outfiles)
+}
+
+combineGoData <- function(goData)
+{
+  by_namespace <- goData %>%
+    lapply(
+      function(x)
+      {
+        if(nrow(x) == 0)
+        {
+          return(
+            data.frame(
+              UniProtId        = character(),
+              EntrezGeneId     = character(),
+              GoId             = character(),
+              GoName           = character(),
+              GoDefinition     = character(),
+              GoNamespace      = character(),
+              stringsAsFactors = FALSE
+            )
+          )
+        }
+        x %>%
+          mutate_(
+            EntrezGeneId = ~ as.character(entrezgene)) %>%
+          select_(
+            UniProtId     = ~ uniprot_swissprot,
+            EntrezGeneId  = ~ EntrezGeneId,
+            GoId          = ~ go_id,
+            GoName        = ~ name_1006,
+            GoDefinition  = ~ definition_1006,
+            GoNamespace   = ~ namespace_1003
+          ) %>%
+          distinct_()
+      }
+    ) %>%
+    bind_rows() %>%
+    as.data.table %$%
+    split(., GoNamespace)
+  by_namespace <- by_namespace[nzchar(names(by_namespace))]
+  lapply(by_namespace, select_, ~ - GoNamespace)
 }
