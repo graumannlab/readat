@@ -8,8 +8,7 @@ source("somalogic/inst/scripts/backend.R")
 
 load("somalogic/data/ids1129.rda")
 
-entrezGeneIds <- seqInfo %$%
-  strsplit(as.character(EntrezGeneID), " ") %>%
+entrezGeneIds <- ids$EntrezGeneId %>%
   setNames(seq_along(.)) %>%
   list_to_data.frame("index", "EntrezGeneId")
 
@@ -21,12 +20,11 @@ ensemblIds <- inner_join(
   by = "EntrezGeneId"
 ) %>%
   split(.$index1) %>%
-  #lapply(function(d) paste(d$EnsemblId, collapse = " ")) %>%
   lapply(function(d) unique(d$EnsemblId[!is.na(d$EnsemblId)])) %>%
-  setNames(seqInfo$SeqId[as.integer(names(.))])
+  setNames(ids$SeqId[as.integer(names(.))])
 
 
-saveRDS(ensemblIds, "somalogic/data/ensembl1129.rda")
+save(ensemblIds, file = "somalogic/data/ensembl1129.rda")
 
 
 

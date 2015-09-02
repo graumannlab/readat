@@ -1,6 +1,6 @@
 source("somalogic/inst/scripts/backend.R")
 
-file <- "//acfs/proteomics/Projects/2014/SomaLogic/Data/Original data/WCQ-14-130_20140925/WCQ-14-130_Set_A_RPT.HybMedNormCal_20140925.adat"
+file <- system.file("extdata", "WEI_15-046_20150330.adat", package = "koraproteomics")
 
 sl <- readSomaLogic(file, keepOnlyPasses = FALSE)
 
@@ -12,9 +12,9 @@ ids <- seqInfo[
     SeqId,
     SomaId,
     UniProtId = strsplit(as.character(UniProt), " ", fixed = TRUE),
-    EntrezGeneId = strsplit(as.character(EntrezGeneID), " ", fixed = TRUE)
+    EntrezGeneId = strsplit(as.character(EntrezGeneID), " ", fixed = TRUE),
+    IsHuman = Organism == "Human"
   )
 ]
 
-
-saveRDS(ids, "somalogic/data/ids1129.rda")
+save(ids, file = "somalogic/data/ids1129.rda")
