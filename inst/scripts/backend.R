@@ -206,3 +206,36 @@ combineGoData <- function(goData)
   by_namespace <- by_namespace[nzchar(names(by_namespace))]
   lapply(by_namespace, select_, ~ - GoNamespace)
 }
+
+downloadUniprotKeywords <- function(ids, outdir = tempfile("uniprot_keywords"))
+{
+  mart <- useMart("unimart", "uniprot")
+
+  dir.create(outdir, recursive = TRUE)
+
+  oneToN <- seq_along(ids)
+  outfiles <- file.path(outdir, paste0(oneToN, "_uniprot_keywords_", ids, ".rds"))
+  for(i in oneToN)
+  {
+    keywords <- getBM(
+      c("accession", "keyword"),
+      filters = "accession",
+      values  = ids[i],
+      mart
+    ) %>%
+      rename_(UniProtId = ~ accession, Keyword = ~ keyword) %>%
+      select_(~ UniProtId, ~ Keyword)
+    saveRDS(keywords, outfiles[i])
+  }
+
+  saveRDS(keywordData, "uniprotKeywords.rds")
+
+  # Return location of downloaded files
+  invisible(outfiles)
+}
+
+combineUniprotKeywordData <- function(keywordData)
+{
+  keywordData %>%
+    bind_rows
+}
