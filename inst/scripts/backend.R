@@ -234,8 +234,134 @@ downloadUniprotKeywords <- function(ids, outdir = tempfile("uniprot_keywords"))
   invisible(outfiles)
 }
 
-combineUniprotKeywordData <- function(keywordData)
+downloadKeggData <- function(ids, outdir = tempfile("KEGG"))
 {
-  keywordData %>%
-    bind_rows
+  # Create a place to put them
+  dir.create(outdir, recursive = TRUE)
+
+  message("Saving the KEGG files in ", normalizePath(outdir))
+
+  oneToN <- seq_along(uniProtIds)
+  outfiles <- file.path(outdir, paste0(oneToN, "_KEGG_", uniProtIds, ".rds"))
+
+  for(i in oneToN)
+  {
+    message("UniProt ID = ", uniProtIds[i])
+    hsaIds <- keggConv("hsa", paste0("up:", uniProtIds[i]))
+    if(is_empty(hsaIds))
+    {
+      message("No KEGG ID corresponding to ", uniProtIds[i])
+      next
+    }
+    result <- keggGet(hsaIds) %>% setNames(hsaIds)
+    saveRDS(result, outfiles[i])
+  }
+
+  # Return location of downloaded files
+  invisible(outfiles)
+}
+
+combineKeggDefinitions <- function(keggData, uniProtIds)
+{
+  Map(
+    function(kegg, uniProtId) # loop on a UniProt ID level
+    {
+      lapply(
+        kegg,
+        function(keggid)  # loop on a KEGG ID level
+        {
+          with(
+            keggid,
+            {
+              d <- data.frame(
+                UniProtId             = uniProtId,
+                KeggId                = unname(ENTRY),
+                KeggDefinition        = DEFINITION,
+                KeggCytogenicLocation = POSITION,
+                stringsAsFactors      = FALSE
+              )
+            }
+          )
+        }
+      ) %>%
+        bind_rows()
+    },
+    keggData,
+    uniProtIds
+  ) %>%
+    bind_rows() %>%
+    distinct_() %>%
+    as.data.table
+}
+
+combineKeggModules <- function(keggData, uniProtIds)
+{
+  Map(
+    function(kegg, uniProtId) # loop on a UniProt ID level
+    {
+      lapply(
+        kegg,
+        function(keggid)  # loop on a KEGG ID level
+        {
+          if(is.null(keggid$MODULE))
+          {
+            return(NULL)
+          }
+          with(
+            keggid,
+            {
+              d <- data.frame(
+                UniProtId             = uniProtId,
+                KeggModuleId         = names(MODULE),
+                KeggModule           = MODULE,
+                stringsAsFactors      = FALSE
+              )
+            }
+          )
+        }
+      ) %>%
+        bind_rows()
+    },
+    keggData,
+    uniProtIds
+  ) %>%
+    bind_rows() %>%
+    distinct_() %>%
+    as.data.table
+}
+
+combineKeggPathways <- function(keggData, uniProtIds)
+{
+  Map(
+    function(kegg, uniProtId) # loop on a UniProt ID level
+    {
+      lapply(
+        kegg,
+        function(keggid)  # loop on a KEGG ID level
+        {
+          if(is.null(keggid$PATHWAY))
+          {
+            return(NULL)
+          }
+          with(
+            keggid,
+            {
+              d <- data.frame(
+                UniProtId             = uniProtId,
+                KeggPathwayId         = names(PATHWAY),
+                KeggPathway           = PATHWAY,
+                stringsAsFactors      = FALSE
+              )
+            }
+          )
+        }
+      ) %>%
+        bind_rows()
+    },
+    keggData,
+    uniProtIds
+  ) %>%
+    bind_rows() %>%
+    distinct_() %>%
+    as.data.table
 }

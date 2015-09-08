@@ -28,12 +28,9 @@ keywordData <- keywordData %>%
   as.data.table
 
 
-
-
 flatIds <- ids %>%
   unnest_("UniProtId") %>%
   unnest_("EntrezGeneId")
-
 
 joined <- flatIds %>%
   inner_join(
@@ -46,9 +43,5 @@ uniprotKeywords <- joined %>%
   as.data.frame %$%
   split(., SeqId) %>%
   lapply(select_, ~ UniProtId, ~ Keyword)
-
-
-
-
 
 save(uniprotKeywords, file = "somalogic/data/uniprotKeywords1129.rda")
