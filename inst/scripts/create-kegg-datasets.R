@@ -32,22 +32,11 @@ foundUniProtIds  <- matches %>%
   arrange_(~ Number) %>%
   extract2("UniProtId")
 
-# keggData2 <- Map(extractUsefulKeggData, keggData, foundUniProtIds)
-#
-# keggData2 <- keggData2 %>%
-#   bind_rows() %>%
-#   as.data.table
-
 keggDefinitions <- combineKeggDefinitions(keggData, foundUniProtIds)
 
 keggModules <- combineKeggModules(keggData, foundUniProtIds)
 
 keggPathways <- combineKeggPathways(keggData, foundUniProtIds)
-
-
-
-
-
 
 flatIds <- ids %>%
   unnest_("UniProtId") %>%
