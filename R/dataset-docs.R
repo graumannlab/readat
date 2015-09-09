@@ -80,7 +80,7 @@ NULL
 #' @aliases pfam1129
 #' @format A list of data frames, each with the following columns.
 #' \describe{
-#' \item{EntrezGeneId}{Character.  EntrezGene IDs for the gene that procudes
+#' \item{EntrezGeneId}{Character.  EntrezGene IDs for the gene that produces
 #' the target protein.}
 #' \item{PfamId}{Character.  PFAM ID for a property of the target protein.}
 #' \item{PfamDescription}{Character.  Description of a PFAM protein property.}
@@ -102,7 +102,7 @@ NULL
 #' @format A list of data frames, each with the following columns.
 #' \describe{
 #' \item{UniProtId}{Character.  UniProt ID for the protein target.}
-#' \item{KeggId}{Character.  KEGG ID for the the gene that procudes the
+#' \item{KeggId}{Character.  KEGG ID for the gene that produces the
 #' target protein.}
 #' \item{KeggDefinition}{Character.  Description corresponding to the KEGG ID.}
 #' \item{KeggCytogenicLocation}{Character.  KEGG determination of the gene's
@@ -115,3 +115,27 @@ NULL
 #' head(keggModules)
 #' head(keggPathways)
 NULL
+
+#' GO definitions by SomaLogic SeqID
+#'
+#' A lookup of GO (Gene Ontology) definitions, for molecular function,
+#' biological process, and cellular component by SomaLogic Sequence ID.
+#'
+#' @docType data
+#' @name goMolecularFunction
+#' @aliases goBiologicalProcess goCellularComponent goMolecularFunction1129 goBiologicalProcess1129 goCellularComponent1129
+#' @format A list of data frames, each with the following columns.
+#' \describe{
+#' \item{UniProtId}{Character.  UniProt ID for the protein target.}
+#' \item{GoId}{Character.  GO ID for property of the target protein.}
+#' \item{GoName}{Character.  Name corresponding to the GO ID.}
+#' \item{GoDefinition}{Character.  Description corresponding to the GO ID.}
+#' }
+#' @references More information on GO can be found at:
+#' \url{http://geneontology.org/}
+#' @examples
+#' head(goMolecularFunction)
+#' head(goBiologicalProcess)
+#' head(goCellularComponent)
+NULL
+
