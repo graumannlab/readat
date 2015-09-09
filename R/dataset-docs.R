@@ -7,8 +7,8 @@
 #' @aliases ids1129
 #' @format A data frame with the following columns.
 #' \describe{
-#' \item{SeqId}{Factor, primary key.  The identifier of the SOMAmer sequence.}
-#' \item{SomaId}{Factor.  The SomaLogic identifier for the protein target.  For the 1129 assay, there is a one-to-one correspondence between SeqId and SomaId, but the for larger assays, there is a many-to-one correspondence.}
+#' \item{SeqId}{Character, primary key.  The identifier of the SOMAmer sequence.}
+#' \item{SomaId}{Character.  The SomaLogic identifier for the protein target.  For the 1129 assay, there is a one-to-one correspondence between SeqId and SomaId, but the for larger assays, there is a many-to-one correspondence.}
 #' \item{UniProtId}{List of character vectors. UniProt IDs for the protein target.}
 #' \item{EntrezGeneId}{List of character vectors. EntrezGene IDs for the gene that produces the protein target.}
 #' \item{IsHuman}{Logical.  \code{TRUE} when the target is a human protein, and \code{FALSE} when it is a virus protein.}

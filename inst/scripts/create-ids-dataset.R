@@ -9,8 +9,8 @@ seqInfo <- getSequenceInfo(sl)
 
 ids <- seqInfo[
   j = list(
-    SeqId,
-    SomaId,
+    SeqId = as.character(SeqId),
+    SomaId = as.character(SomaId),
     UniProtId = strsplit(as.character(UniProt), " ", fixed = TRUE),
     EntrezGeneId = strsplit(as.character(EntrezGeneID), " ", fixed = TRUE),
     IsHuman = Organism == "Human"
