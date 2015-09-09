@@ -12,7 +12,7 @@
 \format{A list of data frames, each with the following columns.
 \describe{
 \item{UniProtId}{Character.  UniProt ID for the protein target.}
-\item{KeggId}{Character.  KEGG ID for the the gene that procudes the
+\item{KeggId}{Character.  KEGG ID for the gene that produces the
 target protein.}
 \item{KeggDefinition}{Character.  Description corresponding to the KEGG ID.}
 \item{KeggCytogenicLocation}{Character.  KEGG determination of the gene's

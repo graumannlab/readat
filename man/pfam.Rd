@@ -7,7 +7,7 @@
 \title{PFAM IDs by SomaLogic SeqID}
 \format{A list of data frames, each with the following columns.
 \describe{
-\item{EntrezGeneId}{Character.  EntrezGene IDs for the gene that procudes
+\item{EntrezGeneId}{Character.  EntrezGene IDs for the gene that produces
 the target protein.}
 \item{PfamId}{Character.  PFAM ID for a property of the target protein.}
 \item{PfamDescription}{Character.  Description of a PFAM protein property.}
