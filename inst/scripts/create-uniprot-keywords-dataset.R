@@ -8,11 +8,9 @@ library(rebus)
 library(tidyr)
 library(data.table)
 
-
 source("somalogic/inst/scripts/backend.R")
 
 load("somalogic/data/ids1129.rda")
-
 
 uniProtIds <- ids %>%
   filter_(~ IsHuman) %$%
@@ -26,7 +24,6 @@ keywordData <- lapply(keywordFiles, readRDS)
 keywordData <- keywordData %>%
   bind_rows() %>%
   as.data.table
-
 
 flatIds <- ids %>%
   unnest_("UniProtId") %>%

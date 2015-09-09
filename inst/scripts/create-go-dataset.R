@@ -96,9 +96,25 @@ go <- Map(
   joined2
 )
 
+goMolecularFunction <- go$molecular_function
+goBiologicalProcess <- go$biological_process
+goCellularComponent <- go$cellular_component
+
 save(
-  go,
-  file = "somalogic/data/go1129.rda",
+  goMolecularFunction,
+  file = "somalogic/data/goMolecularFunction1129.rda",
+  compress = "xz"
+)
+
+save(
+  goBiologicalProcess,
+  file = "somalogic/data/goBiologicalProcess1129.rda",
+  compress = "xz"
+)
+
+save(
+  goCellularComponent,
+  file = "somalogic/data/goCellularComponent1129.rda",
   compress = "xz"
 )
 

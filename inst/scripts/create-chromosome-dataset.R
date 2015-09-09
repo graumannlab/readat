@@ -7,11 +7,9 @@ library(biomaRt)
 library(rebus)
 library(tidyr)
 
-
 source("somalogic/inst/scripts/backend.R")
 
 load("somalogic/data/ids1129.rda")
-
 
 uniProtIds <- ids %>%
   filter_(~ IsHuman) %$%
@@ -31,8 +29,6 @@ entrezGeneIds <- ids %>%
   filter_(~ UniProtId %in% notFound) %$%
   unlist(EntrezGeneId) %>%
   unique()
-
-
 
 
 

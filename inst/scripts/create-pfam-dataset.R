@@ -43,6 +43,12 @@ pfam <- joined %>%
   split(.$SeqId1) %>%
   lapply(select_, ~ EntrezGeneId, ~ PfamId, ~ PfamDescription)
 
+# Merge in cases where PFAM ids were not found
+notFound <- setdiff(ids$SeqId, names(pfam))
+notFoundList <- vector("list", length(notFound)) %>%
+  setNames(notFound)
+pfam <- pfam %>% c(notFoundList)
+
 save(
   pfam,
   file = "somalogic/data/pfam1129.rda",

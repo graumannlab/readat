@@ -54,7 +54,11 @@ keggDefinitions <- joinedDefinitions %>%
   split(., SeqId) %>%
   lapply(select_, ~ - SeqId)
 
-save(keggDefinitions, file = "somalogic/data/keggDefinitions1129.rda")
+save(
+  keggDefinitions,
+  file = "somalogic/data/keggDefinitions1129.rda",
+  compress = "xz"
+)
 
 
 joinedModules <- flatIds %>%
@@ -69,7 +73,11 @@ keggModules <- joinedModules %>%
   split(., SeqId) %>%
   lapply(select_, ~ - SeqId)
 
-save(keggModules, file = "somalogic/data/keggModules1129.rda")
+save(
+  keggModules,
+  file = "somalogic/data/keggModules1129.rda",
+  compress = "xz"
+)
 
 
 joinedPathways <- flatIds %>%
