@@ -84,7 +84,11 @@ keggPathways <- joinedPathways %>%
   split(., SeqId) %>%
   lapply(select_, ~ - SeqId)
 
-save(keggPathways, file = "somalogic/data/keggPathways1129.rda")
+save(
+  keggPathways,
+  file = "somalogic/data/keggPathways1129.rda",
+  compress = "xz"
+)
 
 
 

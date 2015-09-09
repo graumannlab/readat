@@ -24,7 +24,11 @@ ensemblIds <- inner_join(
   setNames(ids$SeqId[as.integer(names(.))])
 
 
-save(ensemblIds, file = "somalogic/data/ensembl1129.rda")
+save(
+  ensemblIds,
+  file = "somalogic/data/ensembl1129.rda",
+  compress = "xz"
+)
 
 
 

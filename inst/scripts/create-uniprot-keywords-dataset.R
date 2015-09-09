@@ -44,4 +44,8 @@ uniprotKeywords <- joined %>%
   split(., SeqId) %>%
   lapply(select_, ~ UniProtId, ~ Keyword)
 
-save(uniprotKeywords, file = "somalogic/data/uniprotKeywords1129.rda")
+save(
+  uniprotKeywords,
+  file = "somalogic/data/uniprotKeywords1129.rda",
+  compress = "xz"
+)

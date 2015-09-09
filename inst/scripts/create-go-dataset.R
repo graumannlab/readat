@@ -96,7 +96,11 @@ go <- Map(
   joined2
 )
 
-save(go, file = "somalogic/data/go1129.rda")
+save(
+  go,
+  file = "somalogic/data/go1129.rda",
+  compress = "xz"
+)
 
 
 

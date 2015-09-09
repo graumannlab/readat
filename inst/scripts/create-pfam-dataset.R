@@ -43,7 +43,11 @@ pfam <- joined %>%
   split(.$SeqId1) %>%
   lapply(select_, ~ EntrezGeneId, ~ PfamId, ~ PfamDescription)
 
-save(pfam, file = "somalogic/data/pfam1129.rda")
+save(
+  pfam,
+  file = "somalogic/data/pfam1129.rda",
+  compress = "xz"
+)
 
 
 

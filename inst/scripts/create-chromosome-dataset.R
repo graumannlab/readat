@@ -74,4 +74,8 @@ chromosomalPositions <- bind_rows(joined, joined2) %$%
     }
   )
 
-save(chromosomalPositions, file = "somalogic/data/chromosome1129.rda")
+save(
+  chromosomalPositions,
+  file = "somalogic/data/chromosome1129.rda",
+  compress = "xz"
+)

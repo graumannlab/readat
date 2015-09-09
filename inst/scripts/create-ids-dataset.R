@@ -17,4 +17,8 @@ ids <- seqInfo[
   )
 ]
 
-save(ids, file = "somalogic/data/ids1129.rda")
+save(
+  ids,
+  file = "somalogic/data/ids1129.rda",
+  compress = "xz"
+)
