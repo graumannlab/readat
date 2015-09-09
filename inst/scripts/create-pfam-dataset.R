@@ -40,7 +40,7 @@ joined <- entrezGeneIds %>%
   )
 
 pfam <- joined %>%
-  split(.$SeqId1) %>%
+  split(.$SeqId) %>%
   lapply(select_, ~ EntrezGeneId, ~ PfamId, ~ PfamDescription)
 
 # Merge in cases where PFAM ids were not found
