@@ -4,19 +4,21 @@
 \alias{getEnsemblIds}
 \title{Get Ensembl IDs by SeqID}
 \usage{
-getEnsemblIds(seqIds = NULL)
+getEnsemblIds(seqIds = NULL, simplify = FALSE)
 }
 \arguments{
-\item{seqIds}{A character vector of SomaLogic SeqIDs, or \code{NULL} to use
-all 1129 SeqIDs.}
+\item{seqIds}{A character vector of SomaLogic Sequence IDs, or \code{NULL} to use
+all 1129 Sequence IDs.}
+
+\item{simplify}{should}
 }
 \value{
 A list of character vectors.  The names of the list are the input
-SeqIDs, and the character vector associated with that element contains the
+Sequence IDs, and the character vector associated with that element contains the
 Ensembl IDs.
 }
 \description{
-Gets the Ensembl IDs associated with SomaLogic SeIDs.
+Gets the Ensembl IDs associated with SomaLogic Sequence IDs.
 }
 \examples{
 # Each SeqID may have one, many, or zero associated Ensembl IDs

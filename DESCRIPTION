@@ -8,6 +8,8 @@ Imports:
    assertive,
    Biobase,
    data.table,
+   dplyr,
+   listless,
    reshape2,
    stringr
 License: GPL
