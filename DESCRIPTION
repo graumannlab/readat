@@ -3,9 +3,10 @@ Title: Functionality to Load SomaLogic Data
 Version: 0.2.4
 Authors@R: c(person("Richard", "Cotton", email = "rjc2003@qatar-med.cornell.edu", role = c("cre", "aut")), person("Aditya", "Bhagwat", email = "adb2018@qatar-med.cornell.edu", role = c("aut")))
 Description: This package contains functionality to load data from the SomaLogic SOMAscan platform.
-Depends: R (>= 3.1.2), Biobase
+Depends: R (>= 3.1.2)
 Imports:
    assertive,
+   Biobase,
    data.table,
    reshape2,
    stringr
