@@ -159,19 +159,23 @@ readSomaLogic <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
 
   # Update column types. Columns change with different SOMA versions.
   # Therefore, only update columns which we currently use, leave others unchanged
-   sequenceData$SeqId            <- factor(sequenceData$SeqId)
-   sequenceData$SomaId           <- factor(sequenceData$SomaId)
-   sequenceData$Target           <- factor(sequenceData$Target)
-   sequenceData$TargetFullName   <- factor(sequenceData$TargetFullName)
-   sequenceData$UniProt          <- factor(str_replace_all(sequenceData$UniProt, "[, ]+", " "))
-   sequenceData$EntrezGeneID     <- factor(sequenceData$EntrezGeneID)
-   sequenceData$EntrezGeneSymbol <- factor(sequenceData$EntrezGeneSymbol)
-   sequenceData$Organism         <- factor(sequenceData$Organism)
-   sequenceData$Units            <- factor(sequenceData$Units)
-   sequenceData$ColCheck         <- factor(sequenceData$ColCheck)
-   # sequenceData$CalReference  <- as.numeric(sequenceData$CalReference)
-   # sequenceData$Cal_Set_A_RPT <- as.numeric(sequenceData$Cal_Set_A_RPT)
-   # sequenceData$Dilution      <- as.numeric(sequenceData$Dilution)
+  sequenceData <- sequenceData[
+    j = `:=`(
+      SeqId            = factor(SeqId),
+      SomaId           = factor(SomaId),
+      Target           = factor(Target),
+      TargetFullName   = factor(TargetFullName),
+      UniProt          = factor(str_replace_all(UniProt, "[, ]+", " ")),
+      EntrezGeneID     = factor(str_replace_all(EntrezGeneID, "[, ]+", " ")),
+      EntrezGeneSymbol = factor(EntrezGeneSymbol),
+      Organism         = factor(Organism),
+      Units            = factor(Units),
+      ColCheck         = factor(ColCheck)
+     # CalReference  = as.numeric(CalReference)
+     # Cal_Set_A_RPT = as.numeric(Cal_Set_A_RPT)
+     # Dilution      = as.numeric(Dilution)
+    )
+  ]
 
   # Read row data
   intensityData <- fread(
