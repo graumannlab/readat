@@ -209,22 +209,27 @@ readSomaLogic <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
   # As with sequence data, ensure correct datatypes
   # SOMA files change with different versions, so only do this for
   # variables that might be useful for data analysis
-  intensityData$PlateId           <- factor(intensityData$PlateId)
-  intensityData$SlideId           <- factor(intensityData$SlideId)
-  intensityData$SampleId          <- factor(intensityData$SampleId)
-  intensityData$SampleType        <- factor(intensityData$SampleType)
-  intensityData$SampleMatrix      <- factor(intensityData$SampleMatrix)
-  intensityData$Barcode           <- factor(intensityData$Barcode)
-  intensityData$Barcode2d         <- factor(intensityData$Barcode2d)
-  intensityData$SampleNotes       <- factor(intensityData$SampleNotes)
-  intensityData$SampleDescription <- factor(intensityData$SampleDescription)
-  intensityData$TimePoint         <- as.numeric(intensityData$TimePoint)
-  intensityData$ExtIdentifier     <- factor(intensityData$ExtIdentifier)
-  intensityData$SampleGroup       <- factor(intensityData$SampleGroup)
-  intensityData$SiteId            <- factor(intensityData$SiteId)
-#  intensityData$SampleUniqueID    <- factor(intensityData$SampleUniqueID) # no longer present in soma file version 1.2
-  intensityData$Subject_ID        <- factor(intensityData$Subject_ID)
-  intensityData$RowCheck          <- factor(intensityData$RowCheck)
+  intensityData[
+    j = `:=`(
+      PlateId           = factor(PlateId),
+      SlideId           = factor(SlideId),
+      SampleId          = factor(SampleId),
+      SampleType        = factor(SampleType),
+      SampleMatrix      = factor(SampleMatrix),
+      Barcode           = factor(Barcode),
+      Barcode2d         = factor(Barcode2d),
+      SampleNotes       = factor(SampleNotes),
+      SampleDescription = factor(SampleDescription),
+      TimePoint         = as.numeric(TimePoint),
+      ExtIdentifier     = factor(ExtIdentifier),
+      SampleGroup       = factor(SampleGroup),
+      SiteId            = factor(SiteId),
+      #  SampleUniqueID    = factor(SampleUniqueID), # no longer present in soma file version 1.2
+      Subject_ID        = factor(Subject_ID),
+      RowCheck          = factor(RowCheck)
+    )
+  ]
+
 
   # Remove failures
   if(keepOnlyPasses)
