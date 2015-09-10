@@ -111,14 +111,15 @@ readSomaLogic <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
 
 
   # Read header
-  headerData <- fread(
+  # (Ab)using fread for this tends to results in unnecessary warnings.
+  headerData <- suppressWarnings(fread(
     file,
     sep       = "\t",
     nrows     = dataGroupRow[2] - dataGroupRow[1] - 1,
     header    = FALSE,
     skip      = dataGroupRow[1],
     integer64 = 'numeric'
-  )
+  ))
   header <- with(headerData, setNames(as.list(V2), substring(V1, 2)))
   header <- within(
     header,
