@@ -20,20 +20,13 @@
 #' @export
 getEnsemblIds <- function(seqIds = NULL, simplify = FALSE)
 {
-  e <- new.env()
-  if(is.null(seqIds))
-  {
-    data(list = "ids1129", package = "somalogic", envir = e)
-    seqIds = e$ids$SeqId
-  }
-  data(list = "ensembl1129", package = "somalogic", envir = e)
-  ensemblIds <- e$ensemblIds[names(e$ensemblIds) %in% seqIds]
+  y <- getData(seqIds, FALSE, "ensembl1129", "ensemblIds")
   if(simplify)
   {
-    list_to_data.frame(ensemblIds, "SeqId", "EnsemblId")
+    list_to_data.frame(y, "SeqId", "EnsemblId")
   } else
   {
-    ensemblIds
+    y
   }
 }
 
@@ -64,21 +57,7 @@ getEnsemblIds <- function(seqIds = NULL, simplify = FALSE)
 #' @export
 getUniProtKeywords <- function(seqIds = NULL, simplify = FALSE)
 {
-  e <- new.env()
-  if(is.null(seqIds))
-  {
-    data(list = "ids1129", package = "somalogic", envir = e)
-    seqIds = e$ids$SeqId
-  }
-  data(list = "uniprotKeywords1129", package = "somalogic", envir = e)
-  uniprotKeywords <- e$uniprotKeywords[names(e$uniprotKeywords) %in% seqIds]
-  if(simplify)
-  {
-    bind_rows(uniprotKeywords, .id = "SeqId")
-  } else
-  {
-    uniprotKeywords
-  }
+  getData(seqIds, simplify, "uniprotKeywords1129", "uniprotKeywords")
 }
 
 #' Get Chromosomal Positions by SeqID
@@ -91,10 +70,10 @@ getUniProtKeywords <- function(seqIds = NULL, simplify = FALSE)
 #' @return A list of data frames.  The names of the list are the input
 #' SeqIds, and the data frame associated with that element contains:
 #' \describe{
-#' \item{UniProtId}{Character. The UniProt ID that the Keyword is associated
-#' with.}
-#' \item{Keyword}{Character. A UniProt Keyword associated with the SeqID and
-#' UniProt ID.}
+#'  \item{UniProtId}{Character.  UniProt ID for the protein target.}
+#' \item{Chromsome}{Character.  Either '1' to '22' or 'X' . (Currently no 'Y' values.)}
+#' \item{StartPosition}{Integer. Distance in base pairs from the 5' end of the gene to the start of the protein.}
+#' \item{EndPosition}{Integer. Distance in base pairs from the 5' end of the gene to the end of the protein.}
 #' }
 #' @examples
 #' # Each SeqID may have one, many, or zero associated chromosomal positions
@@ -108,21 +87,156 @@ getUniProtKeywords <- function(seqIds = NULL, simplify = FALSE)
 #' @export
 getChromosomalPositions <- function(seqIds = NULL, simplify = FALSE)
 {
+  getData(seqIds, simplify, "chromosome1129", "chromosomalPositions")
+}
+
+#' Get PFAM IDs by SeqID
+#'
+#' Gets the PFAM Ids and descriptions associated with SomaLogic Sequence IDs.
+#' @param seqIds A character vector of SomaLogic Sequence IDs, or \code{NULL} to
+#' use all 1129 Sequence IDs.
+#' @param simplify Logical.  Should the output be collapsed into a single
+#' data.frame?
+#' @return A list of data frames.  The names of the list are the input
+#' SeqIds, and the data frame associated with that element contains:
+#' \describe{
+#' \item{EntrezGeneId}{Character.  EntrezGene IDs for the gene that produces
+#' the target protein.}
+#' \item{PfamId}{Character.  PFAM ID for a property of the target protein.}
+#' \item{PfamDescription}{Character.  Description of a PFAM protein property.}
+#' }
+#' @examples
+#' # Each SeqID may have one, many, or zero associated PFAM descriptions
+#' getPfam(c("2278-61_4", "4703-87_2", "4916-2_1"))
+#'
+#' # Get everything in the 1129 panel.
+#' \dontrun{
+#' getPfam()
+#' }
+#' @importFrom dplyr bind_rows
+#' @export
+getPfam <- function(seqIds = NULL, simplify = FALSE)
+{
+  getData(seqIds, simplify, "pfam1129", "pfam")
+}
+
+#' KEGG definitions, modules, and pathways by SeqID
+#'
+#' Gets the KEGG definitions, modules, and pathways associated with SomaLogic
+#' Sequence IDs.
+#' @param seqIds A character vector of SomaLogic Sequence IDs, or \code{NULL} to
+#' use all 1129 Sequence IDs.
+#' @param simplify Logical.  Should the output be collapsed into a single
+#' data.frame?
+#' @return A list of data frames.  The names of the list are the input
+#' SeqIds, and the data frame associated with that element contains:
+#' \describe{
+#' \item{UniProtId}{Character.  UniProt ID for the protein target.}
+#' \item{KeggId}{Character.  KEGG ID for the gene that produces the
+#' target protein.}
+#' \item{KeggDefinition}{Character.  Description corresponding to the KEGG ID.}
+#' \item{KeggCytogenicLocation}{Character.  KEGG determination of the gene's
+#' locus.}
+#' }
+#' @examples
+#' # Each SeqID may have one, many, or zero associated KEGG descriptions
+#' getKeggDefinitions(c("2278-61_4", "3505-6_2", "4916-2_1"))
+#' getKeggModules(c("2278-61_4", "3505-6_2", "4916-2_1"))
+#' getKeggPathways(c("2278-61_4", "3505-6_2", "4916-2_1"))
+#'
+#' # Get everything in the 1129 panel.
+#' \dontrun{
+#' getKeggDefinitions()
+#' getKeggModules()
+#' getKeggPathways()
+#' }
+#' @importFrom dplyr bind_rows
+#' @export
+getKeggDefinitions <- function(seqIds = NULL, simplify = FALSE)
+{
+  getData(seqIds, simplify, "keggDefinitions1129", "keggDefinitions")
+}
+
+#' @rdname getKeggDefinitions
+#' @export
+getKeggModules <- function(seqIds = NULL, simplify = FALSE)
+{
+  getData(seqIds, simplify, "keggModules1129", "keggModules")
+}
+
+#' @rdname getKeggDefinitions
+#' @export
+getKeggPathways <- function(seqIds = NULL, simplify = FALSE)
+{
+  getData(seqIds, simplify, "keggPathways1129", "keggPathways")
+}
+
+
+#' GO definitions by SeqID
+#'
+#' Gets the GO definitions associated with SomaLogic Sequence IDs.  There are
+#' three datasets, one for each of these domains: molecular function, biological
+#' process, and cellular compartment.
+#' @param seqIds A character vector of SomaLogic Sequence IDs, or \code{NULL} to
+#' use all 1129 Sequence IDs.
+#' @param simplify Logical.  Should the output be collapsed into a single
+#' data.frame?
+#' @return A list of data frames.  The names of the list are the input
+#' SeqIds, and the data frame associated with that element contains:
+#' \describe{
+#' \item{UniProtId}{Character.  UniProt ID for the protein target.}
+#' \item{GoId}{Character.  GO ID for property of the target protein.}
+#' \item{GoName}{Character.  Name corresponding to the GO ID.}
+#' \item{GoDefinition}{Character.  Description corresponding to the GO ID.}
+#' }
+#' @examples
+#' # Each SeqID may have one, many, or zero associated GO descriptions
+#' getGoMolecularFunctions(c("2278-61_4", "3505-6_2", "4916-2_1"))
+#' getGoBiologicalProcesses(c("2278-61_4", "3505-6_2", "4916-2_1"))
+#' getGoCellularComponents(c("2278-61_4", "3505-6_2", "4916-2_1"))
+#'
+#' # Get everything in the 1129 panel.
+#' \dontrun{
+#' getGoMolecularFunctions()
+#' getGoBiologicalProcesses()
+#' getGoCellularComponents()
+#' }
+#' @importFrom dplyr bind_rows
+#' @export
+getGoMolecularFunctions <- function(seqIds = NULL, simplify = FALSE)
+{
+  getData(seqIds, simplify, "goMolecularFunction1129", "goMolecularFunction")
+}
+
+#' @rdname getGoMolecularFunctions
+#' @export
+getGoBiologicalProcesses <- function(seqIds = NULL, simplify = FALSE)
+{
+  getData(seqIds, simplify, "goBiologicalProcess1129", "goBiologicalProcess")
+}
+
+#' @rdname getGoMolecularFunctions
+#' @export
+getGoCellularComponents <- function(seqIds = NULL, simplify = FALSE)
+{
+  getData(seqIds, simplify, "goCellularComponent1129", "goCellularComponent")
+}
+
+getData <- function(seqIds = NULL, simplify = FALSE, dataName, dataElement)
+{
   e <- new.env()
   if(is.null(seqIds))
   {
     data(list = "ids1129", package = "somalogic", envir = e)
     seqIds = e$ids$SeqId
   }
-  data(list = "chromosome1129", package = "somalogic", envir = e)
-  chromosomalPositions <- e$chromosomalPositions[names(e$chromosomalPositions) %in% seqIds]
+  data(list = dataName, package = "somalogic", envir = e)
+  y <- e[[dataElement]][names(e[[dataElement]]) %in% seqIds]
   if(simplify)
   {
-    bind_rows(chromosomalPositions, .id = "SeqId")
+    bind_rows(y, .id = "SeqId")
   } else
   {
-    chromosomalPositions
+    y
   }
 }
-
-
