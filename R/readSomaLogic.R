@@ -170,12 +170,19 @@ readSomaLogic <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
       EntrezGeneSymbol = factor(EntrezGeneSymbol),
       Organism         = factor(Organism),
       Units            = factor(Units),
-      ColCheck         = factor(ColCheck)
-     # CalReference  = as.numeric(CalReference)
-     # Cal_Set_A_RPT = as.numeric(Cal_Set_A_RPT)
-     # Dilution      = as.numeric(Dilution)
+      ColCheck         = factor(ColCheck),
+      CalReference  = as.numeric(CalReference),
+      Dilution      = as.numeric(Dilution)
     )
   ]
+
+  # There are some more columns that need fixing, which should have the names
+  # sprintf("Cal_%s", str_replace(levels(intensityData$PlateId), " ", "_"))
+  calCols <- colnames(sequenceData)[str_detect(colnames(sequenceData), "^Cal_")]
+  for(i in seq_along(calCols))
+  {
+    sequenceData[[calCols[i]]] <- as.numeric(sequenceData[[calCols[i]]])
+  }
 
   # Read row data
   intensityData <- fread(
