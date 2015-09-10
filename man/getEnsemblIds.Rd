@@ -10,7 +10,8 @@ getEnsemblIds(seqIds = NULL, simplify = FALSE)
 \item{seqIds}{A character vector of SomaLogic Sequence IDs, or \code{NULL} to use
 all 1129 Sequence IDs.}
 
-\item{simplify}{should}
+\item{simplify}{Logical.  Should the output be collapsed into a single
+data.frame?}
 }
 \value{
 A list of character vectors.  The names of the list are the input
@@ -25,6 +26,8 @@ Gets the Ensembl IDs associated with SomaLogic Sequence IDs.
 getEnsemblIds(c("2278-61_4", "4703-87_2", "4916-2_1"))
 
 # Get everything in the 1129 panel.
+\dontrun{
 getEnsemblIds()
+}
 }
 
