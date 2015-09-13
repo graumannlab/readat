@@ -21,3 +21,30 @@ install_bitbucket(
   password  = "your bitbucket password"  
 )
 ```
+
+# Functionality
+
+`readSomaLogic` let's you import data from the SomaLogic ADAT file format.  The
+result is stored in an object of class `WideSomaData`.  This is a data.table 
+with one sample per row, and includes both the intensities and sample metadata.
+The object also has an attribute named `sequenceData` that contains a data.table
+of sequence metadata.  There are also attributes for experiment metadata and a 
+checksum.
+
+`getSequenceData`, `getMetadata`, and `getChecksum` provide shortcuts to access 
+these attributes.
+
+There is a `melt` method for `WideSomaData` that converts the object to 
+`LongSomaData` format, which is a data.table with one intensity per row.
+
+`soma2eset` converts an object of class `WideSomaData` to a 
+`Biobase::ExpressionSet`.
+
+You can retrieve additional annotations by SomaLogic Sequence ID uisng 
+`getEnsemblIds`, `getUniProtKeywords`, `getChromosomalPositions`, `getPfam`, 
+`getKeggDefinitions`, `getKeggModules`, `getKeggPathways`, 
+`getGoMolecularFunctions`, `getGoBiologicalProcesses`, `getGoCellularComponents`.
+
+
+
+
