@@ -176,6 +176,11 @@ readSomaLogic <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
     )
   ]
 
+  # Check for bad UniProt and EntrezGene Ids.
+  check_uniprot_ids(sequenceData)
+  check_entrez_gene_ids(sequenceData)
+  check_entrez_gene_symbols(sequenceData)
+
   # There are some more columns that need fixing, which should have the names
   # sprintf("Cal_%s", str_replace(levels(intensityData$PlateId), " ", "_"))
   calCols <- colnames(sequenceData)[str_detect(colnames(sequenceData), "^Cal_")]
