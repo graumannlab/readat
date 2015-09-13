@@ -5,6 +5,8 @@ ENTREZ_GENE_ID <- "^(?:[0-9]+)$"
 
 ENTREZ_GENE_SYMBOL <- "^(?:(?:OK/|b|DKFZp)?(?:[A-Z0-9.]+)(?:orf[A-Z0-9]+)?(?:-[A-Z0-9.]+)?)(?:orf[A-Z0-9]+)?(?:_[2HB]|@|-[A-Z0-9]+)?$"
 
+
+# Predicates
 is_uniprot_id <- function(x)
 {
   x <- coerce_to(x, "character")
@@ -18,7 +20,7 @@ is_uniprot_id <- function(x)
   )
 }
 
-is_entrezgene_id <- function(x)
+is_entrez_gene_id <- function(x)
 {
   x <- coerce_to(x, "character")
   call_and_name(
@@ -44,6 +46,7 @@ is_entrez_gene_symbol <- function(x)
   )
 }
 
+# assertions
 assert_all_are_uniprot_ids <- function(x,
   severity = getOption("assertive.severity", "stop"))
 {
@@ -77,6 +80,18 @@ assert_all_are_entrez_gene_symbols <- function(x,
   assert_engine(is_entrez_gene_symbol, x, msg = msg, severity = severity)
 }
 
+# High-level checks.
+
+#' Check that the IDs are genuine
+#'
+#' Checks on character vectors to see if they contain valid UniProt IDs,
+#' Entrez Gene IDs, and Entrez Gene symbols.
+#' @param sequenceData A data.table of sequence data.  It Should contain columns
+#' named "UniProt", "EntrezGeneID", and "EntrezGeneSymbol".
+#' @return The character vector of IDs/symbols is silently returned, but the
+#' functions are mostly invoked for the side effect of throwing a warning if
+#' there are any bad elements.
+#' @noRd
 check_uniprot_ids <- function(sequenceData)
 {
   upIds <- strsplit(
@@ -85,7 +100,7 @@ check_uniprot_ids <- function(sequenceData)
     fixed = TRUE
   ) %>%
     unlist(use.names = FALSE)
-  assert_all_are_uniprot_ids(upIds)
+  assert_all_are_uniprot_ids(upIds, severity = "warning")
 }
 
 check_entrez_gene_ids <- function(sequenceData)
@@ -96,7 +111,7 @@ check_entrez_gene_ids <- function(sequenceData)
     fixed = TRUE
   ) %>%
     unlist(use.names = FALSE)
-  assert_all_are_entrez_gene_ids(egIds)
+  assert_all_are_entrez_gene_ids(egIds, severity = "warning")
 }
 
 
@@ -108,7 +123,7 @@ check_entrez_gene_symbols <- function(sequenceData)
     fixed = TRUE
   ) %>%
     unlist(use.names = FALSE)
-  assert_all_are_entrez_gene_symbols(egSymbols)
+  assert_all_are_entrez_gene_symbols(egSymbols, severity = "warning")
 }
 
 
