@@ -133,6 +133,8 @@ readSomaLogic <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
 
 
   # Read column data
+  # This causes an erroneous false-positive warning about not reading to the end
+  # of the file.  See https://github.com/Rdatatable/data.table/issues/1330
   sequenceData <- fread(
     file,
     sep              = "\t",
