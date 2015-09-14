@@ -1,6 +1,6 @@
 source("somalogic/inst/scripts/backend.R")
 
-file <- system.file("extdata", "WEI_15-046_20150330.adat", package = "koraproteomics")
+file <- file.choose()
 
 sl <- readAdat(file, keepOnlyPasses = FALSE)
 
