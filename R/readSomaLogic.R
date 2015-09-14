@@ -61,7 +61,7 @@ utils::globalVariables("Intensity")
 #' @examples
 #' \donttest{
 #' unzip(
-#'   system.file("extdata", "soma_atkin_diabetes.zip", package = "pdapmain"),
+#'   system.file("extdata", "soma_atkin_diabetes.zip", package = "koraproteomics"),
 #'   exdir = tempdir()
 #' )
 #' soma_file <- file.path(tempdir(), "soma_atkin_diabetes.adat")
@@ -82,7 +82,7 @@ utils::globalVariables("Intensity")
 #' @importFrom stringr str_replace_all
 #' @export
 #' @author Richard Cotton
-readSomaLogic <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
+readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
 {
   assert_any_are_true(c(is_a_string(file), is_readable_connection(file)))
 
@@ -268,6 +268,14 @@ readSomaLogic <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
   setattr(intensityData, "Checksum", checksum)
   setattr(intensityData, "class", c("WideSomaLogicData", "data.table", "data.frame"))
   intensityData
+}
+
+#' @rdname readAdat
+#' @export
+readSomaLogic <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
+{
+  .Deprecated("readAdat")
+  readAdat(file, keepOnlyPasses, dateFormat)
 }
 
 #' Is the value a pass
