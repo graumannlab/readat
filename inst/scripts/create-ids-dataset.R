@@ -2,7 +2,7 @@ source("somalogic/inst/scripts/backend.R")
 
 file <- system.file("extdata", "WEI_15-046_20150330.adat", package = "koraproteomics")
 
-sl <- readSomaLogic(file, keepOnlyPasses = FALSE)
+sl <- readAdat(file, keepOnlyPasses = FALSE)
 
 seqInfo <- getSequenceInfo(sl)
 
@@ -13,12 +13,15 @@ ids <- seqInfo[
     SomaId = as.character(SomaId),
     UniProtId = strsplit(as.character(UniProt), " ", fixed = TRUE),
     EntrezGeneId = strsplit(as.character(EntrezGeneID), " ", fixed = TRUE),
+    EntrezGeneSymbol = strsplit(as.character(EntrezGeneSymbol), " ", fixed = TRUE),
+    Target = as.character(Target),
+    TargetFullName = as.character(TargetFullName),
     IsHuman = Organism == "Human"
   )
 ]
 
 save(
   ids,
-  file = "somalogic/data/ids1129.rda",
+  file = "readat/data/ids1129.rda",
   compress = "xz"
 )
