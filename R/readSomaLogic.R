@@ -114,11 +114,12 @@ readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
   # (Ab)using fread for this tends to results in unnecessary warnings.
   headerData <- suppressWarnings(fread(
     file,
-    sep       = "\t",
-    nrows     = dataGroupRow[2] - dataGroupRow[1] - 1,
-    header    = FALSE,
-    skip      = dataGroupRow[1],
-    integer64 = 'numeric'
+    sep        = "\t",
+    nrows      = dataGroupRow[2] - dataGroupRow[1] - 1,
+    header     = FALSE,
+    skip       = dataGroupRow[1],
+    integer64  = 'numeric',
+    na.strings = c("", "NA")
   ))
   header <- with(headerData, setNames(as.list(V2), substring(V1, 2)))
   header <- within(
@@ -143,7 +144,8 @@ readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
     skip             = dataGroupRow[4],
     header           = FALSE,
     stringsAsFactors = FALSE,
-    integer64        = 'numeric'
+    integer64        = 'numeric',
+    na.strings      = c("", "NA")
   )
   # Get the column that contains the headers
   sequenceHeaderColumnNumber <- nFields[dataGroupRow[3] + 1]
@@ -169,12 +171,12 @@ readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
       TargetFullName   = factor(TargetFullName),
       UniProt          = factor(str_replace_all(UniProt, "[, ]+", " ")),
       EntrezGeneID     = factor(str_replace_all(EntrezGeneID, "[, ]+", " ")),
-      EntrezGeneSymbol = factor(EntrezGeneSymbol),
+      EntrezGeneSymbol = factor(str_replace_all(EntrezGeneSymbol, "[, ]+", " ")),
       Organism         = factor(Organism),
       Units            = factor(Units),
       ColCheck         = factor(ColCheck),
-      CalReference  = as.numeric(CalReference),
-      Dilution      = as.numeric(Dilution)
+      CalReference     = as.numeric(CalReference),
+      Dilution         = as.numeric(Dilution)
     )
   ]
 
@@ -197,7 +199,8 @@ readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
     sep              = "\t",
     nrows            = length(nFields) - dataGroupRow[4] - ncol(sequenceData),
     skip             = dataGroupRow[4] + ncol(sequenceData),
-    integer64 = 'numeric'
+    integer64        = 'numeric',
+    na.strings       = c("", "NA")
   )
   # Remove blank column between metadata and sequence data
   intensityData <- intensityData[, -sequenceHeaderColumnNumber, with = FALSE]
