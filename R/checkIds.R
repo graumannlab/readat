@@ -7,6 +7,10 @@ ENTREZ_GENE_SYMBOL <- "^(?:(?:OK/|b|DKFZp)?(?:[A-Z0-9.]+)(?:orf[A-Z0-9]+)?(?:-[A
 
 
 # Predicates
+#' @importFrom assertive coerce_to
+#' @importFrom assertive call_and_name
+#' @importFrom assertive set_cause
+#' @importFrom stringr str_detect
 is_uniprot_id <- function(x)
 {
   x <- coerce_to(x, "character")
@@ -47,7 +51,9 @@ is_entrez_gene_symbol <- function(x)
 }
 
 # assertions
-assert_all_are_uniprot_ids <- function(x,
+#' @importFrom assertive get_name_in_parent
+#' @importFrom assertive assert_engine
+assert_all_are_uniprot_ids <- function(x, na_ignore = FALSE,
   severity = getOption("assertive.severity", "stop"))
 {
   msg <- gettextf(
@@ -55,10 +61,17 @@ assert_all_are_uniprot_ids <- function(x,
     get_name_in_parent(x),
     domain = "R-somalogic"
   )
-  assert_engine(is_uniprot_id, x, msg = msg, severity = severity)
+
+  assert_engine(
+    is_uniprot_id,
+    x,
+    msg = msg,
+    na_ignore = na_ignore,
+    severity = severity
+  )
 }
 
-assert_all_are_entrez_gene_ids <- function(x,
+assert_all_are_entrez_gene_ids <- function(x, na_ignore = FALSE,
   severity = getOption("assertive.severity", "stop"))
 {
   msg <- gettextf(
@@ -66,10 +79,17 @@ assert_all_are_entrez_gene_ids <- function(x,
     get_name_in_parent(x),
     domain = "R-somalogic"
   )
-  assert_engine(is_entrez_gene_id, x, msg = msg, severity = severity)
+
+  assert_engine(
+    is_entrez_gene_id,
+    x,
+    msg = msg,
+    na_ignore = na_ignore,
+    severity = severity
+  )
 }
 
-assert_all_are_entrez_gene_symbols <- function(x,
+assert_all_are_entrez_gene_symbols <- function(x, na_ignore = FALSE,
   severity = getOption("assertive.severity", "stop"))
 {
   msg <- gettextf(
@@ -77,7 +97,13 @@ assert_all_are_entrez_gene_symbols <- function(x,
     get_name_in_parent(x),
     domain = "R-somalogic"
   )
-  assert_engine(is_entrez_gene_symbol, x, msg = msg, severity = severity)
+  assert_engine(
+    is_entrez_gene_symbol,
+    x,
+    msg = msg,
+    na_ignore = na_ignore,
+    severity = severity
+  )
 }
 
 # High-level checks.
@@ -92,6 +118,7 @@ assert_all_are_entrez_gene_symbols <- function(x,
 #' functions are mostly invoked for the side effect of throwing a warning if
 #' there are any bad elements.
 #' @noRd
+#' @importFrom dplyr %>%
 check_uniprot_ids <- function(sequenceData)
 {
   upIds <- strsplit(
@@ -100,7 +127,7 @@ check_uniprot_ids <- function(sequenceData)
     fixed = TRUE
   ) %>%
     unlist(use.names = FALSE)
-  assert_all_are_uniprot_ids(upIds, severity = "warning")
+  assert_all_are_uniprot_ids(upIds, na_ignore = TRUE, severity = "warning")
 }
 
 check_entrez_gene_ids <- function(sequenceData)
@@ -111,7 +138,7 @@ check_entrez_gene_ids <- function(sequenceData)
     fixed = TRUE
   ) %>%
     unlist(use.names = FALSE)
-  assert_all_are_entrez_gene_ids(egIds, severity = "warning")
+  assert_all_are_entrez_gene_ids(egIds, na_ignore = TRUE, severity = "warning")
 }
 
 
@@ -123,7 +150,7 @@ check_entrez_gene_symbols <- function(sequenceData)
     fixed = TRUE
   ) %>%
     unlist(use.names = FALSE)
-  assert_all_are_entrez_gene_symbols(egSymbols, severity = "warning")
+  assert_all_are_entrez_gene_symbols(egSymbols, na_ignore = TRUE, severity = "warning")
 }
 
 
