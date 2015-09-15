@@ -196,7 +196,7 @@ readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
   }
 
   # Read row data
-  intensityData <- fread(
+  sampleAndIntensityData <- fread(
     file,
     sep              = "\t",
     nrows            = length(nFields) - dataGroupRow[4] - ncol(sequenceData),
@@ -206,12 +206,15 @@ readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
     na.strings       = c("", "NA")
   )
   # Remove blank column between sample data and intensity data
-  intensityData <- intensityData[, -sequenceHeaderColumnNumber, with = FALSE]
+  sampleAndIntensityData <- sampleAndIntensityData[
+    j = -sequenceHeaderColumnNumber,
+    with = FALSE
+  ]
 
   # Give intensity data columns a name
   setnames(
-    intensityData,
-    seq.int(sequenceHeaderColumnNumber, ncol(intensityData)),
+    sampleAndIntensityData,
+    seq.int(sequenceHeaderColumnNumber, ncol(sampleAndIntensityData)),
     paste(
       "SeqId",
       sequenceData$SeqId,
@@ -224,7 +227,7 @@ readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
   # and which are optional.  Update this next code chunk when we know.
   # Warnings are suppressed due to 'adding' non-existent columns as NULL
   # which does nothing.  (This is intentional.)
-  suppressWarnings(intensityData[
+  suppressWarnings(sampleAndIntensityData[
     j = `:=`(
       PlateId           = factor(PlateId),
       SlideId           = factor(SlideId),
@@ -251,17 +254,17 @@ readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
   {
     okSeqColumns <- isPass(sequenceData$ColCheck)
     sequenceData <- sequenceData[okSeqColumns, ]
-    okColumns <- !str_detect(colnames(intensityData), "^SeqId\\.") #metadata
+    okColumns <- !str_detect(colnames(sampleAndIntensityData), "^SeqId\\.") #metadata
     okColumns[!okColumns] <- okSeqColumns
-    intensityData <- intensityData[
-      isPass(intensityData$RowCheck),
+    sampleAndIntensityData <- sampleAndIntensityData[
+      isPass(sampleAndIntensityData$RowCheck),
       okColumns,
       with = FALSE
     ]
   }
 
   setkey(sequenceData, SeqId)
-  setkey(intensityData, SampleId)
+  setkey(sampleAndIntensityData, SampleId)
 
   # Return everything
 #   structure(
@@ -271,11 +274,11 @@ readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
 #     Checksum     = checksum,
 #     class        = c("WideSomaLogicData", "data.table", "data.frame")
 #   )
-  setattr(intensityData, "SequenceInfo", sequenceData)
-  setattr(intensityData, "Metadata", header)
-  setattr(intensityData, "Checksum", checksum)
-  setattr(intensityData, "class", c("WideSomaLogicData", "data.table", "data.frame"))
-  intensityData
+  setattr(sampleAndIntensityData, "SequenceInfo", sequenceData)
+  setattr(sampleAndIntensityData, "Metadata", header)
+  setattr(sampleAndIntensityData, "Checksum", checksum)
+  setattr(sampleAndIntensityData, "class", c("WideSomaLogicData", "data.table", "data.frame"))
+  sampleAndIntensityData
 }
 
 #' @rdname readAdat
