@@ -65,6 +65,7 @@ sampleData <- data.table(
   PlateId   = gl(5, nSamples / 5, labels = paste("Plate", LETTERS[1:5])),
   SlideId   = sample(gl(10, nSamples / 10, labels = paste("Slide", 1:10))),
   SampleId  = factor(paste("Sample", seq_len(nSamples))),
+  ExtIdentifier = factor(paste0("EID", 123455 + seq_len(nSamples))),
   SubjectId = gl(nSamples / 5, 1, nSamples, labels = paste("Subject", seq_len(nSamples / 5))),
   SiteId    = factor("Site 1"),
   NormScale = rnorm(nSamples, 1, 0.05)
