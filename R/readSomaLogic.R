@@ -218,28 +218,30 @@ readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
   )
 
   # As with sequence data, ensure correct datatypes
-  # SOMA files change with different versions, so only do this for
-  # variables that might be useful for data analysis
-  intensityData[
+  # TODO: Waiting to hear from SomaLogic about which columns are compulsory,
+  # and which are optional.  Update this next code chunk when we know.
+  # Warnings are suppressed due to 'adding' non-existent columns as NULL
+  # which does nothing.  (This is intentional.)
+  suppressWarnings(intensityData[
     j = `:=`(
       PlateId           = factor(PlateId),
       SlideId           = factor(SlideId),
       SampleId          = factor(SampleId),
-      SampleType        = factor(SampleType),
-      SampleMatrix      = factor(SampleMatrix),
-      Barcode           = factor(Barcode),
-      Barcode2d         = factor(Barcode2d),
-      SampleNotes       = factor(SampleNotes),
-      SampleDescription = factor(SampleDescription),
-      TimePoint         = as.numeric(TimePoint),
+      SampleType        = if(exists("SampleType")) factor(SampleType) else NULL,
+      SampleMatrix      = if(exists("SampleMatrix")) factor(SampleMatrix) else NULL,
+      Barcode           = if(exists("Barcode")) factor(Barcode) else NULL,
+      Barcode2d         = if(exists("Barcode2d")) factor(Barcode2d) else NULL,
+      SampleNotes       = if(exists("SampleNotes")) factor(SampleNotes) else NULL,
+      SampleDescription = if(exists("SampleDescription")) factor(SampleDescription) else NULL,
+      TimePoint         = if(exists("TimePoint")) as.numeric(TimePoint) else NULL,
       ExtIdentifier     = factor(ExtIdentifier),
-      SampleGroup       = factor(SampleGroup),
-      SiteId            = factor(SiteId),
+      SampleGroup       = if(exists("SampleGroup")) factor(SampleGroup) else NULL,
+      SiteId            = if(exists("SiteId")) factor(SiteId) else NULL,
       #  SampleUniqueID    = factor(SampleUniqueID), # no longer present in soma file version 1.2
-      Subject_ID        = factor(Subject_ID),
+      Subject_ID        = if(exists("Subject_ID")) factor(Subject_ID) else NULL,
       RowCheck          = factor(RowCheck)
     )
-  ]
+  ])
 
 
   # Remove failures
