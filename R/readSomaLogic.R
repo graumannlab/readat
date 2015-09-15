@@ -300,6 +300,7 @@ isPass <- function(x)
 #'
 #' Convert a \code{WideSomaLogicData} object from wide format to long format.
 #' @param x An object of class \code{WideSomaLogicData}.
+#' @param ... Currently unused.
 #' @return An object of class \code{LongSomaLogicData} that inherits from
 #' \code{data.frame}.
 #' This function melts the sample data contained in a \code{WideSomaLogicData}
@@ -312,7 +313,7 @@ isPass <- function(x)
 #' @importFrom stringr str_detect
 #' @export
 #' @author Richard Cotton
-melt.WideSomaLogicData <- function(x)
+melt.WideSomaLogicData <- function(x, ...)
 {
   isSeqColumn <- str_detect(colnames(x), "^SeqId\\.")
   class(x) <- c("data.table", "data.frame")
