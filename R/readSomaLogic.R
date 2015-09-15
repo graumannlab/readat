@@ -324,7 +324,7 @@ melt.WideSomaLogicData <- function(x)
     value.name    = "Intensity"
   )
   long$SeqId <- substring(long$SeqId, 7)
-  setkey(long, SeqId)
+  setkeyv(long, "SeqId")
   long <- long[attr(x, "SequenceInfo")]
   structure(
     long,
@@ -333,6 +333,13 @@ melt.WideSomaLogicData <- function(x)
     class        = c("LongSomaLogicData", "data.table", "data.frame")
   )
 }
+
+#' Convert an object into a molten data frame
+#'
+#' See \code{\link[reshape2]{melt}}.
+#' @name melt
+#' @export
+melt <- reshape2::melt
 
 #' Get the intensities from a WideSomaLogicData or LongSomaLogicData object
 #'
