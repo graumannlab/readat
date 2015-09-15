@@ -37,13 +37,14 @@ is_entrez_gene_id <- function(x)
   )
 }
 
+#' @importFrom rebus or
 is_entrez_gene_symbol <- function(x)
 {
   x <- coerce_to(x, "character")
   call_and_name(
     function(x)
     {
-      ok <- str_detect(x, ENTREZ_GENE_SYMBOL)
+      ok <- str_detect(x, or(ENTREZ_GENE_SYMBOL, "Human-virus"))
       set_cause(ok, "bad format")
     },
     x
