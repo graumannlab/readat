@@ -16,6 +16,7 @@ ids <- seqInfo[
     EntrezGeneSymbol = strsplit(as.character(EntrezGeneSymbol), " ", fixed = TRUE),
     Target = as.character(Target),
     TargetFullName = as.character(TargetFullName),
+    Type = as.character(Type),
     IsHuman = Organism == "Human"
   )
 ]
