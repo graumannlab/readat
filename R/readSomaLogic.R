@@ -198,11 +198,12 @@ readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
     file,
     sep              = "\t",
     nrows            = length(nFields) - dataGroupRow[4] - ncol(sequenceData),
+    header           = TRUE,
     skip             = dataGroupRow[4] + ncol(sequenceData),
     integer64        = 'numeric',
     na.strings       = c("", "NA")
   )
-  # Remove blank column between metadata and sequence data
+  # Remove blank column between sample data and intensity data
   intensityData <- intensityData[, -sequenceHeaderColumnNumber, with = FALSE]
 
   # Give intensity data columns a name
