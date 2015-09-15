@@ -37,7 +37,7 @@ metadata <- list(
 
 # Dims
 nAptamers <- 1129
-nSamples <- 100
+nSamples <- 1000
 
 #################################################
 
@@ -45,9 +45,9 @@ nSamples <- 100
 sequenceData <- ids[
   j = list(
     SeqId, SomaId, Target, TargetFullName,
-    UniProt = vapply(UniProtId, paste0, character(1), collapse = ";"),
-    EntrezGeneID = vapply(EntrezGeneId, paste0, character(1), collapse = ";"),
-    EntrezGeneSymbol = vapply(EntrezGeneSymbol, paste0, character(1), collapse = ";"),
+    UniProt = vapply(UniProtId, paste0, character(1), collapse = " "),
+    EntrezGeneID = vapply(EntrezGeneId, paste0, character(1), collapse = " "),
+    EntrezGeneSymbol = vapply(EntrezGeneSymbol, paste0, character(1), collapse = " "),
     Type)
 ]
 sequenceData <- sequenceData[
