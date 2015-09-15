@@ -184,28 +184,32 @@ writeToAdat <- function()
     ),
     file = fcon
   )
-  cat("^COL_DATA\n", file = fcon)
+  cat("\n^COL_DATA\n", file = fcon)
   cat(
-    paste0(c("!Name", colnames(sequenceData), "\n"), collapse = "\t"),
+    paste0(c("!Name", colnames(sequenceData)), collapse = "\t"),
+    fill = TRUE,
     file = fcon
   )
   cat(
     paste0(
-      c("!Type", vapply(sequenceData, getDataType, character(1)), "\n"),
+      c("!Type", vapply(sequenceData, getDataType, character(1))),
       collapse = "\t"
     ),
+    fill = TRUE,
     file = fcon
   )
   cat("^ROW_DATA\n", file = fcon)
   cat(
-    paste0(c("!Name", colnames(sampleData), "\n"), collapse = "\t"),
+    paste0(c("!Name", colnames(sampleData)), collapse = "\t"),
+    fill = TRUE,
     file = fcon
   )
   cat(
     paste0(
-      c("!Type", vapply(sampleData, getDataType, character(1)), "\n"),
+      c("!Type", vapply(sampleData, getDataType, character(1))),
       collapse = "\t"
     ),
+    fill = TRUE,
     file = fcon
   )
   cat("^TABLE_BEGIN\n", file = fcon)
