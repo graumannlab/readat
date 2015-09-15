@@ -136,7 +136,9 @@ readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
   # Read column data
   # This causes an erroneous false-positive warning about not reading to the end
   # of the file.  See https://github.com/Rdatatable/data.table/issues/1330
-  sequenceData <- fread(
+  # Suppressing for now, but this is bad practise so hopefully we can remove
+  # the suppression once the issue is resolved.
+  sequenceData <- suppressWarnings(fread(
     file,
     sep              = "\t",
     nrows            = nFields[dataGroupRow[2] + 1] - 1,
@@ -146,7 +148,7 @@ readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
     stringsAsFactors = FALSE,
     integer64        = 'numeric',
     na.strings      = c("", "NA")
-  )
+  ))
   # Get the column that contains the headers
   sequenceHeaderColumnNumber <- nFields[dataGroupRow[3] + 1]
   sequenceHeaderNames <- sequenceData[[sequenceHeaderColumnNumber]]
