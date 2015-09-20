@@ -71,7 +71,9 @@ utils::globalVariables("Intensity")
 #' }
 #' @importFrom assertive assert_any_are_true
 #' @importFrom assertive is_a_string
+#' @importFrom assertive is_file_connection
 #' @importFrom assertive is_readable_connection
+#' @importFrom assertive is_scalar
 #' @importFrom data.table ":="
 #' @importFrom data.table as.data.table
 #' @importFrom data.table fread
@@ -80,20 +82,31 @@ utils::globalVariables("Intensity")
 #' @importFrom data.table setnames
 #' @importFrom stringr str_detect
 #' @importFrom stringr str_replace_all
+#' @importFrom stringr str_replace
 #' @export
 #' @author Richard Cotton
 readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
 {
-  assert_any_are_true(c(is_a_string(file), is_readable_connection(file)))
+  assert_any_are_true(
+    c(
+      is_a_string(file),
+      is_file_connection(file) && is_readable_connection(file)
+    )
+  )
 
   # The file is split into several groups of data:
   # A checksum, header data, column data and row data.  Read each separately.
-  nFields <- count.fields(file, sep = "\t", quote = "")
-  dataGroupRow <- which(nFields == 1)
+
+  # Opening and resaving in Excel appends TAB characters to make the data
+  # rectangular.  This means that the number of fields is not reliable.
+  # (Can't use count.fields.)
+  firstChar <- readFirstChar(file)
+
+  dataGroupRow <- which(firstChar == "^")
 
   if(length(dataGroupRow) < 4L)
   {
-    stop("The input file is malformed; there should be four rows with only one column.")
+    stop("The input file is malformed; there should be four rows begining with the ^ character.")
   }
 
   # Read SHA1 checksum
@@ -119,7 +132,7 @@ readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
     header     = FALSE,
     skip       = dataGroupRow[1],
     integer64  = 'numeric',
-    na.strings = c("", "NA")
+    na.strings = c("", "NA", "null")
   ))
   header <- with(headerData, setNames(as.list(V2), substring(V1, 2)))
   header <- within(
@@ -132,6 +145,8 @@ readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
     }
   )
 
+  nSequenceFields <- getNFields(file, dataGroupRow[2])
+  nSampleFields <- getNFields(file, dataGroupRow[3])
 
   # Read column data
   # This causes an erroneous false-positive warning about not reading to the end
@@ -141,16 +156,16 @@ readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
   sequenceData <- suppressWarnings(fread(
     file,
     sep              = "\t",
-    nrows            = nFields[dataGroupRow[2] + 1] - 1,
+    nrows            = nSequenceFields,
     colClasses       = "character",
     skip             = dataGroupRow[4],
     header           = FALSE,
     stringsAsFactors = FALSE,
     integer64        = 'numeric',
-    na.strings      = c("", "NA")
+    na.strings      = c("", "NA", "null")
   ))
   # Get the column that contains the headers
-  sequenceHeaderColumnNumber <- nFields[dataGroupRow[3] + 1]
+  sequenceHeaderColumnNumber <- nSampleFields + 1
   sequenceHeaderNames <- sequenceData[[sequenceHeaderColumnNumber]]
 
   # Remove leading blank columns
@@ -199,11 +214,11 @@ readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
   sampleAndIntensityData <- fread(
     file,
     sep              = "\t",
-    nrows            = length(nFields) - dataGroupRow[4] - ncol(sequenceData),
+    nrows            = nSequenceFields,
     header           = TRUE,
     skip             = dataGroupRow[4] + ncol(sequenceData),
     integer64        = 'numeric',
-    na.strings       = c("", "NA")
+    na.strings       = c("", "NA", "null")
   )
   # Remove blank column between sample data and intensity data
   sampleAndIntensityData <- sampleAndIntensityData[
@@ -281,6 +296,26 @@ readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
   sampleAndIntensityData
 }
 
+#' Read the first character of each line
+#'
+#' Reads the first character of each line of a text file.
+#' @param file A string or readable connection.
+#' @return A character vector of single characters.
+#' @references Richard Scriven's response to
+#' \url{http://stackoverflow.com/q/27747426/134830}
+#' @importFrom stringi stri_sub
+#' @importFrom stringi stri_read_lines
+readFirstChar <- function(file)
+{
+  stri_sub(stri_read_lines(file), 1, 1)
+}
+
+getNFields <- function(file, skip)
+{
+  y <- scan(file, character(), sep = "\t", skip = skip, nlines = 1)
+  as.integer(sum(nzchar(y))) - 1L
+}
+
 #' @rdname readAdat
 #' @export
 readSomaLogic <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
@@ -314,7 +349,7 @@ isPass <- function(x)
 #' the \code{SequenceInfo} attribute of the input is then merged into this.
 #' the \code{Metadata} and \code{Checksum} attributes are preserved.
 #' @importFrom data.table setkey
-#' @importFrom reshape2 melt
+#' @importFrom data.table melt.data.table
 #' @importFrom stringr str_detect
 #' @export
 #' @author Richard Cotton
@@ -322,13 +357,13 @@ melt.WideSomaLogicData <- function(x, ...)
 {
   isSeqColumn <- str_detect(colnames(x), "^SeqId\\.")
   class(x) <- c("data.table", "data.frame")
-  long <- melt(
+  long <- suppressMessages(melt.data.table(
     x,
     id.vars       = colnames(x)[!isSeqColumn],
     measure.vars  = colnames(x)[isSeqColumn],
     variable.name = "SeqId",
     value.name    = "Intensity"
-  )
+  ))
   long$SeqId <- substring(long$SeqId, 7)
   setkeyv(long, "SeqId")
   long <- long[attr(x, "SequenceInfo")]
