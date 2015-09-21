@@ -120,7 +120,7 @@ assert_all_are_entrez_gene_symbols <- function(x, na_ignore = FALSE,
 #' there are any bad elements.
 #' @noRd
 #' @importFrom dplyr %>%
-check_uniprot_ids <- function(sequenceData)
+checkUniprotIds <- function(sequenceData)
 {
   upIds <- strsplit(
     as.character(sequenceData$UniProt),
@@ -131,7 +131,7 @@ check_uniprot_ids <- function(sequenceData)
   assert_all_are_uniprot_ids(upIds, na_ignore = TRUE, severity = "warning")
 }
 
-check_entrez_gene_ids <- function(sequenceData)
+checkEntrezGeneIds <- function(sequenceData)
 {
   egIds <- strsplit(
     as.character(sequenceData$EntrezGeneID),
@@ -143,7 +143,7 @@ check_entrez_gene_ids <- function(sequenceData)
 }
 
 
-check_entrez_gene_symbols <- function(sequenceData)
+checkEntrezGeneSymbols <- function(sequenceData)
 {
   egSymbols <- strsplit(
     as.character(sequenceData$EntrezGeneSymbol),
