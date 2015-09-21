@@ -69,11 +69,10 @@ utils::globalVariables("Intensity")
 #' str(wide_soma_data, list.len = 35)
 #' unlink(soma_file)
 #' }
-#' @importFrom assertive assert_any_are_true
-#' @importFrom assertive is_a_string
-#' @importFrom assertive is_file_connection
-#' @importFrom assertive is_readable_connection
+#' @importFrom assertive is_connection
 #' @importFrom assertive is_scalar
+#' @importFrom assertive assert_is_a_string
+#' @importFrom assertive assert_all_are_existing_files
 #' @importFrom data.table ":="
 #' @importFrom data.table as.data.table
 #' @importFrom data.table fread
@@ -85,16 +84,21 @@ utils::globalVariables("Intensity")
 #' @importFrom stringr str_replace
 #' @export
 #' @author Richard Cotton
-readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
+readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y",
+  verbose = getOption("verbose"))
 {
-  assert_any_are_true(
-    c(
-      is_a_string(file),
-      is_file_connection(file) && is_readable_connection(file)
-    )
-  )
+  # stri_read_lines and fead don't behave well with file connections
+  # Also, the logic gets complicated because the position in the file
+  # keeps moving.
+  if(is_connection(file))
+  {
+    file <- summary(file)$description
+  }
 
-  # The file is split into several groups of data:
+  assert_is_a_string(file)
+  assert_all_are_existing_files(file)
+
+ # The file is split into several groups of data:
   # A checksum, header data, column data and row data.  Read each separately.
 
   # Opening and resaving in Excel appends TAB characters to make the data
@@ -106,109 +110,36 @@ readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
 
   if(length(dataGroupRow) < 4L)
   {
-    stop("The input file is malformed; there should be four rows begining with the ^ character.")
+    stop(
+      "The input file is malformed; there should be four rows begining with the ^ character but there are ",
+      length(dataGroupRow)
+    )
   }
 
   # Read SHA1 checksum
-  # For a single line, read.table is faster than data.table::fread. Compare
-  # microbenchmark(
-  #   read.table = read.table(file, sep = "\t", nrows = 1, stringsAsFactors = FALSE),
-  #   fread = fread(file, sep = "\t", nrows = 1, header = FALSE, stringsAsFactors = FALSE, skip = 0)
-  # )
-  checksum <- read.table(
-    file,
-    sep              = "\t",
-    nrows            = 1,
-    stringsAsFactors = FALSE
-  )$V2[1]
+  checksum <- substring(readLines(file, 1), 11)
 
 
   # Read header
-  # (Ab)using fread for this tends to results in unnecessary warnings.
-  headerData <- suppressWarnings(fread(
-    file,
-    sep        = "\t",
-    nrows      = dataGroupRow[2] - dataGroupRow[1] - 1,
-    header     = FALSE,
-    skip       = dataGroupRow[1],
-    integer64  = 'numeric',
-    na.strings = c("", "NA", "null")
-  ))
-  header <- with(headerData, setNames(as.list(V2), substring(V1, 2)))
-  header <- within(
-    header,
-    {
-      Version <- as.package_version(Version)
-      CreatedDate <- as.Date(CreatedDate, format = dateFormat)
-      ExpDate <- as.Date(ExpDate, format = dateFormat)
-      ProteinEffectiveDate <- as.Date(ProteinEffectiveDate, format = dateFormat)
-    }
-  )
+  metadata <- readMetadata(file, dataGroupRow[1], dataGroupRow[2], dateFormat)
 
-  nSequenceFields <- getNFields(file, dataGroupRow[2])
-  nSampleFields <- getNFields(file, dataGroupRow[3])
+  nSequenceFields <- getNFields(file, dataGroupRow[2], verbose = verbose)
+  nSampleFields <- getNFields(file, dataGroupRow[3], verbose = verbose)
 
   # Read column data
-  # This causes an erroneous false-positive warning about not reading to the end
-  # of the file.  See https://github.com/Rdatatable/data.table/issues/1330
-  # Suppressing for now, but this is bad practise so hopefully we can remove
-  # the suppression once the issue is resolved.
-  sequenceData <- suppressWarnings(fread(
+  sequenceData <- readSequenceData(
     file,
-    sep              = "\t",
-    nrows            = nSequenceFields,
-    colClasses       = "character",
-    skip             = dataGroupRow[4],
-    header           = FALSE,
-    stringsAsFactors = FALSE,
-    integer64        = 'numeric',
-    na.strings      = c("", "NA", "null")
-  ))
-  # Get the column that contains the headers
-  sequenceHeaderColumnNumber <- nSampleFields + 1
-  sequenceHeaderNames <- sequenceData[[sequenceHeaderColumnNumber]]
+    nSequenceFields,
+    nSampleFields,
+    dataGroupRow[4],
+    verbose = verbose
+  )
 
-  # Remove leading blank columns
-  sequenceData <- sequenceData[
-    j = -seq_len(sequenceHeaderColumnNumber),
-    with = FALSE
-  ]
+  # Check for bad UniProt and EntrezGene Ids/symbols.
+  checkUniprotIds(sequenceData)
+  checkEntrezGeneIds(sequenceData)
+  checkEntrezGeneSymbols(sequenceData)
 
-  #Transpose, and undo the conversion to matrix
-  sequenceData <- as.data.table(t(sequenceData))
-  setnames(sequenceData, sequenceHeaderNames)
-
-  # Update column types. Columns change with different SOMA versions.
-  # Therefore, only update columns which we currently use, leave others unchanged
-  sequenceData <- sequenceData[
-    j = `:=`(
-      SeqId            = factor(SeqId),
-      SomaId           = factor(SomaId),
-      Target           = factor(Target),
-      TargetFullName   = factor(TargetFullName),
-      UniProt          = factor(str_replace_all(UniProt, "[, ]+", " ")),
-      EntrezGeneID     = factor(str_replace_all(EntrezGeneID, "[, ]+", " ")),
-      EntrezGeneSymbol = factor(str_replace_all(EntrezGeneSymbol, "[, ]+", " ")),
-      Organism         = factor(Organism),
-      Units            = factor(Units),
-      ColCheck         = factor(ColCheck),
-      CalReference     = as.numeric(CalReference),
-      Dilution         = as.numeric(Dilution)
-    )
-  ]
-
-  # Check for bad UniProt and EntrezGene Ids.
-  check_uniprot_ids(sequenceData)
-  check_entrez_gene_ids(sequenceData)
-  check_entrez_gene_symbols(sequenceData)
-
-  # There are some more columns that need fixing, which should have the names
-  # sprintf("Cal_%s", str_replace(levels(intensityData$PlateId), " ", "_"))
-  calCols <- colnames(sequenceData)[str_detect(colnames(sequenceData), "^Cal_")]
-  for(i in seq_along(calCols))
-  {
-    sequenceData[[calCols[i]]] <- as.numeric(sequenceData[[calCols[i]]])
-  }
 
   # Read row data
   sampleAndIntensityData <- fread(
@@ -218,9 +149,11 @@ readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
     header           = TRUE,
     skip             = dataGroupRow[4] + ncol(sequenceData),
     integer64        = 'numeric',
-    na.strings       = c("", "NA", "null")
+    na.strings       = c("", "NA", "null"),
+    verbose          = verbose
   )
   # Remove blank column between sample data and intensity data
+  sequenceHeaderColumnNumber <- nSampleFields + 1
   sampleAndIntensityData <- sampleAndIntensityData[
     j = -sequenceHeaderColumnNumber,
     with = FALSE
@@ -282,15 +215,8 @@ readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
   setkey(sampleAndIntensityData, SampleId)
 
   # Return everything
-#   structure(
-#     intensityData,
-#     SequenceInfo = sequenceData,
-#     Metadata     = header,
-#     Checksum     = checksum,
-#     class        = c("WideSomaLogicData", "data.table", "data.frame")
-#   )
   setattr(sampleAndIntensityData, "SequenceInfo", sequenceData)
-  setattr(sampleAndIntensityData, "Metadata", header)
+  setattr(sampleAndIntensityData, "Metadata", metadata)
   setattr(sampleAndIntensityData, "Checksum", checksum)
   setattr(sampleAndIntensityData, "class", c("WideSomaLogicData", "data.table", "data.frame"))
   sampleAndIntensityData
@@ -301,18 +227,112 @@ readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
 #' Reads the first character of each line of a text file.
 #' @param file A string or readable connection.
 #' @return A character vector of single characters.
-#' @references Richard Scriven's response to
-#' \url{http://stackoverflow.com/q/27747426/134830}
-#' @importFrom stringi stri_sub
+#' @references See \url{http://stackoverflow.com/q/27747426/134830}
 #' @importFrom stringi stri_read_lines
+#' @importFrom stringi stri_sub
 readFirstChar <- function(file)
 {
+  # substring(readLines(file), 1, 1)
   stri_sub(stri_read_lines(file), 1, 1)
 }
 
-getNFields <- function(file, skip)
+readMetadata <- function(file, headerRow, colDataRow, dateFormat)
 {
-  y <- scan(file, character(), sep = "\t", skip = skip, nlines = 1)
+  # (Ab)using fread for this tends to results in unnecessary warnings.
+  metadata <- suppressWarnings(fread(
+    file,
+    sep        = "\t",
+    nrows      = colDataRow - headerRow - 1,
+    header     = FALSE,
+    skip       = headerRow,
+    integer64  = "numeric",
+    na.strings = c("", "NA", "null")
+  ))
+  metadata <- with(metadata, setNames(as.list(V2), substring(V1, 2)))
+  within(
+    metadata,
+    {
+      Version <- as.package_version(Version)
+      CreatedDate <- as.Date(CreatedDate, format = dateFormat)
+      ExpDate <- as.Date(ExpDate, format = dateFormat)
+      ProteinEffectiveDate <- as.Date(ProteinEffectiveDate, format = dateFormat)
+    }
+  )
+}
+
+#' @importFrom data.table fread
+#' @importFrom data.table as.data.table
+#' @importFrom stringi stri_replace_all_regex
+#' @importFrom stringi stri_detect_regex
+readSequenceData <- function(file, nSequenceFields, nSampleFields, skip = skip,
+  verbose = getOption("verbose"))
+{
+  sequenceData <- fread(
+    file,
+    sep              = "\t",
+    nrows            = nSequenceFields,
+    colClasses       = "character",
+    skip             = skip,
+    header           = FALSE,
+    stringsAsFactors = FALSE,
+    integer64        = 'numeric',
+    na.strings       = c("", "NA", "null"),
+    verbose          = verbose
+  )
+  # Get the column that contains the headers
+  sequenceHeaderColumnNumber <- nSampleFields + 1
+  sequenceHeaderNames <- sequenceData[[sequenceHeaderColumnNumber]]
+
+  # Remove leading blank columns
+  sequenceData <- sequenceData[
+    j = -seq_len(sequenceHeaderColumnNumber),
+    with = FALSE
+  ]
+
+  #Transpose, and undo the conversion to matrix
+  sequenceData <- as.data.table(t(sequenceData))
+  setnames(sequenceData, sequenceHeaderNames)
+
+  # Update column types. Columns change with different SOMA versions.
+  # Therefore, only update columns which we currently use, leave others unchanged
+  sequenceData <- sequenceData[
+    j = `:=`(
+      SeqId            = factor(SeqId),
+      SomaId           = factor(SomaId),
+      Target           = factor(Target),
+      TargetFullName   = factor(TargetFullName),
+      UniProt          = factor(stri_replace_all_regex(UniProt, "[, ]+", " ")),
+      EntrezGeneID     = factor(stri_replace_all_regex(EntrezGeneID, "[, ]+", " ")),
+      EntrezGeneSymbol = factor(stri_replace_all_regex(EntrezGeneSymbol, "[, ]+", " ")),
+      Organism         = factor(Organism),
+      Units            = factor(Units),
+      ColCheck         = factor(ColCheck),
+      CalReference     = as.numeric(CalReference),
+      Dilution         = as.numeric(Dilution)
+    )
+  ]
+
+  # There are some more columns that need fixing, which should have the names
+  # sprintf("Cal_%s", str_replace(levels(intensityData$PlateId), " ", "_"))
+  calCols <- colnames(sequenceData)[stri_detect_regex(colnames(sequenceData), "^Cal_")]
+  for(i in seq_along(calCols))
+  {
+    sequenceData[[calCols[i]]] <- as.numeric(sequenceData[[calCols[i]]])
+  }
+
+  sequenceData
+}
+
+getNFields <- function(file, skip, verbose = getOption("verbose"))
+{
+  y <- scan(
+    file,
+    character(),
+    sep = "\t",
+    skip = skip,
+    nlines = 1L,
+    quiet = !verbose
+  )
   as.integer(sum(nzchar(y))) - 1L
 }
 
