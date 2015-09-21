@@ -16,7 +16,6 @@ A character vector of single characters.
 Reads the first character of each line of a text file.
 }
 \references{
-Richard Scriven's response to
-\url{http://stackoverflow.com/q/27747426/134830}
+See \url{http://stackoverflow.com/q/27747426/134830}
 }
 
