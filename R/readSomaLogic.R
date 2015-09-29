@@ -323,7 +323,8 @@ readSampleAndIntensityData <- function(file, nSequenceFields, nSampleFields, ski
       Barcode2d         = if(exists("Barcode2d")) factor(Barcode2d) else NULL,
       SampleNotes       = if(exists("SampleNotes")) factor(SampleNotes) else NULL,
       SampleDescription = if(exists("SampleDescription")) factor(SampleDescription) else NULL,
-      TimePoint         = if(exists("TimePoint")) as.numeric(TimePoint) else NULL,
+      # TimePoint is sometimes numeric, sometimes character data.
+      # TimePoint         = if(exists("TimePoint")) as.numeric(TimePoint) else NULL,
       ExtIdentifier     = factor(ExtIdentifier),
       SampleGroup       = if(exists("SampleGroup")) factor(SampleGroup) else NULL,
       SiteId            = if(exists("SiteId")) factor(SiteId) else NULL,
