@@ -84,7 +84,7 @@ utils::globalVariables("Intensity")
 #' @importFrom stringr str_replace
 #' @export
 #' @author Richard Cotton
-readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y",
+readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%Y-%m-%d",
   verbose = getOption("verbose"))
 {
   # stri_read_lines and fead don't behave well with file connections
