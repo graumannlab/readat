@@ -525,8 +525,14 @@ setChecksum <- function(x, value)
 #' \code{Metadata} and \code{Checksum} attributes are preserved.
 #' @param x A \code{WideSomaLogicData} object.
 #' @param ... Passed to \code{[.data.table}.
-#' @return A \code{WideSomaLogicData} object.
+#' @return If the indexing returns a A \code{WideSomaLogicData} object.
 #' @seealso \code{\link[data.table]{data.table}}
+#' @importFrom data.table is.data.table
+#' @examples
+#' # Indexing returns a data.table, so the WideSomaLogicClass is preserved
+#' sl1[1:5, list(`SeqId.3896-5_2`)]
+#' # Indexing simplifies to a numeric vector, so the class is lost
+#' sl1[1:5, `SeqId.3896-5_2`]
 #' @export
 `[.WideSomaLogicData` <- function(x, ...)
 {
@@ -534,11 +540,22 @@ setChecksum <- function(x, value)
   metadata     <- getMetadata(x)
   checksum     <- getChecksum(x)
   class(x) <- c("data.table", "data.frame")
-  structure(
-    x[...],
-    SequenceInfo = sequenceInfo,
-    Metadata     = metadata,
-    Checksum     = checksum,
-    class        = c("WideSomaLogicData", "data.table", "data.frame")
-  )
+  y <- x[..., drop = FALSE]
+  # result may be a data.table, or have been simplified to a vector
+  if(is.data.table(y))
+  {
+    setattr(y, "SequenceInfo", sequenceInfo)
+    setattr(y, "Metadata", metadata)
+    setattr(y, "Checksum", checksum)
+    setattr(y, "class", c("WideSomaLogicData", "data.table", "data.frame"))
+    y
+  } else
+  {
+    structure(
+      y,
+      SequenceInfo = sequenceInfo,
+      Metadata     = metadata,
+      Checksum     = checksum
+    )
+  }
 }
