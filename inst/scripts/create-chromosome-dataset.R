@@ -1,4 +1,4 @@
-library(somalogic)
+library(readat)
 library(magrittr)
 library(listless)
 library(dplyr)
@@ -7,9 +7,9 @@ library(biomaRt)
 library(rebus)
 library(tidyr)
 
-source("somalogic/inst/scripts/backend.R")
+source("readat/inst/scripts/backend.R")
 
-load("somalogic/data/ids1129.rda")
+load("readat/data/ids1129.rda")
 
 uniProtIds <- ids %>%
   filter_(~ IsHuman) %$%
@@ -72,6 +72,6 @@ chromosomalPositions <- bind_rows(joined, joined2) %$%
 
 save(
   chromosomalPositions,
-  file = "somalogic/data/chromosome1129.rda",
+  file = "readat/data/chromosome1129.rda",
   compress = "xz"
 )
