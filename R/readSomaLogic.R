@@ -286,7 +286,7 @@ readSampleAndIntensityData <- function(file, nSequenceFields, nSampleFields, ski
   sampleAndIntensityData <- fread(
     file,
     sep              = "\t",
-    nrows            = nSequenceFields,
+    nrows            = nSampleFields,
     header           = TRUE,
     skip             = skip,
     integer64        = 'numeric',
