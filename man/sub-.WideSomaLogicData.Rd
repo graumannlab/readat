@@ -12,11 +12,17 @@
 \item{...}{Passed to \code{[.data.table}.}
 }
 \value{
-A \code{WideSomaLogicData} object.
+If the indexing returns a A \code{WideSomaLogicData} object.
 }
 \description{
 Wrapper to \code{[.data.table}, ensuring that the \code{SequenceInfo},
 \code{Metadata} and \code{Checksum} attributes are preserved.
+}
+\examples{
+# Indexing returns a data.table, so the WideSomaLogicClass is preserved
+sl1[1:5, list(`SeqId.3896-5_2`)]
+# Indexing simplifies to a numeric vector, so the class is lost
+sl1[1:5, `SeqId.3896-5_2`]
 }
 \seealso{
 \code{\link[data.table]{data.table}}

@@ -5,7 +5,7 @@
 \alias{readSomaLogic}
 \title{Read a SomaLogic data file}
 \usage{
-readAdat(file, keepOnlyPasses = TRUE, dateFormat = "\%d/\%m/\%Y",
+readAdat(file, keepOnlyPasses = TRUE, dateFormat = "\%Y-\%m-\%d",
   verbose = getOption("verbose"))
 
 readSomaLogic(file, keepOnlyPasses = TRUE, dateFormat = "\%d/\%m/\%Y")
