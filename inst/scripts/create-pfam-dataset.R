@@ -1,4 +1,4 @@
-library(somalogic)
+library(readat)
 library(magrittr)
 library(listless)
 library(dplyr)
@@ -6,9 +6,9 @@ library(org.Hs.eg.db)
 library(AnnotationDbi)
 library(PFAM.db)
 
-source("somalogic/inst/scripts/backend.R")
+source("readat/inst/scripts/backend.R")
 
-load("somalogic/data/ids1129.rda")
+load("readat/data/ids1129.rda")
 
 entrezGeneIds <- ids$EntrezGeneId %>%
   setNames(ids$SeqId) %>%
@@ -36,12 +36,13 @@ pfam$PfamDescription <- pfam$PfamId %>%
 joined <- entrezGeneIds %>%
   inner_join(
     pfam,
-    by = c(EntrezGeneId = "EntrezGeneId1")
+    by = c("EntrezGeneId")
   )
 
 pfam <- joined %>%
   split(.$SeqId) %>%
-  lapply(select_, ~ EntrezGeneId, ~ PfamId, ~ PfamDescription)
+  lapply(select_, ~ EntrezGeneId, ~ PfamId, ~ PfamDescription) %>%
+  lapply(distinct_)
 
 # Merge in cases where PFAM ids were not found
 notFound <- setdiff(ids$SeqId, names(pfam))
@@ -51,7 +52,7 @@ pfam <- pfam %>% c(notFoundList)
 
 save(
   pfam,
-  file = "somalogic/data/pfam1129.rda",
+  file = "readat/data/pfam1129.rda",
   compress = "xz"
 )
 
