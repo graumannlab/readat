@@ -227,10 +227,10 @@ getData <- function(seqIds = NULL, simplify = FALSE, dataName, dataElement)
   e <- new.env()
   if(is.null(seqIds))
   {
-    data(list = "ids1129", package = "somalogic", envir = e)
+    data(list = "ids1129", package = "readat", envir = e)
     seqIds = e$ids$SeqId
   }
-  data(list = dataName, package = "somalogic", envir = e)
+  data(list = dataName, package = "readat", envir = e)
   y <- e[[dataElement]][names(e[[dataElement]]) %in% seqIds]
   if(simplify)
   {
