@@ -1,6 +1,6 @@
 Package: readat
 Title: Functionality to Read and Manipulate SomaLogic ADAT files
-Version: 0.2.4
+Version: 0.2.5
 Authors@R: c(
     person("Richard", "Cotton", email = "rjc2003@qatar-med.cornell.edu", role = c("cre", "aut")),
     person("Aditya", "Bhagwat", email = "adb2018@qatar-med.cornell.edu", role = c("aut")))
