@@ -117,6 +117,7 @@ readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%Y-%m-%d",
   }
 
   # Read SHA1 checksum
+  # First line, without "!Checksum\t"
   checksum <- substring(readLines(file, 1), 11)
 
 
@@ -140,61 +141,14 @@ readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%Y-%m-%d",
   checkEntrezGeneIds(sequenceData)
   checkEntrezGeneSymbols(sequenceData)
 
-
-  # Read row data
-  sampleAndIntensityData <- fread(
+  sampleAndIntensityData <- readSampleAndIntensityData(
     file,
-    sep              = "\t",
-    nrows            = nSequenceFields,
-    header           = TRUE,
-    skip             = dataGroupRow[4] + ncol(sequenceData),
-    integer64        = 'numeric',
-    na.strings       = c("", "NA", "null"),
-    verbose          = verbose
+    nSequenceFields,
+    nSampleFields,
+    dataGroupRow[4] + nSequenceFields,
+    sequenceData$SeqId,
+    verbose = verbose
   )
-  # Remove blank column between sample data and intensity data
-  sequenceHeaderColumnNumber <- nSampleFields + 1
-  sampleAndIntensityData <- sampleAndIntensityData[
-    j = -sequenceHeaderColumnNumber,
-    with = FALSE
-  ]
-
-  # Give intensity data columns a name
-  setnames(
-    sampleAndIntensityData,
-    seq.int(sequenceHeaderColumnNumber, ncol(sampleAndIntensityData)),
-    paste(
-      "SeqId",
-      sequenceData$SeqId,
-      sep = "."
-    )
-  )
-
-  # As with sequence data, ensure correct datatypes
-  # TODO: Waiting to hear from SomaLogic about which columns are compulsory,
-  # and which are optional.  Update this next code chunk when we know.
-  # Warnings are suppressed due to 'adding' non-existent columns as NULL
-  # which does nothing.  (This is intentional.)
-  suppressWarnings(sampleAndIntensityData[
-    j = `:=`(
-      PlateId           = factor(PlateId),
-      SlideId           = factor(SlideId),
-      SampleId          = factor(SampleId),
-      SampleType        = if(exists("SampleType")) factor(SampleType) else NULL,
-      SampleMatrix      = if(exists("SampleMatrix")) factor(SampleMatrix) else NULL,
-      Barcode           = if(exists("Barcode")) factor(Barcode) else NULL,
-      Barcode2d         = if(exists("Barcode2d")) factor(Barcode2d) else NULL,
-      SampleNotes       = if(exists("SampleNotes")) factor(SampleNotes) else NULL,
-      SampleDescription = if(exists("SampleDescription")) factor(SampleDescription) else NULL,
-      TimePoint         = if(exists("TimePoint")) as.numeric(TimePoint) else NULL,
-      ExtIdentifier     = factor(ExtIdentifier),
-      SampleGroup       = if(exists("SampleGroup")) factor(SampleGroup) else NULL,
-      SiteId            = if(exists("SiteId")) factor(SiteId) else NULL,
-      #  SampleUniqueID    = factor(SampleUniqueID), # no longer present in soma file version 1.2
-      Subject_ID        = if(exists("Subject_ID")) factor(Subject_ID) else NULL,
-      RowCheck          = factor(RowCheck)
-    )
-  ])
 
 
   # Remove failures
@@ -236,6 +190,7 @@ readFirstChar <- function(file)
   stri_sub(stri_read_lines(file), 1, 1)
 }
 
+#' @importFrom data.table fread
 readMetadata <- function(file, headerRow, colDataRow, dateFormat)
 {
   # (Ab)using fread for this tends to results in unnecessary warnings.
@@ -264,7 +219,7 @@ readMetadata <- function(file, headerRow, colDataRow, dateFormat)
 #' @importFrom data.table as.data.table
 #' @importFrom stringi stri_replace_all_regex
 #' @importFrom stringi stri_detect_regex
-readSequenceData <- function(file, nSequenceFields, nSampleFields, skip = skip,
+readSequenceData <- function(file, nSequenceFields, nSampleFields, skip,
   verbose = getOption("verbose"))
 {
   sequenceData <- fread(
@@ -321,6 +276,63 @@ readSequenceData <- function(file, nSequenceFields, nSampleFields, skip = skip,
   }
 
   sequenceData
+}
+
+
+readSampleAndIntensityData <- function(file, nSequenceFields, nSampleFields, skip,
+  seqIds, verbose = getOption("verbose"))
+{
+  # Read row data
+  sampleAndIntensityData <- fread(
+    file,
+    sep              = "\t",
+    nrows            = nSequenceFields,
+    header           = TRUE,
+    skip             = skip,
+    integer64        = 'numeric',
+    na.strings       = c("", "NA", "null"),
+    verbose          = verbose
+  )
+  # Remove blank column between sample data and intensity data
+  sequenceHeaderColumnNumber <- nSampleFields + 1
+  sampleAndIntensityData <- sampleAndIntensityData[
+    j = -sequenceHeaderColumnNumber,
+    with = FALSE
+  ]
+
+  # Give intensity data columns a name
+  setnames(
+    sampleAndIntensityData,
+    seq.int(sequenceHeaderColumnNumber, ncol(sampleAndIntensityData)),
+    paste0("SeqId.", seqIds)
+  )
+
+  # As with sequence data, ensure correct datatypes
+  # TODO: Waiting to hear from SomaLogic about which columns are compulsory,
+  # and which are optional.  Update this next code chunk when we know.
+  # Warnings are suppressed due to 'adding' non-existent columns as NULL
+  # which does nothing.  (This is intentional.)
+  suppressWarnings(sampleAndIntensityData[
+    j = `:=`(
+      PlateId           = factor(PlateId),
+      SlideId           = factor(SlideId),
+      SampleId          = factor(SampleId),
+      SampleType        = if(exists("SampleType")) factor(SampleType) else NULL,
+      SampleMatrix      = if(exists("SampleMatrix")) factor(SampleMatrix) else NULL,
+      Barcode           = if(exists("Barcode")) factor(Barcode) else NULL,
+      Barcode2d         = if(exists("Barcode2d")) factor(Barcode2d) else NULL,
+      SampleNotes       = if(exists("SampleNotes")) factor(SampleNotes) else NULL,
+      SampleDescription = if(exists("SampleDescription")) factor(SampleDescription) else NULL,
+      TimePoint         = if(exists("TimePoint")) as.numeric(TimePoint) else NULL,
+      ExtIdentifier     = factor(ExtIdentifier),
+      SampleGroup       = if(exists("SampleGroup")) factor(SampleGroup) else NULL,
+      SiteId            = if(exists("SiteId")) factor(SiteId) else NULL,
+      #  SampleUniqueID    = factor(SampleUniqueID), # no longer present in soma file version 1.2
+      Subject_ID        = if(exists("Subject_ID")) factor(Subject_ID) else NULL,
+      RowCheck          = factor(RowCheck)
+    )
+  ])
+  sampleAndIntensityData
 }
 
 getNFields <- function(file, skip, verbose = getOption("verbose"))
