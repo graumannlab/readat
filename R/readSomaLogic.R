@@ -77,7 +77,7 @@ utils::globalVariables("Intensity")
 #' @importFrom data.table as.data.table
 #' @importFrom data.table fread
 #' @importFrom data.table setattr
-#' @importFrom data.table setkey
+#' @importFrom data.table setkeyv
 #' @importFrom data.table setnames
 #' @importFrom stringr str_detect
 #' @importFrom stringr str_replace_all
@@ -211,8 +211,8 @@ readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y",
     ]
   }
 
-  setkey(sequenceData, SeqId)
-  setkey(sampleAndIntensityData, SampleId)
+  setkeyv(sequenceData, "SeqId")
+  setkeyv(sampleAndIntensityData, "SampleId")
 
   # Return everything
   setattr(sampleAndIntensityData, "SequenceInfo", sequenceData)
@@ -368,7 +368,7 @@ isPass <- function(x)
 #' with the corresponding intensities in a single column named \code{Intensity}.
 #' the \code{SequenceInfo} attribute of the input is then merged into this.
 #' the \code{Metadata} and \code{Checksum} attributes are preserved.
-#' @importFrom data.table setkey
+#' @importFrom data.table setkeyv
 #' @importFrom data.table melt.data.table
 #' @importFrom stringr str_detect
 #' @export
