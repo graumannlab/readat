@@ -1,16 +1,17 @@
-library(somalogic)
+library(readat)
 library(magrittr)
 library(listless)
 library(dplyr)
+library(data.table)
 library(stringr)
 library(biomaRt)
 library(rebus)
 library(tidyr)
 
 
-source("somalogic/inst/scripts/backend.R")
+source("readat/inst/scripts/backend.R")
 
-load("somalogic/data/ids1129.rda")
+load("readat/data/ids1129.rda")
 
 
 uniProtIds <- ids %>%
@@ -18,7 +19,7 @@ uniProtIds <- ids %>%
   unlist(UniProtId) %>%
   unique
 
-goFiles <- downloadGoData(uniProtIds)
+goFiles <-dir(choose.dir(getwd()), full.names = TRUE) # downloadGoData(uniProtIds)
 
 goData <- lapply(goFiles, readRDS)
 
@@ -27,7 +28,9 @@ goData <- combineGoData(goData)
 # Some values not found using UniProt. Try again using EntrezGene.
 notFound <- setdiff(
   uniProtIds,
-  lapply(goData, extract2, "UniProtId") %>% unlist(use.names = FALSE) %>% unique
+  lapply(goData, extract2, "UniProtId") %>%
+    unlist(use.names = FALSE) %>%
+    unique
 )
 
 entrezGeneIds <- ids %>%
@@ -39,7 +42,7 @@ entrezGeneIds <- ids %>%
 
 
 
-goFiles2 <- downloadGoData(entrezGeneIds, idType = "EntrezGene")
+goFiles2 <- dir(choose.dir(getwd()), full.names = TRUE) # downloadGoData(entrezGeneIds, idType = "EntrezGene")
 
 
 goData2 <- lapply(goFiles2, readRDS)
@@ -102,19 +105,19 @@ goCellularComponent <- go$cellular_component
 
 save(
   goMolecularFunction,
-  file = "somalogic/data/goMolecularFunction1129.rda",
+  file = "readat/data/goMolecularFunction1129.rda",
   compress = "xz"
 )
 
 save(
   goBiologicalProcess,
-  file = "somalogic/data/goBiologicalProcess1129.rda",
+  file = "readat/data/goBiologicalProcess1129.rda",
   compress = "xz"
 )
 
 save(
   goCellularComponent,
-  file = "somalogic/data/goCellularComponent1129.rda",
+  file = "readat/data/goCellularComponent1129.rda",
   compress = "xz"
 )
 
