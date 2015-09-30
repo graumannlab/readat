@@ -1,4 +1,4 @@
-library(somalogic)
+library(readat)
 library(magrittr)
 library(listless)
 library(dplyr)
@@ -7,16 +7,16 @@ library(biomaRt)
 library(assertive)
 library(KEGGREST)
 
-source("somalogic/inst/scripts/backend.R")
+source("readat/inst/scripts/backend.R")
 
-load("somalogic/data/ids1129.rda")
+load("readat/data/ids1129.rda")
 
 uniProtIds <- ids %>%
   filter_(~ IsHuman) %$%
   unlist(UniProtId) %>%
   unique
 
-keggFiles <- downloadKeggData(uniProtIds)
+keggFiles <- dir(choose.dir(getwd()), full.names = TRUE) # downloadKeggData(uniProtIds)
 
 keggData <- lapply(keggFiles, readRDS)
 
@@ -52,11 +52,12 @@ joinedDefinitions <- flatIds %>%
 keggDefinitions <- joinedDefinitions %>%
   as.data.frame %$%
   split(., SeqId) %>%
-  lapply(select_, ~ - SeqId)
+  lapply(select_, ~ - SeqId) %>%
+  lapply(distinct_)
 
 save(
   keggDefinitions,
-  file = "somalogic/data/keggDefinitions1129.rda",
+  file = "readat/data/keggDefinitions1129.rda",
   compress = "xz"
 )
 
@@ -66,16 +67,18 @@ joinedModules <- flatIds %>%
     keggModules,
     by = "UniProtId"
   ) %>%
-  select_(~ SeqId, ~ UniProtId, ~ KeggModuleId, ~ KeggModule)
+  select_(~ SeqId, ~ UniProtId, ~ KeggModuleId, ~ KeggModule) %>%
+  lapply(distinct_)
 
 keggModules <- joinedModules %>%
   as.data.frame %$%
   split(., SeqId) %>%
-  lapply(select_, ~ - SeqId)
+  lapply(select_, ~ - SeqId) %>%
+  lapply(distinct_)
 
 save(
   keggModules,
-  file = "somalogic/data/keggModules1129.rda",
+  file = "readat/data/keggModules1129.rda",
   compress = "xz"
 )
 
@@ -90,11 +93,12 @@ joinedPathways <- flatIds %>%
 keggPathways <- joinedPathways %>%
   as.data.frame %$%
   split(., SeqId) %>%
-  lapply(select_, ~ - SeqId)
+  lapply(select_, ~ - SeqId) %>%
+  lapply(distinct_)
 
 save(
   keggPathways,
-  file = "somalogic/data/keggPathways1129.rda",
+  file = "readat/data/keggPathways1129.rda",
   compress = "xz"
 )
 
