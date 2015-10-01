@@ -149,7 +149,7 @@ checksum <- digest(adatData, "sha1")
 # Export
 adatFile <- "readat/inst/extdata/sample.adat"
 
-# setattr(adatData, "SequenceInfo", sequenceData)
+# setattr(adatData, "SequenceData", sequenceData)
 # setattr(adatData, "Metadata", metadata)
 # setattr(adatData, "class", c("WideSomaLogicData", "data.table", "data.frame"))
 

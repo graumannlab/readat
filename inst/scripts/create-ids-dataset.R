@@ -4,10 +4,10 @@ file <- file.choose()
 
 sl <- readAdat(file, keepOnlyPasses = FALSE)
 
-seqInfo <- getSequenceInfo(sl)
+seqData <- getSequenceData(sl)
 
 
-ids <- seqInfo[
+ids <- seqData[
   j = list(
     SeqId = as.character(SeqId),
     SomaId = as.character(SomaId),

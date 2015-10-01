@@ -21,7 +21,7 @@ soma2eset <- function(somaObj, log2Transform = TRUE){
    myMeta <- getMetadata(somaObj)
 
    # fData
-   featureDF <- getSequenceInfo(somaObj)
+   featureDF <- getSequenceData(somaObj)
    featureDF <- data.frame(featureDF)
    rownames(featureDF) <- featureDF$SeqId
 
