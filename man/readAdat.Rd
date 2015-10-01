@@ -37,7 +37,7 @@ acceptable.}
 Columns of proteins intensities have a name beginning \code{SeqId.}.
 Return value also has three attributes.
 \describe{
-\item{SequenceInfo}{A data frame }
+\item{SequenceData}{A data frame.}
 \item{Metadata}{A list of experimental metadata values.}
 \item{Checksum}{A SHA1 checksum to ensure file integrity.}
 }
