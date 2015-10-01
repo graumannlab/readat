@@ -1,4 +1,4 @@
-library(somalogic)
+library(readat)
 library(magrittr)
 library(listless)
 library(dplyr)
@@ -8,16 +8,16 @@ library(rebus)
 library(tidyr)
 library(data.table)
 
-source("somalogic/inst/scripts/backend.R")
+source("readat/inst/scripts/backend.R")
 
-load("somalogic/data/ids1129.rda")
+load("readat/data/ids1129.rda")
 
 uniProtIds <- ids %>%
   filter_(~ IsHuman) %$%
   unlist(UniProtId) %>%
   unique
 
-keywordFiles <- downloadUniprotKeywords(uniProtIds)
+keywordFiles <- dir(choose.dir(getwd()), full.names = TRUE) # downloadUniprotKeywords(uniProtIds)
 
 keywordData <- lapply(keywordFiles, readRDS)
 
@@ -39,10 +39,11 @@ joined <- flatIds %>%
 uniprotKeywords <- joined %>%
   as.data.frame %$%
   split(., SeqId) %>%
-  lapply(select_, ~ UniProtId, ~ Keyword)
+  lapply(select_, ~ UniProtId, ~ Keyword) %>%
+  lapply(distinct_)
 
 save(
   uniprotKeywords,
-  file = "somalogic/data/uniprotKeywords1129.rda",
+  file = "readat/data/uniprotKeywords1129.rda",
   compress = "xz"
 )
