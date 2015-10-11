@@ -10,14 +10,14 @@ ENTREZ_GENE_SYMBOL <- "^(?:(?:OK/|b|DKFZp)?(?:[A-Z0-9.]+)(?:orf[A-Z0-9]+)?(?:-[A
 #' @importFrom assertive coerce_to
 #' @importFrom assertive call_and_name
 #' @importFrom assertive set_cause
-#' @importFrom stringr str_detect
+#' @importFrom stringi stri_detect_regex
 is_uniprot_id <- function(x)
 {
   x <- coerce_to(x, "character")
   call_and_name(
     function(x)
     {
-      ok <- str_detect(x, UNIPROT_ID)
+      ok <- stri_detect_regex(x, UNIPROT_ID)
       set_cause(ok, "bad format")
     },
     x
@@ -30,21 +30,20 @@ is_entrez_gene_id <- function(x)
   call_and_name(
     function(x)
     {
-      ok <- str_detect(x, ENTREZ_GENE_ID)
+      ok <- stri_detect_regex(x, ENTREZ_GENE_ID)
       set_cause(ok, "bad format")
     },
     x
   )
 }
 
-#' @importFrom rebus or
 is_entrez_gene_symbol <- function(x)
 {
   x <- coerce_to(x, "character")
   call_and_name(
     function(x)
     {
-      ok <- str_detect(x, or(ENTREZ_GENE_SYMBOL, "Human-virus"))
+      ok <- stri_detect_regex(x, paste0(ENTREZ_GENE_SYMBOL, "|^Human-virus$"))
       set_cause(ok, "bad format")
     },
     x
@@ -60,7 +59,7 @@ assert_all_are_uniprot_ids <- function(x, na_ignore = FALSE,
   msg <- gettextf(
     "The values of %s are not all UniProt IDs.",
     get_name_in_parent(x),
-    domain = "R-somalogic"
+    domain = "R-readat"
   )
 
   assert_engine(
@@ -78,7 +77,7 @@ assert_all_are_entrez_gene_ids <- function(x, na_ignore = FALSE,
   msg <- gettextf(
     "The values of %s are not all Entrez Gene IDs.",
     get_name_in_parent(x),
-    domain = "R-somalogic"
+    domain = "R-readat"
   )
 
   assert_engine(
@@ -96,7 +95,7 @@ assert_all_are_entrez_gene_symbols <- function(x, na_ignore = FALSE,
   msg <- gettextf(
     "The values of %s are not all Entrez Gene symbols.",
     get_name_in_parent(x),
-    domain = "R-somalogic"
+    domain = "R-readat"
   )
   assert_engine(
     is_entrez_gene_symbol,

@@ -1,4 +1,4 @@
-source("somalogic/inst/scripts/backend.R")
+source("readat/inst/scripts/backend.R")
 
 file <- file.choose()
 

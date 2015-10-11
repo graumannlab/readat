@@ -4,12 +4,16 @@
 \alias{melt.WideSomaLogicData}
 \title{Melt a WideSomaLogicData object}
 \usage{
-\method{melt}{WideSomaLogicData}(x, ...)
+melt.WideSomaLogicData(data, ..., na.rm = FALSE, value.name = "value")
 }
 \arguments{
-\item{x}{An object of class \code{WideSomaLogicData}.}
+\item{data}{An object of class \code{WideSomaLogicData}.}
 
 \item{...}{Currently unused.}
+
+\item{na.rm}{TODO}
+
+\item{value.name}{TODO}
 }
 \value{
 An object of class \code{LongSomaLogicData} that inherits from

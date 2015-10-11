@@ -19,10 +19,20 @@ Wrapper to \code{[.data.table}, ensuring that the \code{SequenceData},
 \code{Metadata} and \code{Checksum} attributes are preserved.
 }
 \examples{
+\donttest{
+unzip(
+  system.file("extdata", "soma_atkin_diabetes.zip", package = "koraproteomics"),
+  exdir = tempdir()
+)
+soma_file <- file.path(tempdir(), "soma_atkin_diabetes.adat")
+wide_soma_data <- readSomaLogic(soma_file)
+
 # Indexing returns a data.table, so the WideSomaLogicClass is preserved
-sl1[1:5, list(`SeqId.3896-5_2`)]
+wide_soma_data[1:5, list(`SeqId.3896-5_2`)]
 # Indexing simplifies to a numeric vector, so the class is lost
-sl1[1:5, `SeqId.3896-5_2`]
+wide_soma_data[1:5, `SeqId.3896-5_2`]
+unlink(soma_file)
+}
 }
 \seealso{
 \code{\link[data.table]{data.table}}

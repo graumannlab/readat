@@ -1,8 +1,10 @@
 #' Melt a WideSomaLogicData object
 #'
 #' Convert a \code{WideSomaLogicData} object from wide format to long format.
-#' @param x An object of class \code{WideSomaLogicData}.
+#' @param data An object of class \code{WideSomaLogicData}.
 #' @param ... Currently unused.
+#' @param na.rm TODO
+#' @param value.name TODO
 #' @return An object of class \code{LongSomaLogicData} that inherits from
 #' \code{data.frame}.
 #' This function melts the sample data contained in a \code{WideSomaLogicData}
@@ -12,41 +14,27 @@
 #' the \code{Metadata} and \code{Checksum} attributes are preserved.
 #' @importFrom data.table setkeyv
 #' @importFrom data.table melt.data.table
-#' @importFrom stringr str_detect
+#' @importFrom stringi stri_detect_regex
 #' @export
 #' @author Richard Cotton
-melt.WideSomaLogicData <- function(x, ...)
+melt.WideSomaLogicData <- function(data, ..., na.rm = FALSE, value.name = "value")
 {
-  isSeqColumn <- str_detect(colnames(x), "^SeqId\\.")
-  class(x) <- c("data.table", "data.frame")
-  long <- suppressMessages(melt.data.table(
-    x,
-    id.vars       = colnames(x)[!isSeqColumn],
-    measure.vars  = colnames(x)[isSeqColumn],
+  isSeqColumn <- stri_detect_regex(colnames(data), "^SeqId\\.")
+  class(data) <- c("data.table", "data.frame")
+  long <- suppressMessages(data.table::melt.data.table(
+    data,
+    id.vars       = colnames(data)[!isSeqColumn],
+    measure.vars  = colnames(data)[isSeqColumn],
     variable.name = "SeqId",
     value.name    = "Intensity"
   ))
   long$SeqId <- substring(long$SeqId, 7)
   setkeyv(long, "SeqId")
-  # long <- long[attr(x, "SequenceData")]
-#   structure(
-#     long,
-#     Metadata     = attr(x, "Metadata"),
-#     Checksum     = attr(x, "Checksum"),
-#     class        = c("LongSomaLogicData", "data.table", "data.frame")
-#   )
-  setattr(long, "Metadata", attr(x, "Metadata"))
-  setattr(long, "Checksum", attr(x, "Checksum"))
+  setattr(long, "Metadata", attr(data, "Metadata"))
+  setattr(long, "Checksum", attr(data, "Checksum"))
   setattr(long, "class", c("LongSomaLogicData", "data.table", "data.frame"))
   long
 }
-
-#' Convert an object into a molten data frame
-#'
-#' See \code{\link[reshape2]{melt}}.
-#' @name melt
-#' @export
-melt <- reshape2::melt
 
 #' Get the intensities from a WideSomaLogicData or LongSomaLogicData object
 #'
@@ -72,7 +60,7 @@ melt <- reshape2::melt
 #' long_soma_data <- melt(wide_soma_data)
 #' getIntensities(long_soma_data)         # A data.table
 #' }
-#' @importFrom stringr str_detect
+#' @importFrom stringi stri_detect_regex
 #' @export
 #' @author Richard Cotton
 getIntensities <- function(x, ...)
@@ -83,7 +71,7 @@ getIntensities <- function(x, ...)
 #' @export
 getIntensities.WideSomaLogicData <- function(x, ...)
 {
-  isSeqColumn <- str_detect(colnames(x), "^SeqId\\.")
+  isSeqColumn <- stri_detect_regex(colnames(x), "^SeqId\\.")
   class(x) <- c("data.table", "data.frame")
   m <- as.matrix(x[, isSeqColumn, with = FALSE])
   rownames(m) <- x$SampleId
@@ -193,10 +181,20 @@ setChecksum <- function(x, value)
 #' @seealso \code{\link[data.table]{data.table}}
 #' @importFrom data.table is.data.table
 #' @examples
+#' \donttest{
+#' unzip(
+#'   system.file("extdata", "soma_atkin_diabetes.zip", package = "koraproteomics"),
+#'   exdir = tempdir()
+#' )
+#' soma_file <- file.path(tempdir(), "soma_atkin_diabetes.adat")
+#' wide_soma_data <- readSomaLogic(soma_file)
+#'
 #' # Indexing returns a data.table, so the WideSomaLogicClass is preserved
-#' sl1[1:5, list(`SeqId.3896-5_2`)]
+#' wide_soma_data[1:5, list(`SeqId.3896-5_2`)]
 #' # Indexing simplifies to a numeric vector, so the class is lost
-#' sl1[1:5, `SeqId.3896-5_2`]
+#' wide_soma_data[1:5, `SeqId.3896-5_2`]
+#' unlink(soma_file)
+#' }
 #' @export
 `[.WideSomaLogicData` <- function(x, ...)
 {

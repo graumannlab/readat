@@ -20,6 +20,9 @@ passable.}
 \item{dateFormat}{A string describing the format of the dates contained in
 the file's metadata.  See \code{\link[base]{strptime}} for how to specify
 these.}
+
+\item{verbose}{Logical value indicating whether (lots of) diagnostic messages
+should be shown.}
 }
 \value{
 An object of class \code{WideSomaLogicData}, which inherits from

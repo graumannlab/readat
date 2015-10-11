@@ -1,4 +1,4 @@
-# Project: somalogic
+# Project: readat
 #
 # Author: Aditya Bhagwat
 ###############################################################################

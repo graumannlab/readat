@@ -7,10 +7,10 @@ utils::globalVariables("EntrezGeneID")
 utils::globalVariables("EntrezGeneSymbol")
 utils::globalVariables("Organism")
 utils::globalVariables("Units")
-# utils::globalVariables("CalReference")
+utils::globalVariables("CalReference")
 # utils::globalVariables("Cal_Set_A_RPT")
 utils::globalVariables("ColCheck")
-# utils::globalVariables("Dilution")
+utils::globalVariables("Dilution")
 utils::globalVariables("PlateId")
 utils::globalVariables("SlideId")
 utils::globalVariables("SampleId")
@@ -39,6 +39,8 @@ utils::globalVariables("Intensity")
 #' @param dateFormat A string describing the format of the dates contained in
 #' the file's metadata.  See \code{\link[base]{strptime}} for how to specify
 #' these.
+#' @param verbose Logical value indicating whether (lots of) diagnostic messages
+#' should be shown.
 #' @return An object of class \code{WideSomaLogicData}, which inherits from
 #' \code{data.table}.
 #' The return value consists of a data frame where each row represents a
@@ -79,9 +81,8 @@ utils::globalVariables("Intensity")
 #' @importFrom data.table setattr
 #' @importFrom data.table setkeyv
 #' @importFrom data.table setnames
-#' @importFrom stringr str_detect
-#' @importFrom stringr str_replace_all
-#' @importFrom stringr str_replace
+#' @importFrom stringi stri_detect_regex
+#' @importFrom stringi stri_replace_all_regex
 #' @export
 #' @author Richard Cotton
 readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%Y-%m-%d",
@@ -156,7 +157,10 @@ readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%Y-%m-%d",
   {
     okSeqColumns <- isPass(sequenceData$ColCheck)
     sequenceData <- sequenceData[okSeqColumns, ]
-    okColumns <- !str_detect(colnames(sampleAndIntensityData), "^SeqId\\.") #metadata
+    okColumns <- !stri_detect_regex( # metadata
+      colnames(sampleAndIntensityData),
+      "^SeqId\\."
+    )
     okColumns[!okColumns] <- okSeqColumns
     sampleAndIntensityData <- sampleAndIntensityData[
       isPass(sampleAndIntensityData$RowCheck),
