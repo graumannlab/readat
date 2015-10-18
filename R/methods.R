@@ -36,10 +36,10 @@ melt.WideSomaLogicData <- function(data, ..., na.rm = FALSE, value.name = "value
   long
 }
 
-#' Get the intensities from a WideSomaLogicData or LongSomaLogicData object
+#' Get the intensities or sample data
 #'
-#' Gets the intensities from an object of class \code{WideSomaLogicData} or
-#' \code{LongSomaLogicData}.
+#' Gets the intensities or sample data from an object of class
+#' \code{WideSomaLogicData} or \code{LongSomaLogicData}.
 #' @param x An object of class \code{WideSomaLogicData} or
 #' \code{LongSomaLogicData}.
 #' @param ... Variables passed from other methods. Currently
@@ -56,13 +56,16 @@ melt.WideSomaLogicData <- function(data, ..., na.rm = FALSE, value.name = "value
 #' soma_file <- file.path(tempdir(), "soma_atkin_diabetes.adat")
 #' wide_soma_data <- readSomaLogic(soma_file)
 #' unlink(soma_file)
-#' getIntensities(wide_soma_data)         # A matrix
 #' long_soma_data <- melt(wide_soma_data)
+#'
+#' getIntensities(wide_soma_data)         # A matrix
 #' getIntensities(long_soma_data)         # A data.table
+#'
+#' getSampleData(wide_soma_data)          # A data.table
+#' getSampleData(long_soma_data)          # A data.table
 #' }
 #' @importFrom stringi stri_detect_regex
 #' @export
-#' @author Richard Cotton
 getIntensities <- function(x, ...)
 {
   UseMethod("getIntensities")
@@ -91,6 +94,28 @@ as.matrix.WideSomaLogicData <- function(x, ...)
 {
   .Deprecated("getIntensities")
   getIntensities(x, ...)
+}
+
+#' @rdname getIntensities
+#' @export
+getSampleData <- function(x, ...)
+{
+  UseMethod("getIntensities")
+}
+
+#' @export
+getSampleData.WideSomaLogicData <- function(x, ...)
+{
+  isSampleColumn <- !stri_detect_regex(colnames(x), "^SeqId\\.")
+  class(x) <- c("data.table", "data.frame")
+  x[, isSampleColumn, with = FALSE]
+}
+
+#' @export
+getSampleData.LongSomaLogicData <- function(x, ...)
+{
+  class(x) <- c("data.table", "data.frame")
+  x[, -"Intensity", with = FALSE]
 }
 
 #' Get WideSomaLogicData attributes
