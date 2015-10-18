@@ -287,10 +287,10 @@ readSampleAndIntensityData <- function(file, nSequenceFields, nSampleFields, ski
   seqIds, verbose = getOption("verbose"))
 {
   # Read row data
+  # Don't set nrows arg; just read to the end of the file.
   sampleAndIntensityData <- fread(
     file,
     sep              = "\t",
-    nrows            = nSampleFields,
     header           = TRUE,
     skip             = skip,
     integer64        = 'numeric',
