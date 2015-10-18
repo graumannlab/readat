@@ -100,7 +100,7 @@ as.matrix.WideSomaLogicData <- function(x, ...)
 #' @export
 getSampleData <- function(x, ...)
 {
-  UseMethod("getIntensities")
+  UseMethod("getSampleData")
 }
 
 #' @export
