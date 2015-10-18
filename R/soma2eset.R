@@ -22,11 +22,13 @@ soma2eset <- function(somaObj, log2Transform = TRUE){
 
   # fData
   featureDF <- getSequenceData(somaObj)
-  featureDF <- data.frame(featureDF)
-  rownames(featureDF) <- featureDF$SeqId
+  featureDF <- data.frame(featureDF, row.names = featureDF$SeqId)
+  # rownames(featureDF) <- featureDF$SeqId
 
   # pData
   sampleDF <- getSampleData(somaObj)
+  sampleDF <- data.frame(sampleDF, row.names = somaObj$SampleId)
+  # rownames(sampleDF) <- somaObj$SampleId
 
   # forge eset
   myEset <- ExpressionSet(
