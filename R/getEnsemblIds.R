@@ -222,6 +222,7 @@ getGoCellularComponents <- function(seqIds = NULL, simplify = FALSE)
   getData(seqIds, simplify, "goCellularComponent1129", "goCellularComponent")
 }
 
+#' @importFrom utils data
 getData <- function(seqIds = NULL, simplify = FALSE, dataName, dataElement)
 {
   e <- new.env()
