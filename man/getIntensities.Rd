@@ -3,11 +3,14 @@
 \name{getIntensities}
 \alias{as.matrix.WideSomaLogicData}
 \alias{getIntensities}
-\title{Get the intensities from a WideSomaLogicData or LongSomaLogicData object}
+\alias{getSampleData}
+\title{Get the intensities or sample data}
 \usage{
 getIntensities(x, ...)
 
 \method{as.matrix}{WideSomaLogicData}(x, ...)
+
+getSampleData(x, ...)
 }
 \arguments{
 \item{x}{An object of class \code{WideSomaLogicData} or
@@ -22,8 +25,8 @@ from the \code{SampleId} of the input.  Column names are the protein
 sequence IDs.
 }
 \description{
-Gets the intensities from an object of class \code{WideSomaLogicData} or
-\code{LongSomaLogicData}.
+Gets the intensities or sample data from an object of class
+\code{WideSomaLogicData} or \code{LongSomaLogicData}.
 }
 \examples{
 \donttest{
@@ -34,12 +37,13 @@ unzip(
 soma_file <- file.path(tempdir(), "soma_atkin_diabetes.adat")
 wide_soma_data <- readSomaLogic(soma_file)
 unlink(soma_file)
-getIntensities(wide_soma_data)         # A matrix
 long_soma_data <- melt(wide_soma_data)
+
+getIntensities(wide_soma_data)         # A matrix
 getIntensities(long_soma_data)         # A data.table
+
+getSampleData(wide_soma_data)          # A data.table
+getSampleData(long_soma_data)          # A data.table
 }
-}
-\author{
-Richard Cotton
 }
 
