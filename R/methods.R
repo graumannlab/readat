@@ -17,7 +17,7 @@
 #' @importFrom stringi stri_detect_regex
 #' @export
 #' @author Richard Cotton
-melt.WideSomaLogicData <- function(data, ..., na.rm = FALSE, value.name = "value")
+melt.WideSomaLogicData <- function(data, ..., na.rm = FALSE, value.name = "Intensity")
 {
   isSeqColumn <- stri_detect_regex(colnames(data), "^SeqId\\.")
   class(data) <- c("data.table", "data.frame")
@@ -26,7 +26,7 @@ melt.WideSomaLogicData <- function(data, ..., na.rm = FALSE, value.name = "value
     id.vars       = colnames(data)[!isSeqColumn],
     measure.vars  = colnames(data)[isSeqColumn],
     variable.name = "SeqId",
-    value.name    = "Intensity"
+    value.name    = value.name
   ))
   long$SeqId <- substring(long$SeqId, 7)
   setkeyv(long, "SeqId")
