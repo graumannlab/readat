@@ -16,8 +16,9 @@ getSampleData(x, ...)
 \item{x}{An object of class \code{WideSomaLogicData} or
 \code{LongSomaLogicData}.}
 
-\item{...}{Variables passed from other methods. Currently
-ignored.}
+\item{...}{Variables passed to and from from other methods.}
+
+\item{rowsContain}{Either samples or sequences.}
 }
 \value{
 A numeric matrix of intensities for each protein. Row names are taken
@@ -35,15 +36,32 @@ unzip(
   exdir = tempdir()
 )
 soma_file <- file.path(tempdir(), "soma_atkin_diabetes.adat")
-wide_soma_data <- readSomaLogic(soma_file)
+wide_soma_data <- suppressWarnings(
+  readSomaLogic(soma_file)
+)
 unlink(soma_file)
-long_soma_data <- melt(wide_soma_data)
 
-getIntensities(wide_soma_data)         # A matrix
-getIntensities(long_soma_data)         # A data.table
+intWideSamp <- getIntensities(wide_soma_data) # A matrix
+View(intWideSamp, "Wide intensities, samples per row")
 
-getSampleData(wide_soma_data)          # A data.table
-getSampleData(long_soma_data)          # A data.table
+intWideSeq <- getIntensities(                 # The transpose
+  wide_soma_data,
+  rowsContain = "sequences"
+)
+View(intWideSeq, "Wide intensities, seqs per row")
+
+sampWide <- getSampleData(wide_soma_data)     # A data.table
+View(sampWide, "Wide sample data")
+
+if(requireNamespace("reshape2"))
+{
+  long_soma_data <- reshape2::melt(wide_soma_data)
+  intLong <- getIntensities(long_soma_data)   # A data.table
+  View(intLong, "Long intensities")
+
+  sampLong <- getSampleData(long_soma_data)   # A data.table
+  View(sampLong, "Long sample data")
+}
 }
 }
 
