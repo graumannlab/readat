@@ -19,6 +19,7 @@ install.packages("devtools")
 Then make sure to first install the listless package:
 ```{r}
 devtools::install_bitbucket(
+  'graumannlabtools/listless',
   auth_user = "your bitbucket username", 
   password  = "your bitbucket password"  
 )
