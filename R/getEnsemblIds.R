@@ -228,8 +228,8 @@ getData <- function(seqIds = NULL, simplify = FALSE, dataName, dataElement)
   e <- new.env()
   if(is.null(seqIds))
   {
-    data(list = "ids1129", package = "readat", envir = e)
-    seqIds = e$ids$SeqId
+    data(list = "aptamers", package = "readat", envir = e)
+    seqIds = e$aptamers$SeqId
   }
   data(list = dataName, package = "readat", envir = e)
   y <- e[[dataElement]][names(e[[dataElement]]) %in% seqIds]
