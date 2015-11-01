@@ -27,5 +27,6 @@ aptamers %<>%
     IsIn1129Panel = ~ as.logical(IsIn1129Panel),
     IsIn1310Panel = ~ as.logical(IsIn1310Panel)
   )
+setkeyv(aptamers, "SeqId")
 
 save(aptamers, file = "data/aptamers.rda")
