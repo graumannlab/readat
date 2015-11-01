@@ -16,15 +16,14 @@ aptamers %<>%
     ~ SomaId,
     ~ Target,
     ~ TargetFullName,
-    ~ UniProt,
+    UniProtId = ~ UniProt,
     IsIn1129Panel = ~ X1.1k,
     IsIn1310Panel = ~ X1.3k,
     PlasmaDilution = ~ Plasma,
     SerumDilution = ~ Serum
   ) %>%
   mutate_(
-    #UniProt = ~ stri_replace_first_regex(UniProt, "[, ]+", " "),
-    UniProt = ~ strsplit(UniProt, "[, ]+"),
+    UniProtId = ~ strsplit(UniProtId, "[, ]+"),
     IsIn1129Panel = ~ as.logical(IsIn1129Panel),
     IsIn1310Panel = ~ as.logical(IsIn1310Panel)
   )
