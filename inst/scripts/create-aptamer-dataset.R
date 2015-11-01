@@ -1,6 +1,6 @@
 library(data.table)
 library(dplyr)
-library(stringi)
+# library(stringi)
 
 aptamers <- fread(file.choose(), skip = 2)
 
@@ -23,7 +23,8 @@ aptamers %<>%
     SerumDilution = ~ Serum
   ) %>%
   mutate_(
-    UniProt = ~ stri_replace_first_regex(UniProt, "[, ]+", " "),
+    #UniProt = ~ stri_replace_first_regex(UniProt, "[, ]+", " "),
+    UniProt = ~ strsplit(UniProt, "[, ]+"),
     IsIn1129Panel = ~ as.logical(IsIn1129Panel),
     IsIn1310Panel = ~ as.logical(IsIn1310Panel)
   )
