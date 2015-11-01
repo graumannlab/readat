@@ -1,3 +1,34 @@
+#' Sequence data for the Somalogic SOMAscan assay
+#'
+#' Sequence data for the SOMAmers in the 1129 and 1310 panels of the Somalogic
+#' SOMAscan assay.
+#'
+#' @docType data
+#' @name aptamers
+#' @format A data frame with the following columns.
+#' \describe{
+#' \item{SeqId}{Character, primary key.  The identifier of the aptamer sequence
+#' identified using SELEX.  It consists of an aptamer ID followed by an
+#' underscore, followed by a seuqnce version number.}
+#' \item{AptamerId}{Character. The SeqId truncated at the underscore.}
+#' \item{SomaId}{Character.  The SomaLogic identifier for the protein target.
+#' For the 1129 and 1310 assays, there is a one-to-one correspondence between
+#' SeqId and SomaId, but in theory there is a many-to-one correspondence.}
+#' \item{Target}{Character. The name of the protein target, from the protein standard supplier, sometimes with additional annotation by SomaLogic.}
+#' \item{TargetFullName}{Character. The name of the protein target, from UniProt.}
+#' \item{UniProtId}{List of character vectors. UniProt IDs for the protein target.}
+#' \item{IsIn1129Panel}{Is the aptamer in the 1129 panel of the SOMAscan assay?}
+#' \item{IsIn1310Panel}{Is the aptamer in the 1310 panel of the SOMAscan assay?}
+#' \item{PlamaDilution}{What dilution factor is used in plasma?}
+#' \item{SerumDilution}{What dilution factor is used in serum?}
+#' }
+#' @references The SOMAmers in the SomaLogic SOMAscan 1129 assay can be found
+#' in this PDF:
+#' \url{http://www.somalogic.com/somalogic/media/Assets/PDFs/SSM-011-Rev-11-SOMAscan-Assay-\%28V1-1k\%29-Content.pdf}
+#' @examples
+#' head(aptamers)
+NULL
+
 #' The Sequence IDs of the Somalogic SOMAscan assay
 #'
 #' 1129 Sequence IDs of SOMAmers in the Somalogic SOMAscan assay.
