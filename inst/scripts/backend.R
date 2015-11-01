@@ -211,24 +211,39 @@ downloadUniprotKeywords <- function(ids, outdir = tempfile("uniprot_keywords"))
 {
   mart <- useMart("unimart", "uniprot")
 
+  message("Saving files to ", outdir)
   dir.create(outdir, recursive = TRUE)
 
   oneToN <- seq_along(ids)
   outfiles <- file.path(outdir, paste0(oneToN, "_uniprot_keywords_", ids, ".rds"))
+
   for(i in oneToN)
   {
-    keywords <- getBM(
-      c("accession", "keyword"),
-      filters = "accession",
-      values  = ids[i],
-      mart
-    ) %>%
-      rename_(UniProtId = ~ accession, Keyword = ~ keyword) %>%
-      select_(~ UniProtId, ~ Keyword)
-    saveRDS(keywords, outfiles[i])
+    tryCatch(
+      {
+        keywords <- getBM(
+          c("accession", "keyword"),
+          filters = "accession",
+          values  = ids[i],
+          mart
+        ) %>%
+          rename_(UniProtId = ~ accession, Keyword = ~ keyword) %>%
+          select_(~ UniProtId, ~ Keyword)
+        saveRDS(keywords, outfiles[i])
+      },
+      error = function(e)
+      {
+        message(
+          sprintf(
+            "Failed to retrieve data from UniProt on iteration %d (ID = %s).",
+            i,
+            ids[i]
+          )
+        )
+        print(e)
+      }
+    )
   }
-
-  saveRDS(keywordData, "uniprotKeywords.rds")
 
   # Return location of downloaded files
   invisible(outfiles)

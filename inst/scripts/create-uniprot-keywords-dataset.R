@@ -8,16 +8,15 @@ library(rebus)
 library(tidyr)
 library(data.table)
 
-source("readat/inst/scripts/backend.R")
+source("inst/scripts/backend.R")
 
-load("readat/data/ids1129.rda")
+load("data/aptamers.rda")
 
-uniProtIds <- ids %>%
-  filter_(~ IsHuman) %$%
+uniProtIds <- aptamers %$%
   unlist(UniProtId) %>%
   unique
 
-keywordFiles <- dir(choose.dir(getwd()), full.names = TRUE) # downloadUniprotKeywords(uniProtIds)
+keywordFiles <- downloadUniprotKeywords(uniProtIds) # dir(choose.dir(getwd()), full.names = TRUE)
 
 keywordData <- lapply(keywordFiles, readRDS)
 
@@ -25,9 +24,8 @@ keywordData <- keywordData %>%
   bind_rows() %>%
   as.data.table
 
-flatIds <- ids %>%
-  unnest_("UniProtId") %>%
-  unnest_("EntrezGeneId")
+flatIds <- aptamers %>%
+  unnest_("UniProtId")
 
 joined <- flatIds %>%
   inner_join(
@@ -44,6 +42,6 @@ uniprotKeywords <- joined %>%
 
 save(
   uniprotKeywords,
-  file = "readat/data/uniprotKeywords1129.rda",
+  file = "data/uniprotKeywords.rda",
   compress = "xz"
 )
