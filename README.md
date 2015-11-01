@@ -16,12 +16,21 @@ To install the package, you first need the
 install.packages("devtools")
 ```
 
-Then you can install the *readat* package using
+Then make sure to first install the listless package:
+```{r}
+devtools::install_bitbucket(
+  'graumannlabtools/listless',
+  auth_user = "your bitbucket username", 
+  password  = "your bitbucket password"  
+)
+```
+
+Finally you can install the *readat* package using
 
 ```{r}
 library(devtools)
 install_bitbucket(
-  "graumannlab/readat",
+  "graumannlabtools/readat",
   auth_user = "your bitbucket username", 
   password  = "your bitbucket password"  
 )
@@ -49,7 +58,3 @@ You can retrieve additional annotations by SomaLogic Sequence ID uisng
 `getEnsemblIds`, `getUniProtKeywords`, `getChromosomalPositions`, `getPfam`, 
 `getKeggDefinitions`, `getKeggModules`, `getKeggPathways`, 
 `getGoMolecularFunctions`, `getGoBiologicalProcesses`, `getGoCellularComponents`.
-
-
-
-
