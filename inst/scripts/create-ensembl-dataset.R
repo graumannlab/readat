@@ -4,11 +4,11 @@ library(listless)
 library(org.Hs.eg.db)
 library(dplyr)
 
-source("readat/inst/scripts/backend.R")
+source("inst/scripts/backend.R")
 
-load("readat/data/ids1129.rda")
+load("data/aptamers.rda")
 
-entrezGeneIds <- ids$EntrezGeneId %>%
+entrezGeneIds <- aptamers$EntrezGeneId %>%
   setNames(seq_along(.)) %>%
   list_to_data.frame("index", "EntrezGeneId", stringsAsFactors = FALSE)
 
@@ -26,7 +26,7 @@ ensemblIds <- inner_join(
 
 save(
   ensemblIds,
-  file = "readat/data/ensembl.rda",
+  file = "data/ensembl.rda",
   compress = "xz"
 )
 
