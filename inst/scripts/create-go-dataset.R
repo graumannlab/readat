@@ -103,19 +103,19 @@ goCellularComponent <- go$cellular_component
 
 save(
   goMolecularFunction,
-  file = "data/goMolecularFunction1129.rda",
+  file = "data/goMolecularFunction.rda",
   compress = "xz"
 )
 
 save(
   goBiologicalProcess,
-  file = "data/goBiologicalProcess1129.rda",
+  file = "data/goBiologicalProcess.rda",
   compress = "xz"
 )
 
 save(
   goCellularComponent,
-  file = "data/goCellularComponent1129.rda",
+  file = "data/goCellularComponent.rda",
   compress = "xz"
 )
 

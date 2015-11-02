@@ -26,7 +26,7 @@ ensemblIds <- inner_join(
 
 save(
   ensemblIds,
-  file = "readat/data/ensembl1129.rda",
+  file = "readat/data/ensembl.rda",
   compress = "xz"
 )
 

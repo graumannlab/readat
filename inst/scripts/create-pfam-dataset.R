@@ -6,12 +6,13 @@ library(org.Hs.eg.db)
 library(AnnotationDbi)
 library(PFAM.db)
 
-source("readat/inst/scripts/backend.R")
+source("inst/scripts/backend.R")
 
-load("readat/data/ids1129.rda")
+load("data/aptamers.rda")
 
-entrezGeneIds <- ids$EntrezGeneId %>%
-  setNames(ids$SeqId) %>%
+
+entrezGeneIds <- aptamers$EntrezGeneId %>%
+  setNames(aptamers$SeqId) %>%
   list_to_data.frame("SeqId", "EntrezGeneId", stringsAsFactors = FALSE)
 
 pfam <- entrezGeneIds$EntrezGeneId %>% lapply(
@@ -52,7 +53,7 @@ pfam <- pfam %>% c(notFoundList)
 
 save(
   pfam,
-  file = "readat/data/pfam1129.rda",
+  file = "data/pfam.rda",
   compress = "xz"
 )
 

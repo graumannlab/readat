@@ -62,7 +62,7 @@ keggDefinitions <- joinedDefinitions %>%
 
 save(
   keggDefinitions,
-  file = "data/keggDefinitions1129.rda",
+  file = "data/keggDefinitions.rda",
   compress = "xz"
 )
 
@@ -104,7 +104,7 @@ keggPathways <- joinedPathways %>%
 
 save(
   keggPathways,
-  file = "data/keggPathways1129.rda",
+  file = "data/keggPathways.rda",
   compress = "xz"
 )
 
