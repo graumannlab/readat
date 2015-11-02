@@ -9,10 +9,11 @@ library(tidyr)
 
 source("readat/inst/scripts/backend.R")
 
-load("readat/data/ids1129.rda")
+source("inst/scripts/backend.R")
 
-uniProtIds <- ids %>%
-  filter_(~ IsHuman) %$%
+load("data/aptamers.rda")
+
+uniProtIds <- aptamers %$%
   unlist(UniProtId) %>%
   unique
 
@@ -20,10 +21,10 @@ chromosomalFiles <- downloadChromosomalData(uniProtIds)
 
 chromosomalData <- lapply(chromosomalFiles, readRDS)
 
-chromosalData <- combineChromosomalData(chromosomalData)
+chromosomalData <- combineChromosomalData(chromosomalData)
 
 # Some values not found using UniProt. Try again using EntrezGene.
-notFound <- setdiff(uniProtIds, chromosalData$UniProtId)
+notFound <- setdiff(uniProtIds, chromosomalData$UniProtId)
 
 entrezGeneIds <- ids %>%
   filter_(~ UniProtId %in% notFound) %$%
@@ -37,7 +38,7 @@ chromosomalFiles2 <- downloadChromosomalData(entrezGeneIds, idType = "EntrezGene
 
 chromosomalData2 <- lapply(chromosomalFiles2, readRDS)
 
-chromosalData2 <- combineChromosomalData(chromosomalData2)
+chromosomalData2 <- combineChromosomalData(chromosomalData2)
 
 flatIds <- ids %>%
   unnest_("UniProtId") %>%
@@ -48,13 +49,13 @@ flatIds <- ids %>%
 
 joined <- flatIds %>%
   inner_join(
-    chromosalData %>% select_(~ -EntrezGeneId),
+    chromosomalData %>% select_(~ -EntrezGeneId),
     by = "UniProtId"
   )
 
 joined2 <- flatIds %>%
   inner_join(
-    chromosalData2 %>% select_(~ -UniProtId),
+    chromosomalData2 %>% select_(~ -UniProtId),
     by = "EntrezGeneId"
   )
 
@@ -72,6 +73,6 @@ chromosomalPositions <- bind_rows(joined, joined2) %$%
 
 save(
   chromosomalPositions,
-  file = "readat/data/chromosome1129.rda",
+  file = "data/chromosome1129.rda",
   compress = "xz"
 )

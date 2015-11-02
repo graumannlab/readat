@@ -31,35 +31,38 @@ downloadChromosomalData <- function(ids, outdir = tempfile("chromosome"),
   # and save to file
   oneToN <- seq_along(ids)
   outfiles <- file.path(outdir, paste0(oneToN, "_chromosome_", ids, ".rds"))
-  tryCatch(
-    for(i in oneToN)
-    {
-      result <- getBM(
-        attributes = attrs,
-        filters    = switch(
-          idType,
-          UniProt    = "uniprot_swissprot",
-          EntrezGene = "entrezgene"
-        ),
-        values     = ids[i],
-        mart       = ensemblMart,
-        uniqueRows = TRUE
-      )
-      saveRDS(result, outfiles[i])
-    },
-    error = function(e)
-    {
-      message(
-        sprintf(
-          "Failed to retrieve data from ensembl on iteration %d (%s ID = %s).",
-          i,
-          idType,
-          ids[i]
+
+  for(i in oneToN)
+  {
+    tryCatch(
+      {
+        result <- getBM(
+          attributes = attrs,
+          filters    = switch(
+            idType,
+            UniProt    = "uniprot_swissprot",
+            EntrezGene = "entrezgene"
+          ),
+          values     = ids[i],
+          mart       = ensemblMart,
+          uniqueRows = TRUE
         )
-      )
-      print(e)
-    }
-  )
+        saveRDS(result, outfiles[i])
+      },
+      error = function(e)
+      {
+        message(
+          sprintf(
+            "Failed to retrieve data from ensembl on iteration %d (%s ID = %s).",
+            i,
+            idType,
+            ids[i]
+          )
+        )
+        print(e)
+      }
+    )
+  }
 
   # Return location of downloaded files
   invisible(outfiles)
