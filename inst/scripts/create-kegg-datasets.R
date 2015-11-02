@@ -1,22 +1,25 @@
+library(assertive)
 library(readat)
 library(magrittr)
 library(listless)
 library(dplyr)
+library(data.table)
 library(stringr)
 library(biomaRt)
-library(assertive)
 library(KEGGREST)
+library(tidyr)
 
-source("readat/inst/scripts/backend.R")
+source("inst/scripts/backend.R")
 
-load("readat/data/ids1129.rda")
+load("data/aptamers.rda")
 
-uniProtIds <- ids %>%
-  filter_(~ IsHuman) %$%
+uniProtIds <- aptamers %$%
   unlist(UniProtId) %>%
   unique
 
-keggFiles <- dir(choose.dir(getwd()), full.names = TRUE) # downloadKeggData(uniProtIds)
+
+keggFiles <- downloadKeggData(uniProtIds) # dir(choose.dir(getwd()), full.names = TRUE)
+keggFiles <- keggFiles[file.exists(keggFiles)]
 
 keggData <- lapply(keggFiles, readRDS)
 
@@ -38,16 +41,18 @@ keggModules <- combineKeggModules(keggData, foundUniProtIds)
 
 keggPathways <- combineKeggPathways(keggData, foundUniProtIds)
 
-flatIds <- ids %>%
+flatIds <- aptamers %>%
   unnest_("UniProtId") %>%
   unnest_("EntrezGeneId")
 
 joinedDefinitions <- flatIds %>%
   inner_join(
     keggDefinitions,
-    by = "UniProtId"
+    by = "UniProtId",
+    copy = TRUE
   ) %>%
-  select_(~ SeqId, ~ UniProtId, ~ KeggId, ~ KeggDefinition, ~ KeggCytogenicLocation)
+  select_(~ SeqId, ~ UniProtId, ~ KeggId, ~ KeggDefinition, ~ KeggCytogenicLocation) %>%
+  distinct_
 
 keggDefinitions <- joinedDefinitions %>%
   as.data.frame %$%
@@ -57,7 +62,7 @@ keggDefinitions <- joinedDefinitions %>%
 
 save(
   keggDefinitions,
-  file = "readat/data/keggDefinitions1129.rda",
+  file = "data/keggDefinitions1129.rda",
   compress = "xz"
 )
 
@@ -68,7 +73,7 @@ joinedModules <- flatIds %>%
     by = "UniProtId"
   ) %>%
   select_(~ SeqId, ~ UniProtId, ~ KeggModuleId, ~ KeggModule) %>%
-  lapply(distinct_)
+  distinct_
 
 keggModules <- joinedModules %>%
   as.data.frame %$%
@@ -78,7 +83,7 @@ keggModules <- joinedModules %>%
 
 save(
   keggModules,
-  file = "readat/data/keggModules1129.rda",
+  file = "data/keggModules1129.rda",
   compress = "xz"
 )
 
@@ -88,7 +93,8 @@ joinedPathways <- flatIds %>%
     keggPathways,
     by = "UniProtId"
   ) %>%
-  select_(~ SeqId, ~ UniProtId, ~ KeggPathwayId, ~ KeggPathway)
+  select_(~ SeqId, ~ UniProtId, ~ KeggPathwayId, ~ KeggPathway) %>%
+  distinct_
 
 keggPathways <- joinedPathways %>%
   as.data.frame %$%
@@ -98,12 +104,7 @@ keggPathways <- joinedPathways %>%
 
 save(
   keggPathways,
-  file = "readat/data/keggPathways1129.rda",
+  file = "data/keggPathways1129.rda",
   compress = "xz"
 )
-
-
-
-
-
 
