@@ -7,8 +7,6 @@ library(biomaRt)
 library(rebus)
 library(tidyr)
 
-source("readat/inst/scripts/backend.R")
-
 source("inst/scripts/backend.R")
 
 load("data/aptamers.rda")

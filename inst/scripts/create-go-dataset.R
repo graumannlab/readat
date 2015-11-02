@@ -9,17 +9,15 @@ library(rebus)
 library(tidyr)
 
 
-source("readat/inst/scripts/backend.R")
+source("inst/scripts/backend.R")
 
-load("readat/data/ids1129.rda")
+load("data/aptamers.rda")
 
-
-uniProtIds <- ids %>%
-  filter_(~ IsHuman) %$%
+uniProtIds <- aptamers %$%
   unlist(UniProtId) %>%
   unique
 
-goFiles <-dir(choose.dir(getwd()), full.names = TRUE) # downloadGoData(uniProtIds)
+goFiles <- downloadGoData(uniProtIds) # dir(choose.dir(getwd()), full.names = TRUE)
 
 goData <- lapply(goFiles, readRDS)
 
@@ -33,7 +31,7 @@ notFound <- setdiff(
     unique
 )
 
-entrezGeneIds <- ids %>%
+entrezGeneIds <- aptamers %>%
   filter_(~ UniProtId %in% notFound) %$%
   unlist(EntrezGeneId) %>%
   unique()
@@ -42,14 +40,14 @@ entrezGeneIds <- ids %>%
 
 
 
-goFiles2 <- dir(choose.dir(getwd()), full.names = TRUE) # downloadGoData(entrezGeneIds, idType = "EntrezGene")
+goFiles2 <- downloadGoData(entrezGeneIds, idType = "EntrezGene") # goFiles2 <- dir(choose.dir(getwd()), full.names = TRUE)
 
 
 goData2 <- lapply(goFiles2, readRDS)
 
 goData2 <- combineGoData(goData2)
 
-flatIds <- ids %>%
+flatIds <- aptamers %>%
   unnest_("UniProtId") %>%
   unnest_("EntrezGeneId")
 
@@ -105,19 +103,19 @@ goCellularComponent <- go$cellular_component
 
 save(
   goMolecularFunction,
-  file = "readat/data/goMolecularFunction1129.rda",
+  file = "data/goMolecularFunction1129.rda",
   compress = "xz"
 )
 
 save(
   goBiologicalProcess,
-  file = "readat/data/goBiologicalProcess1129.rda",
+  file = "data/goBiologicalProcess1129.rda",
   compress = "xz"
 )
 
 save(
   goCellularComponent,
-  file = "readat/data/goCellularComponent1129.rda",
+  file = "data/goCellularComponent1129.rda",
   compress = "xz"
 )
 
