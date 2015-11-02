@@ -1,6 +1,8 @@
 library(data.table)
 library(dplyr)
-# library(stringi)
+library(org.Hs.eg.db)
+library(AnnotationDbi)
+library(tidyr)
 
 aptamers <- fread(file.choose(), skip = 2)
 
@@ -28,5 +30,18 @@ aptamers %<>%
     IsIn1310Panel = ~ as.logical(IsIn1310Panel)
   )
 setkeyv(aptamers, "SeqId")
+
+# Get EntrezGene IDs, for cases where there is a map from the UniProt ID
+u <- aptamers$UniProtId %>%
+  unlist %>%
+  unique
+u <- u[u %in% keys(org.Hs.eg.db, "UNIPROT")]
+lookup <- AnnotationDbi::select(org.Hs.eg.db, u, "ENTREZID", "UNIPROT")
+names(lookup) <- c("UniProtId", "EntrezGeneId")
+
+aptamers %<>%
+  unnest_("UniProtId") %>%
+  left_join(lookup, by = "UniProtId")%>%
+  nest_(c("UniProtId", "EntrezGeneId"))
 
 save(aptamers, file = "data/aptamers.rda")
