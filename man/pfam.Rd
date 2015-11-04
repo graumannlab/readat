@@ -3,7 +3,6 @@
 \docType{data}
 \name{pfam}
 \alias{pfam}
-\alias{pfam1129}
 \title{PFAM IDs by SomaLogic SeqID}
 \format{A list of data frames, each with the following columns.
 \describe{

@@ -2,7 +2,6 @@
 % Please edit documentation in R/dataset-docs.R
 \docType{data}
 \name{ensemblIds}
-\alias{ensembl1129}
 \alias{ensemblIds}
 \title{Ensembl IDs by SomaLogic SeqID}
 \format{A list of character vectors.  The names of the list are SomaLogic Seq IDs, and the character vectors contain Ensembl IDs for each Seq ID.}

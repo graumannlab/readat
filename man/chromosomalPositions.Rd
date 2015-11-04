@@ -3,7 +3,6 @@
 \docType{data}
 \name{chromosomalPositions}
 \alias{chromosomalPositions}
-\alias{chromosome1129}
 \title{Chromosomal Positions by SomaLogic SeqID}
 \format{A list of data frames, each with the following columns.
 \describe{

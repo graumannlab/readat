@@ -3,11 +3,8 @@
 \docType{data}
 \name{goMolecularFunction}
 \alias{goBiologicalProcess}
-\alias{goBiologicalProcess1129}
 \alias{goCellularComponent}
-\alias{goCellularComponent1129}
 \alias{goMolecularFunction}
-\alias{goMolecularFunction1129}
 \title{GO definitions by SomaLogic SeqID}
 \format{A list of data frames, each with the following columns.
 \describe{

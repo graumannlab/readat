@@ -3,7 +3,6 @@
 \docType{data}
 \name{uniprotKeywords}
 \alias{uniprotKeywords}
-\alias{uniprotKeywords1129}
 \title{UniProt Keywords by SomaLogic SeqID}
 \format{A list of data frames, each with the following columns.
 \describe{

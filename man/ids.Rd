@@ -3,7 +3,6 @@
 \docType{data}
 \name{ids}
 \alias{ids}
-\alias{ids1129}
 \title{The Sequence IDs of the Somalogic SOMAscan assay}
 \format{A data frame with the following columns.
 \describe{
