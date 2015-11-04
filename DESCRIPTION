@@ -16,6 +16,8 @@ Imports:
     listless,
     stringi,
     utils
+Suggests:
+    testthat
 Extends:
     reshape2
 License: GPL
