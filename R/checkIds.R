@@ -7,13 +7,12 @@ ENTREZ_GENE_SYMBOL <- "^(?:(?:OK/|b|DKFZp)?(?:[A-Z0-9.]+)(?:orf[A-Z0-9]+)?(?:-[A
 
 
 # Predicates
-#' @importFrom assertive coerce_to
 #' @importFrom assertive call_and_name
 #' @importFrom assertive set_cause
 #' @importFrom stringi stri_detect_regex
 is_uniprot_id <- function(x)
 {
-  x <- coerce_to(x, "character")
+  x <- as.character(x)
   call_and_name(
     function(x)
     {
@@ -26,7 +25,7 @@ is_uniprot_id <- function(x)
 
 is_entrez_gene_id <- function(x)
 {
-  x <- coerce_to(x, "character")
+  x <- as.character(x)
   call_and_name(
     function(x)
     {
@@ -39,7 +38,7 @@ is_entrez_gene_id <- function(x)
 
 is_entrez_gene_symbol <- function(x)
 {
-  x <- coerce_to(x, "character")
+  x <- as.character(x)
   call_and_name(
     function(x)
     {
