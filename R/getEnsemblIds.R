@@ -20,7 +20,7 @@
 #' @export
 getEnsemblIds <- function(seqIds = NULL, simplify = FALSE)
 {
-  y <- getData(seqIds, FALSE, "ensembl1129", "ensemblIds")
+  y <- getData(seqIds, FALSE, "ensembl", "ensemblIds")
   if(simplify)
   {
     list_to_data.frame(y, "SeqId", "EnsemblId")

@@ -13,12 +13,15 @@ underscore, followed by a seuqnce version number.}
 \item{SomaId}{Character.  The SomaLogic identifier for the protein target.
 For the 1129 and 1310 assays, there is a one-to-one correspondence between
 SeqId and SomaId, but in theory there is a many-to-one correspondence.}
-\item{Target}{Character. The name of the protein target, from the protein standard supplier, sometimes with additional annotation by SomaLogic.}
+\item{Target}{Character. The name of the protein target, from the protein
+standard supplier, sometimes with additional annotation by SomaLogic.}
 \item{TargetFullName}{Character. The name of the protein target, from UniProt.}
 \item{UniProtId}{List of character vectors. UniProt IDs for the protein target.}
+\item{EntrezGeneId}{List of character vectors. Entrez Gene IDs for the gene
+associated with protein target.}
 \item{IsIn1129Panel}{Is the aptamer in the 1129 panel of the SOMAscan assay?}
 \item{IsIn1310Panel}{Is the aptamer in the 1310 panel of the SOMAscan assay?}
-\item{PlamaDilution}{What dilution factor is used in plasma?}
+\item{PlasmaDilution}{What dilution factor is used in plasma?}
 \item{SerumDilution}{What dilution factor is used in serum?}
 }}
 \description{
@@ -29,8 +32,10 @@ SOMAscan assay.
 head(aptamers)
 }
 \references{
-The SOMAmers in the SomaLogic SOMAscan 1129 assay can be found
+The SOMAmers in the SomaLogic SOMAscan 1310 assay can be found
 in this PDF:
+\url{http://www.somalogic.com/somalogic/media/Assets/PDFs/SSM-045-REV-1-SOMAscan-Assay-1-3k-Content.pdf}
+Those from the 1129 assay can be found here:
 \url{http://www.somalogic.com/somalogic/media/Assets/PDFs/SSM-011-Rev-11-SOMAscan-Assay-\%28V1-1k\%29-Content.pdf}
 }
 
