@@ -99,7 +99,7 @@ readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%Y-%m-%d",
   assert_is_a_string(file)
   assert_all_are_existing_files(file)
 
- # The file is split into several groups of data:
+  # The file is split into several groups of data:
   # A checksum, header data, column data and row data.  Read each separately.
 
   # Opening and resaving in Excel appends TAB characters to make the data
@@ -151,26 +151,18 @@ readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%Y-%m-%d",
     verbose = verbose
   )
 
-
   # Remove failures
   if(keepOnlyPasses)
   {
-    okSeqColumns <- isPass(sequenceData$ColCheck)
-    sequenceData <- sequenceData[okSeqColumns, ]
-    okColumns <- !stri_detect_regex( # metadata
-      colnames(sampleAndIntensityData),
-      "^SeqId\\."
+    # Use list2env as multi-assigner.
+    list2env(
+      removeFailures(sequenceData, sampleAndIntensityData),
+      parent.frame()
     )
-    okColumns[!okColumns] <- okSeqColumns
-    sampleAndIntensityData <- sampleAndIntensityData[
-      isPass(sampleAndIntensityData$RowCheck),
-      okColumns,
-      with = FALSE
-    ]
   }
 
   setkeyv(sequenceData, "SeqId")
-  setkeyv(sampleAndIntensityData, "SampleId")
+  setkeyv(sampleAndIntensityData, "ExtIdentifier")
 
   # Return everything
   setattr(sampleAndIntensityData, "SequenceData", sequenceData)
@@ -252,24 +244,26 @@ readSequenceData <- function(file, nSequenceFields, nSampleFields, skip,
   sequenceData <- as.data.table(t(sequenceData))
   setnames(sequenceData, sequenceHeaderNames)
 
-  # Update column types. Columns change with different SOMA versions.
+  # Update column types.
+  # SeqId and Target are compulsory.
+  # Other common fields are updated if they exist.
   # Therefore, only update columns which we currently use, leave others unchanged
-  sequenceData <- sequenceData[
+  suppressWarnings(sequenceData[
     j = `:=`(
       SeqId            = factor(SeqId),
-      SomaId           = factor(SomaId),
       Target           = factor(Target),
-      TargetFullName   = factor(TargetFullName),
-      UniProt          = factor(stri_replace_all_regex(UniProt, "[, ]+", " ")),
-      EntrezGeneID     = factor(stri_replace_all_regex(EntrezGeneID, "[, ]+", " ")),
-      EntrezGeneSymbol = factor(stri_replace_all_regex(EntrezGeneSymbol, "[, ]+", " ")),
-      Organism         = factor(Organism),
-      Units            = factor(Units),
-      ColCheck         = factor(ColCheck),
-      CalReference     = as.numeric(CalReference),
-      Dilution         = as.numeric(Dilution)
+      SomaId           = if(exists("SomaId")) factor(SomaId),
+      TargetFullName   = if(exists("TargetFullName")) factor(TargetFullName) else NULL,
+      UniProt          = if(exists("UniProt")) factor(stri_replace_all_regex(UniProt, "[, ]+", " ")) else NULL,
+      EntrezGeneID     = if(exists("EntrezGeneID")) factor(stri_replace_all_regex(EntrezGeneID, "[, ]+", " ")) else NULL,
+      EntrezGeneSymbol = if(exists("EntrezGeneSymbol")) factor(stri_replace_all_regex(EntrezGeneSymbol, "[, ]+", " ")) else NULL,
+      Organism         = if(exists("Organism")) factor(Organism) else NULL,
+      Units            = if(exists("Units")) factor(Units) else NULL,
+      ColCheck         = if(exists("ColCheck")) factor(ColCheck) else NULL,
+      CalReference     = if(exists("CalReference")) as.numeric(CalReference) else NULL,
+      Dilution         = if(exists("Dilution")) as.numeric(Dilution) else NULL
     )
-  ]
+  ])
 
   # There are some more columns that need fixing, which should have the names
   # sprintf("Cal_%s", str_replace(levels(intensityData$PlateId), " ", "_"))
@@ -312,29 +306,44 @@ readSampleAndIntensityData <- function(file, nSequenceFields, nSampleFields, ski
   )
 
   # As with sequence data, ensure correct datatypes
-  # TODO: Waiting to hear from SomaLogic about which columns are compulsory,
-  # and which are optional.  Update this next code chunk when we know.
+  # ExtIdentifier is the only compulsory field, though SampleId, TimePoint,
+  # SampleGroup, SampleNotes and AssayNotes should also be included in all
+  # files from SomaLogic.
+  # TimePoint is sometimes numeric, sometimes character data, so don't try to
+  # coerce that field.
   # Warnings are suppressed due to 'adding' non-existent columns as NULL
   # which does nothing.  (This is intentional.)
   suppressWarnings(sampleAndIntensityData[
     j = `:=`(
-      PlateId           = factor(PlateId),
-      SlideId           = factor(SlideId),
-      SampleId          = factor(SampleId),
-      SampleType        = if(exists("SampleType")) factor(SampleType) else NULL,
-      SampleMatrix      = if(exists("SampleMatrix")) factor(SampleMatrix) else NULL,
+      # Compulsory, and SomaLogic-compulsory
+      ExtIdentifier     = factor(ExtIdentifier),
+      SampleId          = if(exists("SampleDescription")) factor(SampleId) else NULL,
+      SampleGroup       = if(exists("SampleGroup")) factor(SampleGroup) else NULL,
+      SampleNotes       = if(exists("SampleNotes")) factor(SampleNotes) else NULL,
+      AssayNotes        = if(exists("AssayNotes")) factor(AssayNotes) else NULL,
+      # Optional IDs
+      PlateId           = if(exists("PlateId")) factor(PlateId) else NULL,
+      SlideId           = if(exists("SlideId")) factor(SlideId) else NULL,
+      ScannerID         = if(exists("ScannerID")) factor(ScannerID) else NULL,
+      Subject_ID        = if(exists("Subject_ID")) factor(Subject_ID) else NULL,
+      SiteId            = if(exists("SiteId")) factor(SiteId) else NULL,
+      TubeUniqueID      = if(exists("TubeUniqueID")) factor(TubeUniqueID) else NULL,
+      SsfExtId          = if(exists("SsfExtId")) factor(SsfExtId) else NULL,
       Barcode           = if(exists("Barcode")) factor(Barcode) else NULL,
       Barcode2d         = if(exists("Barcode2d")) factor(Barcode2d) else NULL,
-      SampleNotes       = if(exists("SampleNotes")) factor(SampleNotes) else NULL,
+      SampleUniqueId    = if(exists("SampleUniqueId")) factor(SampleUniqueId) else NULL,
+      # Optional Experimental conditions
+      SampleType        = if(exists("SampleType")) factor(SampleType) else NULL,
+      SampleMatrix      = if(exists("SampleMatrix")) factor(SampleMatrix) else NULL,
       SampleDescription = if(exists("SampleDescription")) factor(SampleDescription) else NULL,
-      # TimePoint is sometimes numeric, sometimes character data.
-      # TimePoint         = if(exists("TimePoint")) as.numeric(TimePoint) else NULL,
-      ExtIdentifier     = factor(ExtIdentifier),
-      SampleGroup       = if(exists("SampleGroup")) factor(SampleGroup) else NULL,
-      SiteId            = if(exists("SiteId")) factor(SiteId) else NULL,
-      #  SampleUniqueID    = factor(SampleUniqueID), # no longer present in soma file version 1.2
-      Subject_ID        = if(exists("Subject_ID")) factor(Subject_ID) else NULL,
-      RowCheck          = factor(RowCheck)
+      Subarray          = if(exists("Subarray")) as.integer(Subarray) else NULL,
+      PlatePosition     = if(exists("PlatePosition")) factor(PlatePosition) else NULL,
+      # Normalization, calibration, QC
+      HybControlNormScale  = if(exists("HybControlNormScale")) as.numeric(HybControlNormScale) else NULL,
+      NormScale_40      = if(exists("NormScale_40")) as.numeric(NormScale_40) else NULL,
+      NormScale_1       = if(exists("NormScale_1")) as.numeric(NormScale_1) else NULL,
+      NormScale_0_005   = if(exists("NormScale_0_005")) as.numeric(NormScale_0_005) else NULL,
+      RowCheck          = if(exists("RowCheck")) factor(RowCheck) else NULL
     )
   ])
   sampleAndIntensityData
@@ -373,3 +382,36 @@ isPass <- function(x)
   !is.na(x) & x == "PASS"
 }
 
+removeFailures <- function(sequenceData, sampleAndIntensityData)
+{
+  if(is.null(sequenceData$ColCheck))
+  {
+    warning("There is no 'ColCheck field', so failing sequences cannot be removed.")
+  } else
+  {
+    okSeqColumns <- isPass(sequenceData$ColCheck)
+    sequenceData <- sequenceData[okSeqColumns, ]
+    okColumns <- !stri_detect_regex( # metadata
+      colnames(sampleAndIntensityData),
+      "^SeqId\\."
+    )
+    okColumns[!okColumns] <- okSeqColumns
+    sampleAndIntensityData <- sampleAndIntensityData[
+      j = okColumns,
+      with = FALSE
+    ]
+  }
+  if(is.null(sampleAndIntensityData$RowCheck))
+  {
+    warning("There is no 'RowCheck field', so failing samples cannot be removed.")
+  } else
+  {
+    sampleAndIntensityData <- sampleAndIntensityData[
+      isPass(sampleAndIntensityData$RowCheck)
+    ]
+  }
+  list(
+    sequenceData = sequenceData,
+    sampleAndIntensityData = sampleAndIntensityData
+  )
+}
