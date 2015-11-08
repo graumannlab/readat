@@ -8,9 +8,16 @@ utils::globalVariables("EntrezGeneSymbol")
 utils::globalVariables("Organism")
 utils::globalVariables("Units")
 utils::globalVariables("CalReference")
-# utils::globalVariables("Cal_Set_A_RPT")
+utils::globalVariables("AssayNotes")
+utils::globalVariables("ScannerID")
+utils::globalVariables("TubeUniqueID")
+utils::globalVariables("SsfExtId")
+utils::globalVariables("SampleUniqueId")
+utils::globalVariables("Subarray")
+utils::globalVariables("PlatePosition")
 utils::globalVariables("ColCheck")
 utils::globalVariables("Dilution")
+
 utils::globalVariables("PlateId")
 utils::globalVariables("SlideId")
 utils::globalVariables("SampleId")
@@ -28,6 +35,10 @@ utils::globalVariables("SampleUniqueID")
 utils::globalVariables("Subject_ID")
 utils::globalVariables("RowCheck")
 utils::globalVariables("Intensity")
+utils::globalVariables("HybControlNormScale")
+utils::globalVariables("NormScale_40")
+utils::globalVariables("NormScale_1")
+utils::globalVariables("NormScale_0_005")
 
 #' Read a SomaLogic data file
 #'
@@ -154,11 +165,9 @@ readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%Y-%m-%d",
   # Remove failures
   if(keepOnlyPasses)
   {
-    # Use list2env as multi-assigner.
-    list2env(
-      removeFailures(sequenceData, sampleAndIntensityData),
-      parent.frame()
-    )
+    l <- removeFailures(sequenceData, sampleAndIntensityData)
+    sequenceData <- l$sequenceData
+    sampleAndIntensityData <- l$sampleAndIntensityData
   }
 
   setkeyv(sequenceData, "SeqId")
@@ -390,8 +399,23 @@ removeFailures <- function(sequenceData, sampleAndIntensityData)
   } else
   {
     okSeqColumns <- isPass(sequenceData$ColCheck)
+    if(!all(okSeqColumns))
+    {
+      nBadSeqs <- sum(!okSeqColumns)
+      message(
+        sprintf(
+          ngettext(
+            nBadSeqs,
+            "Removing %d sequence that failed QC.",
+            "Removing %d sequences that failed QC.",
+            domain = NA # don't translate, at least for now
+          ),
+          nBadSeqs
+        )
+      )
+    }
     sequenceData <- sequenceData[okSeqColumns, ]
-    okColumns <- !stri_detect_regex( # metadata
+    okColumns <- !stri_detect_regex(
       colnames(sampleAndIntensityData),
       "^SeqId\\."
     )
@@ -406,9 +430,23 @@ removeFailures <- function(sequenceData, sampleAndIntensityData)
     warning("There is no 'RowCheck field', so failing samples cannot be removed.")
   } else
   {
-    sampleAndIntensityData <- sampleAndIntensityData[
-      isPass(sampleAndIntensityData$RowCheck)
-    ]
+    okSampleRows <- isPass(sampleAndIntensityData$RowCheck)
+    if(!all(okSampleRows))
+    {
+      nBadSamples <- sum(!okSampleRows)
+      message(
+        sprintf(
+          ngettext(
+            nBadSamples,
+            "Removing %d sample that failed QC.",
+            "Removing %d samples that failed QC.",
+            domain = NA # don't translate, at least for now
+          ),
+          nBadSamples
+        )
+      )
+    }
+    sampleAndIntensityData <- sampleAndIntensityData[okSampleRows]
   }
   list(
     sequenceData = sequenceData,
