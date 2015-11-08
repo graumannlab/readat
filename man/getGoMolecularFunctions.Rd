@@ -40,7 +40,7 @@ getGoMolecularFunctions(c("2278-61_4", "3505-6_2", "4916-2_1"))
 getGoBiologicalProcesses(c("2278-61_4", "3505-6_2", "4916-2_1"))
 getGoCellularComponents(c("2278-61_4", "3505-6_2", "4916-2_1"))
 
-# Get everything in the 1129 panel.
+# Get everything in the 1310 and 1129 panels.
 \dontrun{
 getGoMolecularFunctions()
 getGoBiologicalProcesses()

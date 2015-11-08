@@ -14,7 +14,7 @@ getKeggPathways(seqIds = NULL, simplify = FALSE)
 }
 \arguments{
 \item{seqIds}{A character vector of SomaLogic Sequence IDs, or \code{NULL} to
-use all 1129 Sequence IDs.}
+use all Sequence IDs.}
 
 \item{simplify}{Logical.  Should the output be collapsed into a single
 data.frame?}
@@ -41,7 +41,7 @@ getKeggDefinitions(c("2278-61_4", "3505-6_2", "4916-2_1"))
 getKeggModules(c("2278-61_4", "3505-6_2", "4916-2_1"))
 getKeggPathways(c("2278-61_4", "3505-6_2", "4916-2_1"))
 
-# Get everything in the 1129 panel.
+# Get everything in the 1310 and 1129 panels.
 \dontrun{
 getKeggDefinitions()
 getKeggModules()

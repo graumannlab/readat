@@ -30,7 +30,7 @@ Gets the UniProt Keywords associated with SomaLogic Sequence IDs.
 # Each SeqID may have one, many, or zero associated Ensembl IDs
 getUniProtKeywords(c("2278-61_4", "4703-87_2", "4916-2_1"))
 
-# Get everything in the 1129 panel.
+# Get everything in the 1310 and 1129 panels.
 \dontrun{
 getUniProtKeywords()
 }
