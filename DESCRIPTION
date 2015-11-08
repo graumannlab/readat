@@ -17,7 +17,8 @@ Imports:
     stringi,
     utils
 Suggests:
-    testthat
+    testthat,
+    reshape2
 Extends:
     reshape2
 License: GPL
