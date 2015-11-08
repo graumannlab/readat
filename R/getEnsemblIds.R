@@ -49,7 +49,7 @@ getEnsemblIds <- function(seqIds = NULL, simplify = FALSE)
 #' # Each SeqID may have one, many, or zero associated Ensembl IDs
 #' getUniProtKeywords(c("2278-61_4", "4703-87_2", "4916-2_1"))
 #'
-#' # Get everything in the 1129 panel.
+#' # Get everything in the 1310 and 1129 panels.
 #' \dontrun{
 #' getUniProtKeywords()
 #' }
@@ -57,7 +57,7 @@ getEnsemblIds <- function(seqIds = NULL, simplify = FALSE)
 #' @export
 getUniProtKeywords <- function(seqIds = NULL, simplify = FALSE)
 {
-  getData(seqIds, simplify, "uniprotKeywords1129", "uniprotKeywords")
+  getData(seqIds, simplify, "uniprotKeywords", "uniprotKeywords")
 }
 
 #' Get Chromosomal Positions by SeqID
@@ -79,7 +79,7 @@ getUniProtKeywords <- function(seqIds = NULL, simplify = FALSE)
 #' # Each SeqID may have one, many, or zero associated chromosomal positions
 #' getChromosomalPositions(c("2278-61_4", "4703-87_2", "4916-2_1"))
 #'
-#' # Get everything in the 1129 panel.
+#' # Get everything in the 1310 and 1129 panels.
 #' \dontrun{
 #' getChromosomalPositions()
 #' }
@@ -87,7 +87,7 @@ getUniProtKeywords <- function(seqIds = NULL, simplify = FALSE)
 #' @export
 getChromosomalPositions <- function(seqIds = NULL, simplify = FALSE)
 {
-  getData(seqIds, simplify, "chromosome1129", "chromosomalPositions")
+  getData(seqIds, simplify, "chromosome", "chromosomalPositions")
 }
 
 #' Get PFAM IDs by SeqID
@@ -109,7 +109,7 @@ getChromosomalPositions <- function(seqIds = NULL, simplify = FALSE)
 #' # Each SeqID may have one, many, or zero associated PFAM descriptions
 #' getPfam(c("2278-61_4", "4703-87_2", "4916-2_1"))
 #'
-#' # Get everything in the 1129 panel.
+#' # Get everything in the 1310 and 1129 panels.
 #' \dontrun{
 #' getPfam()
 #' }
@@ -117,7 +117,7 @@ getChromosomalPositions <- function(seqIds = NULL, simplify = FALSE)
 #' @export
 getPfam <- function(seqIds = NULL, simplify = FALSE)
 {
-  getData(seqIds, simplify, "pfam1129", "pfam")
+  getData(seqIds, simplify, "pfam", "pfam")
 }
 
 #' KEGG definitions, modules, and pathways by SeqID
@@ -125,7 +125,7 @@ getPfam <- function(seqIds = NULL, simplify = FALSE)
 #' Gets the KEGG definitions, modules, and pathways associated with SomaLogic
 #' Sequence IDs.
 #' @param seqIds A character vector of SomaLogic Sequence IDs, or \code{NULL} to
-#' use all 1129 Sequence IDs.
+#' use all Sequence IDs.
 #' @param simplify Logical.  Should the output be collapsed into a single
 #' data.frame?
 #' @return A list of data frames.  The names of the list are the input
@@ -144,7 +144,7 @@ getPfam <- function(seqIds = NULL, simplify = FALSE)
 #' getKeggModules(c("2278-61_4", "3505-6_2", "4916-2_1"))
 #' getKeggPathways(c("2278-61_4", "3505-6_2", "4916-2_1"))
 #'
-#' # Get everything in the 1129 panel.
+#' # Get everything in the 1310 and 1129 panels.
 #' \dontrun{
 #' getKeggDefinitions()
 #' getKeggModules()
@@ -154,21 +154,21 @@ getPfam <- function(seqIds = NULL, simplify = FALSE)
 #' @export
 getKeggDefinitions <- function(seqIds = NULL, simplify = FALSE)
 {
-  getData(seqIds, simplify, "keggDefinitions1129", "keggDefinitions")
+  getData(seqIds, simplify, "keggDefinitions", "keggDefinitions")
 }
 
 #' @rdname getKeggDefinitions
 #' @export
 getKeggModules <- function(seqIds = NULL, simplify = FALSE)
 {
-  getData(seqIds, simplify, "keggModules1129", "keggModules")
+  getData(seqIds, simplify, "keggModules", "keggModules")
 }
 
 #' @rdname getKeggDefinitions
 #' @export
 getKeggPathways <- function(seqIds = NULL, simplify = FALSE)
 {
-  getData(seqIds, simplify, "keggPathways1129", "keggPathways")
+  getData(seqIds, simplify, "keggPathways", "keggPathways")
 }
 
 
@@ -195,7 +195,7 @@ getKeggPathways <- function(seqIds = NULL, simplify = FALSE)
 #' getGoBiologicalProcesses(c("2278-61_4", "3505-6_2", "4916-2_1"))
 #' getGoCellularComponents(c("2278-61_4", "3505-6_2", "4916-2_1"))
 #'
-#' # Get everything in the 1129 panel.
+#' # Get everything in the 1310 and 1129 panels.
 #' \dontrun{
 #' getGoMolecularFunctions()
 #' getGoBiologicalProcesses()
@@ -205,21 +205,21 @@ getKeggPathways <- function(seqIds = NULL, simplify = FALSE)
 #' @export
 getGoMolecularFunctions <- function(seqIds = NULL, simplify = FALSE)
 {
-  getData(seqIds, simplify, "goMolecularFunction1129", "goMolecularFunction")
+  getData(seqIds, simplify, "goMolecularFunction", "goMolecularFunction")
 }
 
 #' @rdname getGoMolecularFunctions
 #' @export
 getGoBiologicalProcesses <- function(seqIds = NULL, simplify = FALSE)
 {
-  getData(seqIds, simplify, "goBiologicalProcess1129", "goBiologicalProcess")
+  getData(seqIds, simplify, "goBiologicalProcess", "goBiologicalProcess")
 }
 
 #' @rdname getGoMolecularFunctions
 #' @export
 getGoCellularComponents <- function(seqIds = NULL, simplify = FALSE)
 {
-  getData(seqIds, simplify, "goCellularComponent1129", "goCellularComponent")
+  getData(seqIds, simplify, "goCellularComponent", "goCellularComponent")
 }
 
 #' @importFrom utils data
