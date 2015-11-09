@@ -18,8 +18,8 @@ test_that(
   "readAdat can read all files in the extdata dir",
   {
     expectedNSamples <- rep_len(20L, length(adatFiles))
-    expectedNSeqs <- ifelse(grepl("1.3k", adatFiles), 1310L, 1129L)
-    actual <- lapply(adatFiles,readAdat)
+    expectedNSeqs <- ifelse(grepl("1.3k", adatFiles, fixed = TRUE), 1310L, 1129L)
+    actual <- lapply(adatFiles, readAdat, keepOnlyPasses = FALSE)
     for(i in seq_along(actual))
     {
       expect_is(actual[[i]], "WideSomaLogicData")

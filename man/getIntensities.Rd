@@ -3,14 +3,27 @@
 \name{getIntensities}
 \alias{as.matrix.WideSomaLogicData}
 \alias{getIntensities}
+\alias{getIntensities.LongSomaLogicData}
+\alias{getIntensities.WideSomaLogicData}
 \alias{getSampleData}
+\alias{getSampleData.LongSomaLogicData}
+\alias{getSampleData.WideSomaLogicData}
 \title{Get the intensities or sample data}
 \usage{
 getIntensities(x, ...)
 
+\method{getIntensities}{WideSomaLogicData}(x, rowsContain = c("samples",
+  "sequences"), ...)
+
+\method{getIntensities}{LongSomaLogicData}(x, ...)
+
 \method{as.matrix}{WideSomaLogicData}(x, ...)
 
 getSampleData(x, ...)
+
+\method{getSampleData}{WideSomaLogicData}(x, ...)
+
+\method{getSampleData}{LongSomaLogicData}(x, ...)
 }
 \arguments{
 \item{x}{An object of class \code{WideSomaLogicData} or

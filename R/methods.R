@@ -88,6 +88,7 @@ getIntensities <- function(x, ...)
   UseMethod("getIntensities")
 }
 
+#' @rdname getIntensities
 #' @export
 getIntensities.WideSomaLogicData <- function(x, rowsContain = c("samples", "sequences"), ...)
 {
@@ -100,6 +101,7 @@ getIntensities.WideSomaLogicData <- function(x, rowsContain = c("samples", "sequ
   if(rowsContain == "samples") m else t(m)
 }
 
+#' @rdname getIntensities
 #' @export
 getIntensities.LongSomaLogicData <- function(x, ...)
 {
@@ -121,6 +123,7 @@ getSampleData <- function(x, ...)
   UseMethod("getSampleData")
 }
 
+#' @rdname getIntensities
 #' @export
 getSampleData.WideSomaLogicData <- function(x, ...)
 {
@@ -129,6 +132,7 @@ getSampleData.WideSomaLogicData <- function(x, ...)
   x[, isSampleColumn, with = FALSE]
 }
 
+#' @rdname getIntensities
 #' @export
 getSampleData.LongSomaLogicData <- function(x, ...)
 {
