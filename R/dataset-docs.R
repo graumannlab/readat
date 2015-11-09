@@ -34,27 +34,6 @@
 #' head(aptamers)
 NULL
 
-#' The Sequence IDs of the Somalogic SOMAscan assay
-#'
-#' 1129 Sequence IDs of SOMAmers in the Somalogic SOMAscan assay.
-#'
-#' @docType data
-#' @name ids
-#' @format A data frame with the following columns.
-#' \describe{
-#' \item{SeqId}{Character, primary key.  The identifier of the SOMAmer sequence.}
-#' \item{SomaId}{Character.  The SomaLogic identifier for the protein target.  For the 1129 assay, there is a one-to-one correspondence between SeqId and SomaId, but the for larger assays, there is a many-to-one correspondence.}
-#' \item{UniProtId}{List of character vectors. UniProt IDs for the protein target.}
-#' \item{EntrezGeneId}{List of character vectors. EntrezGene IDs for the gene that produces the protein target.}
-#' \item{IsHuman}{Logical.  \code{TRUE} when the target is a human protein, and \code{FALSE} when it is a virus protein.}
-#' }
-#' @references The SOMAmers in the SomaLogic SOMAscan assay can be found
-#' in this PDF:
-#' \url{http://www.somalogic.com/somalogic/media/Assets/PDFs/SSM-011-Rev-10-SOMAscan-Assay-\%28V3-2\%29-Content.pdf}
-#' @examples
-#' head(ids)
-NULL
-
 #' Ensembl IDs by SomaLogic SeqID
 #'
 #' A lookup of Ensembl IDs by SomaLogic Sequence ID.
