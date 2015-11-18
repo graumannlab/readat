@@ -181,6 +181,11 @@ getChecksum <- function(x)
   attr(x, "Checksum", exact = TRUE)
 }
 
+# calculateChecksum <- function(x)
+# {
+#   digest::digest(list(getMetadata(x), getSequenceData(x), getSampleData(x), getIntensities(x)), "sha1")
+# }
+
 #' @rdname WideSomaLogicDataAttributes
 #' @importFrom assertive assert_is_inherited_from
 #' @importFrom data.table setattr

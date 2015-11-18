@@ -13,8 +13,8 @@ Imports:
     Biobase,
     data.table,
     dplyr,
-    listless,
     stringi,
+    tidyr (>= 0.2.0),
     utils
 Suggests:
     testthat,
