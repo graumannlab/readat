@@ -21,5 +21,5 @@ Suggests:
     reshape2
 Extends:
     reshape2
-License: GPL
+License: GNU GPL 3
 LazyData: true
