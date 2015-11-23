@@ -257,7 +257,7 @@ readSequenceData <- function(file, nSequenceFields, nSampleFields, skip,
   # SeqId and Target are compulsory.
   # Other common fields are updated if they exist.
   # Therefore, only update columns which we currently use, leave others unchanged
-  suppressWarnings(sequenceData[
+  sequenceData[
     j = `:=`(
       SeqId            = factor(SeqId),
       Target           = factor(Target),
@@ -272,7 +272,7 @@ readSequenceData <- function(file, nSequenceFields, nSampleFields, skip,
       CalReference     = if(exists("CalReference")) as.numeric(CalReference) else NULL,
       Dilution         = if(exists("Dilution")) as.numeric(Dilution) else NULL
     )
-  ])
+  ]
 
   # There are some more columns that need fixing, which should have the names
   # sprintf("Cal_%s", str_replace(levels(intensityData$PlateId), " ", "_"))
@@ -322,39 +322,42 @@ readSampleAndIntensityData <- function(file, nSequenceFields, nSampleFields, ski
   # coerce that field.
   # Warnings are suppressed due to 'adding' non-existent columns as NULL
   # which does nothing.  (This is intentional.)
-  suppressWarnings(sampleAndIntensityData[
-    j = `:=`(
-      # Compulsory, and SomaLogic-compulsory
-      ExtIdentifier     = factor(ExtIdentifier),
-      SampleId          = if(exists("SampleDescription")) factor(SampleId) else NULL,
-      SampleGroup       = if(exists("SampleGroup")) factor(SampleGroup) else NULL,
-      SampleNotes       = if(exists("SampleNotes")) factor(SampleNotes) else NULL,
-      AssayNotes        = if(exists("AssayNotes")) factor(AssayNotes) else NULL,
-      # Optional IDs
-      PlateId           = if(exists("PlateId")) factor(PlateId) else NULL,
-      SlideId           = if(exists("SlideId")) factor(SlideId) else NULL,
-      ScannerID         = if(exists("ScannerID")) factor(ScannerID) else NULL,
-      Subject_ID        = if(exists("Subject_ID")) factor(Subject_ID) else NULL,
-      SiteId            = if(exists("SiteId")) factor(SiteId) else NULL,
-      TubeUniqueID      = if(exists("TubeUniqueID")) factor(TubeUniqueID) else NULL,
-      SsfExtId          = if(exists("SsfExtId")) factor(SsfExtId) else NULL,
-      Barcode           = if(exists("Barcode")) factor(Barcode) else NULL,
-      Barcode2d         = if(exists("Barcode2d")) factor(Barcode2d) else NULL,
-      SampleUniqueId    = if(exists("SampleUniqueId")) factor(SampleUniqueId) else NULL,
-      # Optional Experimental conditions
-      SampleType        = if(exists("SampleType")) factor(SampleType) else NULL,
-      SampleMatrix      = if(exists("SampleMatrix")) factor(SampleMatrix) else NULL,
-      SampleDescription = if(exists("SampleDescription")) factor(SampleDescription) else NULL,
-      Subarray          = if(exists("Subarray")) as.integer(Subarray) else NULL,
-      PlatePosition     = if(exists("PlatePosition")) factor(PlatePosition) else NULL,
-      # Normalization, calibration, QC
-      HybControlNormScale  = if(exists("HybControlNormScale")) as.numeric(HybControlNormScale) else NULL,
-      NormScale_40      = if(exists("NormScale_40")) as.numeric(NormScale_40) else NULL,
-      NormScale_1       = if(exists("NormScale_1")) as.numeric(NormScale_1) else NULL,
-      NormScale_0_005   = if(exists("NormScale_0_005")) as.numeric(NormScale_0_005) else NULL,
-      RowCheck          = if(exists("RowCheck")) factor(RowCheck) else NULL
-    )
-  ])
+  suppressSomeFeedback(
+    sampleAndIntensityData[
+      j = `:=`(
+        # Compulsory, and SomaLogic-compulsory
+        ExtIdentifier     = factor(ExtIdentifier),
+        SampleId          = if(exists("SampleDescription")) factor(SampleId) else NULL,
+        SampleGroup       = if(exists("SampleGroup")) factor(SampleGroup) else NULL,
+        SampleNotes       = if(exists("SampleNotes")) factor(SampleNotes) else NULL,
+        AssayNotes        = if(exists("AssayNotes")) factor(AssayNotes) else NULL,
+        # Optional IDs
+        PlateId           = if(exists("PlateId")) factor(PlateId) else NULL,
+        SlideId           = if(exists("SlideId")) factor(SlideId) else NULL,
+        ScannerID         = if(exists("ScannerID")) factor(ScannerID) else NULL,
+        Subject_ID        = if(exists("Subject_ID")) factor(Subject_ID) else NULL,
+        SiteId            = if(exists("SiteId")) factor(SiteId) else NULL,
+        TubeUniqueID      = if(exists("TubeUniqueID")) factor(TubeUniqueID) else NULL,
+        SsfExtId          = if(exists("SsfExtId")) factor(SsfExtId) else NULL,
+        Barcode           = if(exists("Barcode")) factor(Barcode) else NULL,
+        Barcode2d         = if(exists("Barcode2d")) factor(Barcode2d) else NULL,
+        SampleUniqueId    = if(exists("SampleUniqueId")) factor(SampleUniqueId) else NULL,
+        # Optional Experimental conditions
+        SampleType        = if(exists("SampleType")) factor(SampleType) else NULL,
+        SampleMatrix      = if(exists("SampleMatrix")) factor(SampleMatrix) else NULL,
+        SampleDescription = if(exists("SampleDescription")) factor(SampleDescription) else NULL,
+        Subarray          = if(exists("Subarray")) as.integer(Subarray) else NULL,
+        PlatePosition     = if(exists("PlatePosition")) factor(PlatePosition) else NULL,
+        # Normalization, calibration, QC
+        HybControlNormScale  = if(exists("HybControlNormScale")) as.numeric(HybControlNormScale) else NULL,
+        NormScale_40      = if(exists("NormScale_40")) as.numeric(NormScale_40) else NULL,
+        NormScale_1       = if(exists("NormScale_1")) as.numeric(NormScale_1) else NULL,
+        NormScale_0_005   = if(exists("NormScale_0_005")) as.numeric(NormScale_0_005) else NULL,
+        RowCheck          = if(exists("RowCheck")) factor(RowCheck) else NULL
+      )
+    ],
+    warnRegex = "Adding new column"
+  )
   sampleAndIntensityData
 }
 

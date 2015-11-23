@@ -51,11 +51,11 @@ Reads a SomaLogic ADAT data file.
 \examples{
 \donttest{
 unzip(
-  system.file("extdata", "soma_atkin_diabetes.zip", package = "koraproteomics"),
+  system.file("extdata", "PLASMA.1.3k.20151030.adat.zip", package = "readat"),
   exdir = tempdir()
 )
-soma_file <- file.path(tempdir(), "soma_atkin_diabetes.adat")
-wide_soma_data <- readSomaLogic(soma_file)
+soma_file <- file.path(tempdir(), "PLASMA.1.3k.HybNorm.MedNorm.Cal.20151030.adat")
+wide_soma_data <- readAdat(soma_file)
 str(wide_soma_data, list.len = 35)
 unlink(soma_file)
 }
