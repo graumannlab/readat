@@ -4,10 +4,12 @@
 \alias{[.WideSomaLogicData}
 \title{Indexing for WideSomaLogicData objects}
 \usage{
-\method{[}{WideSomaLogicData}(x, ...)
+\method{[}{WideSomaLogicData}(x, i, ...)
 }
 \arguments{
 \item{x}{A \code{WideSomaLogicData} object.}
+
+\item{i}{Row index, passed to \code{[.data.table}.}
 
 \item{...}{Passed to \code{[.data.table}.}
 }

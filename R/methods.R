@@ -223,6 +223,7 @@ setChecksum <- function(x, value)
 #' Wrapper to \code{[.data.table}, ensuring that the \code{SequenceData},
 #' \code{Metadata} and \code{Checksum} attributes are preserved.
 #' @param x A \code{WideSomaLogicData} object.
+#' @param i Row index, passed to \code{[.data.table}.
 #' @param ... Passed to \code{[.data.table}.
 #' @return If the indexing returns a A \code{WideSomaLogicData} object.
 #' @seealso \code{\link[data.table]{data.table}}
@@ -243,13 +244,13 @@ setChecksum <- function(x, value)
 #' unlink(soma_file)
 #' }
 #' @export
-`[.WideSomaLogicData` <- function(x, ...)
+`[.WideSomaLogicData` <- function(x, i, ...)
 {
   sequenceData <- getSequenceData(x)
   metadata     <- getMetadata(x)
   checksum     <- getChecksum(x)
   class(x) <- c("data.table", "data.frame")
-  y <- x[..., drop = FALSE]
+  y <- x[i, ..., drop = FALSE]
   # result may be a data.table, or have been simplified to a vector
   if(is.data.table(y))
   {
