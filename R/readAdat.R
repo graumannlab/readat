@@ -199,7 +199,7 @@ readFirstChar <- function(file)
 readMetadata <- function(file, headerRow, colDataRow, dateFormat)
 {
   # (Ab)using fread for this tends to results in unnecessary warnings.
-  metadata <- suppressWarnings(fread(
+  metadata <- fread(
     file,
     sep        = "\t",
     nrows      = colDataRow - headerRow - 1,
@@ -207,7 +207,7 @@ readMetadata <- function(file, headerRow, colDataRow, dateFormat)
     skip       = headerRow,
     integer64  = "numeric",
     na.strings = c("", "NA", "null")
-  ))
+  )
   metadata <- with(metadata, setNames(as.list(V2), substring(V1, 2)))
   within(
     metadata,
