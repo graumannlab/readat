@@ -6,6 +6,8 @@
 #' \code{NULL} means show all messages.
 #' @param warnRegex A regular expression describing warnings to suppress.
 #' \code{NULL} means show all warnings.
+#' @references This uses copies of \code{evaluate_promise} and \code{with_sink}
+#' from the \code{testthat} package.
 #' @examples
 #' \donttest{
 #' suppressSomeFeedback(log(-1))
@@ -15,6 +17,8 @@
 #' @noRd
 suppressSomeFeedback <- function(expr, msgRegex = NULL, warnRegex = NULL)
 {
+  # Could use pander::evals or set options(warn = 1) + capture.output. See
+  # https://stat.ethz.ch/pipermail/r-devel/2015-November/072046.html
   evaluated <- evaluate_promise(expr)
   if(!is.null(msgRegex))
   {

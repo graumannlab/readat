@@ -8,7 +8,7 @@
 \describe{
 \item{SeqId}{Character, primary key.  The identifier of the aptamer sequence
 identified using SELEX.  It consists of an aptamer ID followed by an
-underscore, followed by a seuqnce version number.}
+underscore, followed by a sequence version number.}
 \item{AptamerId}{Character. The SeqId truncated at the underscore.}
 \item{SomaId}{Character.  The SomaLogic identifier for the protein target.
 For the 1129 and 1310 assays, there is a one-to-one correspondence between
