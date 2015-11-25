@@ -189,6 +189,7 @@ setSequenceData <- function(x, value)
 {
   assert_is_inherited_from(value, "data.table")
   setattr(x, "SequenceData", value)
+  invisible(x)
 }
 
 #' @rdname WideSomaLogicDataAttributes
@@ -198,6 +199,7 @@ setSequenceInfo <- function(x, value)
 {
   .Deprecated("setSequenceData")
   setSequenceData(x, value)
+  invisible(x)
 }
 
 #' @rdname WideSomaLogicDataAttributes
@@ -207,6 +209,7 @@ setMetadata <- function(x, value)
 {
   assert_is_list(value)
   attr(x, "Metadata") <- value
+  invisible(x)
 }
 
 #' @rdname WideSomaLogicDataAttributes
@@ -216,6 +219,7 @@ setChecksum <- function(x, value)
 {
   assert_is_character(value)
   attr(x, "Checksum") <- value
+  invisible(x)
 }
 
 #' Indexing for WideSomaLogicData objects
