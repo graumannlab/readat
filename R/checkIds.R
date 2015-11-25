@@ -126,7 +126,7 @@ checkUniprotIds <- function(sequenceData)
     fixed = TRUE
   ) %>%
     unlist(use.names = FALSE)
-  assert_all_are_uniprot_ids(upIds, na_ignore = TRUE, severity = "warning")
+  assert_all_are_uniprot_ids(ignoreHce(upIds), na_ignore = TRUE, severity = "warning")
 }
 
 checkEntrezGeneIds <- function(sequenceData)
@@ -137,7 +137,7 @@ checkEntrezGeneIds <- function(sequenceData)
     fixed = TRUE
   ) %>%
     unlist(use.names = FALSE)
-  assert_all_are_entrez_gene_ids(egIds, na_ignore = TRUE, severity = "warning")
+  assert_all_are_entrez_gene_ids(ignoreHce(egIds), na_ignore = TRUE, severity = "warning")
 }
 
 
@@ -149,7 +149,12 @@ checkEntrezGeneSymbols <- function(sequenceData)
     fixed = TRUE
   ) %>%
     unlist(use.names = FALSE)
-  assert_all_are_entrez_gene_symbols(egSymbols, na_ignore = TRUE, severity = "warning")
+  assert_all_are_entrez_gene_symbols(ignoreHce(egSymbols), na_ignore = TRUE, severity = "warning")
 }
 
-
+#' @importFrom stringi stri_detect_regex
+ignoreHce <- function(x)
+{
+  x[stri_detect_regex(x, "^HCE[[:digit:]]{6}$")] <- NA_character_
+  x
+}
