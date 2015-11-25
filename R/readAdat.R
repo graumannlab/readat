@@ -174,6 +174,11 @@ readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%Y-%m-%d",
   setkeyv(sampleAndIntensityData, "ExtIdentifier")
 
   # Return everything
+  WideSomaLogicData(sampleAndIntensityData, sequenceData, metadata, checksum)
+}
+
+WideSomaLogicData <- function(sampleAndIntensityData, sequenceData, metadata, checksum)
+{
   setattr(sampleAndIntensityData, "SequenceData", sequenceData)
   setattr(sampleAndIntensityData, "Metadata", metadata)
   setattr(sampleAndIntensityData, "Checksum", checksum)
@@ -196,6 +201,7 @@ readFirstChar <- function(file)
 }
 
 #' @importFrom data.table fread
+#' @importFrom stringi stri_replace_first_regex
 readMetadata <- function(file, headerRow, colDataRow, dateFormat)
 {
   # (Ab)using fread for this tends to results in unnecessary warnings.
@@ -208,7 +214,10 @@ readMetadata <- function(file, headerRow, colDataRow, dateFormat)
     integer64  = "numeric",
     na.strings = c("", "NA", "null")
   )
-  metadata <- with(metadata, setNames(as.list(V2), substring(V1, 2)))
+  metadata <- with(
+    metadata,
+    setNames(as.list(V2), stri_replace_first_regex(V1, "^!", ""))
+  )
   within(
     metadata,
     {
@@ -257,22 +266,25 @@ readSequenceData <- function(file, nSequenceFields, nSampleFields, skip,
   # SeqId and Target are compulsory.
   # Other common fields are updated if they exist.
   # Therefore, only update columns which we currently use, leave others unchanged
-  sequenceData[
-    j = `:=`(
-      SeqId            = factor(SeqId),
-      Target           = factor(Target),
-      SomaId           = if(exists("SomaId")) factor(SomaId),
-      TargetFullName   = if(exists("TargetFullName")) factor(TargetFullName) else NULL,
-      UniProt          = if(exists("UniProt")) factor(stri_replace_all_regex(UniProt, "[, ]+", " ")) else NULL,
-      EntrezGeneID     = if(exists("EntrezGeneID")) factor(stri_replace_all_regex(EntrezGeneID, "[, ]+", " ")) else NULL,
-      EntrezGeneSymbol = if(exists("EntrezGeneSymbol")) factor(stri_replace_all_regex(EntrezGeneSymbol, "[, ]+", " ")) else NULL,
-      Organism         = if(exists("Organism")) factor(Organism) else NULL,
-      Units            = if(exists("Units")) factor(Units) else NULL,
-      ColCheck         = if(exists("ColCheck")) factor(ColCheck) else NULL,
-      CalReference     = if(exists("CalReference")) as.numeric(CalReference) else NULL,
-      Dilution         = if(exists("Dilution")) as.numeric(Dilution) else NULL
-    )
-  ]
+  suppressSomeFeedback(
+    sequenceData[
+      j = `:=`(
+        SeqId            = factor(SeqId),
+        Target           = factor(Target),
+        SomaId           = if(exists("SomaId")) factor(SomaId),
+        TargetFullName   = if(exists("TargetFullName")) factor(TargetFullName) else NULL,
+        UniProt          = if(exists("UniProt")) factor(stri_replace_all_regex(UniProt, "[, ]+", " ")) else NULL,
+        EntrezGeneID     = if(exists("EntrezGeneID")) factor(stri_replace_all_regex(EntrezGeneID, "[, ]+", " ")) else NULL,
+        EntrezGeneSymbol = if(exists("EntrezGeneSymbol")) factor(stri_replace_all_regex(EntrezGeneSymbol, "[, ]+", " ")) else NULL,
+        Organism         = if(exists("Organism")) factor(Organism) else NULL,
+        Units            = if(exists("Units")) factor(Units) else NULL,
+        ColCheck         = if(exists("ColCheck")) factor(ColCheck) else NULL,
+        CalReference     = if(exists("CalReference")) as.numeric(CalReference) else NULL,
+        Dilution         = if(exists("Dilution")) as.numeric(Dilution) else NULL
+      )
+    ],
+    warnRegex = "Adding new column"
+  )
 
   # There are some more columns that need fixing, which should have the names
   # sprintf("Cal_%s", str_replace(levels(intensityData$PlateId), " ", "_"))
