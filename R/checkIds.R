@@ -7,8 +7,8 @@ ENTREZ_GENE_SYMBOL <- "^(?:(?:OK/|b|DKFZp)?(?:[A-Z0-9.]+)(?:orf[A-Z0-9]+)?(?:-[A
 
 
 # Predicates
-#' @importFrom assertive call_and_name
-#' @importFrom assertive set_cause
+#' @importFrom assertive.base call_and_name
+#' @importFrom assertive.base set_cause
 #' @importFrom stringi stri_detect_regex
 is_uniprot_id <- function(x)
 {
@@ -50,8 +50,8 @@ is_entrez_gene_symbol <- function(x)
 }
 
 # assertions
-#' @importFrom assertive get_name_in_parent
-#' @importFrom assertive assert_engine
+#' @importFrom assertive.base get_name_in_parent
+#' @importFrom assertive.base assert_engine
 assert_all_are_uniprot_ids <- function(x, na_ignore = FALSE,
   severity = getOption("assertive.severity", "stop"))
 {

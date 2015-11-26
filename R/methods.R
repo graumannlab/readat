@@ -182,7 +182,7 @@ getChecksum <- function(x)
 }
 
 #' @rdname WideSomaLogicDataAttributes
-#' @importFrom assertive assert_is_inherited_from
+#' @importFrom assertive.types assert_is_inherited_from
 #' @importFrom data.table setattr
 #' @export
 setSequenceData <- function(x, value)
@@ -193,7 +193,7 @@ setSequenceData <- function(x, value)
 }
 
 #' @rdname WideSomaLogicDataAttributes
-#' @importFrom assertive assert_is_inherited_from
+#' @importFrom assertive.types assert_is_inherited_from
 #' @export
 setSequenceInfo <- function(x, value)
 {
@@ -203,7 +203,7 @@ setSequenceInfo <- function(x, value)
 }
 
 #' @rdname WideSomaLogicDataAttributes
-#' @importFrom assertive assert_is_list
+#' @importFrom assertive.types assert_is_list
 #' @export
 setMetadata <- function(x, value)
 {
@@ -213,7 +213,7 @@ setMetadata <- function(x, value)
 }
 
 #' @rdname WideSomaLogicDataAttributes
-#' @importFrom assertive assert_is_character
+#' @importFrom assertive.types assert_is_character
 #' @export
 setChecksum <- function(x, value)
 {

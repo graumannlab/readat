@@ -82,10 +82,10 @@ utils::globalVariables("NormScale_0_005")
 #' str(wide_soma_data, list.len = 35)
 #' unlink(soma_file)
 #' }
-#' @importFrom assertive is_connection
-#' @importFrom assertive is_scalar
-#' @importFrom assertive assert_is_a_string
-#' @importFrom assertive assert_all_are_existing_files
+#' @importFrom assertive.files is_connection
+#' @importFrom assertive.properties is_scalar
+#' @importFrom assertive.types assert_is_a_string
+#' @importFrom assertive.files assert_all_are_existing_files
 #' @importFrom data.table ":="
 #' @importFrom data.table as.data.table
 #' @importFrom data.table fread

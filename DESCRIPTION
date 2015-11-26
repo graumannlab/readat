@@ -9,7 +9,10 @@ Description: This package contains functionality to import, transform and
 Depends:
     R (>= 3.1.2)
 Imports:
-    assertive,
+    assertive.base (>= 0.0-3),
+    assertive.files,
+    assertive.properties,
+    assertive.types,
     Biobase,
     data.table,
     dplyr,
