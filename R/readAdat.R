@@ -278,7 +278,9 @@ readSequenceData <- function(file, nSequenceFields, nSampleFields, skip,
         EntrezGeneSymbol = if(exists("EntrezGeneSymbol")) factor(stri_replace_all_regex(EntrezGeneSymbol, "[, ]+", " ")) else NULL,
         Organism         = if(exists("Organism")) factor(Organism) else NULL,
         Units            = if(exists("Units")) factor(Units) else NULL,
-        ColCheck         = if(exists("ColCheck")) factor(ColCheck) else NULL,
+        # ADAT 1.2 spec uses PASS/FAIL (not PASS/FLAG) for ColCheck.
+        # Do we want to support this?
+        ColCheck         = if(exists("ColCheck")) factor(ColCheck, levels = c("PASS", "FLAG")) else NULL,
         CalReference     = if(exists("CalReference")) as.numeric(CalReference) else NULL,
         Dilution         = if(exists("Dilution")) as.numeric(Dilution) else NULL
       )
@@ -365,7 +367,7 @@ readSampleAndIntensityData <- function(file, nSequenceFields, nSampleFields, ski
         NormScale_40      = if(exists("NormScale_40")) as.numeric(NormScale_40) else NULL,
         NormScale_1       = if(exists("NormScale_1")) as.numeric(NormScale_1) else NULL,
         NormScale_0_005   = if(exists("NormScale_0_005")) as.numeric(NormScale_0_005) else NULL,
-        RowCheck          = if(exists("RowCheck")) factor(RowCheck) else NULL
+        RowCheck          = if(exists("RowCheck")) factor(RowCheck, levels = c("PASS", "FAIL")) else NULL
       )
     ],
     warnRegex = "Adding new column"
