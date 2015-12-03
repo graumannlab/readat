@@ -229,6 +229,7 @@ setChecksum <- function(x, value)
 #' @param x A \code{WideSomaLogicData} object.
 #' @param i Row index, passed to \code{[.data.table}.
 #' @param ... Passed to \code{[.data.table}.
+#' @param drop Should dimensions be dropped? Passed to \code{[.data.table}.
 #' @return If the indexing returns a A \code{WideSomaLogicData} object.
 #' @seealso \code{\link[data.table]{data.table}}
 #' @importFrom data.table is.data.table
@@ -248,13 +249,13 @@ setChecksum <- function(x, value)
 #' unlink(soma_file)
 #' }
 #' @export
-`[.WideSomaLogicData` <- function(x, i, ...)
+`[.WideSomaLogicData` <- function(x, i, ..., drop = FALSE)
 {
   sequenceData <- getSequenceData(x)
   metadata     <- getMetadata(x)
   checksum     <- getChecksum(x)
   class(x) <- c("data.table", "data.frame")
-  y <- x[i, ..., drop = FALSE]
+  y <- x[i, ..., drop = drop]
   # result may be a data.table, or have been simplified to a vector
   if(is.data.table(y))
   {

@@ -4,7 +4,7 @@
 \alias{[.WideSomaLogicData}
 \title{Indexing for WideSomaLogicData objects}
 \usage{
-\method{[}{WideSomaLogicData}(x, i, ...)
+\method{[}{WideSomaLogicData}(x, i, ..., drop = FALSE)
 }
 \arguments{
 \item{x}{A \code{WideSomaLogicData} object.}
@@ -12,6 +12,8 @@
 \item{i}{Row index, passed to \code{[.data.table}.}
 
 \item{...}{Passed to \code{[.data.table}.}
+
+\item{drop}{Should dimensions be dropped? Passed to \code{[.data.table}.}
 }
 \value{
 If the indexing returns a A \code{WideSomaLogicData} object.
