@@ -42,6 +42,6 @@ may be \code{NULL}.
 Shortcut functions to get attributes of \code{WideSomaLogicData} objects.
 }
 \seealso{
-\code{\link{readSomaLogic}}
+\code{\link{readAdat}}
 }
 

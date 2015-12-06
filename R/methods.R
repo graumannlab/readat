@@ -12,6 +12,7 @@
 #' with the corresponding intensities in a single column named \code{Intensity}.
 #' the \code{SequenceData} attribute of the input is then merged into this.
 #' the \code{Metadata} and \code{Checksum} attributes are preserved.
+#' @importFrom data.table setDT
 #' @importFrom data.table setkeyv
 #' @importFrom data.table melt.data.table
 #' @importFrom stringi stri_detect_regex
@@ -20,7 +21,8 @@
 melt.WideSomaLogicData <- function(data, ..., na.rm = FALSE, value.name = "Intensity")
 {
   isSeqColumn <- stri_detect_regex(colnames(data), "^SeqId\\.")
-  class(data) <- c("data.table", "data.frame")
+  #class(data) <- c("data.table", "data.frame")
+  setDT(data)
   long <- suppressMessages(data.table::melt.data.table(
     data,
     id.vars       = colnames(data)[!isSeqColumn],
@@ -49,15 +51,8 @@ melt.WideSomaLogicData <- function(data, ..., na.rm = FALSE, value.name = "Inten
 #' sequence IDs.
 #' @examples
 #' \donttest{
-#' unzip(
-#'   system.file("extdata", "soma_atkin_diabetes.zip", package = "pdapmain"),
-#'   exdir = tempdir()
-#' )
-#' soma_file <- file.path(tempdir(), "soma_atkin_diabetes.adat")
-#' wide_soma_data <- suppressWarnings(
-#'   readSomaLogic(soma_file)
-#' )
-#' unlink(soma_file)
+#' soma_file <- extractSampleData()
+#' wide_soma_data <- readAdat(soma_file)
 #'
 #' intWideSamp <- getIntensities(wide_soma_data) # A matrix
 #' View(intWideSamp, "Wide intensities, samples per row")
@@ -148,7 +143,7 @@ getSampleData.LongSomaLogicData <- function(x, ...)
 #' @return An attribute of the input.
 #' For inputs that are not \code{WideSomaLogicData} objects, the return value
 #' may be \code{NULL}.
-#' @seealso \code{\link{readSomaLogic}}
+#' @seealso \code{\link{readAdat}}
 #' @name WideSomaLogicDataAttributes
 NULL
 
@@ -227,35 +222,31 @@ setChecksum <- function(x, value)
 #' Wrapper to \code{[.data.table}, ensuring that the \code{SequenceData},
 #' \code{Metadata} and \code{Checksum} attributes are preserved.
 #' @param x A \code{WideSomaLogicData} object.
-#' @param i Row index, passed to \code{[.data.table}.
 #' @param ... Passed to \code{[.data.table}.
 #' @param drop Should dimensions be dropped? Passed to \code{[.data.table}.
+#' Note that this defaults to FALSE, unlike the data.tale method.
 #' @return If the indexing returns a A \code{WideSomaLogicData} object.
 #' @seealso \code{\link[data.table]{data.table}}
 #' @importFrom data.table is.data.table
 #' @examples
-#' \donttest{
-#' unzip(
-#'   system.file("extdata", "soma_atkin_diabetes.zip", package = "koraproteomics"),
-#'   exdir = tempdir()
-#' )
-#' soma_file <- file.path(tempdir(), "soma_atkin_diabetes.adat")
-#' wide_soma_data <- readSomaLogic(soma_file)
+#' soma_file <- extractSampleData()
+#' wide_soma_data <- readAdat(soma_file)
 #'
 #' # Indexing returns a data.table, so the WideSomaLogicClass is preserved
 #' wide_soma_data[1:5, list(`SeqId.3896-5_2`)]
 #' # Indexing simplifies to a numeric vector, so the class is lost
 #' wide_soma_data[1:5, `SeqId.3896-5_2`]
 #' unlink(soma_file)
-#' }
+#' @importFrom data.table as.data.table
 #' @export
-`[.WideSomaLogicData` <- function(x, i, ..., drop = FALSE)
+`[.WideSomaLogicData` <- function(x, ..., drop = FALSE)
 {
   sequenceData <- getSequenceData(x)
   metadata     <- getMetadata(x)
   checksum     <- getChecksum(x)
-  class(x) <- c("data.table", "data.frame")
-  y <- x[i, ..., drop = drop]
+  # x <- as.data.table(x)
+  setDT(x)
+  y <- x[..., drop = drop]
   # result may be a data.table, or have been simplified to a vector
   if(is.data.table(y))
   {

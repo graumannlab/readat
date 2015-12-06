@@ -44,15 +44,8 @@ Gets the intensities or sample data from an object of class
 }
 \examples{
 \donttest{
-unzip(
-  system.file("extdata", "soma_atkin_diabetes.zip", package = "pdapmain"),
-  exdir = tempdir()
-)
-soma_file <- file.path(tempdir(), "soma_atkin_diabetes.adat")
-wide_soma_data <- suppressWarnings(
-  readSomaLogic(soma_file)
-)
-unlink(soma_file)
+soma_file <- extractSampleData()
+wide_soma_data <- readAdat(soma_file)
 
 intWideSamp <- getIntensities(wide_soma_data) # A matrix
 View(intWideSamp, "Wide intensities, samples per row")

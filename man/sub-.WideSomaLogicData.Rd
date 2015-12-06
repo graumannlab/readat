@@ -4,16 +4,15 @@
 \alias{[.WideSomaLogicData}
 \title{Indexing for WideSomaLogicData objects}
 \usage{
-\method{[}{WideSomaLogicData}(x, i, ..., drop = FALSE)
+\method{[}{WideSomaLogicData}(x, ..., drop = FALSE)
 }
 \arguments{
 \item{x}{A \code{WideSomaLogicData} object.}
 
-\item{i}{Row index, passed to \code{[.data.table}.}
-
 \item{...}{Passed to \code{[.data.table}.}
 
-\item{drop}{Should dimensions be dropped? Passed to \code{[.data.table}.}
+\item{drop}{Should dimensions be dropped? Passed to \code{[.data.table}.
+Note that this defaults to FALSE, unlike the data.tale method.}
 }
 \value{
 If the indexing returns a A \code{WideSomaLogicData} object.
@@ -23,20 +22,14 @@ Wrapper to \code{[.data.table}, ensuring that the \code{SequenceData},
 \code{Metadata} and \code{Checksum} attributes are preserved.
 }
 \examples{
-\donttest{
-unzip(
-  system.file("extdata", "soma_atkin_diabetes.zip", package = "koraproteomics"),
-  exdir = tempdir()
-)
-soma_file <- file.path(tempdir(), "soma_atkin_diabetes.adat")
-wide_soma_data <- readSomaLogic(soma_file)
+soma_file <- extractSampleData()
+wide_soma_data <- readAdat(soma_file)
 
 # Indexing returns a data.table, so the WideSomaLogicClass is preserved
 wide_soma_data[1:5, list(`SeqId.3896-5_2`)]
 # Indexing simplifies to a numeric vector, so the class is lost
 wide_soma_data[1:5, `SeqId.3896-5_2`]
 unlink(soma_file)
-}
 }
 \seealso{
 \code{\link[data.table]{data.table}}
