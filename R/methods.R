@@ -95,7 +95,7 @@ getIntensities.WideSomaLogicData <- function(x, rowsContain = c("samples", "sequ
   colnames(m) <- substring(colnames(m), 7)
   if(reorder)
   {
-    rowOrder <- order(rownames(m))
+    rowOrder <- order(x$ExtIdentifier)
     colOrder <- order(colnames(m))
     m <- m[rowOrder, colOrder]
   }
