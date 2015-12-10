@@ -17,18 +17,16 @@
 soma2eset <- function(somaObj, log2Transform = TRUE){
 
   # assayData
-  myIntensities <- t(getIntensities(somaObj))
+  myIntensities <- getIntensities(somaObj, rowsContain = "sequences", reorder = TRUE)
   myMeta <- getMetadata(somaObj)
 
   # fData
   featureDF <- getSequenceData(somaObj)
   featureDF <- data.frame(featureDF, row.names = featureDF$SeqId)
-  # rownames(featureDF) <- featureDF$SeqId
 
   # pData
   sampleDF <- getSampleData(somaObj)
   sampleDF <- data.frame(sampleDF, row.names = somaObj$ExtIdentifier)
-  # rownames(sampleDF) <- somaObj$SampleId
 
   # forge eset
   myEset <- ExpressionSet(

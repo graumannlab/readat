@@ -85,7 +85,7 @@ getIntensities <- function(x, ...)
 
 #' @rdname getIntensities
 #' @export
-getIntensities.WideSomaLogicData <- function(x, rowsContain = c("samples", "sequences"), ...)
+getIntensities.WideSomaLogicData <- function(x, rowsContain = c("samples", "sequences"), reorder = FALSE, ...)
 {
   rowsContain <- match.arg(rowsContain)
   isSeqColumn <- stri_detect_regex(colnames(x), "^SeqId\\.")
@@ -93,6 +93,12 @@ getIntensities.WideSomaLogicData <- function(x, rowsContain = c("samples", "sequ
   m <- as.matrix(x[, isSeqColumn, with = FALSE])
   rownames(m) <- x$ExtIdentifier
   colnames(m) <- substring(colnames(m), 7)
+  if(reorder)
+  {
+    rowOrder <- order(rownames(m))
+    colOrder <- order(colnames(m))
+    m <- m[rowOrder, colOrder]
+  }
   if(rowsContain == "samples") m else t(m)
 }
 
