@@ -35,7 +35,7 @@ getSampleData(x, ...)
 }
 \value{
 A numeric matrix of intensities for each protein. Row names are taken
-from the \code{SampleId} of the input.  Column names are the protein
+from the \code{ExtIdentifer} of the input.  Column names are the protein
 sequence IDs.
 }
 \description{

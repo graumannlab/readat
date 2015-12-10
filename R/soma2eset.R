@@ -27,7 +27,7 @@ soma2eset <- function(somaObj, log2Transform = TRUE){
 
   # pData
   sampleDF <- getSampleData(somaObj)
-  sampleDF <- data.frame(sampleDF, row.names = somaObj$SampleId)
+  sampleDF <- data.frame(sampleDF, row.names = somaObj$ExtIdentifier)
   # rownames(sampleDF) <- somaObj$SampleId
 
   # forge eset

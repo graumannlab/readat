@@ -47,7 +47,7 @@ melt.WideSomaLogicData <- function(data, ..., na.rm = FALSE, value.name = "Inten
 #' @param rowsContain Either samples or sequences.
 #' @param ... Variables passed to and from from other methods.
 #' @return A numeric matrix of intensities for each protein. Row names are taken
-#' from the \code{SampleId} of the input.  Column names are the protein
+#' from the \code{ExtIdentifer} of the input.  Column names are the protein
 #' sequence IDs.
 #' @examples
 #' \donttest{
@@ -91,7 +91,7 @@ getIntensities.WideSomaLogicData <- function(x, rowsContain = c("samples", "sequ
   isSeqColumn <- stri_detect_regex(colnames(x), "^SeqId\\.")
   class(x) <- c("data.table", "data.frame")
   m <- as.matrix(x[, isSeqColumn, with = FALSE])
-  rownames(m) <- x$SampleId
+  rownames(m) <- x$ExtIdentifier
   colnames(m) <- substring(colnames(m), 7)
   if(rowsContain == "samples") m else t(m)
 }
@@ -101,7 +101,7 @@ getIntensities.WideSomaLogicData <- function(x, rowsContain = c("samples", "sequ
 getIntensities.LongSomaLogicData <- function(x, ...)
 {
   class(x) <- c("data.table", "data.frame")
-  x[, list(SeqId, SampleId, Intensity)]
+  x[, list(SeqId, ExtIdentifier, Intensity)]
 }
 
 #' @rdname getIntensities
