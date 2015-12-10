@@ -217,10 +217,18 @@ readMetadata <- function(file, headerRow, colDataRow, dateFormat)
   within(
     metadata,
     {
-      Version <- as.package_version(Version)
-      CreatedDate <- as.Date(CreatedDate, format = dateFormat)
-      ExpDate <- as.Date(ExpDate, format = dateFormat)
-      ProteinEffectiveDate <- as.Date(ProteinEffectiveDate, format = dateFormat)
+      if ('Version' %in% names(metadata)){
+        Version <- as.package_version(Version)
+      }
+      if ('CreatedDate' %in% names(metadata)){
+        CreatedDate <- as.Date(CreatedDate, format = dateFormat)
+      }
+      if ('ExpDate' %in% names(metadata)){
+        ExpDate <- as.Date(ExpDate, format = dateFormat)
+      }
+      if ('ProteinEffectiveDate' %in% names(metadata)){
+        ProteinEffectiveDate <- as.Date(ProteinEffectiveDate, format = dateFormat)
+      }
     }
   )
 }
