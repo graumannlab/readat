@@ -16,7 +16,6 @@
 #' \dontrun{
 #' getEnsemblIds()
 #' }
-#' @importFrom listless list_to_data.frame
 #' @export
 getEnsemblIds <- function(seqIds = NULL, simplify = FALSE)
 {
