@@ -16,7 +16,7 @@ To install the package, you first need the
 install.packages("devtools")
 ```
 
-Then make sure to first install the listless package:
+Then make sure to first install the *listless* package:
 ```{r}
 devtools::install_bitbucket(
   'graumannlabtools/listless',
