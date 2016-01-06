@@ -13,7 +13,7 @@
 getIntensities(x, ...)
 
 \method{getIntensities}{WideSomaLogicData}(x, rowsContain = c("samples",
-  "sequences"), ...)
+  "sequences"), reorder = FALSE, ...)
 
 \method{getIntensities}{LongSomaLogicData}(x, ...)
 
