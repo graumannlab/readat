@@ -31,8 +31,4 @@ list_depth(list())
 list_depth(list(), prune_empty_elts = TRUE)
 }
 }
-\seealso{
-This is loosely based upon \code{\link[Zelig]{list.depth}} (internal
-to Zelig), but gives different answers.
-}
 

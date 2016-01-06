@@ -45,6 +45,8 @@ melt.WideSomaLogicData <- function(data, ..., na.rm = FALSE, value.name = "Inten
 #' @param x An object of class \code{WideSomaLogicData} or
 #' \code{LongSomaLogicData}.
 #' @param rowsContain Either samples or sequences.
+#' @param reorder If \code{TRUE}, rows are reordered by \code{ExtIdentifier} and
+#' columns are reordered by \code{SeqId}, alphabetically.
 #' @param ... Variables passed to and from from other methods.
 #' @return A numeric matrix of intensities for each protein. Row names are taken
 #' from the \code{ExtIdentifer} of the input.  Column names are the protein

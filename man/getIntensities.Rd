@@ -32,6 +32,9 @@ getSampleData(x, ...)
 \item{...}{Variables passed to and from from other methods.}
 
 \item{rowsContain}{Either samples or sequences.}
+
+\item{reorder}{If \code{TRUE}, rows are reordered by \code{ExtIdentifier} and
+columns are reordered by \code{SeqId}, alphabetically.}
 }
 \value{
 A numeric matrix of intensities for each protein. Row names are taken

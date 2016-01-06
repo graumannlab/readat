@@ -10,8 +10,6 @@
 #' @param prune_empty_elts A logical value.  Should empty elements be pruned
 #' without counting them?
 #' @return A non-negative integer of the deepest depth of the list.
-#' @seealso This is loosely based upon \code{\link[Zelig]{list.depth}} (internal
-#' to Zelig), but gives different answers.
 #' @examples
 #' \donttest{
 #' list_depth(list(1))
