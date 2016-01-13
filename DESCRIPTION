@@ -27,3 +27,14 @@ Extends:
 License: GPL-3
 LazyData: true
 RoxygenNote: 5.0.1
+Collate:
+    'checkIds.R'
+    'dataset-docs.R'
+    'extractSampleData.R'
+    'getEnsemblIds.R'
+    'list-utils.R'
+    'methods.R'
+    'sfread.R'
+    'readAdat.R'
+    'soma2eset.R'
+    'suppressSomeFeedback.R'
