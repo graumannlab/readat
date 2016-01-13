@@ -38,46 +38,7 @@ melt.WideSomaLogicData <- function(data, ..., na.rm = FALSE, value.name = "Inten
   long
 }
 
-#' Get the intensities or sample data
-#'
-#' Gets the intensities or sample data from an object of class
-#' \code{WideSomaLogicData} or \code{LongSomaLogicData}.
-#' @param x An object of class \code{WideSomaLogicData} or
-#' \code{LongSomaLogicData}.
-#' @param rowsContain Either samples or sequences.
-#' @param reorder If \code{TRUE}, rows are reordered by \code{ExtIdentifier} and
-#' columns are reordered by \code{SeqId}, alphabetically.
-#' @param ... Variables passed to and from from other methods.
-#' @return A numeric matrix of intensities for each protein. Row names are taken
-#' from the \code{ExtIdentifer} of the input.  Column names are the protein
-#' sequence IDs.
-#' @examples
-#' \donttest{
-#' soma_file <- extractSampleData()
-#' wide_soma_data <- readAdat(soma_file)
-#'
-#' intWideSamp <- getIntensities(wide_soma_data) # A matrix
-#' View(intWideSamp, "Wide intensities, samples per row")
-#'
-#' intWideSeq <- getIntensities(                 # The transpose
-#'   wide_soma_data,
-#'   rowsContain = "sequences"
-#' )
-#' View(intWideSeq, "Wide intensities, seqs per row")
-#'
-#' sampWide <- getSampleData(wide_soma_data)     # A data.table
-#' View(sampWide, "Wide sample data")
-#'
-#' if(requireNamespace("reshape2"))
-#' {
-#'   long_soma_data <- reshape2::melt(wide_soma_data)
-#'   intLong <- getIntensities(long_soma_data)   # A data.table
-#'   View(intLong, "Long intensities")
-#'
-#'   sampLong <- getSampleData(long_soma_data)   # A data.table
-#'   View(sampLong, "Long sample data")
-#' }
-#' }
+#' @rdname WideSomaLogicDataAttributes
 #' @importFrom stringi stri_detect_regex
 #' @export
 getIntensities <- function(x, ...)
@@ -85,7 +46,7 @@ getIntensities <- function(x, ...)
   UseMethod("getIntensities")
 }
 
-#' @rdname getIntensities
+#' @rdname WideSomaLogicDataAttributes
 #' @export
 getIntensities.WideSomaLogicData <- function(x, rowsContain = c("samples", "sequences"), reorder = FALSE, ...)
 {
@@ -104,7 +65,7 @@ getIntensities.WideSomaLogicData <- function(x, rowsContain = c("samples", "sequ
   if(rowsContain == "samples") m else t(m)
 }
 
-#' @rdname getIntensities
+#' @rdname WideSomaLogicDataAttributes
 #' @export
 getIntensities.LongSomaLogicData <- function(x, ...)
 {
@@ -112,21 +73,21 @@ getIntensities.LongSomaLogicData <- function(x, ...)
   x[, list(SeqId, ExtIdentifier, Intensity)]
 }
 
-#' @rdname getIntensities
+#' @rdname WideSomaLogicDataAttributes
 as.matrix.WideSomaLogicData <- function(x, ...)
 {
   .Deprecated("getIntensities")
   getIntensities(x, ...)
 }
 
-#' @rdname getIntensities
+#' @rdname WideSomaLogicDataAttributes
 #' @export
 getSampleData <- function(x, ...)
 {
   UseMethod("getSampleData")
 }
 
-#' @rdname getIntensities
+#' @rdname WideSomaLogicDataAttributes
 #' @export
 getSampleData.WideSomaLogicData <- function(x, ...)
 {
@@ -135,7 +96,7 @@ getSampleData.WideSomaLogicData <- function(x, ...)
   x[, isSampleColumn, with = FALSE]
 }
 
-#' @rdname getIntensities
+#' @rdname WideSomaLogicDataAttributes
 #' @export
 getSampleData.LongSomaLogicData <- function(x, ...)
 {
@@ -145,13 +106,61 @@ getSampleData.LongSomaLogicData <- function(x, ...)
 
 #' Get WideSomaLogicData attributes
 #'
-#' Shortcut functions to get attributes of \code{WideSomaLogicData} objects.
-#' @param x An object of class \code{WideSomaLogicData}.
+#' Accessors and mutators (getters and setters) for objects of class
+#' \code{WideSomaLogicData} or \code{LongSomaLogicData}.
+#' @param x An object of class \code{WideSomaLogicData} or
+#' \code{LongSomaLogicData}.
 #' @param value Value to set the attribute to.
-#' @return An attribute of the input.
-#' For inputs that are not \code{WideSomaLogicData} objects, the return value
-#' may be \code{NULL}.
+#' @param rowsContain Either samples or sequences.
+#' @param reorder If \code{TRUE}, rows are reordered by \code{ExtIdentifier} and
+#' columns are reordered by \code{SeqId}, alphabetically.
+#' @param prependSeqIdToColNames Logical.  Should "SeqId." be prepended to the
+#' column names of the intensities? If \code{NA}, auto-guess whether they
+#' should be.
+#' @param ... Variables passed to and from from other methods.
+#' @return A numeric matrix of intensities for each protein. Row names are taken
+#' from the \code{ExtIdentifer} of the input.  Column names are the protein
+#' sequence IDs.
 #' @seealso \code{\link{readAdat}}
+#' @examples
+#' \donttest{
+#' # Get the sample dataset
+#' soma_file <- extractSampleData()
+#' wide_soma_data <- readAdat(soma_file)
+#'
+#' # Access its components
+#' checksum <- getChecksum(wide_soma_data)
+#' metadata <- getMetadata(wide_soma_data)
+#' sequenceData <- getSequenceData(wide_soma_data)
+#' sampleData <- getSampleData(wide_soma_data)
+#'
+#' # Intensities of a WideSomaLogicData object are a matrix
+#' intWideSamp <- getIntensities(wide_soma_data)
+#' View(intWideSamp, "Wide intensities, samples per row")
+#'
+#' intWideSeq <- getIntensities(                 # The transpose
+#'   wide_soma_data,
+#'   rowsContain = "sequences"
+#' )
+#' View(intWideSeq, "Wide intensities, seqs per row")
+#'
+#' # Sample data is always a data table
+#' sampWide <- getSampleData(wide_soma_data)
+#' View(sampWide, "Wide sample data")
+#'
+#' if(requireNamespace("reshape2"))
+#' {
+#'   # For LongSomaLogicData objects, the intensities are returned
+#'   # as a data.table
+#'   long_soma_data <- reshape2::melt(wide_soma_data)
+#'   intLong <- getIntensities(long_soma_data)
+#'   View(intLong, "Long intensities")
+#'
+#'   # Sample data has a different shape now
+#'   sampLong <- getSampleData(long_soma_data)
+#'   View(sampLong, "Long sample data")
+#' }
+#' }
 #' @name WideSomaLogicDataAttributes
 NULL
 
@@ -228,6 +237,83 @@ setChecksum <- function(x, value)
   assert_is_character(value)
   attr(x, "Checksum") <- value
   invisible(x)
+}
+
+#' @rdname WideSomaLogicDataAttributes
+#' @importFrom assertive.base assert_are_identical
+#' @importFrom assertive.properties assert_is_not_null
+#' @importFrom assertive.types assert_is_data.frame
+#' @importFrom data.table as.data.table
+#' @export
+setSampleData <- function(x, value)
+{
+  assert_is_data.frame(value)
+  value <- as.data.table(value)
+  assert_is_not_null(value$ExtIdentifier)
+  intensities <- getIntensities(x)
+  assert_are_identical(nrow(intensities), nrow(value))
+  # Can't use dplyr::bind_cols with matrices
+  sampleAndIntensityData <- cbind(value, intensities)
+  invisible(
+    WideSomaLogicData(
+      sampleAndIntensityData,
+      getSequenceData(x),
+      getMetadata(x),
+      getChecksum(x)
+    )
+  )
+}
+
+#' @rdname WideSomaLogicDataAttributes
+#' @importFrom assertive.base are_identical
+#' @importFrom assertive.base assert_are_identical
+#' @importFrom assertive.types assert_is_inherited_from
+#' @export
+setIntensities <- function(x, value, prependSeqIdToColNames = NA)
+{
+  assert_is_inherited_from(value, c("data.frame", "matrix"))
+  sampleData <- getSampleData(x)
+  assert_are_identical(nrow(sampleData), nrow(value))
+  # Should column names be prefixed with "SeqId.", or do they have it already?
+  if(is.na(prependSeqIdToColNames))
+  {
+    seqIdPrefix <- stri_detect_regex(colnames(value), "^SeqId\\.")
+    prependSeqIdToColNames <- if(any(seqIdPrefix))
+    {
+      if(!all(seqIdPrefix))
+      {
+        stop("Some column names are prefixed with 'SeqId.' but not others.")
+      }
+      FALSE
+    } else
+    {
+      TRUE
+    }
+  }
+  if(prependSeqIdToColNames)
+  {
+    colnames(value) <- paste0("SeqId.", colnames(value))
+  }
+
+  # If rows match in x and value, we can just cbind, otherwise need to merge
+  sampleAndIntensityData <- if(
+    are_identical(as.character(sampleData$ExtIdentifier), rownames(value))
+  )
+  {
+    cbind(sampleData, value)
+  } else
+  {
+    valueDF <- data.frame(ExtIdentifier = rownames(value), value)
+    merge(sampleData, valueDF, by = "ExtIdentifier")
+  }
+  invisible(
+    WideSomaLogicData(
+      sampleAndIntensityData,
+      getSequenceData(x),
+      getMetadata(x),
+      getChecksum(x)
+    )
+  )
 }
 
 #' Indexing for WideSomaLogicData objects
