@@ -176,6 +176,14 @@ readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%Y-%m-%d",
   WideSomaLogicData(sampleAndIntensityData, sequenceData, metadata, checksum)
 }
 
+#' Create a WideSomaLogicData object
+#'
+#' Creates and object of class \code{WideSomaLogicData}.
+#' @param sampleAndIntensityData A data.table of sample and intensity data.
+#' @param sequenceData A data.table of sequence data.
+#' @param metadata A list of metadata.
+#' @param checksum A string containing a SHA1 checksum.
+#' @noRd
 WideSomaLogicData <- function(sampleAndIntensityData, sequenceData, metadata, checksum)
 {
   setattr(sampleAndIntensityData, "SequenceData", sequenceData)
