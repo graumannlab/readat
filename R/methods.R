@@ -12,7 +12,7 @@
 #' with the corresponding intensities in a single column named \code{Intensity}.
 #' the \code{SequenceData} attribute of the input is then merged into this.
 #' the \code{Metadata} and \code{Checksum} attributes are preserved.
-#' @importFrom data.table setDT
+#' @importFrom data.table copy
 #' @importFrom data.table setkeyv
 #' @importFrom data.table melt.data.table
 #' @importFrom stringi stri_detect_regex
@@ -21,8 +21,9 @@
 melt.WideSomaLogicData <- function(data, ..., na.rm = FALSE, value.name = "Intensity")
 {
   isSeqColumn <- stri_detect_regex(colnames(data), "^SeqId\\.")
-  #class(data) <- c("data.table", "data.frame")
-  setDT(data)
+  data <- copy(data)
+  class(data) <- c("data.table", "data.frame")
+
   long <- suppressMessages(data.table::melt.data.table(
     data,
     id.vars       = colnames(data)[!isSeqColumn],
@@ -34,6 +35,7 @@ melt.WideSomaLogicData <- function(data, ..., na.rm = FALSE, value.name = "Inten
   setkeyv(long, "SeqId")
   setattr(long, "Metadata", attr(data, "Metadata"))
   setattr(long, "Checksum", attr(data, "Checksum"))
+  setattr(long, "SequenceData", attr(data, "SequenceData"))
   setattr(long, "class", c("LongSomaLogicData", "data.table", "data.frame"))
   long
 }
@@ -47,12 +49,14 @@ getIntensities <- function(x, ...)
 }
 
 #' @rdname WideSomaLogicDataAttributes
+#' @importFrom data.table copy
 #' @export
 getIntensities.WideSomaLogicData <- function(x, rowsContain = c("samples", "sequences"), reorder = FALSE, ...)
 {
+  x <- copy(x)
+  class(x) <- c("data.table", "data.frame")
   rowsContain <- match.arg(rowsContain)
   isSeqColumn <- stri_detect_regex(colnames(x), "^SeqId\\.")
-  class(x) <- c("data.table", "data.frame")
   m <- as.matrix(x[, isSeqColumn, with = FALSE])
   rownames(m) <- x$ExtIdentifier
   colnames(m) <- substring(colnames(m), 7)
@@ -66,9 +70,11 @@ getIntensities.WideSomaLogicData <- function(x, rowsContain = c("samples", "sequ
 }
 
 #' @rdname WideSomaLogicDataAttributes
+#' @importFrom data.table copy
 #' @export
 getIntensities.LongSomaLogicData <- function(x, ...)
 {
+  x <- copy(x)
   class(x) <- c("data.table", "data.frame")
   x[, list(SeqId, ExtIdentifier, Intensity)]
 }
@@ -88,18 +94,22 @@ getSampleData <- function(x, ...)
 }
 
 #' @rdname WideSomaLogicDataAttributes
+#' @importFrom data.table copy
 #' @export
 getSampleData.WideSomaLogicData <- function(x, ...)
 {
-  isSampleColumn <- !stri_detect_regex(colnames(x), "^SeqId\\.")
+  x <- copy(x)
   class(x) <- c("data.table", "data.frame")
+  isSampleColumn <- !stri_detect_regex(colnames(x), "^SeqId\\.")
   x[, isSampleColumn, with = FALSE]
 }
 
 #' @rdname WideSomaLogicDataAttributes
+#' @importFrom data.table copy
 #' @export
 getSampleData.LongSomaLogicData <- function(x, ...)
 {
+  x <- copy(x)
   class(x) <- c("data.table", "data.frame")
   x[, -"Intensity", with = FALSE]
 }
@@ -335,6 +345,10 @@ setIntensities <- function(x, value, prependSeqIdToColNames = NA)
 #' wide_soma_data[1:5, list(`SeqId.3896-5_2`)]
 #' # Indexing simplifies to a numeric vector, so the class is lost
 #' wide_soma_data[1:5, `SeqId.3896-5_2`]
+#'
+#' # Ignore the intensity columns (as per getSampleData)
+#' j <- !stringi::stri_detect_regex(colnames(wide_soma_data), "^SeqId\\.")
+#' wide_soma_data[1:5, j, with = FALSE]
 #' unlink(soma_file)
 #' @importFrom data.table as.data.table
 #' @export
@@ -343,8 +357,10 @@ setIntensities <- function(x, value, prependSeqIdToColNames = NA)
   sequenceData <- getSequenceData(x)
   metadata     <- getMetadata(x)
   checksum     <- getChecksum(x)
-  # x <- as.data.table(x)
-  setDT(x)
+
+  x <- copy(x)
+  class(x) <- c("data.table", "data.frame")
+  # browser()
   y <- x[..., drop = drop]
   # result may be a data.table, or have been simplified to a vector
   if(is.data.table(y))
