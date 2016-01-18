@@ -29,6 +29,10 @@ wide_soma_data <- readAdat(soma_file)
 wide_soma_data[1:5, list(`SeqId.3896-5_2`)]
 # Indexing simplifies to a numeric vector, so the class is lost
 wide_soma_data[1:5, `SeqId.3896-5_2`]
+
+# Ignore the intensity columns (as per getSampleData)
+j <- !stringi::stri_detect_regex(colnames(wide_soma_data), "^SeqId\\\\.")
+wide_soma_data[1:5, j, with = FALSE]
 unlink(soma_file)
 }
 \seealso{
