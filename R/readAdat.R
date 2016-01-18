@@ -183,9 +183,36 @@ readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%Y-%m-%d",
 #' @param sequenceData A data.table of sequence data.
 #' @param metadata A list of metadata.
 #' @param checksum A string containing a SHA1 checksum.
+#' @importFrom assertive.types assert_is_data.frame
+#' @importFrom assertive.types assert_is_list
+#' @importFrom assertive.types assert_is_a_string
+#' @importFrom data.table is.data.table
+#' @importFrom data.table copy
+#' @importFrom data.table setattr
 #' @noRd
 WideSomaLogicData <- function(sampleAndIntensityData, sequenceData, metadata, checksum)
 {
+  assert_is_data.frame(sampleAndIntensityData)
+  sampleAndIntensityData <- if(is.data.table(sampleAndIntensityData))
+  {
+    copy(sampleAndIntensityData)
+  } else # is.data.frame(sampleAndIntensityData)
+  {
+    as.data.table(sampleAndIntensityData)
+  }
+
+  assert_is_data.frame(sequenceData)
+  sequenceData <- if(is.data.table(sequenceData))
+  {
+    copy(sequenceData)
+  } else # is.data.frame(sequenceData)
+  {
+    as.data.table(sequenceData)
+  }
+
+  assert_is_list(metadata)
+  assert_is_a_string(checksum)
+
   setattr(sampleAndIntensityData, "SequenceData", sequenceData)
   setattr(sampleAndIntensityData, "Metadata", metadata)
   setattr(sampleAndIntensityData, "Checksum", checksum)
