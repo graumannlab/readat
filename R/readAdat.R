@@ -91,8 +91,6 @@ utils::globalVariables("NormScale_0_005")
 #' @importFrom data.table setattr
 #' @importFrom data.table setkeyv
 #' @importFrom data.table setnames
-#' @importFrom stringi stri_detect_regex
-#' @importFrom stringi stri_replace_all_regex
 #' @export
 #' @author Richard Cotton
 readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%Y-%m-%d",
@@ -273,11 +271,10 @@ readMetadata <- function(file, headerRow, colDataRow, dateFormat)
 
 #' @importFrom data.table fread
 #' @importFrom data.table as.data.table
-#' @importFrom stringi stri_replace_all_regex
-#' @importFrom stringi stri_detect_regex
 readSequenceData <- function(file, nSequenceFields, nSampleFields, skip,
   verbose = getOption("verbose"))
 {
+  # Can't use sfread here because data needs transposing before type checking
   sequenceData <- fread(
     file,
     sep              = "\t",
@@ -315,14 +312,12 @@ readSequenceData <- function(file, nSequenceFields, nSampleFields, skip,
         Target           = factor(Target),
         SomaId           = if(exists("SomaId")) factor(SomaId),
         TargetFullName   = if(exists("TargetFullName")) factor(TargetFullName) else NULL,
-        UniProt          = if(exists("UniProt")) factor(stri_replace_all_regex(UniProt, "[, ]+", " ")) else NULL,
-        EntrezGeneID     = if(exists("EntrezGeneID")) factor(stri_replace_all_regex(EntrezGeneID, "[, ]+", " ")) else NULL,
-        EntrezGeneSymbol = if(exists("EntrezGeneSymbol")) factor(stri_replace_all_regex(EntrezGeneSymbol, "[, ]+", " ")) else NULL,
+        UniProt          = if(exists("UniProt")) fixMultiValueSeparators(UniProt) else NULL,
+        EntrezGeneID     = if(exists("EntrezGeneID")) fixMultiValueSeparators(EntrezGeneID) else NULL,
+        EntrezGeneSymbol = if(exists("EntrezGeneSymbol")) fixMultiValueSeparators(EntrezGeneSymbol) else NULL,
         Organism         = if(exists("Organism")) factor(Organism) else NULL,
         Units            = if(exists("Units")) factor(Units) else NULL,
-        # ADAT 1.2 spec uses PASS/FAIL (not PASS/FLAG) for ColCheck.
-        # Do we want to support this?
-        ColCheck         = if(exists("ColCheck")) factor(ColCheck, levels = c("PASS", "FLAG")) else NULL,
+        ColCheck         = if(exists("ColCheck")) fixFailFlag(ColCheck) else NULL,
         CalReference     = if(exists("CalReference")) as.numeric(CalReference) else NULL,
         Dilution         = if(exists("Dilution")) as.numeric(Dilution) else NULL
       )
@@ -332,7 +327,7 @@ readSequenceData <- function(file, nSequenceFields, nSampleFields, skip,
 
   # There are some more columns that need fixing, which should have the names
   # sprintf("Cal_%s", str_replace(levels(intensityData$PlateId), " ", "_"))
-  calCols <- colnames(sequenceData)[stri_detect_regex(colnames(sequenceData), "^Cal_")]
+  calCols <- colnames(sequenceData)[is_seqid(colnames(sequenceData))]
   for(i in seq_along(calCols))
   {
     sequenceData[[calCols[i]]] <- as.numeric(sequenceData[[calCols[i]]])
@@ -382,50 +377,11 @@ readSampleAndIntensityData <- function(file, nSequenceFields, nSampleFields, ski
     paste0("SeqId.", seqIds)
   )
 
-  # As with sequence data, ensure correct datatypes
-  # ExtIdentifier is the only compulsory field, though SampleId, TimePoint,
-  # SampleGroup, SampleNotes and AssayNotes should also be included in all
-  # files from SomaLogic.
-  # TimePoint is sometimes numeric, sometimes character data, so don't try to
-  # coerce that field.
-  # Warnings are suppressed due to 'adding' non-existent columns as NULL
-  # which does nothing.  (This is intentional.)
-#   suppressSomeFeedback(
-#     sampleAndIntensityData[
-#       j = `:=`(
-#         # Compulsory, and SomaLogic-compulsory
-#         ExtIdentifier     = factor(ExtIdentifier),
-#         SampleId          = if(exists("SampleDescription")) factor(SampleId) else NULL,
-#         SampleGroup       = if(exists("SampleGroup")) factor(SampleGroup) else NULL,
-#         SampleNotes       = if(exists("SampleNotes")) factor(SampleNotes) else NULL,
-#         AssayNotes        = if(exists("AssayNotes")) factor(AssayNotes) else NULL,
-#         # Optional IDs
-#         PlateId           = if(exists("PlateId")) factor(PlateId) else NULL,
-#         SlideId           = if(exists("SlideId")) factor(SlideId) else NULL,
-#         ScannerID         = if(exists("ScannerID")) factor(ScannerID) else NULL,
-#         Subject_ID        = if(exists("Subject_ID")) factor(Subject_ID) else NULL,
-#         SiteId            = if(exists("SiteId")) factor(SiteId) else NULL,
-#         TubeUniqueID      = if(exists("TubeUniqueID")) factor(TubeUniqueID) else NULL,
-#         SsfExtId          = if(exists("SsfExtId")) factor(SsfExtId) else NULL,
-#         Barcode           = if(exists("Barcode")) factor(Barcode) else NULL,
-#         Barcode2d         = if(exists("Barcode2d")) factor(Barcode2d) else NULL,
-#         SampleUniqueId    = if(exists("SampleUniqueId")) factor(SampleUniqueId) else NULL,
-#         # Optional Experimental conditions
-#         SampleType        = if(exists("SampleType")) factor(SampleType) else NULL,
-#         SampleMatrix      = if(exists("SampleMatrix")) factor(SampleMatrix) else NULL,
-#         SampleDescription = if(exists("SampleDescription")) factor(SampleDescription) else NULL,
-#         Subarray          = if(exists("Subarray")) as.integer(Subarray) else NULL,
-#         PlatePosition     = if(exists("PlatePosition")) factor(PlatePosition) else NULL,
-#         # Normalization, calibration, QC
-#         HybControlNormScale  = if(exists("HybControlNormScale")) as.numeric(HybControlNormScale) else NULL,
-#         NormScale_40      = if(exists("NormScale_40")) as.numeric(NormScale_40) else NULL,
-#         NormScale_1       = if(exists("NormScale_1")) as.numeric(NormScale_1) else NULL,
-#         NormScale_0_005   = if(exists("NormScale_0_005")) as.numeric(NormScale_0_005) else NULL,
-#         RowCheck          = if(exists("RowCheck")) factor(RowCheck, levels = c("PASS", "FAIL")) else NULL
-#       )
-#     ],
-#     warnRegex = "Adding new column"
-#   )
+  # SomaLogic inconsistent about using FAIL or FLAG
+  sampleAndIntensityData[
+    j = RowCheck := if(exists("RowCheck")) fixFailFlag(RowCheck) else NULL
+  ]
+
   sampleAndIntensityData
 }
 
@@ -486,10 +442,7 @@ removeFailures <- function(sequenceData, sampleAndIntensityData)
       )
     }
     sequenceData <- sequenceData[okSeqColumns, ]
-    okColumns <- !stri_detect_regex(
-      colnames(sampleAndIntensityData),
-      "^SeqId\\."
-    )
+    okColumns <- !is_seqid(colnames(sampleAndIntensityData))
     okColumns[!okColumns] <- okSeqColumns
     sampleAndIntensityData <- sampleAndIntensityData[
       j = okColumns,
@@ -523,4 +476,45 @@ removeFailures <- function(sequenceData, sampleAndIntensityData)
     sequenceData = sequenceData,
     sampleAndIntensityData = sampleAndIntensityData
   )
+}
+
+#' @importFrom stringi stri_replace_all_regex
+fixMultiValueSeparators <- function(x)
+{
+  x %>%
+    as.character %>%
+    stri_replace_all_regex("[, ]+", " ") %>%
+    factor
+}
+
+#' Replace "FAIL" with "FLAG"
+#'
+#' SomaLogic are inconsistent about using "FAIL" and "FLAG" for row and column
+#' checks.  This enforces the use of "FLAG".
+#' @param x A character vector or factor of a row or column check.
+#' @return A factor with two levels: "PASS" and "FLAG".
+#' @examples
+#' readat:::fixFailFlag(c("PASS", "FLAG", "FAIL", "something else", NA))
+#' @noRd
+fixFailFlag <- function(x)
+{
+  x <- as.character(x)
+  if(any(x == "FAIL"))
+  {
+    warning("Changing 'FAIL' to 'FLAG'.")
+    x[x == "FAIL"] <- "FLAG"
+  }
+  factor(x, levels = c("PASS", "FLAG"))
+}
+
+#' Does the input contain Sequence ID column names?
+#'
+#' Checks if the input begins with "SeqID.".
+#' @param x A character vector.  Typically the column names of sequence data.
+#' @return A logical vector with the same length as \code{x}.
+#' @importFrom stringi stri_detect_regex
+#' @export
+is_seqid <- function(x)
+{
+  stri_detect_regex(x, "^SeqId\\.")
 }
