@@ -31,7 +31,7 @@ wide_soma_data[1:5, list(`SeqId.3896-5_2`)]
 wide_soma_data[1:5, `SeqId.3896-5_2`]
 
 # Ignore the intensity columns (as per getSampleData)
-j <- !stringi::stri_detect_regex(colnames(wide_soma_data), "^SeqId\\\\.")
+j <- !is_seqid(colnames(wide_soma_data))
 wide_soma_data[1:5, j, with = FALSE]
 unlink(soma_file)
 }
