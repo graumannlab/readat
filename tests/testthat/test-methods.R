@@ -244,7 +244,7 @@ test_that(
     expect_is(actual, "matrix")
 
     #Check values the same
-#     is_intensity_column <- stri_detect_regex(colnames(wide), "^SeqId\\.")
+#     is_intensity_column <- is_seqid(colnames(wide))
 #     expected_values <- unlist(
 #       wide[, is_intensity_column, with = FALSE],
 #       use.names =  FALSE
