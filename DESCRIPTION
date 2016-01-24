@@ -16,6 +16,7 @@ Imports:
     Biobase,
     data.table,
     dplyr,
+    magrittr,
     stringi,
     tidyr (>= 0.2.0),
     utils

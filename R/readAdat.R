@@ -271,6 +271,7 @@ readMetadata <- function(file, headerRow, colDataRow, dateFormat)
 
 #' @importFrom data.table fread
 #' @importFrom data.table as.data.table
+#' @importFrom magrittr %<>%
 readSequenceData <- function(file, nSequenceFields, nSampleFields, skip,
   verbose = getOption("verbose"))
 {
@@ -304,34 +305,12 @@ readSequenceData <- function(file, nSequenceFields, nSampleFields, skip,
   # Update column types.
   # SeqId and Target are compulsory.
   # Other common fields are updated if they exist.
-  # Therefore, only update columns which we currently use, leave others unchanged
-  suppressSomeFeedback(
-    sequenceData[
-      j = `:=`(
-        SeqId            = factor(SeqId),
-        Target           = factor(Target),
-        SomaId           = if(exists("SomaId")) factor(SomaId),
-        TargetFullName   = if(exists("TargetFullName")) factor(TargetFullName) else NULL,
-        UniProt          = if(exists("UniProt")) fixMultiValueSeparators(UniProt) else NULL,
-        EntrezGeneID     = if(exists("EntrezGeneID")) fixMultiValueSeparators(EntrezGeneID) else NULL,
-        EntrezGeneSymbol = if(exists("EntrezGeneSymbol")) fixMultiValueSeparators(EntrezGeneSymbol) else NULL,
-        Organism         = if(exists("Organism")) factor(Organism) else NULL,
-        Units            = if(exists("Units")) factor(Units) else NULL,
-        ColCheck         = if(exists("ColCheck")) fixFailFlag(ColCheck) else NULL,
-        CalReference     = if(exists("CalReference")) as.numeric(CalReference) else NULL,
-        Dilution         = if(exists("Dilution")) as.numeric(Dilution) else NULL
-      )
-    ],
-    warnRegex = "Adding new column"
-  )
-
-  # There are some more columns that need fixing, which should have the names
-  # sprintf("Cal_%s", str_replace(levels(intensityData$PlateId), " ", "_"))
-  calCols <- colnames(sequenceData)[is_seqid(colnames(sequenceData))]
-  for(i in seq_along(calCols))
-  {
-    sequenceData[[calCols[i]]] <- as.numeric(sequenceData[[calCols[i]]])
-  }
+  calCols <- colnames(sequenceData)[stri_detect_regex(colnames(sequenceData), "^Cal_")]
+  sequenceData %<>%
+    updateFields(c("SeqId", "Target", "SomaId", "TargetFullName", "Organism", "Units"), factor) %>%
+    updateFields(c("UniProt", "EntrezGeneID", "EntrezGeneSymbol"), fixMultiValueSeparators) %>%
+    updateFields("ColCheck", fixFailFlag) %>%
+    updateFields(c("CalReference", "Dilution", calCols), as.numeric)
 
   sequenceData
 }
@@ -377,10 +356,8 @@ readSampleAndIntensityData <- function(file, nSequenceFields, nSampleFields, ski
     paste0("SeqId.", seqIds)
   )
 
-  # SomaLogic inconsistent about using FAIL or FLAG
-  sampleAndIntensityData[
-    j = RowCheck := if(exists("RowCheck")) fixFailFlag(RowCheck) else NULL
-  ]
+  sampleAndIntensityData %>%
+    updateFields("RowCheck", fixFailFlag)
 
   sampleAndIntensityData
 }
@@ -476,6 +453,29 @@ removeFailures <- function(sequenceData, sampleAndIntensityData)
     sequenceData = sequenceData,
     sampleAndIntensityData = sampleAndIntensityData
   )
+}
+
+#' Transmute a field, if it exists
+#'
+#' If a field in a data frame of data table exists, transform it and replace it.
+#' @param data A data frame (or derivative) or a list.
+#' @param fields A character vector of names of fields that may exist in
+#' \code{data}.
+#' @param transform A function or string naming a function.
+#' @note data.table's := and dplyr's filter are a bit painful to use with
+#' columns that may no exist in the data frame.
+#' @noRd
+updateFields <- function(data, fields, transform)
+{
+  transform <- match.fun(transform)
+  for(field in fields)
+  {
+    if(!is.null(data[[field]]))
+    {
+      data[[field]] <- transform(data[[field]])
+    }
+  }
+  data
 }
 
 #' @importFrom stringi stri_replace_all_regex
