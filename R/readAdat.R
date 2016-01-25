@@ -234,6 +234,7 @@ readFirstChar <- function(file)
 
 #' @importFrom data.table fread
 #' @importFrom stringi stri_replace_first_regex
+#' @importFrom stringi stri_detect_regex
 readMetadata <- function(file, headerRow, colDataRow, dateFormat)
 {
   # (Ab)using fread for this tends to results in unnecessary warnings.
@@ -250,23 +251,13 @@ readMetadata <- function(file, headerRow, colDataRow, dateFormat)
     metadata,
     setNames(as.list(V2), stri_replace_first_regex(V1, "^!", ""))
   )
-  within(
-    metadata,
-    {
-      if ('Version' %in% names(metadata)){
-        Version <- as.package_version(Version)
-      }
-      if ('CreatedDate' %in% names(metadata)){
-        CreatedDate <- as.Date(CreatedDate, format = dateFormat)
-      }
-      if ('ExpDate' %in% names(metadata)){
-        ExpDate <- as.Date(ExpDate, format = dateFormat)
-      }
-      if ('ProteinEffectiveDate' %in% names(metadata)){
-        ProteinEffectiveDate <- as.Date(ProteinEffectiveDate, format = dateFormat)
-      }
-    }
-  )
+  plateTestFields <- names(metadata)[
+    stri_detect_regex(names(metadata), "(?:PlateMedianCal|PlateTailPercent)")
+  ]
+  metadata %>%
+    updateFields("Version", as.package_version) %>%
+    updateFields(c("CreatedDate", "ExpDate", "ProteinEffectiveDate"), as.Date, dateFormat) %>%
+    updateFields(plateTestFields, as.numeric)
 }
 
 #' @importFrom data.table fread
@@ -462,17 +453,18 @@ removeFailures <- function(sequenceData, sampleAndIntensityData)
 #' @param fields A character vector of names of fields that may exist in
 #' \code{data}.
 #' @param transform A function or string naming a function.
+#' @param ... Passed to \code{transform}.
 #' @note data.table's := and dplyr's filter are a bit painful to use with
 #' columns that may no exist in the data frame.
 #' @noRd
-updateFields <- function(data, fields, transform)
+updateFields <- function(data, fields, transform, ...)
 {
   transform <- match.fun(transform)
   for(field in fields)
   {
     if(!is.null(data[[field]]))
     {
-      data[[field]] <- transform(data[[field]])
+      data[[field]] <- transform(data[[field]], ...)
     }
   }
   data
