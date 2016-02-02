@@ -16,16 +16,7 @@ To install the package, you first need the
 install.packages("devtools")
 ```
 
-Then make sure to first install the *listless* package:
-```{r}
-devtools::install_bitbucket(
-  'graumannlabtools/listless',
-  auth_user = "your bitbucket username", 
-  password  = "your bitbucket password"  
-)
-```
-
-Finally you can install the *readat* package using
+Then you can install the *readat* package using
 
 ```{r}
 library(devtools)
