@@ -510,3 +510,17 @@ is_seqid <- function(x)
 {
   stri_detect_regex(x, "^SeqId\\.")
 }
+
+#' Convert SeqIds to Aptamers
+#'
+#' Converts SomaLogic sequence IDs to aptamer IDs.
+#' @param seqId A character vector or factor of sequence IDs.
+#' @return A character vector of factors.
+#' @importFrom stringi stri_split_fixed
+#' @examples
+#' convertSeqIdToAptamer("2717-12_5")
+#' @export
+convertSeqIdToAptamer <- function(seqId)
+{
+  stri_split_fixed(seqId, "_", n = 2, simplify = TRUE)[, 1L]
+}
