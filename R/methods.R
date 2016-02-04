@@ -332,8 +332,6 @@ setIntensities <- function(x, value, prependSeqIdToColNames = NA)
 #' \code{Metadata} and \code{Checksum} attributes are preserved.
 #' @param x A \code{WideSomaLogicData} object.
 #' @param ... Passed to \code{[.data.table}.
-#' @param drop Should dimensions be dropped? Passed to \code{[.data.table}.
-#' Note that this defaults to FALSE, unlike the data.tale method.
 #' @return If the indexing returns a A \code{WideSomaLogicData} object.
 #' @seealso \code{\link[data.table]{data.table}}
 #' @importFrom data.table is.data.table
@@ -351,17 +349,16 @@ setIntensities <- function(x, value, prependSeqIdToColNames = NA)
 #' wide_soma_data[1:5, j, with = FALSE]
 #' unlink(soma_file)
 #' @importFrom data.table as.data.table
+#' @importFrom assertive.properties is_empty
 #' @export
-`[.WideSomaLogicData` <- function(x, ..., drop = FALSE)
+`[.WideSomaLogicData` <- function(x, ...)
 {
   sequenceData <- getSequenceData(x)
   metadata     <- getMetadata(x)
   checksum     <- getChecksum(x)
 
-  x <- copy(x)
-  class(x) <- c("data.table", "data.frame")
-  # browser()
-  y <- x[..., drop = drop]
+  y <- NextMethod("[")
+
   # result may be a data.table, or have been simplified to a vector
   if(is.data.table(y))
   {
