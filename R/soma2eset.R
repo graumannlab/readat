@@ -10,9 +10,9 @@
 #' @return ExpressionSet object
 #' @author Aditya Bhagwat
 #' @importFrom Biobase ExpressionSet
-#' @importFrom Biobase AnnotatedDataFrame
-#' @importFrom Biobase exprs
-#' @importFrom Biobase exprs<-
+#' @importFrom Biobase exprs exprs<-
+#' @importFrom Biobase pData
+#' @importFrom Biobase fData
 #' @export
 soma2eset <- function(somaObj, log2Transform = TRUE){
 
@@ -29,15 +29,13 @@ soma2eset <- function(somaObj, log2Transform = TRUE){
   sampleDF <- data.frame(sampleDF, row.names = somaObj$ExtIdentifier)
 
   # forge eset
-  myEset <- ExpressionSet(
-    myIntensities,
-    AnnotatedDataFrame(sampleDF),
-    AnnotatedDataFrame(featureDF)
-  )
+  myEset <- ExpressionSet(myIntensities)
+  Biobase::pData(myEset) <- sampleDF
+  Biobase::fData(myEset) <- featureDF
 
   # log2 transform
   if (log2Transform){
-    exprs(myEset) <- log2(exprs(myEset))
+    Biobase::exprs(myEset) <- log2(Biobase::exprs(myEset))
   }
 
   # return eset
