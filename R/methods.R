@@ -356,7 +356,7 @@ setIntensities <- function(x, value, prependSeqIdToColNames = NA)
   sequenceData <- getSequenceData(x)
   metadata     <- getMetadata(x)
   checksum     <- getChecksum(x)
-
+  x <- copy(x)
   y <- NextMethod("[")
 
   # result may be a data.table, or have been simplified to a vector
