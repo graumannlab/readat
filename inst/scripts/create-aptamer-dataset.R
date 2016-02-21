@@ -1,47 +1,65 @@
 library(data.table)
+library(readat)
 library(dplyr)
 library(org.Hs.eg.db)
 library(AnnotationDbi)
+library(magrittr)
+library(stringi)
 library(tidyr)
 
-aptamers <- fread(file.choose(), skip = 2)
+fixId <- function(x)
+{
+  stri_replace_all_regex(x, "[, ]+", " ")
+}
 
-# Fix repeated colnames
-colnames(aptamers) <- colnames(aptamers) %>%
-  make.names(unique = TRUE)
+# Start with the dilutions file, then add in HCE sequences + organism etc. info
+# From 1.3k & 1.1k adat files.  Need to use pre-processed files from kneadat
+# that still contain HCE sequences (almost a circular dependency).
 
-# Only get useful bits
-aptamers %<>%
-  select_(
-    ~ SeqId,
-    AptamerId = ~ aptamer, # SeqId, truncated at underscore
-    ~ SomaId,
-    ~ Target,
-    ~ TargetFullName,
-    UniProtId = ~ UniProt,
-    IsIn1129Panel = ~ X1.1k,
-    IsIn1310Panel = ~ X1.3k,
-    PlasmaDilution = ~ Plasma,
-    SerumDilution = ~ Serum
-  ) %>%
+dilutionData <- fread(
+  system.file("extdata/SOMAscan_1.3k_1.1k_dilutions.csv", package = "readat")
+) %>%
+  select_(~ -SeqId, ~ -note) %>%
   mutate_(
-    UniProtId = ~ strsplit(UniProtId, "[, ]+"),
+    UniProt = ~ fixId(UniProt), # ~ strsplit(UniProt, "[, ]+"),
     IsIn1129Panel = ~ as.logical(IsIn1129Panel),
     IsIn1310Panel = ~ as.logical(IsIn1310Panel)
-  )
-setkeyv(aptamers, "SeqId")
+  ) %>%
+  as.data.frame
 
-# Get EntrezGene IDs, for cases where there is a map from the UniProt ID
-u <- aptamers$UniProtId %>%
-  unlist %>%
-  unique
-u <- u[u %in% keys(org.Hs.eg.db, "UNIPROT")]
-lookup <- AnnotationDbi::select(org.Hs.eg.db, u, "ENTREZID", "UNIPROT")
-names(lookup) <- c("UniProtId", "EntrezGeneId")
+adatSequenceData <- lapply(
+  c("1.3k", "1.1k") %>% setNames(., .),
+  function(panel)
+  {
+    kneadat::readCtrlFile(panel, keepOnlyPasses = FALSE) %>% # extractSampleData(panel)
+    getSequenceData %>%
+    mutate_(
+      AptamerId = ~ convertSeqIdToAptamer(SeqId),
+      EntrezGeneID = ~ fixId(EntrezGeneID)
+    ) %>%
+    select_(~ -SeqId, ~ -Dilution)
+  }
+) %>%
+  bind_rows %>%
+  distinct_
 
-aptamers %<>%
-  unnest_("UniProtId") %>%
-  left_join(lookup, by = "UniProtId")%>%
-  nest_(c("UniProtId", "EntrezGeneId"))
+aptamers <- dilutionData %>%
+  full_join(adatSequenceData, by = c("AptamerId", "SomaId", "Target", "TargetFullName", "UniProt", "Type")) %>%
+  mutate_(
+    IsHce = ~ Type == "Hybridization Control Elution",
+    IsIn1129Panel = ~ ifelse(IsHce, TRUE, IsIn1129Panel),
+    IsIn1310Panel = ~ ifelse(IsHce, TRUE, IsIn1310Panel),
+    PlasmaDilution = ~ ifelse(IsHce, 0, PlasmaDilution),
+    SerumDilution = ~ ifelse(IsHce, 0, SerumDilution),
+    Units = ~ "RFU"
+  ) %>%
+  select_(~ -IsHce)
+
+cols <- c(
+  "AptamerId", "SomaId", "Target", "TargetFullName", "UniProt", "EntrezGeneID",
+  "EntrezGeneSymbol", "Organism", "Units", "Type", "PlasmaDilution",
+  "SerumDilution", "IsIn1310Panel", "IsIn1129Panel"
+)
+aptamers <- aptamers[, cols]
 
 save(aptamers, file = "data/aptamers.rda")
