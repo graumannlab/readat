@@ -187,8 +187,9 @@ readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%Y-%m-%d",
 #' @importFrom data.table is.data.table
 #' @importFrom data.table copy
 #' @importFrom data.table setattr
-#' @noRd
-WideSomaLogicData <- function(sampleAndIntensityData, sequenceData, metadata, checksum)
+#' @export
+WideSomaLogicData <- function(sampleAndIntensityData, sequenceData, metadata,
+  checksum = paste0(rep.int("f", 40), collapse = ""))
 {
   assert_is_data.frame(sampleAndIntensityData)
   sampleAndIntensityData <- if(is.data.table(sampleAndIntensityData))
