@@ -96,17 +96,22 @@ sampleData <- getSampleData(wide_soma_data)
 
 # Intensities of a WideSomaLogicData object are a matrix
 intWideSamp <- getIntensities(wide_soma_data)
-View(intWideSamp, "Wide intensities, samples per row")
-
+\dontrun{
+  View(intWideSamp, "Wide intensities, samples per row")
+}
 intWideSeq <- getIntensities(                 # The transpose
   wide_soma_data,
   rowsContain = "sequences"
 )
-View(intWideSeq, "Wide intensities, seqs per row")
+\dontrun{
+  View(intWideSeq, "Wide intensities, seqs per row")
+}
 
 # Sample data is always a data table
 sampWide <- getSampleData(wide_soma_data)
-View(sampWide, "Wide sample data")
+\dontrun{
+  View(sampWide, "Wide sample data")
+}
 
 if(requireNamespace("reshape2"))
 {
@@ -114,11 +119,15 @@ if(requireNamespace("reshape2"))
   # as a data.table
   long_soma_data <- reshape2::melt(wide_soma_data)
   intLong <- getIntensities(long_soma_data)
-  View(intLong, "Long intensities")
+  \dontrun{
+    View(intLong, "Long intensities")
+  }
 
   # Sample data has a different shape now
   sampLong <- getSampleData(long_soma_data)
-  View(sampLong, "Long sample data")
+  \dontrun{
+    View(sampLong, "Long sample data")
+  }
 }
 }
 }

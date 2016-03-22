@@ -22,6 +22,7 @@
 #' list_depth(list())
 #' list_depth(list(), prune_empty_elts = TRUE)
 #' }
+#' @noRd
 list_depth <- function (l, prune_empty_elts = FALSE)
 {
   if(prune_empty_elts && length(l) == 0L)
@@ -123,6 +124,7 @@ list_names0 <- function(l, sep = "|")
 #' list_to_data.frame(l, c("group", "subgroup", "subsubgroup"), "amount")
 #' }
 #' @importFrom tidyr separate
+#' @noRd
 list_to_data.frame <- function(l, names_variable = paste0("names", seq_len(list_depth(l))),
   values_variable = "values", stringsAsFactors = getOption("stringsAsFactors"))
 {
