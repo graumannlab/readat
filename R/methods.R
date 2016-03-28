@@ -20,7 +20,7 @@
 #' @include readAdat.R
 melt.WideSomaLogicData <- function(data, ..., na.rm = FALSE, value.name = "Intensity")
 {
-  isSeqColumn <- is_seqid(colnames(data))
+  isSeqColumn <- isSeqId(colnames(data))
   data <- copy(data)
   class(data) <- c("data.table", "data.frame")
 
@@ -56,7 +56,7 @@ getIntensities.WideSomaLogicData <- function(x, rowsContain = c("samples", "sequ
   x <- copy(x)
   class(x) <- c("data.table", "data.frame")
   rowsContain <- match.arg(rowsContain)
-  isSeqColumn <- is_seqid(colnames(x))
+  isSeqColumn <- isSeqId(colnames(x))
   m <- as.matrix(x[, isSeqColumn, with = FALSE])
   rownames(m) <- x$ExtIdentifier
   colnames(m) <- substring(colnames(m), 7)
@@ -100,7 +100,7 @@ getSampleData.WideSomaLogicData <- function(x, ...)
 {
   x <- copy(x)
   class(x) <- c("data.table", "data.frame")
-  isSampleColumn <- !is_seqid(colnames(x))
+  isSampleColumn <- !isSeqId(colnames(x))
   x[, isSampleColumn, with = FALSE]
 }
 
@@ -296,7 +296,7 @@ setIntensities <- function(x, value, prependSeqIdToColNames = NA)
   # Should column names be prefixed with "SeqId.", or do they have it already?
   if(is.na(prependSeqIdToColNames))
   {
-    seqIdPrefix <- is_seqid(colnames(value))
+    seqIdPrefix <- isSeqId(colnames(value))
     prependSeqIdToColNames <- if(any(seqIdPrefix))
     {
       if(!all(seqIdPrefix))
@@ -354,7 +354,7 @@ setIntensities <- function(x, value, prependSeqIdToColNames = NA)
 #' wide_soma_data[1:5, `SeqId.3896-5_2`]
 #'
 #' # Ignore the intensity columns (as per getSampleData)
-#' j <- !is_seqid(colnames(wide_soma_data))
+#' j <- !isSeqId(colnames(wide_soma_data))
 #' wide_soma_data[1:5, j, with = FALSE]
 #' unlink(soma_file)
 #' @importFrom data.table as.data.table

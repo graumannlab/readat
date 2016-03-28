@@ -411,7 +411,7 @@ removeFailures <- function(sequenceData, sampleAndIntensityData)
       )
     }
     sequenceData <- sequenceData[okSeqColumns, ]
-    okColumns <- !is_seqid(colnames(sampleAndIntensityData))
+    okColumns <- !isSeqId(colnames(sampleAndIntensityData))
     okColumns[!okColumns] <- okSeqColumns
     sampleAndIntensityData <- sampleAndIntensityData[
       j = okColumns,
@@ -507,7 +507,7 @@ fixFailFlag <- function(x)
 #' @return A logical vector with the same length as \code{x}.
 #' @importFrom stringi stri_detect_regex
 #' @export
-is_seqid <- function(x)
+isSeqId <- function(x)
 {
   stri_detect_regex(x, "^SeqId\\.")
 }
