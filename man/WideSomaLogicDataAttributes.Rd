@@ -12,13 +12,11 @@
 \alias{getSampleData.LongSomaLogicData}
 \alias{getSampleData.WideSomaLogicData}
 \alias{getSequenceData}
-\alias{getSequenceInfo}
 \alias{setChecksum}
 \alias{setIntensities}
 \alias{setMetadata}
 \alias{setSampleData}
 \alias{setSequenceData}
-\alias{setSequenceInfo}
 \title{Get WideSomaLogicData attributes}
 \usage{
 getIntensities(x, ...)
@@ -38,15 +36,11 @@ getSampleData(x, ...)
 
 getSequenceData(x)
 
-getSequenceInfo(x)
-
 getMetadata(x)
 
 getChecksum(x)
 
 setSequenceData(x, value)
-
-setSequenceInfo(x, value)
 
 setMetadata(x, value)
 

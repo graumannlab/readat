@@ -2,13 +2,10 @@
 % Please edit documentation in R/readAdat.R
 \name{readAdat}
 \alias{readAdat}
-\alias{readSomaLogic}
 \title{Read a SomaLogic data file}
 \usage{
 readAdat(file, keepOnlyPasses = TRUE, dateFormat = "\%Y-\%m-\%d",
   verbose = getOption("verbose"))
-
-readSomaLogic(file, keepOnlyPasses = TRUE, dateFormat = "\%d/\%m/\%Y")
 }
 \arguments{
 \item{file}{A string containing the path to the file to be read.}

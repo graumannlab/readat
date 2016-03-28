@@ -190,12 +190,11 @@ getSequenceData <- function(x)
   attr(x, "SequenceData", exact = TRUE)
 }
 
-#' @rdname WideSomaLogicDataAttributes
+#' @rdname readat-defunct
 #' @export
-getSequenceInfo <- function(x)
+getSequenceInfo <- function(...)
 {
-  .Deprecated("getSequenceData")
-  getSequenceData(x)
+  .Defunct("getSequenceData")
 }
 
 #' @rdname WideSomaLogicDataAttributes
@@ -228,14 +227,11 @@ setSequenceData <- function(x, value)
   invisible(x)
 }
 
-#' @rdname WideSomaLogicDataAttributes
-#' @importFrom assertive.types assert_is_inherited_from
+#' @rdname readat-defunct
 #' @export
-setSequenceInfo <- function(x, value)
+setSequenceInfo <- function(...)
 {
-  .Deprecated("setSequenceData")
-  setSequenceData(x, value)
-  invisible(x)
+  .Defunct("setSequenceData")
 }
 
 #' @rdname WideSomaLogicDataAttributes

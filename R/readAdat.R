@@ -367,12 +367,11 @@ getNFields <- function(file, skip, verbose = getOption("verbose"))
   as.integer(sum(nzchar(y))) - 1L
 }
 
-#' @rdname readAdat
+#' @rdname readat-defunct
 #' @export
-readSomaLogic <- function(file, keepOnlyPasses = TRUE, dateFormat = "%d/%m/%Y")
+readSomaLogic <- function(...)
 {
-  .Deprecated("readAdat")
-  readAdat(file, keepOnlyPasses, dateFormat)
+  .Defunct("readAdat")
 }
 
 #' Is the value a pass
