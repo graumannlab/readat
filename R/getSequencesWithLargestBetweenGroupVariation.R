@@ -22,6 +22,7 @@ getSequencesWithLargestBetweenGroupVariation <- function(x, n = 10, group = ~ Sa
 #' @export
 getSequencesWithLargestBetweenGroupVariation.LongSomaLogicData <- function(x, n = 10, group = ~ SampleGroup, ...)
 {
+  sequenceData <- getSequenceData(x)
   intensityByGroup <- x %>%
     group_by_(~ SeqId, group) %>%
     summarize_(MeanLogIntensity = ~ mean(log(Intensity), na.rm = TRUE))
@@ -34,5 +35,5 @@ getSequencesWithLargestBetweenGroupVariation.LongSomaLogicData <- function(x, n 
     arrange_(~ desc(VariationBetweenGroups)) %>%
     head(n)
 
-  x[SeqId %in% bigBetweenGroupVariation$SeqId]
+  sequenceData[SeqId %in% bigBetweenGroupVariation$SeqId]
 }
