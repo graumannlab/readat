@@ -24,7 +24,9 @@ Imports:
     utils
 Suggests:
     testthat,
-    reshape2
+    reshape2,
+    knitr,
+    rmarkdown
 Extends:
     reshape2
 License: GPL-3
@@ -33,6 +35,7 @@ RoxygenNote: 5.0.1
 Collate:
     'checkIds.R'
     'dataset-docs.R'
+    'defunct.R'
     'extractSampleData.R'
     'get-annotations.R'
     'getSequencesWithLargestBetweenGroupVariation.R'
@@ -42,3 +45,4 @@ Collate:
     'methods.R'
     'soma2eset.R'
     'suppressSomeFeedback.R'
+VignetteBuilder: knitr
