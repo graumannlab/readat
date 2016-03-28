@@ -1,11 +1,13 @@
-[![Project Status: Wip - Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](http://www.repostatus.org/badges/0.1.0/wip.svg)](http://www.repostatus.org/#wip)
+[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repostatus.org/#active)
+[![Build Status](https://semaphoreci.com/api/v1/richierocks/readat/branches/master/badge.svg)](https://semaphoreci.com/richierocks/readat)
+[![Build status](https://ci.appveyor.com/api/projects/status/7lbjxa2snrhbgjcr?svg=true)](https://ci.appveyor.com/project/richierocks/readat)
 
 [//]: # ([Bioconductor build status](http://bioconductor.org/shields/build/release/bioc/Biobase.svg))
 [//]: # ([Time on Bioconductor](http://bioconductor.org/shields/years-in-bioc/BiocGenerics.svg))
 
 # readat
 
-Tools for importing and working with SomaLogic ADAT files.
+Tools for importing and working with [SomaLogic](http://www.somalogic.com/Homepage.aspx) [ADAT](https://bitbucket.org/graumannlabtools/adat-spec) files.
 
 ### Installation
 
@@ -19,12 +21,7 @@ install.packages("devtools")
 Then you can install the *readat* package using
 
 ```{r}
-library(devtools)
-install_bitbucket(
-  "graumannlabtools/readat",
-  auth_user = "your bitbucket username", 
-  password  = "your bitbucket password"  
-)
+devtools::install_bitbucket("graumannlabtools/readat")
 ```
 
 # Functionality
@@ -49,3 +46,6 @@ You can retrieve additional annotations by SomaLogic Sequence ID uisng
 `getEnsemblIds`, `getUniProtKeywords`, `getChromosomalPositions`, `getPfam`, 
 `getKeggDefinitions`, `getKeggModules`, `getKeggPathways`, 
 `getGoMolecularFunctions`, `getGoBiologicalProcesses`, `getGoCellularComponents`.
+
+`getSequencesWithLargestBetweenGroupVariation` find the sequences with the 
+largest amount of variation between specified sample groups.
