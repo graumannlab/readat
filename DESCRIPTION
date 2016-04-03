@@ -43,6 +43,7 @@ Collate:
     'sfread.R'
     'readAdat.R'
     'methods.R'
+    'read-sample-submision-input-files.R'
     'soma2eset.R'
     'suppressSomeFeedback.R'
 VignetteBuilder: knitr
