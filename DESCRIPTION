@@ -13,20 +13,25 @@ Depends:
 Imports:
     assertive.base (>= 0.0-3),
     assertive.files,
+    assertive.numbers,
     assertive.properties,
+    assertive.sets,
     assertive.types,
     Biobase,
     data.table,
     dplyr,
     magrittr,
+    openxlsx,
+    pathological,
+    reshape2,
     stringi,
     tidyr (>= 0.2.0),
     utils
 Suggests:
     testthat,
-    reshape2,
     knitr,
-    rmarkdown
+    rmarkdown,
+    withr
 Extends:
     reshape2
 License: GPL-3
