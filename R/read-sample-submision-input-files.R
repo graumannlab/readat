@@ -1,3 +1,7 @@
+#' @importFrom dplyr mutate_
+PLATE_POSITIONS <- expand.grid(Subarray = 1:8, Slide = 1:12) %>%
+    mutate_(PlatePosition = ~ paste0(LETTERS[Subarray], Slide))
+
 #' Read SomaLogic Sample Submission Input files
 #'
 #'
@@ -8,7 +12,6 @@
 #' @importFrom assertive.numbers assert_all_are_less_than_or_equal_to
 #' @importFrom data.table fread
 #' @importFrom data.table data.table
-#' @importFrom dplyr mutate_
 #' @importFrom magrittr %>%
 #' @importFrom magrittr %<>%
 #' @importFrom stats setNames
@@ -23,13 +26,11 @@ readSlides <- function(file = "slides.csv")
     stri_detect_regex(slides$SampleId, "^[0-9]{12}$"),
     severity = "warning"
   )
-  pp <- expand.grid(Subarray = 1:8, Slide = 1:12) %>%
-    mutate_(PlatePosition = ~ paste0(LETTERS[Subarray], Slide))
   data.table(
     SampleNumber = 1:96,
     SlideId = rep(slides$SlideId, each = 8),
-    Subarray = pp$Subarray,
-    PlatePosition = pp$PlatePosition,
+    Subarray = PLATE_POSITIONS$Subarray,
+    PlatePosition = PLATE_POSITIONS$PlatePosition,
     PercentDilution = 40
   )
 }
@@ -53,6 +54,7 @@ readControls <- function(file = "controls.csv")
 #' @rdname readSlides
 #' @importFrom assertive.sets assert_is_subset
 #' @importFrom dplyr left_join
+#' @importFrom magrittr %$%
 #' @importFrom stringi stri_trim_both
 #' @export
 readComments <- function(file = "comments.csv")
@@ -71,9 +73,7 @@ readComments <- function(file = "comments.csv")
     comments$SampleNotes, c("red", "yellow", "turbid", "red, turbid", "yellow, turbid", NA),
     severity = "warning"
   )
-  pp <- expand.grid(Subarray = LETTERS[1:8], Slide = 1:12) %$%
-    paste0(Subarray, Slide)
-  data.table(PlatePosition = pp) %>%
+  data.table(PlatePosition = PLATE_POSITIONS$PlatePosition) %>%
     left_join(comments, by = "PlatePosition")
 }
 
@@ -82,10 +82,9 @@ readComments <- function(file = "comments.csv")
 #' @export
 readSamples <- function(file = "samples.csv")
 {
-  samples <- fread(file, sep = ",", nrows = 96, header = FALSE, na.strings = "NO READ")
+  samples <- fread(file, sep = ",", nrows = 96, header = FALSE, na.strings = "NO READ")[1:2]
   samples %<>%
-    setNames(c("PlatePosition", "SampleId", "AlternateSampleId")) %>%
-    select_(~ PlatePosition, ~ SampleId)
+    setNames(c("PlatePosition", "SampleId"))
   n_controls <- sum(is.na(samples$SampleId))
   assert_all_are_less_than_or_equal_to(n_controls, 12, severity = "warning")
   assert_all_are_not_false(
@@ -136,8 +135,9 @@ readSamples <- function(file = "samples.csv")
 #' @importFrom dplyr inner_join
 #' @importFrom dplyr arrange_
 #' @importFrom dplyr bind_cols
+#' @importFrom magrittr extract
 #' @export
-createSampleSubmission <- function(slides, controls, comments, samples, sampleMatrix = c("EDTA-Plasma", "serum?", "other plasma?"), siteId = "WCQ", studyName = "", studyId = "", runName = "Set A")
+createSampleSubmission <- function(slides, controls, comments, samples, sampleMatrix = c("EDTA-Plasma", "Sodium Citrate Plasma", "Serum"), siteId = "WCQ", studyName = "", studyId = "", runName = "Set A")
 {
   sampleMatrix <- match.arg(sampleMatrix)
   submission <- slides %>%
@@ -198,11 +198,10 @@ createSampleSubmission <- function(slides, controls, comments, samples, sampleMa
 writeSampleSubmissionForm <- function(submission, outdir = ".")
 {
   create_dirs(outdir)
-  filename <- submission %$%
-    paste(
+  filename <- paste(
       format(Sys.Date(), "%Y%m%d"),
-      toString(unique(StudyId[!is.na(StudyId)])),
-      toString(unique(RunName[!is.na(RunName)])),
+      valuesOf(submission$StudyId),
+      valuesOf(submission$RunName),
       sep = "_"
     )
   outfile <- file.path(outdir, paste0(filename, ".xlsx"))
@@ -211,4 +210,7 @@ writeSampleSubmissionForm <- function(submission, outdir = ".")
   invisible(outfile)
 }
 
-
+valuesOf <- function(x)
+{
+  toString(unique(x[!is.na(x)]))
+}

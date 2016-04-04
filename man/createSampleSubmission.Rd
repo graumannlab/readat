@@ -5,7 +5,7 @@
 \title{Create a SomaLogic Sample Submission Form}
 \usage{
 createSampleSubmission(slides, controls, comments, samples,
-  sampleMatrix = c("EDTA-Plasma", "serum?", "other plasma?"),
+  sampleMatrix = c("EDTA-Plasma", "Sodium Citrate Plasma", "Serum"),
   siteId = "WCQ", studyName = "", studyId = "", runName = "Set A")
 }
 \arguments{
