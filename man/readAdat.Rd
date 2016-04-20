@@ -4,8 +4,8 @@
 \alias{readAdat}
 \title{Read a SomaLogic data file}
 \usage{
-readAdat(file, keepOnlyPasses = TRUE, dateFormat = "\%Y-\%m-\%d",
-  verbose = getOption("verbose"))
+readAdat(file, keepOnlyPasses = TRUE, keepOnlySamples = TRUE,
+  dateFormat = "\%Y-\%m-\%d", verbose = getOption("verbose"))
 }
 \arguments{
 \item{file}{A string containing the path to the file to be read.}
@@ -13,6 +13,10 @@ readAdat(file, keepOnlyPasses = TRUE, dateFormat = "\%Y-\%m-\%d",
 \item{keepOnlyPasses}{A logical value indicating whether or not to keep
 only the rows and columns where the data quality was considered to be
 passable.}
+
+\item{keepOnlySamples}{A logical value indicating whether or not to keep
+only the rows containing actual samples (as opposed to QC, buffer, and
+calibrator samples).}
 
 \item{dateFormat}{A string describing the format of the dates contained in
 the file's metadata.  See \code{\link[base]{strptime}} for how to specify

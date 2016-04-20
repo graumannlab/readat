@@ -50,6 +50,9 @@ utils::globalVariables("NormScale_0_005")
 #' @param keepOnlyPasses A logical value indicating whether or not to keep
 #' only the rows and columns where the data quality was considered to be
 #' passable.
+#' @param keepOnlySamples A logical value indicating whether or not to keep
+#' only the rows containing actual samples (as opposed to QC, buffer, and
+#' calibrator samples).
 #' @param dateFormat A string describing the format of the dates contained in
 #' the file's metadata.  See \code{\link[base]{strptime}} for how to specify
 #' these.
@@ -93,7 +96,7 @@ utils::globalVariables("NormScale_0_005")
 #' @importFrom data.table setnames
 #' @export
 #' @author Richard Cotton
-readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%Y-%m-%d",
+readAdat <- function(file, keepOnlyPasses = TRUE, keepOnlySamples = TRUE, dateFormat = "%Y-%m-%d",
   verbose = getOption("verbose"))
 {
   # stri_read_lines and fead don't behave well with file connections
@@ -158,6 +161,12 @@ readAdat <- function(file, keepOnlyPasses = TRUE, dateFormat = "%Y-%m-%d",
     sequenceData$SeqId,
     verbose = verbose
   )
+
+  # Remove QC, buffer, calibrator samples
+  if(keepOnlySamples)
+  {
+    sampleAndIntensityData <- removeNonSamples(sampleAndIntensityData)
+  }
 
   # Remove failures
   if(keepOnlyPasses)
@@ -386,11 +395,42 @@ isPass <- function(x)
   !is.na(x) & x == "PASS"
 }
 
+removeNonSamples <- function(sampleAndIntensityData)
+{
+  if(is.null(sampleAndIntensityData$SampleType))
+  {
+    warning("There is no 'SampleType' field, so QC/buffer/calibrator samples cannot be removed.")
+  } else
+  {
+    okSampleRows <- sampleAndIntensityData$SampleType == "Sample"
+    if(!all(okSampleRows))
+    {
+      if(!all(okSampleRows))
+      {
+        nBadSamples <- sum(!okSampleRows)
+        message(
+          sprintf(
+            ngettext(
+              nBadSamples,
+              "Removing %d QC/buffer/calibrator sample.",
+              "Removing %d QC/buffer/calibrator samples.",
+              domain = NA # don't translate, at least for now
+            ),
+            nBadSamples
+          )
+        )
+      }
+      sampleAndIntensityData <- sampleAndIntensityData[okSampleRows]
+    }
+  }
+  sampleAndIntensityData
+}
+
 removeFailures <- function(sequenceData, sampleAndIntensityData)
 {
   if(is.null(sequenceData$ColCheck))
   {
-    warning("There is no 'ColCheck field', so failing sequences cannot be removed.")
+    warning("There is no 'ColCheck' field, so failing sequences cannot be removed.")
   } else
   {
     okSeqColumns <- isPass(sequenceData$ColCheck)
@@ -408,18 +448,18 @@ removeFailures <- function(sequenceData, sampleAndIntensityData)
           nBadSeqs
         )
       )
+      sequenceData <- sequenceData[okSeqColumns, ]
+      okColumns <- !isSeqId(colnames(sampleAndIntensityData))
+      okColumns[!okColumns] <- okSeqColumns
+      sampleAndIntensityData <- sampleAndIntensityData[
+        j = okColumns,
+        with = FALSE
+      ]
     }
-    sequenceData <- sequenceData[okSeqColumns, ]
-    okColumns <- !isSeqId(colnames(sampleAndIntensityData))
-    okColumns[!okColumns] <- okSeqColumns
-    sampleAndIntensityData <- sampleAndIntensityData[
-      j = okColumns,
-      with = FALSE
-    ]
   }
   if(is.null(sampleAndIntensityData$RowCheck))
   {
-    warning("There is no 'RowCheck field', so failing samples cannot be removed.")
+    warning("There is no 'RowCheck' field, so failing samples cannot be removed.")
   } else
   {
     okSampleRows <- isPass(sampleAndIntensityData$RowCheck)
@@ -437,8 +477,8 @@ removeFailures <- function(sequenceData, sampleAndIntensityData)
           nBadSamples
         )
       )
+      sampleAndIntensityData <- sampleAndIntensityData[okSampleRows]
     }
-    sampleAndIntensityData <- sampleAndIntensityData[okSampleRows]
   }
   list(
     sequenceData = sequenceData,
