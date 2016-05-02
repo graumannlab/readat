@@ -2,40 +2,74 @@
 PLATE_POSITIONS <- expand.grid(Subarray = 1:8, Slide = 1:12) %>%
     mutate_(PlatePosition = ~ paste0(LETTERS[Subarray], Slide))
 
-#' Read SomaLogic Sample Submission Input files
+#' Read SomaLogic Sample Submission Slides File
 #'
-#'
-#' @param file A string denoting the path to an input CSV file.
-#' @return A \code{data.table}.
-#' @seealso \code{\link{writeSampleSubmissionForm}} for usage examples.
+#' @param file A string denoting the path to an input CSV file.  See Input file
+#' specification section.
+#' @return A \code{data.table} with 96 rows and 5 columns.
+#' \describe{
+#' \item{SampleNumber}{The integers 1 to 96.}
+#' \item{SlideId}{The slide IDs from the input file.}
+#' \item{Subarray}{Integers from 1 to 8 denoting the sample position for the
+#' slide.}
+#' \item{PlatePosition}{A letter followed by a number, constructed from the
+#' Subarray ("A" for 1, "B" for 2, etc.) and the slide number from 1 to 12.}
+#' \item{PercentDilution}{Always 40.}
+#' }
+#' @section Input file specification:
+#' A CSV file without a header line containing up to twelve rows and one
+#' column as follows.
+#' \enumerate{
+#' \item{Slide IDs, each 12 digits long.}
+#' }
+#' @seealso \code{\link{readControls}}, \code{\link{readComments}}, and
+#' \code{\link{readSamples}} for reading other submission forms and
+#' \code{\link{writeSampleSubmissionForm}} for usage examples.
 #' @importFrom assertive.base assert_all_are_not_false
-#' @importFrom assertive.numbers assert_all_are_less_than_or_equal_to
 #' @importFrom data.table fread
 #' @importFrom data.table data.table
-#' @importFrom magrittr %>%
-#' @importFrom magrittr %<>%
 #' @importFrom stats setNames
 #' @export
 readSlides <- function(file = "slides.csv")
 {
-  slides <- fread(file, sep = ",", header = FALSE, colClasses = "character")
-  slides %<>%
-    setNames("SlideId")
-  assert_all_are_less_than_or_equal_to(nrow(slides), 12, severity = "warning")
+  slides <- fread(file, sep = ",", header = FALSE, colClasses = "character")[[1]]
+  length(slides) <- 12
   assert_all_are_not_false(
-    stri_detect_regex(slides$SampleId, "^[0-9]{12}$"),
+    stri_detect_regex(slides, "^[0-9]{12}$"),
     severity = "warning"
   )
   data.table(
     SampleNumber = 1:96,
-    SlideId = rep(slides$SlideId, each = 8),
+    SlideId = rep(slides, each = 8),
     Subarray = PLATE_POSITIONS$Subarray,
     PlatePosition = PLATE_POSITIONS$PlatePosition,
     PercentDilution = 40
   )
 }
 
-#' @rdname readSlides
+#' Read SomaLogic Sample Submission Slides File
+#'
+#' @param file A string denoting the path to an input CSV file.  See Input file
+#' specification section.
+#' @return A \code{data.table} with 96 rows and 2 columns.
+#' \describe{
+#' \item{PlatePosition}{A letter followed by a number, constructed from the
+#' Subarray ("A" for 1, "B" for 2, etc.) and the slide number from 1 to 12.}
+#' \item{BarCode}{Sample barcode for QC, Calibrator, and Buffer samples, in the
+#' form "I" followed by 6 digits.}
+#' }
+#' @section Input file specification:
+#' A CSV file without a header line containing up to 96 rows and two
+#' columns as follows.
+#' \enumerate{
+#' \item{Plate positions from A1, A2, through to H12.}
+#' \item{Barcodes in the form "I" followed by 6 digits.}
+#' }
+#' @seealso \code{\link{readSlides}}, \code{\link{readComments}}, and
+#' \code{\link{readSamples}} for reading other submission forms and
+#' \code{\link{writeSampleSubmissionForm}} for usage examples.
+#' @importFrom magrittr %<>%
+#' @importFrom assertive.base assert_all_are_less_than_or_equal_to
 #' @export
 readControls <- function(file = "controls.csv")
 {
@@ -54,6 +88,7 @@ readControls <- function(file = "controls.csv")
 #' @rdname readSlides
 #' @importFrom assertive.sets assert_is_subset
 #' @importFrom dplyr left_join
+#' @importFrom magrittr %>%
 #' @importFrom magrittr %$%
 #' @importFrom stringi stri_trim_both
 #' @export
