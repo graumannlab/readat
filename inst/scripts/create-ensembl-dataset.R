@@ -8,20 +8,22 @@ source("inst/scripts/backend.R")
 
 load("data/aptamers.rda")
 
-entrezGeneIds <- aptamers$EntrezGeneId %>%
-  setNames(seq_along(.)) %>%
-  list_to_data.frame("index", "EntrezGeneId", stringsAsFactors = FALSE)
+entrezGeneIds <- with(
+  aptamers,
+  strsplit(EntrezGeneID, " +") %>%
+  setNames(AptamerId) %>%
+  list_to_data.frame("AptamerId", "EntrezGeneID", stringsAsFactors = FALSE)
+)
 
-entrezGeneAndEnsemblIdLookup <- mGetData(entrezGeneIds$EntrezGeneId, org.Hs.egENSEMBL) %>%
-  setNames(c("EntrezGeneId", "EnsemblId"))
+entrezGeneAndEnsemblIdLookup <- mGetData(entrezGeneIds$EntrezGeneID, org.Hs.egENSEMBL) %>%
+  setNames(c("EntrezGeneID", "EnsemblId"))
 ensemblIds <- inner_join(
   entrezGeneIds,
   entrezGeneAndEnsemblIdLookup,
-  by = "EntrezGeneId"
+  by = "EntrezGeneID"
 ) %>%
-  split(.$index) %>%
-  lapply(function(d) unique(d$EnsemblId[!is.na(d$EnsemblId)])) %>%
-  setNames(ids$SeqId[as.integer(names(.))])
+  split(.$AptamerId) %>%
+  lapply(function(d) unique(d$EnsemblId[!is.na(d$EnsemblId)]))
 
 
 save(
