@@ -1,6 +1,5 @@
 library(readat)
 library(magrittr)
-library(listless)
 library(dplyr)
 library(stringr)
 library(biomaRt)
@@ -12,58 +11,76 @@ source("inst/scripts/backend.R")
 load("data/aptamers.rda")
 
 uniProtIds <- aptamers %$%
-  unlist(UniProtId) %>%
+  strsplit(UniProt, " ") %>%
+  unlist %>%
   unique
 
-chromosomalFiles <- downloadChromosomalData(uniProtIds)
+chromosomalData <- downloadChromosomalData(uniProtIds)
 
-chromosomalData <- lapply(chromosomalFiles, readRDS)
+chromosomalData %<>%
+  mutate_(chromosome_name = ~ str_extract(chromosome_name, "(\\d{1,2}|X)")) %>%
+  rename_(
+    UniProt       = ~ uniprot_swissprot,
+    EntrezGeneID  = ~ entrezgene,
+    Chromosome    = ~ chromosome_name,
+    StartPosition = ~ start_position,
+    EndPosition   = ~ end_position
+  )
 
-chromosomalData <- combineChromosomalData(chromosomalData)
 
 # Some values not found using UniProt. Try again using EntrezGene.
 notFound <- setdiff(uniProtIds, chromosomalData$UniProtId)
 
-entrezGeneIds <- ids %>%
-  filter_(~ UniProtId %in% notFound) %$%
-  unlist(EntrezGeneId) %>%
+entrezGeneIds <- aptamers %>%
+  filter_(~ UniProt %in% notFound, ~ !is.na(EntrezGeneID), ~ Type != "Hybridization Control Elution") %$%
+  unlist(EntrezGeneID) %>%
   unique()
 
 
 
-chromosomalFiles2 <- downloadChromosomalData(entrezGeneIds, idType = "EntrezGene")
+chromosomalData2 <- downloadChromosomalData(entrezGeneIds, idType = "EntrezGene")
 
+chromosomalData2 %<>%
+  mutate_(
+    chromosome_name = ~ str_extract(chromosome_name, "(\\d{1,2}|X)"),
+    entrezgene = ~ as.character(entrezgene)
+  ) %>%
+  rename_(
+    UniProt       = ~ uniprot_swissprot,
+    EntrezGeneID  = ~ entrezgene,
+    Chromosome    = ~ chromosome_name,
+    StartPosition = ~ start_position,
+    EndPosition   = ~ end_position
+  )
 
-chromosomalData2 <- lapply(chromosomalFiles2, readRDS)
-
-chromosomalData2 <- combineChromosomalData(chromosomalData2)
-
-flatIds <- ids %>%
-  unnest_("UniProtId") %>%
-  unnest_("EntrezGeneId")
+flatIds <- aptamers %>%
+  mutate_(UniProt = ~ strsplit(UniProt, " ")) %>%
+  unnest_("UniProt") %>%
+  mutate_(EntrezGeneID = ~ strsplit(EntrezGeneID, " ")) %>%
+  unnest_("EntrezGeneID")
 
 
 
 
 joined <- flatIds %>%
   inner_join(
-    chromosomalData %>% select_(~ -EntrezGeneId),
-    by = "UniProtId"
+    chromosomalData %>% select_(~ -EntrezGeneID),
+    by = "UniProt"
   )
 
 joined2 <- flatIds %>%
   inner_join(
-    chromosomalData2 %>% select_(~ -UniProtId),
-    by = "EntrezGeneId"
+    chromosomalData2 %>% select_(~ -UniProt),
+    by = "EntrezGeneID"
   )
 
 chromosomalPositions <- bind_rows(joined, joined2) %$%
-  split(., SeqId) %>%
+  split(., AptamerId) %>%
   lapply(
     function(x)
     {
       x %>%
-        select_(~ UniProtId, ~ Chromosome, ~ StartPosition, ~ EndPosition) %>%
+        select_(~ UniProt, ~ Chromosome, ~ StartPosition, ~ EndPosition) %>%
         distinct_() %>%
         as.data.frame
     }

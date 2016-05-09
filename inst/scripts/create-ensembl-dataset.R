@@ -1,6 +1,5 @@
 library(readat)
 library(magrittr)
-library(listless)
 library(org.Hs.eg.db)
 library(dplyr)
 
@@ -12,7 +11,7 @@ entrezGeneIds <- with(
   aptamers,
   strsplit(EntrezGeneID, " +") %>%
   setNames(AptamerId) %>%
-  list_to_data.frame("AptamerId", "EntrezGeneID", stringsAsFactors = FALSE)
+  readat:::list_to_data.frame("AptamerId", "EntrezGeneID", stringsAsFactors = FALSE)
 )
 
 entrezGeneAndEnsemblIdLookup <- mGetData(entrezGeneIds$EntrezGeneID, org.Hs.egENSEMBL) %>%

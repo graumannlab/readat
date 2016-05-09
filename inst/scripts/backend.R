@@ -2,14 +2,12 @@ mGetData <- function(x, envir)
 {
   x <- as.character(x)
   mget(x[!is.na(x) & nzchar(x)], envir, ifnotfound = NA_character_) %>%
-    listless::list_to_data.frame(stringsAsFactors = FALSE)
+    readat:::list_to_data.frame(stringsAsFactors = FALSE)
 }
 
 
-downloadChromosomalData <- function(ids, outdir = tempfile("chromosome"),
-  idType = c("UniProt", "EntrezGene"))
+downloadChromosomalData <- function(ids, idType = c("UniProt", "EntrezGene"))
 {
-  idType <- match.arg(idType)
   # Create the 'mart' (ensembl, people)
   ensemblMart <- useMart(
     biomart = "ensembl",
@@ -22,50 +20,17 @@ downloadChromosomalData <- function(ids, outdir = tempfile("chromosome"),
     "chromosome_name", "start_position", "end_position"
   )
 
-  # Create a place to put them
-  dir.create(outdir, recursive = TRUE)
-
-  message("Saving the chromosome files in ", normalizePath(outdir))
-
-  # Since connecting to databases is dangerous, download values one at a time,
-  # and save to file
-  oneToN <- seq_along(ids)
-  outfiles <- file.path(outdir, paste0(oneToN, "_chromosome_", ids, ".rds"))
-
-  for(i in oneToN)
-  {
-    tryCatch(
-      {
-        result <- getBM(
-          attributes = attrs,
-          filters    = switch(
+  getBM(
+    attributes = attrs,
+    filters    = switch(
             idType,
             UniProt    = "uniprot_swissprot",
             EntrezGene = "entrezgene"
           ),
-          values     = ids[i],
-          mart       = ensemblMart,
-          uniqueRows = TRUE
-        )
-        saveRDS(result, outfiles[i])
-      },
-      error = function(e)
-      {
-        message(
-          sprintf(
-            "Failed to retrieve data from ensembl on iteration %d (%s ID = %s).",
-            i,
-            idType,
-            ids[i]
-          )
-        )
-        print(e)
-      }
-    )
-  }
-
-  # Return location of downloaded files
-  invisible(outfiles)
+    values     = ids,
+    mart       = ensemblMart,
+    uniqueRows = TRUE
+  )
 }
 
 combineChromosomalData <- function(chromosomalData)
