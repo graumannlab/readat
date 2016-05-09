@@ -10,7 +10,8 @@ source("inst/scripts/backend.R")
 
 load("data/aptamers.rda")
 
-uniProtIds <- aptamers %$%
+uniProtIds <- aptamers %>%
+  filter_(~ Type != "Hybridization Control Elution") %$%
   strsplit(UniProt, " ") %>%
   unlist %>%
   unique
@@ -32,7 +33,7 @@ chromosomalData %<>%
 notFound <- setdiff(uniProtIds, chromosomalData$UniProtId)
 
 entrezGeneIds <- aptamers %>%
-  filter_(~ UniProt %in% notFound, ~ !is.na(EntrezGeneID), ~ Type != "Hybridization Control Elution") %$%
+  filter_(~ UniProt %in% notFound, ~ !is.na(EntrezGeneID)) %$%
   unlist(EntrezGeneID) %>%
   unique()
 
