@@ -1,6 +1,15 @@
-#' @importFrom dplyr mutate_
-PLATE_POSITIONS <- expand.grid(Subarray = 1:8, Slide = 1:12) %>%
-    mutate_(PlatePosition = ~ paste0(LETTERS[Subarray], Slide))
+PLATE_POSITIONS <- within(
+  expand.grid(Subarray = 1:8, Slide = 1:12, KEEP.OUT.ATTRS = FALSE),
+  {
+    PlatePosition <- paste0(LETTERS[Subarray], Slide)
+    PlatePosition <- ordered(PlatePosition, PlatePosition)
+  }
+)
+
+orderPlatePosition <- function(pp)
+{
+  ordered(pp, levels = levels(PLATE_POSITIONS$PlatePosition))
+}
 
 #' Read SomaLogic Sample Submission Slides File
 #'
@@ -22,6 +31,10 @@ PLATE_POSITIONS <- expand.grid(Subarray = 1:8, Slide = 1:12) %>%
 #' \enumerate{
 #' \item{Slide IDs, each 12 digits long.}
 #' }
+#' @note For partially filled plates (where there are less than 96 samples),
+#' there isn't enough information in the file to programmatically determine
+#' which slide IDs correspond to which sample IDs.  In this case please manually
+#' create the slides dataset.
 #' @seealso \code{\link{readControls}}, \code{\link{readComments}}, and
 #' \code{\link{readSamples}} for reading other submission forms and
 #' \code{\link{writeSampleSubmissionForm}} for usage examples.
@@ -32,7 +45,9 @@ PLATE_POSITIONS <- expand.grid(Subarray = 1:8, Slide = 1:12) %>%
 #' @export
 readSlides <- function(file = "slides.csv")
 {
-  slides <- fread(file, sep = ",", header = FALSE, colClasses = "character")[[1]]
+  slides <- fread(
+    file, sep = ",", header = FALSE, colClasses = "character", select = 1
+  )[[1]]
   length(slides) <- 12
   assert_all_are_not_false(
     stri_detect_regex(slides, "^[0-9]{12}$"),
@@ -47,7 +62,7 @@ readSlides <- function(file = "slides.csv")
   )
 }
 
-#' Read SomaLogic Sample Submission Slides File
+#' Read SomaLogic Sample Submission Controls File
 #'
 #' @param file A string denoting the path to an input CSV file.  See Input file
 #' specification section.
@@ -69,23 +84,48 @@ readSlides <- function(file = "slides.csv")
 #' \code{\link{readSamples}} for reading other submission forms and
 #' \code{\link{writeSampleSubmissionForm}} for usage examples.
 #' @importFrom magrittr %<>%
-#' @importFrom assertive.base assert_all_are_less_than_or_equal_to
+#' @importFrom assertive.numbers assert_all_are_less_than_or_equal_to
 #' @export
 readControls <- function(file = "controls.csv")
 {
-  controls <- fread(file, sep = ",", nrows = 96, header = FALSE, na.strings = "")
-  controls %<>%
-    setNames(c("PlatePosition", "BarCode"))
+  controls <- fread(
+    file, sep = ",", nrows = 96, header = FALSE, na.strings = "",
+    select = 1:2, col.names = c("PlatePosition", "BarCode"))
   n_controls <- sum(!is.na(controls$BarCode))
   assert_all_are_less_than_or_equal_to(n_controls, 12, severity = "warning")
   assert_all_are_not_false(
     stri_detect_regex(controls$BarCode, "^I[0-9]{6}$"),
     severity = "warning"
   )
+  controls$PlatePosition <- orderPlatePosition(controls$PlatePosition)
   controls
 }
 
-#' @rdname readSlides
+#' Read SomaLogic Sample Submission Comments File
+#'
+#' @param file A string denoting the path to an input CSV file.  See Input file
+#' specification section.
+#' @return A \code{data.table} with 96 rows and 2 columns.
+#' \describe{
+#' \item{PlatePosition}{A letter followed by a number, constructed from the
+#' Subarray ("A" for 1, "B" for 2, etc.) and the slide number from 1 to 12.}
+#' \item{SampleNotes}{Either "red", "yellow", "turbid", "red, turbid", or
+#' "yellow, turbid", or no notes.}
+#' \item{AssayNotes}{Free text describing assay notes, particularly problems.}
+#' }
+#' @section Input file specification:
+#' A CSV file without a header line containing up to 96 rows and three
+#' columns as follows.
+#' \enumerate{
+#' \item{Plate positions. Not all positions need to be included, and they don't
+#' need to be in order.}
+#' \item{Sample notes. Either "red", "yellow", "turbid", "red, turbid", or
+#' "yellow, turbid", or no notes.}
+#' \item{Assay notes. Free text.}
+#' }
+#' @seealso \code{\link{readSlides}}, \code{\link{readControls}}, and
+#' \code{\link{readSamples}} for reading other submission forms and
+#' \code{\link{writeSampleSubmissionForm}} for usage examples.
 #' @importFrom assertive.sets assert_is_subset
 #' @importFrom dplyr left_join
 #' @importFrom magrittr %>%
@@ -94,9 +134,11 @@ readControls <- function(file = "controls.csv")
 #' @export
 readComments <- function(file = "comments.csv")
 {
-  comments <- fread(file, sep = ",", header = FALSE, na.strings = "", colClasses = "character")
-  comments %<>%
-    setNames(c("PlatePosition", "SampleNotes", "AssayNotes"))
+  comments <- fread(
+    file, sep = ",", header = FALSE, na.strings = "",
+    colClasses = "character", select = 1:3,
+    col.names = c("PlatePosition", "SampleNotes", "AssayNotes")
+  )
   assert_all_are_less_than_or_equal_to(nrow(comments), 96, severity = "warning")
   not_na <- !is.na(comments$SampleNotes)
   comments$SampleNotes[not_na] <- comments$SampleNotes[not_na] %>%
@@ -108,24 +150,48 @@ readComments <- function(file = "comments.csv")
     comments$SampleNotes, c("red", "yellow", "turbid", "red, turbid", "yellow, turbid", NA),
     severity = "warning"
   )
+  comments$PlatePosition <- orderPlatePosition(comments$PlatePosition)
   data.table(PlatePosition = PLATE_POSITIONS$PlatePosition) %>%
     left_join(comments, by = "PlatePosition")
 }
 
-#' @rdname readSlides
+#' Read SomaLogic Sample Submission Samples File
+#'
+#' @param file A string denoting the path to an input CSV file.  See Input file
+#' specification section.
+#' @return A \code{data.table} with 96 rows and 2 columns.
+#' \describe{
+#' \item{PlatePosition}{A letter followed by a number, constructed from the
+#' Subarray ("A" for 1, "B" for 2, etc.) and the slide number from 1 to 12.}
+#' \item{SampleId}{9 digits.}
+#' }
+#' @section Input file specification:
+#' A CSV file without a header line containing up to 96 rows and at least two
+#' columns as follows.
+#' \enumerate{
+#' \item{Plate positions. Not all positions need to be included, and they don't
+#' need to be in order.}
+#' \item{Samples IDs in the form of 9 digits, or "NO READ".}
+#' }
+#' Additional columns are ignored.
+#' @seealso \code{\link{readSlides}}, \code{\link{readComments}}, and
+#' \code{\link{readControls}} for reading other submission forms and
+#' \code{\link{writeSampleSubmissionForm}} for usage examples.
 #' @importFrom dplyr select_
 #' @export
 readSamples <- function(file = "samples.csv")
 {
-  samples <- fread(file, sep = ",", nrows = 96, header = FALSE, na.strings = "NO READ")[1:2]
-  samples %<>%
-    setNames(c("PlatePosition", "SampleId"))
+  samples <- fread(
+    file, sep = ",", nrows = 96, header = FALSE, na.strings = "NO READ",
+    select = 1:2, col.names = c("PlatePosition", "SampleId")
+  )
   n_controls <- sum(is.na(samples$SampleId))
   assert_all_are_less_than_or_equal_to(n_controls, 12, severity = "warning")
   assert_all_are_not_false(
     stri_detect_regex(samples$SampleId, "^[0-9]{9}$"),
     severity = "warning"
   )
+  samples$PlatePosition <- orderPlatePosition(samples$PlatePosition)
   samples
 }
 
@@ -225,7 +291,7 @@ createSampleSubmission <- function(slides, controls, comments, samples, sampleMa
 #'   slides, controls, comments, samples,
 #'   studyName = "Taheri01", studyId = "WCQ-16-002"
 #' )
-#' writeSampleSubmissionForm(submission)
+#' writeSampleSubmissionForm(submission, tempdir())
 #' }
 #' @importFrom openxlsx write.xlsx
 #' @importFrom pathological create_dirs
