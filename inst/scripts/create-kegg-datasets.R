@@ -1,7 +1,6 @@
 library(assertive)
 library(readat)
 library(magrittr)
-library(listless)
 library(dplyr)
 library(data.table)
 library(stringr)
@@ -13,51 +12,44 @@ source("inst/scripts/backend.R")
 
 load("data/aptamers.rda")
 
-uniProtIds <- aptamers %$%
-  unlist(UniProtId) %>%
+uniProtIds <- aptamers %>%
+  filter_(~ Type != "Hybridization Control Elution") %$%
+  strsplit(UniProt, " ") %>%
+  unlist %>%
   unique
 
+# KEGG not working?  https://support.bioconductor.org/p/77847
+options(KEGGREST_DEBUG=TRUE)
+keggData <- downloadKeggData(uniProtIds)
+saveRDS(keggData, "keggData.rds")
 
-keggFiles <- downloadKeggData(uniProtIds) # dir(choose.dir(getwd()), full.names = TRUE)
-keggFiles <- keggFiles[file.exists(keggFiles)]
-
-keggData <- lapply(keggFiles, readRDS)
 
 
-matches <- str_match(
-    basename(keggFiles),
-    "([[:digit:]]+)_KEGG_([[:alnum:]]+)\\.rds"
-  )
-foundUniProtIds  <- matches %>%
-  as.data.frame(stringsAsFactors = FALSE) %>%
-  setNames(c("FullMatch", "Number", "UniProtId")) %>%
-  mutate_(Number = ~ as.numeric(Number)) %>%
-  arrange_(~ Number) %>%
-  extract2("UniProtId")
+keggDefinitions <- combineKeggDefinitions(keggData, uniProtIds)
 
-keggDefinitions <- combineKeggDefinitions(keggData, foundUniProtIds)
+keggModules <- combineKeggModules(keggData, uniProtIds)
 
-keggModules <- combineKeggModules(keggData, foundUniProtIds)
-
-keggPathways <- combineKeggPathways(keggData, foundUniProtIds)
+keggPathways <- combineKeggPathways(keggData, uniProtIds)
 
 flatIds <- aptamers %>%
-  unnest_("UniProtId") %>%
-  unnest_("EntrezGeneId")
+  mutate_(UniProt = ~ strsplit(UniProt, " ")) %>%
+  unnest_("UniProt") %>%
+  mutate_(EntrezGeneID = ~ strsplit(EntrezGeneID, " ")) %>%
+  unnest_("EntrezGeneID")
 
 joinedDefinitions <- flatIds %>%
   inner_join(
     keggDefinitions,
-    by = "UniProtId",
+    by = "UniProt",
     copy = TRUE
   ) %>%
-  select_(~ SeqId, ~ UniProtId, ~ KeggId, ~ KeggDefinition, ~ KeggCytogenicLocation) %>%
+  select_(~ AptamerId, ~ UniProt, ~ KeggId, ~ KeggDefinition, ~ KeggCytogenicLocation) %>%
   distinct_
 
 keggDefinitions <- joinedDefinitions %>%
   as.data.frame %$%
-  split(., SeqId) %>%
-  lapply(select_, ~ - SeqId) %>%
+  split(., AptamerId) %>%
+  lapply(select_, ~ - AptamerId) %>%
   lapply(distinct_)
 
 save(
@@ -70,20 +62,20 @@ save(
 joinedModules <- flatIds %>%
   inner_join(
     keggModules,
-    by = "UniProtId"
+    by = "UniProt"
   ) %>%
-  select_(~ SeqId, ~ UniProtId, ~ KeggModuleId, ~ KeggModule) %>%
+  select_(~ AptamerId, ~ UniProt, ~ KeggModuleId, ~ KeggModule) %>%
   distinct_
 
 keggModules <- joinedModules %>%
   as.data.frame %$%
-  split(., SeqId) %>%
-  lapply(select_, ~ - SeqId) %>%
+  split(., AptamerId) %>%
+  lapply(select_, ~ - AptamerId) %>%
   lapply(distinct_)
 
 save(
   keggModules,
-  file = "data/keggModules1129.rda",
+  file = "data/keggModules.rda",
   compress = "xz"
 )
 
@@ -91,15 +83,15 @@ save(
 joinedPathways <- flatIds %>%
   inner_join(
     keggPathways,
-    by = "UniProtId"
+    by = "UniProt"
   ) %>%
-  select_(~ SeqId, ~ UniProtId, ~ KeggPathwayId, ~ KeggPathway) %>%
+  select_(~ AptamerId, ~ UniProt, ~ KeggPathwayId, ~ KeggPathway) %>%
   distinct_
 
 keggPathways <- joinedPathways %>%
   as.data.frame %$%
-  split(., SeqId) %>%
-  lapply(select_, ~ - SeqId) %>%
+  split(., AptamerId) %>%
+  lapply(select_, ~ - AptamerId) %>%
   lapply(distinct_)
 
 save(

@@ -23,10 +23,10 @@ downloadChromosomalData <- function(ids, idType = c("UniProt", "EntrezGene"))
   getBM(
     attributes = attrs,
     filters    = switch(
-            idType,
-            UniProt    = "uniprot_swissprot",
-            EntrezGene = "entrezgene"
-          ),
+      idType,
+      UniProt    = "uniprot_swissprot",
+      EntrezGene = "entrezgene"
+    ),
     values     = ids,
     mart       = ensemblMart,
     uniqueRows = TRUE
@@ -77,106 +77,38 @@ downloadGoData <- function(ids, outdir = tempfile("GO"),
   idType = c("UniProt", "EntrezGene"))
 {
   idType <- match.arg(idType)
+
   # Create the 'mart' (ensembl, people)
+  uniProtIds <- aptamers %>%
+    filter_(~ Type != "Hybridization Control Elution") %$%
+    strsplit(UniProt, " ") %>%
+    unlist %>%
+    unique
+
+  idType <- "UniProt"
   ensemblMart <- useMart(
     biomart = "ensembl",
     dataset = "hsapiens_gene_ensembl" # ensembl code for humans
   )
 
-  # Choose the columns to fetch
   ensemblAttrs <- listAttributes(ensemblMart)
-  goAttrs <- with(ensemblAttrs, name[str_detect(description, fixed("GO "))]) #space needed to exclude GOSlim terms
-  attrs <- c(
-    "uniprot_swissprot", "entrezgene",
-    goAttrs
+  # go attrs, ignoring "go_linkage_type"
+  goAttrs <- c("go_id", "name_1006", "definition_1006", "namespace_1003")
+
+
+  getBM(
+    attributes = c(idType, goAttrs),
+    filters    = switch(
+      idType,
+      UniProt    = "uniprot_swissprot",
+      EntrezGene = "entrezgene"
+    ),
+    values     = ids,
+    mart       = ensemblMart,
+    uniqueRows = TRUE
   )
-
-  # Create a place to put them
-  dir.create(outdir, recursive = TRUE)
-
-  message("Saving the GO files in ", normalizePath(outdir))
-
-  # Since connecting to databases is dangerous, download values one at a time,
-  # and save to file
-  oneToN <- seq_along(ids)
-  outfiles <- file.path(outdir, paste0(oneToN, "_GO_", ids, ".rds"))
-
-  for(i in oneToN)
-  {
-    tryCatch(
-      {
-        result <- getBM(
-          attributes = attrs,
-          filters    = switch(
-            idType,
-            UniProt    = "uniprot_swissprot",
-            EntrezGene = "entrezgene"
-          ),
-          values     = ids[i],
-          mart       = ensemblMart,
-          uniqueRows = TRUE
-        )
-        saveRDS(result, outfiles[i])
-      },
-      error = function(e)
-      {
-        message(
-          sprintf(
-            "Failed to retrieve data from ensembl on iteration %d (%s ID = %s).",
-            i,
-            idType,
-            ids[i]
-          )
-        )
-        print(e)
-      }
-    )
-  }
-
-  # Return location of downloaded files
-  invisible(outfiles)
 }
 
-combineGoData <- function(goData)
-{
-  by_namespace <- goData %>%
-    lapply(
-      function(x)
-      {
-        if(nrow(x) == 0)
-        {
-          return(
-            data.frame(
-              UniProtId        = character(),
-              EntrezGeneId     = character(),
-              GoId             = character(),
-              GoName           = character(),
-              GoDefinition     = character(),
-              GoNamespace      = character(),
-              stringsAsFactors = FALSE
-            )
-          )
-        }
-        x %>%
-          mutate_(
-            EntrezGeneId = ~ as.character(entrezgene)) %>%
-          select_(
-            UniProtId     = ~ uniprot_swissprot,
-            EntrezGeneId  = ~ EntrezGeneId,
-            GoId          = ~ go_id,
-            GoName        = ~ name_1006,
-            GoDefinition  = ~ definition_1006,
-            GoNamespace   = ~ namespace_1003
-          ) %>%
-          distinct_()
-      }
-    ) %>%
-    bind_rows() %>%
-    as.data.table %$%
-    split(., GoNamespace)
-  by_namespace <- by_namespace[nzchar(names(by_namespace))]
-  lapply(by_namespace, select_, ~ - GoNamespace)
-}
 
 downloadUniprotKeywords <- function(ids, outdir = tempfile("uniprot_keywords"))
 {
@@ -220,31 +152,22 @@ downloadUniprotKeywords <- function(ids, outdir = tempfile("uniprot_keywords"))
   invisible(outfiles)
 }
 
-downloadKeggData <- function(ids, outdir = tempfile("KEGG"))
+downloadKeggData <- function(uniProtIds)
 {
-  # Create a place to put them
-  dir.create(outdir, recursive = TRUE)
-
-  message("Saving the KEGG files in ", normalizePath(outdir))
-
-  oneToN <- seq_along(uniProtIds)
-  outfiles <- file.path(outdir, paste0(oneToN, "_KEGG_", uniProtIds, ".rds"))
-
-  for(i in oneToN)
-  {
-    message("UniProt ID = ", uniProtIds[i])
-    hsaIds <- keggConv("hsa", paste0("up:", uniProtIds[i]))
-    if(is_empty(hsaIds))
+  lapply(
+    seq_along(uniProtIds),
+    function(i)
     {
-      message("No KEGG ID corresponding to ", uniProtIds[i])
-      next
+      message("UniProt ID = ", uniProtIds[i])
+      hsaIds <- keggConv("hsa", paste0("uniprot:", uniProtIds[i]))
+      if(is_empty(hsaIds))
+      {
+        message("No KEGG ID corresponding to ", uniProtIds[i])
+        return(character())
+      }
+      keggGet(hsaIds) %>% setNames(hsaIds)
     }
-    result <- keggGet(hsaIds) %>% setNames(hsaIds)
-    saveRDS(result, outfiles[i])
-  }
-
-  # Return location of downloaded files
-  invisible(outfiles)
+  )
 }
 
 combineKeggDefinitions <- function(keggData, uniProtIds)
@@ -254,13 +177,13 @@ combineKeggDefinitions <- function(keggData, uniProtIds)
     {
       lapply(
         kegg,
-        function(keggid)  # loop on a KEGG ID level
+        function(keggDataI)  # loop on a KEGG ID level
         {
           with(
-            keggid,
+            keggDataI,
             {
               d <- data.frame(
-                UniProtId             = uniProtId,
+                UniProt               = uniProtId,
                 KeggId                = unname(ENTRY),
                 KeggDefinition        = DEFINITION,
                 KeggCytogenicLocation = POSITION,
@@ -287,20 +210,20 @@ combineKeggModules <- function(keggData, uniProtIds)
     {
       lapply(
         kegg,
-        function(keggid)  # loop on a KEGG ID level
+        function(keggDataI)  # loop on a KEGG ID level
         {
-          if(is.null(keggid$MODULE))
+          if(is.null(keggDataI$MODULE))
           {
             return(NULL)
           }
           with(
-            keggid,
+            keggDataI,
             {
               d <- data.frame(
-                UniProtId             = uniProtId,
-                KeggModuleId         = names(MODULE),
-                KeggModule           = MODULE,
-                stringsAsFactors      = FALSE
+                UniProt             = uniProtId,
+                KeggModuleId        = names(MODULE),
+                KeggModule          = MODULE,
+                stringsAsFactors    = FALSE
               )
             }
           )
@@ -323,17 +246,17 @@ combineKeggPathways <- function(keggData, uniProtIds)
     {
       lapply(
         kegg,
-        function(keggid)  # loop on a KEGG ID level
+        function(keggDataI)  # loop on a KEGG ID level
         {
-          if(is.null(keggid$PATHWAY))
+          if(is.null(keggDataI$PATHWAY))
           {
             return(NULL)
           }
           with(
-            keggid,
+            keggDataI,
             {
               d <- data.frame(
-                UniProtId             = uniProtId,
+                UniProt               = uniProtId,
                 KeggPathwayId         = names(PATHWAY),
                 KeggPathway           = PATHWAY,
                 stringsAsFactors      = FALSE

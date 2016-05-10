@@ -89,6 +89,6 @@ chromosomalPositions <- bind_rows(joined, joined2) %$%
 
 save(
   chromosomalPositions,
-  file = "data/chromosome1129.rda",
+  file = "data/chromosome.rda",
   compress = "xz"
 )
