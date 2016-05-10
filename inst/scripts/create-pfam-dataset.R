@@ -1,6 +1,5 @@
 library(readat)
 library(magrittr)
-library(listless)
 library(dplyr)
 library(org.Hs.eg.db)
 library(AnnotationDbi)
@@ -10,12 +9,15 @@ source("inst/scripts/backend.R")
 
 load("data/aptamers.rda")
 
+a <- aptamers %>%
+  filter_(~ Type != "Hybridization Control Elution")
 
-entrezGeneIds <- aptamers$EntrezGeneId %>%
-  setNames(aptamers$SeqId) %>%
-  list_to_data.frame("SeqId", "EntrezGeneId", stringsAsFactors = FALSE)
+entrezGeneIds <- a %$%
+  strsplit(EntrezGeneID, " ") %>%
+  setNames(a$AptamerId) %>%
+  readat:::list_to_data.frame("AptamerId", "EntrezGeneID", stringsAsFactors = FALSE)
 
-pfam <- entrezGeneIds$EntrezGeneId %>% lapply(
+pfamData <- entrezGeneIds$EntrezGeneID %>% lapply(
   function(egId)
   {
     tryCatch(
@@ -26,30 +28,30 @@ pfam <- entrezGeneIds$EntrezGeneId %>% lapply(
         error = function(e) character()
       )
   }
-) %>% setNames(entrezGeneIds$EntrezGeneId) %>%
-  list_to_data.frame("EntrezGeneId", "PfamId", stringsAsFactors = FALSE)
+) %>% setNames(entrezGeneIds$EntrezGeneID) %>%
+  readat:::list_to_data.frame("EntrezGeneID", "PfamId", stringsAsFactors = FALSE)
 
-pfam$PfamDescription <- pfam$PfamId %>%
+pfamData$PfamDescription <- pfamData$PfamId %>%
   BiocGenerics::mget(envir = PFAMDE, ifnotfound = NA_character_) %>%
   unlist %>%
   unname
 
 joined <- entrezGeneIds %>%
   inner_join(
-    pfam,
-    by = c("EntrezGeneId")
+    pfamData,
+    by = c("EntrezGeneID")
   )
 
 pfam <- joined %>%
-  split(.$SeqId) %>%
-  lapply(select_, ~ EntrezGeneId, ~ PfamId, ~ PfamDescription) %>%
+  split(.$AptamerId) %>%
+  lapply(select_, ~ - AptamerId) %>%
   lapply(distinct_)
 
 # Merge in cases where PFAM ids were not found
-notFound <- setdiff(ids$SeqId, names(pfam))
+notFound <- setdiff(a$AptamerId, names(pfam))
 notFoundList <- vector("list", length(notFound)) %>%
   setNames(notFound)
-pfam <- pfam %>% c(notFoundList)
+pfam %<>% c(notFoundList)
 
 save(
   pfam,
