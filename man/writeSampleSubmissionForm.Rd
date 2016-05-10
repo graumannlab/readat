@@ -39,7 +39,7 @@ submission <- createSampleSubmission(
   slides, controls, comments, samples,
   studyName = "Taheri01", studyId = "WCQ-16-002"
 )
-writeSampleSubmissionForm(submission)
+writeSampleSubmissionForm(submission, tempdir())
 }
 }
 \seealso{
