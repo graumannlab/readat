@@ -35,6 +35,17 @@ need to be in order.}
 \item{Assay notes. Free text.}
 }
 }
+\examples{
+\dontrun{
+# See ?writeSampleSubmissionForm for a more complete example
+withr::with_dir(
+  system.file("extdata", package = "readat"),
+  {
+    (comments <- readComments())
+  }
+)
+}
+}
 \seealso{
 \code{\link{readSlides}}, \code{\link{readControls}}, and
 \code{\link{readSamples}} for reading other submission forms and

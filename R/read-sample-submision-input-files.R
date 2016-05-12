@@ -38,9 +38,20 @@ orderPlatePosition <- function(pp)
 #' @seealso \code{\link{readControls}}, \code{\link{readComments}}, and
 #' \code{\link{readSamples}} for reading other submission forms and
 #' \code{\link{writeSampleSubmissionForm}} for usage examples.
+#' @examples
+#' \dontrun{
+#' # See ?writeSampleSubmissionForm for a more complete example
+#' withr::with_dir(
+#'   system.file("extdata", package = "readat"),
+#'   {
+#'     (slides <- readSlides())
+#'   }
+#' )
+#' }
 #' @importFrom assertive.base assert_all_are_not_false
 #' @importFrom data.table fread
 #' @importFrom data.table data.table
+#' @importFrom dplyr as.tbl
 #' @importFrom stats setNames
 #' @export
 readSlides <- function(file = "slides.csv")
@@ -53,13 +64,13 @@ readSlides <- function(file = "slides.csv")
     stri_detect_regex(slides, "^[0-9]{12}$"),
     severity = "warning"
   )
-  data.table(
+  as.tbl(data.table(
     SampleNumber = 1:96,
     SlideId = rep(slides, each = 8),
     Subarray = PLATE_POSITIONS$Subarray,
     PlatePosition = PLATE_POSITIONS$PlatePosition,
     PercentDilution = 40
-  )
+  ))
 }
 
 #' Read SomaLogic Sample Submission Controls File
@@ -83,6 +94,16 @@ readSlides <- function(file = "slides.csv")
 #' @seealso \code{\link{readSlides}}, \code{\link{readComments}}, and
 #' \code{\link{readSamples}} for reading other submission forms and
 #' \code{\link{writeSampleSubmissionForm}} for usage examples.
+#' @examples
+#' \dontrun{
+#' # See ?writeSampleSubmissionForm for a more complete example
+#' withr::with_dir(
+#'   system.file("extdata", package = "readat"),
+#'   {
+#'     (controls <- readControls())
+#'   }
+#' )
+#' }
 #' @importFrom magrittr %<>%
 #' @importFrom assertive.numbers assert_all_are_less_than_or_equal_to
 #' @export
@@ -98,7 +119,7 @@ readControls <- function(file = "controls.csv")
     severity = "warning"
   )
   controls$PlatePosition <- orderPlatePosition(controls$PlatePosition)
-  controls
+  as.tbl(controls)
 }
 
 #' Read SomaLogic Sample Submission Comments File
@@ -126,6 +147,16 @@ readControls <- function(file = "controls.csv")
 #' @seealso \code{\link{readSlides}}, \code{\link{readControls}}, and
 #' \code{\link{readSamples}} for reading other submission forms and
 #' \code{\link{writeSampleSubmissionForm}} for usage examples.
+#' @examples
+#' \dontrun{
+#' # See ?writeSampleSubmissionForm for a more complete example
+#' withr::with_dir(
+#'   system.file("extdata", package = "readat"),
+#'   {
+#'     (comments <- readComments())
+#'   }
+#' )
+#' }
 #' @importFrom assertive.sets assert_is_subset
 #' @importFrom dplyr left_join
 #' @importFrom magrittr %>%
@@ -177,6 +208,16 @@ readComments <- function(file = "comments.csv")
 #' @seealso \code{\link{readSlides}}, \code{\link{readComments}}, and
 #' \code{\link{readControls}} for reading other submission forms and
 #' \code{\link{writeSampleSubmissionForm}} for usage examples.
+#' @examples
+#' \dontrun{
+#' # See ?writeSampleSubmissionForm for a more complete example
+#' withr::with_dir(
+#'   system.file("extdata", package = "readat"),
+#'   {
+#'     (samples <- readSamples())
+#'   }
+#' )
+#' }
 #' @importFrom dplyr select_
 #' @export
 readSamples <- function(file = "samples.csv")
@@ -192,7 +233,7 @@ readSamples <- function(file = "samples.csv")
     severity = "warning"
   )
   samples$PlatePosition <- orderPlatePosition(samples$PlatePosition)
-  samples
+  as.tbl(samples)
 }
 
 #' Create a SomaLogic Sample Submission Form

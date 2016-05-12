@@ -39,6 +39,17 @@ column as follows.
 \item{Slide IDs, each 12 digits long.}
 }
 }
+\examples{
+\dontrun{
+# See ?writeSampleSubmissionForm for a more complete example
+withr::with_dir(
+  system.file("extdata", package = "readat"),
+  {
+    (slides <- readSlides())
+  }
+)
+}
+}
 \seealso{
 \code{\link{readControls}}, \code{\link{readComments}}, and
 \code{\link{readSamples}} for reading other submission forms and
