@@ -1,6 +1,7 @@
 #' Get sequences with the largest between group variation
 #'
-#' Get the sequences with the largest between group variation in mean log intensity.
+#' Get the sequences with the largest between group variation in mean log
+#' intensity.
 #' @param x An object of class LongSomaLogicData.
 #' @param n An integer of the number of sequences to return, passed to
 #' \code{\link[dplyr]{top_n}}.
@@ -8,7 +9,8 @@
 #' defines the groups to split by.
 #' @param ... Passed to and from methods, but currently unused.
 #' @export
-getSequencesWithLargestBetweenGroupVariation <- function(x, n = 10, group = ~ SampleGroup, ...)
+getSequencesWithLargestBetweenGroupVariation <- function(x, n = 10,
+  group = ~ SampleGroup, ...)
 {
   UseMethod("getSequencesWithLargestBetweenGroupVariation")
 }
@@ -20,7 +22,8 @@ getSequencesWithLargestBetweenGroupVariation <- function(x, n = 10, group = ~ Sa
 #' @importFrom utils head
 #' @importFrom magrittr %>%
 #' @export
-getSequencesWithLargestBetweenGroupVariation.LongSomaLogicData <- function(x, n = 10, group = ~ SampleGroup, ...)
+getSequencesWithLargestBetweenGroupVariation.LongSomaLogicData <- function(x,
+  n = 10, group = ~ SampleGroup, ...)
 {
   sequenceData <- getSequenceData(x)
   intensityByGroup <- x %>%

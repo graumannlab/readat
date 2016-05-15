@@ -125,7 +125,8 @@ list_names0 <- function(l, sep = "|")
 #' }
 #' @importFrom tidyr separate
 #' @noRd
-list_to_data.frame <- function(l, names_variable = paste0("names", seq_len(list_depth(l))),
+list_to_data.frame <- function(l,
+  names_variable = paste0("names", seq_len(list_depth(l))),
   values_variable = "values", stringsAsFactors = getOption("stringsAsFactors"))
 {
   ul <- unlist(l, use.names = FALSE)

@@ -178,7 +178,8 @@ readComments <- function(file = "comments.csv")
     strsplit("[, ]+") %>%     # standardize separator
     vapply(paste, collapse = ", ", character(1))
   assert_is_subset(
-    comments$SampleNotes, c("red", "yellow", "turbid", "red, turbid", "yellow, turbid", NA),
+    comments$SampleNotes,
+    c("red", "yellow", "turbid", "red, turbid", "yellow, turbid", NA),
     severity = "warning"
   )
   comments$PlatePosition <- orderPlatePosition(comments$PlatePosition)
@@ -279,7 +280,9 @@ readSamples <- function(file = "samples.csv")
 #' @importFrom dplyr bind_cols
 #' @importFrom magrittr extract
 #' @export
-createSampleSubmission <- function(slides, controls, comments, samples, sampleMatrix = c("EDTA-Plasma", "Sodium Citrate Plasma", "Serum"), siteId = "WCQ", studyName = "", studyId = "", runName = "Set A")
+createSampleSubmission <- function(slides, controls, comments, samples,
+  sampleMatrix = c("EDTA-Plasma", "Sodium Citrate Plasma", "Serum"),
+  siteId = "WCQ", studyName = "", studyId = "", runName = "Set A")
 {
   sampleMatrix <- match.arg(sampleMatrix)
   submission <- slides %>%

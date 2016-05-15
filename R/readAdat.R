@@ -96,8 +96,8 @@ utils::globalVariables("NormScale_0_005")
 #' @importFrom data.table setnames
 #' @export
 #' @author Richard Cotton
-readAdat <- function(file, keepOnlyPasses = TRUE, keepOnlySamples = TRUE, dateFormat = "%Y-%m-%d",
-  verbose = getOption("verbose"))
+readAdat <- function(file, keepOnlyPasses = TRUE, keepOnlySamples = TRUE,
+  dateFormat = "%Y-%m-%d",  verbose = getOption("verbose"))
 {
   # stri_read_lines and fead don't behave well with file connections
   # Also, the logic gets complicated because the position in the file
@@ -224,7 +224,11 @@ WideSomaLogicData <- function(sampleAndIntensityData, sequenceData, metadata,
   setattr(sampleAndIntensityData, "SequenceData", sequenceData)
   setattr(sampleAndIntensityData, "Metadata", metadata)
   setattr(sampleAndIntensityData, "Checksum", checksum)
-  setattr(sampleAndIntensityData, "class", c("WideSomaLogicData", "data.table", "data.frame"))
+  setattr(
+    sampleAndIntensityData,
+    "class",
+    c("WideSomaLogicData", "data.table", "data.frame")
+  )
   sampleAndIntensityData
 }
 
@@ -266,7 +270,11 @@ readMetadata <- function(file, headerRow, colDataRow, dateFormat)
   ]
   metadata %>%
     updateFields("Version", as.package_version) %>%
-    updateFields(c("CreatedDate", "ExpDate", "ProteinEffectiveDate"), as.Date, dateFormat) %>%
+    updateFields(
+      c("CreatedDate", "ExpDate", "ProteinEffectiveDate"),
+      as.Date,
+      dateFormat
+    ) %>%
     updateFields(plateTestFields, as.numeric)
 }
 
@@ -306,10 +314,17 @@ readSequenceData <- function(file, nSequenceFields, nSampleFields, skip,
   # Update column types.
   # SeqId and Target are compulsory.
   # Other common fields are updated if they exist.
-  calCols <- colnames(sequenceData)[stri_detect_regex(colnames(sequenceData), "^Cal_")]
+  cnames <- colnames(sequenceData)
+  calCols <- cnames[stri_detect_regex(cnames, "^Cal_")]
   sequenceData %<>%
-    updateFields(c("SeqId", "Target", "SomaId", "TargetFullName", "Organism", "Units"), factor) %>%
-    updateFields(c("UniProt", "EntrezGeneID", "EntrezGeneSymbol"), fixMultiValueSeparators) %>%
+    updateFields(
+      c("SeqId", "Target", "SomaId", "TargetFullName", "Organism", "Units"),
+      factor
+    ) %>%
+    updateFields(
+      c("UniProt", "EntrezGeneID", "EntrezGeneSymbol"),
+      fixMultiValueSeparators
+    ) %>%
     updateFields("ColCheck", fixFailFlag) %>%
     updateFields(c("CalReference", "Dilution", calCols), as.numeric)
 
@@ -317,8 +332,8 @@ readSequenceData <- function(file, nSequenceFields, nSampleFields, skip,
 }
 
 
-readSampleAndIntensityData <- function(file, nSequenceFields, nSampleFields, skip,
-  seqIds, verbose = getOption("verbose"))
+readSampleAndIntensityData <- function(file, nSequenceFields, nSampleFields,
+  skip, seqIds, verbose = getOption("verbose"))
 {
   # Read row data
   # Don't set nrows arg; just read to the end of the file.

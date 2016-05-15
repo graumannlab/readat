@@ -11,7 +11,8 @@
 #' extractSampleData("1.1k")
 #' @importFrom utils unzip
 #' @export
-extractSampleData <- function(somascanMenuVersion = c("1.3k", "1.1k"), intermediateDir = tempdir())
+extractSampleData <- function(somascanMenuVersion = c("1.3k", "1.1k"),
+  intermediateDir = tempdir())
 {
   somascanMenuVersion <- match.arg(somascanMenuVersion)
   if(!file.exists(intermediateDir))
@@ -26,6 +27,11 @@ extractSampleData <- function(somascanMenuVersion = c("1.3k", "1.1k"), intermedi
   unzip(zipFile, exdir = intermediateDir)
   file.path(
     intermediateDir,
-    paste("PLASMA", somascanMenuVersion, "HybNorm.MedNorm.Cal.20151030.adat", sep = ".")
+    paste(
+      "PLASMA",
+      somascanMenuVersion,
+      "HybNorm.MedNorm.Cal.20151030.adat",
+      sep = "."
+    )
   )
 }

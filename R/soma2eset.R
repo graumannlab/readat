@@ -17,7 +17,9 @@
 soma2eset <- function(somaObj, log2Transform = TRUE){
 
   # assayData
-  myIntensities <- getIntensities(somaObj, rowsContain = "sequences", reorder = TRUE)
+  myIntensities <- getIntensities(
+    somaObj, rowsContain = "sequences", reorder = TRUE
+  )
   myMeta <- getMetadata(somaObj)
 
   # fData

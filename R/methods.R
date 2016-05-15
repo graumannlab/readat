@@ -18,7 +18,8 @@
 #' @importFrom stringi stri_detect_regex
 #' @export
 #' @include readAdat.R
-melt.WideSomaLogicData <- function(data, ..., na.rm = FALSE, value.name = "Intensity")
+melt.WideSomaLogicData <- function(data, ..., na.rm = FALSE,
+  value.name = "Intensity")
 {
   isSeqColumn <- isSeqId(colnames(data))
   data <- copy(data)
@@ -51,7 +52,8 @@ getIntensities <- function(x, ...)
 #' @rdname WideSomaLogicDataAttributes
 #' @importFrom data.table copy
 #' @export
-getIntensities.WideSomaLogicData <- function(x, rowsContain = c("samples", "sequences"), reorder = FALSE, ...)
+getIntensities.WideSomaLogicData <- function(x,
+  rowsContain = c("samples", "sequences"), reorder = FALSE, ...)
 {
   x <- copy(x)
   class(x) <- c("data.table", "data.frame")
@@ -210,11 +212,6 @@ getChecksum <- function(x)
 {
   attr(x, "Checksum", exact = TRUE)
 }
-
-# calculateChecksum <- function(x)
-# {
-#   digest::digest(list(getMetadata(x), getSequenceData(x), getSampleData(x), getIntensities(x)), "sha1")
-# }
 
 #' @rdname WideSomaLogicDataAttributes
 #' @importFrom assertive.types assert_is_inherited_from
