@@ -196,6 +196,13 @@ readAdat <- function(file, keepOnlyPasses = TRUE, keepOnlySamples = TRUE,
 #' @importFrom data.table is.data.table
 #' @importFrom data.table copy
 #' @importFrom data.table setattr
+#' @examples
+#' wsld <- WideSomaLogicData(
+#'   data.frame(SampleStuff = letters, IntensityStuff = rnorm(26)),
+#'   data.frame(SequenceStuff = LETTERS),
+#'   list(MetadataStuff = Sys.Date())
+#' )
+#' str(wsld)
 #' @export
 WideSomaLogicData <- function(sampleAndIntensityData, sequenceData, metadata,
   checksum = paste0(rep.int("f", 40), collapse = ""))
