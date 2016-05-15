@@ -9,6 +9,13 @@
 #' @param log2Transform whether to log2 transform intensities or not
 #' @return ExpressionSet object
 #' @author Aditya Bhagwat
+#' @examples
+#' \donttest{
+#' somaFile <- extractSampleData()
+#' wideSomaData <- readAdat(somaFile)
+#' soma2eset(wideSomaData)
+#' unlink(somaFile)
+#' }
 #' @importFrom Biobase ExpressionSet
 #' @importFrom Biobase exprs exprs<-
 #' @importFrom Biobase pData

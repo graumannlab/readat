@@ -79,11 +79,12 @@ utils::globalVariables("NormScale_0_005")
 #' }
 #' @examples
 #' \donttest{
-#' soma_file <- extractSampleData()
-#' wide_soma_data <- readAdat(soma_file)
-#' str(wide_soma_data, list.len = 35)
-#' unlink(soma_file)
+#' somaFile <- extractSampleData()
+#' wideSomaData <- readAdat(somaFile)
+#' str(wideSomaData, list.len = 35)
+#' unlink(somaFile)
 #' }
+#' @include checkIds.R
 #' @importFrom assertive.files is_connection
 #' @importFrom assertive.properties is_scalar
 #' @importFrom assertive.types assert_is_a_string
@@ -99,7 +100,7 @@ utils::globalVariables("NormScale_0_005")
 readAdat <- function(file, keepOnlyPasses = TRUE, keepOnlySamples = TRUE,
   dateFormat = "%Y-%m-%d",  verbose = getOption("verbose"))
 {
-  # stri_read_lines and fead don't behave well with file connections
+  # stri_read_lines and fread don't behave well with file connections
   # Also, the logic gets complicated because the position in the file
   # keeps moving.
   if(is_connection(file))
