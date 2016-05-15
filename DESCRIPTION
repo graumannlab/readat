@@ -37,6 +37,12 @@ Extends:
     reshape2
 License: GPL-3
 LazyData: true
+biocViews:
+    GeneExpression,
+    DataImport,
+    Proteomics,
+    OneChannel,
+    ProprietaryPlatforms
 RoxygenNote: 5.0.1
 Collate:
     'checkIds.R'
