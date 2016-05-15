@@ -33,8 +33,6 @@ Suggests:
     knitr,
     rmarkdown,
     withr
-Extends:
-    reshape2
 License: GPL-3
 LazyData: true
 biocViews:

@@ -8,6 +8,13 @@
 #' @param group A formula, string or quoted column name of the column that
 #' defines the groups to split by.
 #' @param ... Passed to and from methods, but currently unused.
+#' @return A data table with \code{n} rows and the following columns.
+#' \describe{
+#'   \item{SeqId}{SomaLogic sequence identifier.}
+#'   \item{VariationBetweenGroups}{The largest mean log intensity within a
+#'   \code{group} divided by the smallest mean log intensity within a
+#'   \code{group}.}
+#' }
 #' @export
 getSequencesWithLargestBetweenGroupVariation <- function(x, n = 10,
   group = ~ SampleGroup, ...)
@@ -18,6 +25,7 @@ getSequencesWithLargestBetweenGroupVariation <- function(x, n = 10,
 #' @importFrom dplyr group_by_
 #' @importFrom dplyr summarize_
 #' @importFrom dplyr arrange_
+#' @importFrom dplyr filter_
 #' @importFrom dplyr desc
 #' @importFrom utils head
 #' @importFrom magrittr %>%
@@ -38,5 +46,6 @@ getSequencesWithLargestBetweenGroupVariation.LongSomaLogicData <- function(x,
     arrange_(~ desc(VariationBetweenGroups)) %>%
     head(n)
 
-  sequenceData[SeqId %in% bigBetweenGroupVariation$SeqId]
+  # sequenceData[SeqId %in% bigBetweenGroupVariation$SeqId]
+  sequenceData %>% filter_(~ SeqId %in% bigBetweenGroupVariation$SeqId)
 }

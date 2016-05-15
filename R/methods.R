@@ -15,13 +15,14 @@
 #' @importFrom data.table copy
 #' @importFrom data.table setkeyv
 #' @importFrom data.table melt.data.table
+#' @importFrom reshape2 melt
 #' @importFrom stringi stri_detect_regex
 #' @export
 #' @include readAdat.R
 melt.WideSomaLogicData <- function(data, ..., na.rm = FALSE,
   value.name = "Intensity")
 {
-  isSeqColumn <- isSeqId(colnames(data))
+  isSeqColumn <- colnamesStartWithSeqId(data)
   data <- copy(data)
   class(data) <- c("data.table", "data.frame")
 
@@ -58,7 +59,7 @@ getIntensities.WideSomaLogicData <- function(x,
   x <- copy(x)
   class(x) <- c("data.table", "data.frame")
   rowsContain <- match.arg(rowsContain)
-  isSeqColumn <- isSeqId(colnames(x))
+  isSeqColumn <- colnamesStartWithSeqId(x)
   m <- as.matrix(x[, isSeqColumn, with = FALSE])
   rownames(m) <- x$ExtIdentifier
   colnames(m) <- substring(colnames(m), 7)
@@ -78,7 +79,7 @@ getIntensities.LongSomaLogicData <- function(x, ...)
 {
   x <- copy(x)
   class(x) <- c("data.table", "data.frame")
-  x[, list(SeqId, ExtIdentifier, Intensity)]
+  x[, c("SeqId", "ExtIdentifier", "Intensity"), with = FALSE]
 }
 
 #' @rdname WideSomaLogicDataAttributes
@@ -102,7 +103,7 @@ getSampleData.WideSomaLogicData <- function(x, ...)
 {
   x <- copy(x)
   class(x) <- c("data.table", "data.frame")
-  isSampleColumn <- !isSeqId(colnames(x))
+  isSampleColumn <- !colnamesStartWithSeqId(x)
   x[, isSampleColumn, with = FALSE]
 }
 
@@ -289,7 +290,7 @@ setIntensities <- function(x, value, prependSeqIdToColNames = NA)
   # Should column names be prefixed with "SeqId.", or do they have it already?
   if(is.na(prependSeqIdToColNames))
   {
-    seqIdPrefix <- isSeqId(colnames(value))
+    seqIdPrefix <- colnamesStartWithSeqId(value)
     prependSeqIdToColNames <- if(any(seqIdPrefix))
     {
       if(!all(seqIdPrefix))
@@ -347,7 +348,7 @@ setIntensities <- function(x, value, prependSeqIdToColNames = NA)
 #' wide_soma_data[1:5, `SeqId.3896-5_2`]
 #'
 #' # Ignore the intensity columns (as per getSampleData)
-#' j <- !isSeqId(colnames(wide_soma_data))
+#' j <- !colnamesStartWithSeqId(wide_soma_data)
 #' wide_soma_data[1:5, j, with = FALSE]
 #' unlink(soma_file)
 #' @importFrom data.table as.data.table
