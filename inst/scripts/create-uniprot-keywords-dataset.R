@@ -1,9 +1,8 @@
 library(readat)
 library(magrittr)
-library(listless)
 library(dplyr)
 library(stringr)
-library(biomaRt)
+library(UniProt.ws)
 library(rebus)
 library(tidyr)
 library(data.table)
@@ -12,32 +11,39 @@ source("inst/scripts/backend.R")
 
 load("data/aptamers.rda")
 
-uniProtIds <- aptamers %$%
-  unlist(UniProtId) %>%
+uniProtIds <- aptamers %>%
+  filter_(~ Type != "Hybridization Control Elution") %$%
+  strsplit(UniProt, " ") %>%
+  unlist %>%
   unique
 
-keywordFiles <- downloadUniprotKeywords(uniProtIds) # dir(choose.dir(getwd()), full.names = TRUE)
+homoSapiens <- as.integer(
+  availableUniprotSpecies(pattern = "^Homo sapiens$")$`taxon ID`
+)
+uniprotWebService <- UniProt.ws(taxId = homoSapiens)
 
-keywordData <- lapply(keywordFiles, readRDS)
+keywordData <- select(uniprotWebService, uniProtIds, "KEYWORDS", "UNIPROTKB")
 
-keywordData <- keywordData %>%
-  bind_rows() %>%
-  as.data.table
+keywordData %<>%
+  setNames(c("UniProt", "Keyword")) %>%
+  as.data.table %>%
+  mutate_(Keyword = ~ strsplit(Keyword, "; ", fixed = TRUE)) %>%
+  unnest_("Keyword")
 
 flatIds <- aptamers %>%
-  unnest_("UniProtId")
+  unnest_("UniProt")
 
 joined <- flatIds %>%
   inner_join(
     keywordData,
-    by = "UniProtId"
+    by = "UniProt"
   ) %>%
-  select_(~ SeqId, ~ UniProtId, ~ Keyword)
+  select_(~ AptamerId, ~ UniProt, ~ Keyword)
 
 uniprotKeywords <- joined %>%
   as.data.frame %$%
-  split(., SeqId) %>%
-  lapply(select_, ~ UniProtId, ~ Keyword) %>%
+  split(., AptamerId) %>%
+  lapply(select_, ~ UniProt, ~ Keyword) %>%
   lapply(distinct_)
 
 save(
