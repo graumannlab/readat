@@ -4,7 +4,8 @@
 \alias{melt.WideSomaLogicData}
 \title{Melt a WideSomaLogicData object}
 \usage{
-melt.WideSomaLogicData(data, ..., na.rm = FALSE, value.name = "Intensity")
+\method{melt}{WideSomaLogicData}(data, ..., na.rm = FALSE,
+  value.name = "Intensity")
 }
 \arguments{
 \item{data}{An object of class \code{WideSomaLogicData}.}

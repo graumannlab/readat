@@ -17,6 +17,14 @@ ExpressionSet object
 \description{
 Convert WideSomaLogicData into ExpressionSet
 }
+\examples{
+\donttest{
+somaFile <- extractSampleData()
+wideSomaData <- readAdat(somaFile)
+soma2eset(wideSomaData)
+unlink(somaFile)
+}
+}
 \author{
 Aditya Bhagwat
 }

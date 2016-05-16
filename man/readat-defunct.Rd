@@ -17,6 +17,9 @@ setSequenceInfo(...)
 \arguments{
 \item{...}{Arguments to functions you shouldn't use.}
 }
+\value{
+Possibly nonsense; don't use these functions.
+}
 \description{
 Functions that are no longer used.
 }

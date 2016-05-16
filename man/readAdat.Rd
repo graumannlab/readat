@@ -51,10 +51,10 @@ Reads a SomaLogic ADAT data file.
 }
 \examples{
 \donttest{
-soma_file <- extractSampleData()
-wide_soma_data <- readAdat(soma_file)
-str(wide_soma_data, list.len = 35)
-unlink(soma_file)
+somaFile <- extractSampleData()
+wideSomaData <- readAdat(somaFile)
+str(wideSomaData, list.len = 35)
+unlink(somaFile)
 }
 }
 \author{

@@ -18,7 +18,17 @@ defines the groups to split by.}
 
 \item{...}{Passed to and from methods, but currently unused.}
 }
+\value{
+A data table with \code{n} rows and the following columns.
+\describe{
+  \item{SeqId}{SomaLogic sequence identifier.}
+  \item{VariationBetweenGroups}{The largest mean log intensity within a
+  \code{group} divided by the smallest mean log intensity within a
+  \code{group}.}
+}
+}
 \description{
-Get the sequences with the largest between group variation in mean log intensity.
+Get the sequences with the largest between group variation in mean log
+intensity.
 }
 

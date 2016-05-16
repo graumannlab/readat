@@ -16,7 +16,18 @@ WideSomaLogicData(sampleAndIntensityData, sequenceData, metadata,
 
 \item{checksum}{A string containing a SHA1 checksum.}
 }
+\value{
+An object of class \code{WideSomaLogicData}.
+}
 \description{
 Creates and object of class \code{WideSomaLogicData}.
+}
+\examples{
+wsld <- WideSomaLogicData(
+  data.frame(SampleStuff = letters, IntensityStuff = rnorm(26)),
+  data.frame(SequenceStuff = LETTERS),
+  list(MetadataStuff = Sys.Date())
+)
+str(wsld)
 }
 
