@@ -1,8 +1,5 @@
 # setup -------------------------------------------------------------------
 
-library(reshape2)
-library(stringi)
-
 wide <- readAdat(extractSampleData(), keepOnlyPasses = FALSE)
 long <- melt(wide)
 
@@ -11,7 +8,7 @@ long <- melt(wide)
 test_that(
   "melt for WideSomaLogicData objects returns an object of class LongSomaLogicData",
   {
-    actual <- melt(wide)
+    actual <- long
     expect_is(actual, c("LongSomaLogicData", "data.table", "data.frame"))
 
     expect_identical(actual, long)
@@ -126,14 +123,13 @@ test_that(
 
 
 
-library(data.table)
 test_that(
   "data.table can use indexing with with = FALSE",
   {
-    DT <- data.table(x = 1:5, y = letters[1:5])
+    DT <- data.table::data.table(x = 1:5, y = letters[1:5])
     j <- c(FALSE, TRUE)
     actual <- DT[, j, with = FALSE]
-    expected <- data.table(y = letters[1:5])
+    expected <-  data.table::data.table(y = letters[1:5])
     expect_equal(actual, expected)
   }
 )
