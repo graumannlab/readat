@@ -10,12 +10,10 @@
 #' @return ExpressionSet object
 #' @author Aditya Bhagwat
 #' @examples
-#' \donttest{
 #' somaFile <- extractSampleData()
 #' wideSomaData <- readAdat(somaFile)
 #' soma2eset(wideSomaData)
 #' unlink(somaFile)
-#' }
 #' @importFrom Biobase ExpressionSet
 #' @importFrom Biobase exprs exprs<-
 #' @importFrom Biobase pData

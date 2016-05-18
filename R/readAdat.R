@@ -78,12 +78,10 @@ utils::globalVariables("NormScale_0_005")
 #' \item{Checksum}{A SHA1 checksum to ensure file integrity.}
 #' }
 #' @examples
-#' \donttest{
 #' somaFile <- extractSampleData()
 #' wideSomaData <- readAdat(somaFile)
 #' str(wideSomaData, list.len = 35)
 #' unlink(somaFile)
-#' }
 #' @include checkIds.R
 #' @importFrom assertive.files is_connection
 #' @importFrom assertive.properties is_scalar
@@ -571,12 +569,10 @@ fixFailFlag <- function(x)
 #' @param x A character vector.  Typically the column names of sequence data.
 #' @return A logical vector with the same length as \code{x}.
 #' @examples
-#' \donttest{
 #' somaFile <- extractSampleData()
 #' wideSomaData <- readAdat(somaFile)
 #' colnamesStartWithSeqId(wideSomaData)
 #' unlink(somaFile)
-#' }
 #' @importFrom stringi stri_detect_regex
 #' @export
 colnamesStartWithSeqId <- function(x)

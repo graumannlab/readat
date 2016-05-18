@@ -136,7 +136,6 @@ getSampleData.LongSomaLogicData <- function(x, ...)
 #' sequence IDs.
 #' @seealso \code{\link{readAdat}}
 #' @examples
-#' \donttest{
 #' # Get the sample dataset
 #' soma_file <- extractSampleData()
 #' wide_soma_data <- readAdat(soma_file)
@@ -150,6 +149,7 @@ getSampleData.LongSomaLogicData <- function(x, ...)
 #' # Intensities of a WideSomaLogicData object are a matrix
 #' intWideSamp <- getIntensities(wide_soma_data)
 #' \dontrun{
+#' # Not run due to side effects of View
 #'   View(intWideSamp, "Wide intensities, samples per row")
 #' }
 #' intWideSeq <- getIntensities(                 # The transpose
@@ -166,22 +166,18 @@ getSampleData.LongSomaLogicData <- function(x, ...)
 #'   View(sampWide, "Wide sample data")
 #' }
 #'
-#' if(requireNamespace("reshape2"))
-#' {
-#'   # For LongSomaLogicData objects, the intensities are returned
-#'   # as a data.table
-#'   long_soma_data <- reshape2::melt(wide_soma_data)
-#'   intLong <- getIntensities(long_soma_data)
-#'   \dontrun{
-#'     View(intLong, "Long intensities")
-#'   }
-#'
-#'   # Sample data has a different shape now
-#'   sampLong <- getSampleData(long_soma_data)
-#'   \dontrun{
-#'     View(sampLong, "Long sample data")
-#'   }
+#' # For LongSomaLogicData objects, the intensities are returned
+#' # as a data.table
+#' long_soma_data <- reshape2::melt(wide_soma_data)
+#' intLong <- getIntensities(long_soma_data)
+#' \dontrun{
+#'   View(intLong, "Long intensities")
 #' }
+#'
+#' # Sample data has a different shape now
+#' sampLong <- getSampleData(long_soma_data)
+#' \dontrun{
+#'   View(sampLong, "Long sample data")
 #' }
 #' @name WideSomaLogicDataAttributes
 NULL

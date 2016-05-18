@@ -16,11 +16,9 @@ A logical vector with the same length as \code{x}.
 Checks if the input begins with "SeqID.".
 }
 \examples{
-\donttest{
 somaFile <- extractSampleData()
 wideSomaData <- readAdat(somaFile)
 colnamesStartWithSeqId(wideSomaData)
 unlink(somaFile)
-}
 }
 

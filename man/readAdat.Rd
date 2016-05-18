@@ -50,12 +50,10 @@ Return value also has three attributes.
 Reads a SomaLogic ADAT data file.
 }
 \examples{
-\donttest{
 somaFile <- extractSampleData()
 wideSomaData <- readAdat(somaFile)
 str(wideSomaData, list.len = 35)
 unlink(somaFile)
-}
 }
 \author{
 Richard Cotton

@@ -41,10 +41,10 @@
 #'
 #' # Compare to fread
 #' assertive.base::dont_stop(
-#'   fread("foo,bar\n1,a", colClasses = list(numeric = c("foo", "baz")))
+#'   data.table::fread("foo,bar\n1,a", colClasses = list(numeric = c("foo", "baz")))
 #' )
 #' assertive.base::dont_stop(
-#'   fread("foo,bar\n1,a", colClasses = c(foo = "numeric", baz = "numeric"))
+#'   data.table::fread("foo,bar\n1,a", colClasses = c(foo = "numeric", baz = "numeric"))
 #' )
 #' }
 #' @importFrom data.table fread

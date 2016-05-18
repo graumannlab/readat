@@ -21,8 +21,6 @@ mostly called for the side effect of writing this file.
 Writes a SomaLogic sample submission form to Excel XLSX file.
 }
 \examples{
-\dontrun{
-# Tests not run because data does not exist in readat yet!
 # Import the input files
 withr::with_dir(
   system.file("extdata", package = "readat"),
@@ -40,7 +38,6 @@ submission <- createSampleSubmission(
   studyName = "Taheri01", studyId = "WCQ-16-002"
 )
 writeSampleSubmissionForm(submission, tempdir())
-}
 }
 \seealso{
 \code{\link{readSlides}} and \code{\link{createSampleSubmission}}

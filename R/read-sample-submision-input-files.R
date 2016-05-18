@@ -39,7 +39,6 @@ orderPlatePosition <- function(pp)
 #' \code{\link{readSamples}} for reading other submission forms and
 #' \code{\link{writeSampleSubmissionForm}} for usage examples.
 #' @examples
-#' \dontrun{
 #' # See ?writeSampleSubmissionForm for a more complete example
 #' withr::with_dir(
 #'   system.file("extdata", package = "readat"),
@@ -47,7 +46,6 @@ orderPlatePosition <- function(pp)
 #'     (slides <- readSlides())
 #'   }
 #' )
-#' }
 #' @importFrom assertive.base assert_all_are_not_false
 #' @importFrom data.table fread
 #' @importFrom data.table data.table
@@ -95,7 +93,6 @@ readSlides <- function(file = "slides.csv")
 #' \code{\link{readSamples}} for reading other submission forms and
 #' \code{\link{writeSampleSubmissionForm}} for usage examples.
 #' @examples
-#' \dontrun{
 #' # See ?writeSampleSubmissionForm for a more complete example
 #' withr::with_dir(
 #'   system.file("extdata", package = "readat"),
@@ -103,7 +100,6 @@ readSlides <- function(file = "slides.csv")
 #'     (controls <- readControls())
 #'   }
 #' )
-#' }
 #' @importFrom magrittr %<>%
 #' @importFrom assertive.numbers assert_all_are_less_than_or_equal_to
 #' @export
@@ -148,7 +144,6 @@ readControls <- function(file = "controls.csv")
 #' \code{\link{readSamples}} for reading other submission forms and
 #' \code{\link{writeSampleSubmissionForm}} for usage examples.
 #' @examples
-#' \dontrun{
 #' # See ?writeSampleSubmissionForm for a more complete example
 #' withr::with_dir(
 #'   system.file("extdata", package = "readat"),
@@ -156,7 +151,6 @@ readControls <- function(file = "controls.csv")
 #'     (comments <- readComments())
 #'   }
 #' )
-#' }
 #' @importFrom assertive.sets assert_is_subset
 #' @importFrom dplyr left_join
 #' @importFrom magrittr %>%
@@ -210,7 +204,6 @@ readComments <- function(file = "comments.csv")
 #' \code{\link{readControls}} for reading other submission forms and
 #' \code{\link{writeSampleSubmissionForm}} for usage examples.
 #' @examples
-#' \dontrun{
 #' # See ?writeSampleSubmissionForm for a more complete example
 #' withr::with_dir(
 #'   system.file("extdata", package = "readat"),
@@ -218,7 +211,6 @@ readComments <- function(file = "comments.csv")
 #'     (samples <- readSamples())
 #'   }
 #' )
-#' }
 #' @importFrom dplyr select_
 #' @export
 readSamples <- function(file = "samples.csv")
@@ -317,8 +309,6 @@ createSampleSubmission <- function(slides, controls, comments, samples,
 #' mostly called for the side effect of writing this file.
 #' @seealso \code{\link{readSlides}} and \code{\link{createSampleSubmission}}
 #' @examples
-#' \dontrun{
-#' # Tests not run because data does not exist in readat yet!
 #' # Import the input files
 #' withr::with_dir(
 #'   system.file("extdata", package = "readat"),
@@ -336,7 +326,6 @@ createSampleSubmission <- function(slides, controls, comments, samples,
 #'   studyName = "Taheri01", studyId = "WCQ-16-002"
 #' )
 #' writeSampleSubmissionForm(submission, tempdir())
-#' }
 #' @importFrom openxlsx write.xlsx
 #' @importFrom pathological create_dirs
 #' @export

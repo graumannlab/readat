@@ -40,7 +40,6 @@ column as follows.
 }
 }
 \examples{
-\dontrun{
 # See ?writeSampleSubmissionForm for a more complete example
 withr::with_dir(
   system.file("extdata", package = "readat"),
@@ -48,7 +47,6 @@ withr::with_dir(
     (slides <- readSlides())
   }
 )
-}
 }
 \seealso{
 \code{\link{readControls}}, \code{\link{readComments}}, and
