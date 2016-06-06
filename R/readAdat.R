@@ -400,13 +400,6 @@ getNFields <- function(file, skip, verbose = getOption("verbose"))
   as.integer(sum(nzchar(y))) - 1L
 }
 
-#' @rdname readat-defunct
-#' @export
-readSomaLogic <- function(...)
-{
-  .Defunct("readAdat")
-}
-
 #' Is the value a pass
 #'
 #' Checks if a string is "PASS".

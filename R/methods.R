@@ -189,13 +189,6 @@ getSequenceData <- function(x)
   attr(x, "SequenceData", exact = TRUE)
 }
 
-#' @rdname readat-defunct
-#' @export
-getSequenceInfo <- function(...)
-{
-  .Defunct("getSequenceData")
-}
-
 #' @rdname WideSomaLogicDataAttributes
 #' @export
 getMetadata <- function(x)
@@ -219,13 +212,6 @@ setSequenceData <- function(x, value)
   assert_is_inherited_from(value, "data.table")
   setattr(x, "SequenceData", value)
   invisible(x)
-}
-
-#' @rdname readat-defunct
-#' @export
-setSequenceInfo <- function(...)
-{
-  .Defunct("setSequenceData")
 }
 
 #' @rdname WideSomaLogicDataAttributes
