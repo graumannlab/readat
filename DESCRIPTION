@@ -26,6 +26,7 @@ Imports:
     reshape2,
     stats,
     stringi,
+    SummarizedExperiment,
     testthat,
     tidyr (>= 0.2.0),
     utils
@@ -35,14 +36,14 @@ Suggests:
     withr
 License: GPL-3
 LazyData: true
-biocViews:
-    GeneExpression,
+biocViews: GeneExpression,
     DataImport,
     Proteomics,
     OneChannel,
     ProprietaryPlatforms
 RoxygenNote: 5.0.1
 Collate:
+    'SummarizedExperiment.R'
     'checkIds.R'
     'dataset-docs.R'
     'defunct.R'

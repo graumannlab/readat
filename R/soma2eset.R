@@ -4,20 +4,38 @@
 ###############################################################################
 
 
-#' Convert WideSomaLogicData into ExpressionSet
-#' @param somaObj WideSomaLogicData object
+#' Convert objects into ExpressionSets.
+#'
+#' Converts objects into \code{ExpressionSet}s.
+#' @param x An object to transform.  Currently only \code{WideSomaLogicData}
+#' objects are supported.
+#' @param somaObj A \code{WideSomaLogicData} object to transform.
 #' @param log2Transform whether to log2 transform intensities or not
 #' @return ExpressionSet object
 #' @author Aditya Bhagwat
 #' @examples
 #' somaFile <- extractSampleData()
 #' wideSomaData <- readAdat(somaFile)
-#' soma2eset(wideSomaData)
+#' as.ExpressionSet(wideSomaData)
 #' unlink(somaFile)
 #' @importFrom Biobase ExpressionSet
 #' @importFrom Biobase exprs exprs<-
 #' @importFrom Biobase pData
 #' @importFrom Biobase fData
+#' @export
+as.ExpressionSet <- function(x, log2Transform = TRUE, ...)
+{
+  UseMethod("as.ExpressionSet")
+}
+
+#' @rdname as.ExpressionSet
+#' @export
+as.ExpressionSet.WideSomaLogicData <- function(x, log2Transform = TRUE, ...)
+{
+  soma2eset(x, log2Transform = log2Transform)
+}
+
+#' @rdname as.ExpressionSet
 #' @export
 soma2eset <- function(somaObj, log2Transform = TRUE){
 
