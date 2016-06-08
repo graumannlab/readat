@@ -37,9 +37,9 @@ Sequence IDs.
 }
 \examples{
 # Each SeqID may have one, many, or zero associated KEGG descriptions
-getKeggDefinitions(c("2278-61_4", "3505-6_2", "4916-2_1"))
-getKeggModules(c("2278-61_4", "3505-6_2", "4916-2_1"))
-getKeggPathways(c("2278-61_4", "3505-6_2", "4916-2_1"))
+getKeggDefinitions(c("2278-61", "3505-6", "4916-2"))
+getKeggModules(c("2278-61", "3505-6", "4916-2"))
+getKeggPathways(c("2278-61", "3505-6", "4916-2"))
 
 # Get everything in the 1310 and 1129 panels.
 \dontrun{

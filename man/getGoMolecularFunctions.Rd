@@ -36,9 +36,9 @@ process, and cellular compartment.
 }
 \examples{
 # Each SeqID may have one, many, or zero associated GO descriptions
-getGoMolecularFunctions(c("2278-61_4", "3505-6_2", "4916-2_1"))
-getGoBiologicalProcesses(c("2278-61_4", "3505-6_2", "4916-2_1"))
-getGoCellularComponents(c("2278-61_4", "3505-6_2", "4916-2_1"))
+getGoMolecularFunctions(c("2278-61", "3505-6", "4916-2"))
+getGoBiologicalProcesses(c("2278-61", "3505-6", "4916-2"))
+getGoCellularComponents(c("2278-61", "3505-6", "4916-2"))
 
 # Get everything in the 1310 and 1129 panels.
 \dontrun{

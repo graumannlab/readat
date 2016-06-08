@@ -28,7 +28,7 @@ Gets the chromosomal positions associated with SomaLogic Sequence IDs.
 }
 \examples{
 # Each SeqID may have one, many, or zero associated chromosomal positions
-getChromosomalPositions(c("2278-61_4", "4703-87_2", "4916-2_1"))
+getChromosomalPositions(c("2278-61", "4703-87_2", "4916-2"))
 
 # Get everything in the 1310 and 1129 panels.
 \dontrun{

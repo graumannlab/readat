@@ -10,7 +10,7 @@
 #' Ensembl IDs.
 #' @examples
 #' # Each SeqID may have one, many, or zero associated Ensembl IDs
-#' getEnsemblIds(c("2278-61_4", "4703-87_2", "4916-2_1"))
+#' getEnsemblIds(c("2278-61", "4703-87", "4916-2"))
 #'
 #' # Get everything in the 1129 panel.
 #' \dontrun{
@@ -46,7 +46,7 @@ getEnsemblIds <- function(seqIds = NULL, simplify = FALSE)
 #' }
 #' @examples
 #' # Each SeqID may have one, many, or zero associated Ensembl IDs
-#' getUniProtKeywords(c("2278-61_4", "4703-87_2", "4916-2_1"))
+#' getUniProtKeywords(c("2278-61", "4703-87", "4916-2"))
 #'
 #' # Get everything in the 1310 and 1129 panels.
 #' \dontrun{
@@ -76,7 +76,7 @@ getUniProtKeywords <- function(seqIds = NULL, simplify = FALSE)
 #' }
 #' @examples
 #' # Each SeqID may have one, many, or zero associated chromosomal positions
-#' getChromosomalPositions(c("2278-61_4", "4703-87_2", "4916-2_1"))
+#' getChromosomalPositions(c("2278-61", "4703-87_2", "4916-2"))
 #'
 #' # Get everything in the 1310 and 1129 panels.
 #' \dontrun{
@@ -86,7 +86,7 @@ getUniProtKeywords <- function(seqIds = NULL, simplify = FALSE)
 #' @export
 getChromosomalPositions <- function(seqIds = NULL, simplify = FALSE)
 {
-  getData(seqIds, simplify, "chromosome", "chromosomalPositions")
+  getData(seqIds, simplify, "chromosomalPositions", "chromosomalPositions")
 }
 
 #' Get PFAM IDs by SeqID
@@ -106,7 +106,7 @@ getChromosomalPositions <- function(seqIds = NULL, simplify = FALSE)
 #' }
 #' @examples
 #' # Each SeqID may have one, many, or zero associated PFAM descriptions
-#' getPfam(c("2278-61_4", "4703-87_2", "4916-2_1"))
+#' getPfam(c("2278-61", "4703-87", "4916-2"))
 #'
 #' # Get everything in the 1310 and 1129 panels.
 #' \dontrun{
@@ -139,9 +139,9 @@ getPfam <- function(seqIds = NULL, simplify = FALSE)
 #' }
 #' @examples
 #' # Each SeqID may have one, many, or zero associated KEGG descriptions
-#' getKeggDefinitions(c("2278-61_4", "3505-6_2", "4916-2_1"))
-#' getKeggModules(c("2278-61_4", "3505-6_2", "4916-2_1"))
-#' getKeggPathways(c("2278-61_4", "3505-6_2", "4916-2_1"))
+#' getKeggDefinitions(c("2278-61", "3505-6", "4916-2"))
+#' getKeggModules(c("2278-61", "3505-6", "4916-2"))
+#' getKeggPathways(c("2278-61", "3505-6", "4916-2"))
 #'
 #' # Get everything in the 1310 and 1129 panels.
 #' \dontrun{
@@ -190,9 +190,9 @@ getKeggPathways <- function(seqIds = NULL, simplify = FALSE)
 #' }
 #' @examples
 #' # Each SeqID may have one, many, or zero associated GO descriptions
-#' getGoMolecularFunctions(c("2278-61_4", "3505-6_2", "4916-2_1"))
-#' getGoBiologicalProcesses(c("2278-61_4", "3505-6_2", "4916-2_1"))
-#' getGoCellularComponents(c("2278-61_4", "3505-6_2", "4916-2_1"))
+#' getGoMolecularFunctions(c("2278-61", "3505-6", "4916-2"))
+#' getGoBiologicalProcesses(c("2278-61", "3505-6", "4916-2"))
+#' getGoCellularComponents(c("2278-61", "3505-6", "4916-2"))
 #'
 #' # Get everything in the 1310 and 1129 panels.
 #' \dontrun{
@@ -228,7 +228,7 @@ getData <- function(seqIds = NULL, simplify = FALSE, dataName, dataElement)
   if(is.null(seqIds))
   {
     data(list = "aptamers", package = "readat", envir = e)
-    seqIds = e$aptamers$SeqId
+    seqIds = e$aptamers$AptamerId
   }
   data(list = dataName, package = "readat", envir = e)
   y <- e[[dataElement]][names(e[[dataElement]]) %in% seqIds]
