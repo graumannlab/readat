@@ -8,6 +8,8 @@ mGetData <- function(x, envir)
 
 downloadChromosomalData <- function(ids, idType = c("UniProt", "EntrezGene"))
 {
+  idType <- match.arg(idType)
+
   # Create the 'mart' (ensembl, people)
   ensemblMart <- useMart(
     biomart = "ensembl",
@@ -17,7 +19,7 @@ downloadChromosomalData <- function(ids, idType = c("UniProt", "EntrezGene"))
   # Choose the columns to fetch
   attrs <- c(
     "uniprot_swissprot", "entrezgene",
-    "chromosome_name", "start_position", "end_position"
+    "chromosome_name", "start_position", "end_position", "strand"
   )
 
   getBM(

@@ -8,7 +8,7 @@
 \alias{keggModules1129}
 \alias{keggPathways}
 \alias{keggPathways1129}
-\title{KEGG definitions, modules, and pathways by SomaLogic SeqID}
+\title{KEGG definitions, modules, and pathways by SomaLogic AptamerId}
 \format{A list of data frames, each with the following columns.
 \describe{
 \item{UniProtId}{Character.  UniProt ID for the protein target.}
@@ -20,7 +20,7 @@ locus.}
 }}
 \description{
 A lookup of KEGG (Kyoto Encyclopedia of Genes and Genomes) definitions,
-modules, and pathways by SomaLogic Sequence ID.
+modules, and pathways by SomaLogic Aptamer ID.
 }
 \examples{
 head(keggDefinitions)

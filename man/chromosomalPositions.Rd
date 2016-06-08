@@ -3,16 +3,20 @@
 \docType{data}
 \name{chromosomalPositions}
 \alias{chromosomalPositions}
-\title{Chromosomal Positions by SomaLogic SeqID}
-\format{A list of data frames, each with the following columns.
+\title{Chromosomal Positions by SomaLogic AptamerId}
+\format{A \code{\link[GenomicRanges]{GRangesList}} with the hg38 genome.
+Each Apatmer ID has an element that is a \code{\link[GenomicRanges]{GRanges}}
+object with 3 metadata columns.
 \describe{
+\item{AptamerId}{Character, primary key.  The identifier of the aptamer sequence
+identified using SELEX.  It consists of an SomaLogic SeqId truncated at the
+underscore, to remove its sequence version number.}
  \item{UniProtId}{Character.  UniProt ID for the protein target.}
-\item{Chromsome}{Character.  Either '1' to '22' or 'X' . (Currently no 'Y' values.)}
-\item{StartPosition}{Integer. Distance in base pairs from the 5' end of the gene to the start of the protein.}
-\item{EndPosition}{Integer. Distance in base pairs from the 5' end of the gene to the end of the protein.}
+\item{EntrezGeneId}{Character.  EntrezGene IDs for the gene that produces
+the target protein.}
 }}
 \description{
-A lookup of chromosomal positions by SomaLogic Sequence ID.
+A lookup of chromosomal positions by SomaLogic Aptamer ID.
 }
 \examples{
 head(chromosomalPositions)

@@ -3,10 +3,10 @@
 \docType{data}
 \name{ensemblIds}
 \alias{ensemblIds}
-\title{Ensembl IDs by SomaLogic SeqID}
+\title{Ensembl IDs by SomaLogic AptamerId}
 \format{A list of character vectors.  The names of the list are SomaLogic Seq IDs, and the character vectors contain Ensembl IDs for each Seq ID.}
 \description{
-A lookup of Ensembl IDs by SomaLogic Sequence ID.
+A lookup of Ensembl IDs by SomaLogic Aptamer ID.
 }
 \examples{
 head(ensemblIds)

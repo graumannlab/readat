@@ -3,7 +3,7 @@
 \docType{data}
 \name{pfam}
 \alias{pfam}
-\title{PFAM IDs by SomaLogic SeqID}
+\title{PFAM IDs by SomaLogic AptamerId}
 \format{A list of data frames, each with the following columns.
 \describe{
 \item{EntrezGeneId}{Character.  EntrezGene IDs for the gene that produces
@@ -13,7 +13,7 @@ the target protein.}
 }}
 \description{
 A lookup of PFAM (Protein FAMilies) IDs and descriptions by SomaLogic
-Sequence ID.
+Aptamer ID.
 }
 \examples{
 head(pfam)

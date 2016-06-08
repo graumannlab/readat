@@ -40,9 +40,9 @@
 #' head(aptamers)
 NULL
 
-#' Ensembl IDs by SomaLogic SeqID
+#' Ensembl IDs by SomaLogic AptamerId
 #'
-#' A lookup of Ensembl IDs by SomaLogic Sequence ID.
+#' A lookup of Ensembl IDs by SomaLogic Aptamer ID.
 #'
 #' @docType data
 #' @name ensemblIds
@@ -53,9 +53,9 @@ NULL
 #' head(ensemblIds)
 NULL
 
-#' UniProt Keywords by SomaLogic SeqID
+#' UniProt Keywords by SomaLogic AptamerId
 #'
-#' A lookup of UniProt keywords by SomaLogic Sequence ID.
+#' A lookup of UniProt keywords by SomaLogic Aptamer ID.
 #'
 #' @docType data
 #' @name uniprotKeywords
@@ -70,27 +70,31 @@ NULL
 #' head(uniprotKeywords)
 NULL
 
-#' Chromosomal Positions by SomaLogic SeqID
+#' Chromosomal Positions by SomaLogic AptamerId
 #'
-#' A lookup of chromosomal positions by SomaLogic Sequence ID.
+#' A lookup of chromosomal positions by SomaLogic Aptamer ID.
 #'
 #' @docType data
 #' @name chromosomalPositions
-#' @format A list of data frames, each with the following columns.
+#' @format A \code{\link[GenomicRanges]{GRangesList}} with the hg38 genome.
+#' Each Apatmer ID has an element that is a \code{\link[GenomicRanges]{GRanges}}
+#' object with 3 metadata columns.
 #' \describe{
+#' \item{AptamerId}{Character, primary key.  The identifier of the aptamer sequence
+#' identified using SELEX.  It consists of an SomaLogic SeqId truncated at the
+#' underscore, to remove its sequence version number.}
 #'  \item{UniProtId}{Character.  UniProt ID for the protein target.}
-#' \item{Chromsome}{Character.  Either '1' to '22' or 'X' . (Currently no 'Y' values.)}
-#' \item{StartPosition}{Integer. Distance in base pairs from the 5' end of the gene to the start of the protein.}
-#' \item{EndPosition}{Integer. Distance in base pairs from the 5' end of the gene to the end of the protein.}
+#' \item{EntrezGeneId}{Character.  EntrezGene IDs for the gene that produces
+#' the target protein.}
 #' }
 #' @examples
 #' head(chromosomalPositions)
 NULL
 
-#' PFAM IDs by SomaLogic SeqID
+#' PFAM IDs by SomaLogic AptamerId
 #'
 #' A lookup of PFAM (Protein FAMilies) IDs and descriptions by SomaLogic
-#' Sequence ID.
+#' Aptamer ID.
 #'
 #' @docType data
 #' @name pfam
@@ -107,10 +111,10 @@ NULL
 #' head(pfam)
 NULL
 
-#' KEGG definitions, modules, and pathways by SomaLogic SeqID
+#' KEGG definitions, modules, and pathways by SomaLogic AptamerId
 #'
 #' A lookup of KEGG (Kyoto Encyclopedia of Genes and Genomes) definitions,
-#' modules, and pathways by SomaLogic Sequence ID.
+#' modules, and pathways by SomaLogic Aptamer ID.
 #'
 #' @docType data
 #' @name keggDefinitions
@@ -132,10 +136,10 @@ NULL
 #' head(keggPathways)
 NULL
 
-#' GO definitions by SomaLogic SeqID
+#' GO definitions by SomaLogic AptamerId
 #'
 #' A lookup of GO (Gene Ontology) definitions, for molecular function,
-#' biological process, and cellular component by SomaLogic Sequence ID.
+#' biological process, and cellular component by SomaLogic Aptamer ID.
 #'
 #' @docType data
 #' @name goMolecularFunction

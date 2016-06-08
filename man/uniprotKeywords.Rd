@@ -3,14 +3,14 @@
 \docType{data}
 \name{uniprotKeywords}
 \alias{uniprotKeywords}
-\title{UniProt Keywords by SomaLogic SeqID}
+\title{UniProt Keywords by SomaLogic AptamerId}
 \format{A list of data frames, each with the following columns.
 \describe{
 \item{UniProtId}{Character.  UniProt ID for the protein target.}
 \item{Keyword}{Character.  A UniProt keyword.}
 }}
 \description{
-A lookup of UniProt keywords by SomaLogic Sequence ID.
+A lookup of UniProt keywords by SomaLogic Aptamer ID.
 }
 \examples{
 head(uniprotKeywords)
