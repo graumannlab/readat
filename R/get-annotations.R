@@ -237,7 +237,8 @@ getData <- function(aptamerIds = NULL, simplify = FALSE, dataName, dataElement)
   {
     if(inherits(y, "GRangesList")) # For, e.g., chromosomalPositions
     {
-      do.call(getMethod(c, "GenomicRanges"), as.list(y))
+      # See https://support.bioconductor.org/p/83599/#83602
+      unlist(y)
     } else
     {
       bind_rows(y, .id = "AptamerId")
