@@ -11,6 +11,7 @@
 #' objects are supported.
 #' @param somaObj A \code{WideSomaLogicData} object to transform.
 #' @param log2Transform whether to log2 transform intensities or not
+#' @param ... Passed between methods.
 #' @return ExpressionSet object
 #' @author Aditya Bhagwat
 #' @examples

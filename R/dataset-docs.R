@@ -10,7 +10,7 @@
 #' \item{AptamerId}{Character, primary key.  The identifier of the aptamer sequence
 #' identified using SELEX.  It consists of an SomaLogic SeqId truncated at the
 #' underscore, to remove its sequence version number.}
-#' \item{SomaId}{Character.  The SomaLogic identifier for the protein target.
+#' \item{SomaId}{Character. The SomaLogic identifier for the protein target.
 #' For the 1129 and 1310 assays, there is a one-to-one correspondence between
 #' SeqId and SomaId, but in theory there is a many-to-one correspondence.}
 #' \item{Target}{Character. The name of the protein target, from the protein

@@ -18,6 +18,8 @@ objects are supported.}
 
 \item{log2Transform}{whether to log2 transform intensities or not}
 
+\item{...}{Passed between methods.}
+
 \item{somaObj}{A \code{WideSomaLogicData} object to transform.}
 }
 \value{

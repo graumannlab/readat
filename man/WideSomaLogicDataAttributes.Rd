@@ -67,11 +67,6 @@ columns are reordered by \code{SeqId}, alphabetically.}
 column names of the intensities? If \code{NA}, auto-guess whether they
 should be.}
 }
-\value{
-A numeric matrix of intensities for each protein. Row names are taken
-from the \code{ExtIdentifer} of the input.  Column names are the protein
-sequence IDs.
-}
 \description{
 Accessors and mutators (getters and setters) for objects of class
 \code{WideSomaLogicData} or \code{LongSomaLogicData}.
