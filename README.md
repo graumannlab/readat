@@ -9,6 +9,8 @@
 
 Tools for importing and working with [SomaLogic](http://www.somalogic.com/Homepage.aspx) [ADAT](https://bitbucket.org/graumannlabtools/adat-spec) files.
 
+Read the paper in BMC Bioinformatics: [readat: An R package for reading and working with SomaLogic ADAT files](http://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-016-1007-8)
+
 ### Installation
 
 To install the package, you first need the 
