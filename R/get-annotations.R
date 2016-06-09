@@ -1,15 +1,15 @@
-#' Get Ensembl IDs by SeqID
+#' Get Ensembl IDs by AptamerId
 #'
-#' Gets the Ensembl IDs associated with SomaLogic Sequence IDs.
-#' @param seqIds A character vector of SomaLogic Sequence IDs, or \code{NULL} to use
-#' all 1129 Sequence IDs.
+#' Gets the Ensembl IDs associated with SomaLogic aptamer IDs.
+#' @param aptamerIds A character vector of SomaLogic aptamer IDs, or \code{NULL}
+#' to use all aptamer IDs.
 #' @param simplify Logical.  Should the output be collapsed into a single
 #' data.frame?
 #' @return A list of character vectors.  The names of the list are the input
 #' Sequence IDs, and the character vector associated with that element contains the
 #' Ensembl IDs.
 #' @examples
-#' # Each SeqID may have one, many, or zero associated Ensembl IDs
+#' # Each AptamerId may have one, many, or zero associated Ensembl IDs
 #' getEnsemblIds(c("2278-61", "4703-87", "4916-2"))
 #'
 #' # Get everything in the 1129 panel.
@@ -17,9 +17,9 @@
 #' getEnsemblIds()
 #' }
 #' @export
-getEnsemblIds <- function(seqIds = NULL, simplify = FALSE)
+getEnsemblIds <- function(aptamerIds = NULL, simplify = FALSE)
 {
-  y <- getData(seqIds, FALSE, "ensembl", "ensemblIds")
+  y <- getData(aptamerIds, FALSE, "ensembl", "ensemblIds")
   if(simplify)
   {
     list_to_data.frame(y, "SeqId", "EnsemblId")
@@ -29,11 +29,11 @@ getEnsemblIds <- function(seqIds = NULL, simplify = FALSE)
   }
 }
 
-#' Get UniProt Keywords by SeqID
+#' Get UniProt Keywords by AptamerId
 #'
-#' Gets the UniProt Keywords associated with SomaLogic Sequence IDs.
-#' @param seqIds A character vector of SomaLogic Sequence IDs, or \code{NULL} to
-#' use all 1129 Sequence IDs.
+#' Gets the UniProt Keywords associated with SomaLogic aptamer IDs.
+#' @param aptamerIds A character vector of SomaLogic aptamer IDs, or \code{NULL}
+#' to use all aptamer IDs.
 #' @param simplify Logical.  Should the output be collapsed into a single
 #' data.frame?
 #' @return A list of data frames.  The names of the list are the input
@@ -41,11 +41,11 @@ getEnsemblIds <- function(seqIds = NULL, simplify = FALSE)
 #' \describe{
 #' \item{UniProtId}{Character. The UniProt ID that the Keyword is associated
 #' with.}
-#' \item{Keyword}{Character. A UniProt Keyword associated with the SeqID and
+#' \item{Keyword}{Character. A UniProt Keyword associated with the AptamerId and
 #' UniProt ID.}
 #' }
 #' @examples
-#' # Each SeqID may have one, many, or zero associated Ensembl IDs
+#' # Each AptamerId may have one, many, or zero associated Ensembl IDs
 #' getUniProtKeywords(c("2278-61", "4703-87", "4916-2"))
 #'
 #' # Get everything in the 1310 and 1129 panels.
@@ -54,16 +54,16 @@ getEnsemblIds <- function(seqIds = NULL, simplify = FALSE)
 #' }
 #' @importFrom dplyr bind_rows
 #' @export
-getUniProtKeywords <- function(seqIds = NULL, simplify = FALSE)
+getUniProtKeywords <- function(aptamerIds = NULL, simplify = FALSE)
 {
-  getData(seqIds, simplify, "uniprotKeywords", "uniprotKeywords")
+  getData(aptamerIds, simplify, "uniprotKeywords", "uniprotKeywords")
 }
 
-#' Get Chromosomal Positions by SeqID
+#' Get Chromosomal Positions by AptamerId
 #'
-#' Gets the chromosomal positions associated with SomaLogic Sequence IDs.
-#' @param seqIds A character vector of SomaLogic Sequence IDs, or \code{NULL} to
-#' use all 1129 Sequence IDs.
+#' Gets the chromosomal positions associated with SomaLogic aptamer IDs.
+#' @param aptamerIds A character vector of SomaLogic aptamer IDs, or \code{NULL}
+#' to use all aptamer IDs.
 #' @param simplify Logical.  Should the output be collapsed into a single
 #' data.frame?
 #' @return A list of data frames.  The names of the list are the input
@@ -75,7 +75,7 @@ getUniProtKeywords <- function(seqIds = NULL, simplify = FALSE)
 #' \item{EndPosition}{Integer. Distance in base pairs from the 5' end of the gene to the end of the protein.}
 #' }
 #' @examples
-#' # Each SeqID may have one, many, or zero associated chromosomal positions
+#' # Each AptamerId may have one, many, or zero associated chromosomal positions
 #' getChromosomalPositions(c("2278-61", "4703-87_2", "4916-2"))
 #'
 #' # Get everything in the 1310 and 1129 panels.
@@ -84,16 +84,16 @@ getUniProtKeywords <- function(seqIds = NULL, simplify = FALSE)
 #' }
 #' @importFrom dplyr bind_rows
 #' @export
-getChromosomalPositions <- function(seqIds = NULL, simplify = FALSE)
+getChromosomalPositions <- function(aptamerIds = NULL, simplify = FALSE)
 {
-  getData(seqIds, simplify, "chromosomalPositions", "chromosomalPositions")
+  getData(aptamerIds, simplify, "chromosomalPositions", "chromosomalPositions")
 }
 
-#' Get PFAM IDs by SeqID
+#' Get PFAM IDs by AptamerId
 #'
-#' Gets the PFAM Ids and descriptions associated with SomaLogic Sequence IDs.
-#' @param seqIds A character vector of SomaLogic Sequence IDs, or \code{NULL} to
-#' use all 1129 Sequence IDs.
+#' Gets the PFAM Ids and descriptions associated with SomaLogic aptamer IDs.
+#' @param aptamerIds A character vector of SomaLogic aptamer IDs, or \code{NULL}
+#' to use all aptamer IDs.
 #' @param simplify Logical.  Should the output be collapsed into a single
 #' data.frame?
 #' @return A list of data frames.  The names of the list are the input
@@ -105,7 +105,7 @@ getChromosomalPositions <- function(seqIds = NULL, simplify = FALSE)
 #' \item{PfamDescription}{Character.  Description of a PFAM protein property.}
 #' }
 #' @examples
-#' # Each SeqID may have one, many, or zero associated PFAM descriptions
+#' # Each AptamerId may have one, many, or zero associated PFAM descriptions
 #' getPfam(c("2278-61", "4703-87", "4916-2"))
 #'
 #' # Get everything in the 1310 and 1129 panels.
@@ -114,21 +114,22 @@ getChromosomalPositions <- function(seqIds = NULL, simplify = FALSE)
 #' }
 #' @importFrom dplyr bind_rows
 #' @export
-getPfam <- function(seqIds = NULL, simplify = FALSE)
+getPfam <- function(aptamerIds = NULL, simplify = FALSE)
 {
-  getData(seqIds, simplify, "pfam", "pfam")
+  getData(aptamerIds, simplify, "pfam", "pfam")
 }
 
-#' KEGG definitions, modules, and pathways by SeqID
+#' KEGG definitions, modules, and pathways by AptamerId
 #'
 #' Gets the KEGG definitions, modules, and pathways associated with SomaLogic
-#' Sequence IDs.
-#' @param seqIds A character vector of SomaLogic Sequence IDs, or \code{NULL} to
-#' use all Sequence IDs.
+#' aptamer IDs.
+#' @param aptamerIds A character vector of SomaLogic aptamer IDs, or \code{NULL}
+#' to use all aptamer IDs.
 #' @param simplify Logical.  Should the output be collapsed into a single
 #' data.frame?
 #' @return A list of data frames.  The names of the list are the input
-#' SeqIds, and the data frame associated with that element contains:
+#' aptamerIds, and the data frame associated with that element contains:
+#'
 #' \describe{
 #' \item{UniProtId}{Character.  UniProt ID for the protein target.}
 #' \item{KeggId}{Character.  KEGG ID for the gene that produces the
@@ -138,7 +139,7 @@ getPfam <- function(seqIds = NULL, simplify = FALSE)
 #' locus.}
 #' }
 #' @examples
-#' # Each SeqID may have one, many, or zero associated KEGG descriptions
+#' # Each AptamerId may have one, many, or zero associated KEGG descriptions
 #' getKeggDefinitions(c("2278-61", "3505-6", "4916-2"))
 #' getKeggModules(c("2278-61", "3505-6", "4916-2"))
 #' getKeggPathways(c("2278-61", "3505-6", "4916-2"))
@@ -151,37 +152,37 @@ getPfam <- function(seqIds = NULL, simplify = FALSE)
 #' }
 #' @importFrom dplyr bind_rows
 #' @export
-getKeggDefinitions <- function(seqIds = NULL, simplify = FALSE)
+getKeggDefinitions <- function(aptamerIds = NULL, simplify = FALSE)
 {
-  getData(seqIds, simplify, "keggDefinitions", "keggDefinitions")
+  getData(aptamerIds, simplify, "keggDefinitions", "keggDefinitions")
 }
 
 #' @rdname getKeggDefinitions
 #' @export
-getKeggModules <- function(seqIds = NULL, simplify = FALSE)
+getKeggModules <- function(aptamerIds = NULL, simplify = FALSE)
 {
-  getData(seqIds, simplify, "keggModules", "keggModules")
+  getData(aptamerIds, simplify, "keggModules", "keggModules")
 }
 
 #' @rdname getKeggDefinitions
 #' @export
-getKeggPathways <- function(seqIds = NULL, simplify = FALSE)
+getKeggPathways <- function(aptamerIds = NULL, simplify = FALSE)
 {
-  getData(seqIds, simplify, "keggPathways", "keggPathways")
+  getData(aptamerIds, simplify, "keggPathways", "keggPathways")
 }
 
 
-#' GO definitions by SeqID
+#' GO definitions by AptamerId
 #'
 #' Gets the GO definitions associated with SomaLogic Sequence IDs.  There are
 #' three datasets, one for each of these domains: molecular function, biological
 #' process, and cellular compartment.
-#' @param seqIds A character vector of SomaLogic Sequence IDs, or \code{NULL} to
+#' @param aptamerIds A character vector of SomaLogic Sequence IDs, or \code{NULL} to
 #' use all 1129 Sequence IDs.
 #' @param simplify Logical.  Should the output be collapsed into a single
 #' data.frame?
 #' @return A list of data frames.  The names of the list are the input
-#' SeqIds, and the data frame associated with that element contains:
+#' aptamerIds, and the data frame associated with that element contains:
 #' \describe{
 #' \item{UniProtId}{Character.  UniProt ID for the protein target.}
 #' \item{GoId}{Character.  GO ID for property of the target protein.}
@@ -189,7 +190,7 @@ getKeggPathways <- function(seqIds = NULL, simplify = FALSE)
 #' \item{GoDefinition}{Character.  Description corresponding to the GO ID.}
 #' }
 #' @examples
-#' # Each SeqID may have one, many, or zero associated GO descriptions
+#' # Each AptamerId may have one, many, or zero associated GO descriptions
 #' getGoMolecularFunctions(c("2278-61", "3505-6", "4916-2"))
 #' getGoBiologicalProcesses(c("2278-61", "3505-6", "4916-2"))
 #' getGoCellularComponents(c("2278-61", "3505-6", "4916-2"))
@@ -202,39 +203,45 @@ getKeggPathways <- function(seqIds = NULL, simplify = FALSE)
 #' }
 #' @importFrom dplyr bind_rows
 #' @export
-getGoMolecularFunctions <- function(seqIds = NULL, simplify = FALSE)
+getGoMolecularFunctions <- function(aptamerIds = NULL, simplify = FALSE)
 {
-  getData(seqIds, simplify, "goMolecularFunction", "goMolecularFunction")
+  getData(aptamerIds, simplify, "goMolecularFunction", "goMolecularFunction")
 }
 
 #' @rdname getGoMolecularFunctions
 #' @export
-getGoBiologicalProcesses <- function(seqIds = NULL, simplify = FALSE)
+getGoBiologicalProcesses <- function(aptamerIds = NULL, simplify = FALSE)
 {
-  getData(seqIds, simplify, "goBiologicalProcess", "goBiologicalProcess")
+  getData(aptamerIds, simplify, "goBiologicalProcess", "goBiologicalProcess")
 }
 
 #' @rdname getGoMolecularFunctions
 #' @export
-getGoCellularComponents <- function(seqIds = NULL, simplify = FALSE)
+getGoCellularComponents <- function(aptamerIds = NULL, simplify = FALSE)
 {
-  getData(seqIds, simplify, "goCellularComponent", "goCellularComponent")
+  getData(aptamerIds, simplify, "goCellularComponent", "goCellularComponent")
 }
 
 #' @importFrom utils data
-getData <- function(seqIds = NULL, simplify = FALSE, dataName, dataElement)
+getData <- function(aptamerIds = NULL, simplify = FALSE, dataName, dataElement)
 {
   e <- new.env()
-  if(is.null(seqIds))
+  if(is.null(aptamerIds))
   {
     data(list = "aptamers", package = "readat", envir = e)
-    seqIds = e$aptamers$AptamerId
+    aptamerIds = e$aptamers$AptamerId
   }
   data(list = dataName, package = "readat", envir = e)
-  y <- e[[dataElement]][names(e[[dataElement]]) %in% seqIds]
+  y <- e[[dataElement]][names(e[[dataElement]]) %in% aptamerIds]
   if(simplify)
   {
-    bind_rows(y, .id = "SeqId")
+    if(inherits(y, "GRangesList")) # For, e.g., chromosomalPositions
+    {
+      do.call(getMethod(c, "GenomicRanges"), as.list(y))
+    } else
+    {
+      bind_rows(y, .id = "AptamerId")
+    }
   } else
   {
     y
