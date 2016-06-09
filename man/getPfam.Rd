@@ -2,13 +2,13 @@
 % Please edit documentation in R/get-annotations.R
 \name{getPfam}
 \alias{getPfam}
-\title{Get PFAM IDs by SeqID}
+\title{Get PFAM IDs by AptamerId}
 \usage{
-getPfam(seqIds = NULL, simplify = FALSE)
+getPfam(aptamerIds = NULL, simplify = FALSE)
 }
 \arguments{
-\item{seqIds}{A character vector of SomaLogic Sequence IDs, or \code{NULL} to
-use all 1129 Sequence IDs.}
+\item{aptamerIds}{A character vector of SomaLogic aptamer IDs, or \code{NULL}
+to use all aptamer IDs.}
 
 \item{simplify}{Logical.  Should the output be collapsed into a single
 data.frame?}
@@ -24,10 +24,10 @@ the target protein.}
 }
 }
 \description{
-Gets the PFAM Ids and descriptions associated with SomaLogic Sequence IDs.
+Gets the PFAM Ids and descriptions associated with SomaLogic aptamer IDs.
 }
 \examples{
-# Each SeqID may have one, many, or zero associated PFAM descriptions
+# Each AptamerId may have one, many, or zero associated PFAM descriptions
 getPfam(c("2278-61", "4703-87", "4916-2"))
 
 # Get everything in the 1310 and 1129 panels.

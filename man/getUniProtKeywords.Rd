@@ -2,13 +2,13 @@
 % Please edit documentation in R/get-annotations.R
 \name{getUniProtKeywords}
 \alias{getUniProtKeywords}
-\title{Get UniProt Keywords by SeqID}
+\title{Get UniProt Keywords by AptamerId}
 \usage{
-getUniProtKeywords(seqIds = NULL, simplify = FALSE)
+getUniProtKeywords(aptamerIds = NULL, simplify = FALSE)
 }
 \arguments{
-\item{seqIds}{A character vector of SomaLogic Sequence IDs, or \code{NULL} to
-use all 1129 Sequence IDs.}
+\item{aptamerIds}{A character vector of SomaLogic aptamer IDs, or \code{NULL}
+to use all aptamer IDs.}
 
 \item{simplify}{Logical.  Should the output be collapsed into a single
 data.frame?}
@@ -19,15 +19,15 @@ SeqIds, and the data frame associated with that element contains:
 \describe{
 \item{UniProtId}{Character. The UniProt ID that the Keyword is associated
 with.}
-\item{Keyword}{Character. A UniProt Keyword associated with the SeqID and
+\item{Keyword}{Character. A UniProt Keyword associated with the AptamerId and
 UniProt ID.}
 }
 }
 \description{
-Gets the UniProt Keywords associated with SomaLogic Sequence IDs.
+Gets the UniProt Keywords associated with SomaLogic aptamer IDs.
 }
 \examples{
-# Each SeqID may have one, many, or zero associated Ensembl IDs
+# Each AptamerId may have one, many, or zero associated Ensembl IDs
 getUniProtKeywords(c("2278-61", "4703-87", "4916-2"))
 
 # Get everything in the 1310 and 1129 panels.

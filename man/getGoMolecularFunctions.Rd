@@ -4,16 +4,16 @@
 \alias{getGoBiologicalProcesses}
 \alias{getGoCellularComponents}
 \alias{getGoMolecularFunctions}
-\title{GO definitions by SeqID}
+\title{GO definitions by AptamerId}
 \usage{
-getGoMolecularFunctions(seqIds = NULL, simplify = FALSE)
+getGoMolecularFunctions(aptamerIds = NULL, simplify = FALSE)
 
-getGoBiologicalProcesses(seqIds = NULL, simplify = FALSE)
+getGoBiologicalProcesses(aptamerIds = NULL, simplify = FALSE)
 
-getGoCellularComponents(seqIds = NULL, simplify = FALSE)
+getGoCellularComponents(aptamerIds = NULL, simplify = FALSE)
 }
 \arguments{
-\item{seqIds}{A character vector of SomaLogic Sequence IDs, or \code{NULL} to
+\item{aptamerIds}{A character vector of SomaLogic Sequence IDs, or \code{NULL} to
 use all 1129 Sequence IDs.}
 
 \item{simplify}{Logical.  Should the output be collapsed into a single
@@ -21,7 +21,7 @@ data.frame?}
 }
 \value{
 A list of data frames.  The names of the list are the input
-SeqIds, and the data frame associated with that element contains:
+aptamerIds, and the data frame associated with that element contains:
 \describe{
 \item{UniProtId}{Character.  UniProt ID for the protein target.}
 \item{GoId}{Character.  GO ID for property of the target protein.}
@@ -35,7 +35,7 @@ three datasets, one for each of these domains: molecular function, biological
 process, and cellular compartment.
 }
 \examples{
-# Each SeqID may have one, many, or zero associated GO descriptions
+# Each AptamerId may have one, many, or zero associated GO descriptions
 getGoMolecularFunctions(c("2278-61", "3505-6", "4916-2"))
 getGoBiologicalProcesses(c("2278-61", "3505-6", "4916-2"))
 getGoCellularComponents(c("2278-61", "3505-6", "4916-2"))

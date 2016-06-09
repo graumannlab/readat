@@ -67,6 +67,101 @@ columns are reordered by \code{SeqId}, alphabetically.}
 column names of the intensities? If \code{NA}, auto-guess whether they
 should be.}
 }
+\value{
+\code{getIntensities} returns a numeric matrix of intensities for
+each protein. Row names are taken from the \code{ExtIdentifier} of the input.
+Column names are the protein sequence IDs.  (If you set
+\code{rowsContain = "sequences"}, then rows and columns and their names are
+swapped.)
+
+\code{getSampleData} returns a data table containing the sample data.  That
+is, the input without the intensities or attributes.  There is one compulsory
+column:
+\describe{
+\item{ExternalId}{Character. A unique identifer for the sample.}
+}
+These columns are not compulsory for the file spec, but are always included by SomaLogic:
+\describe{
+\item{SampleId}{Character. The customer's original sample identifier. This is either the same as the subject identifier, or the calibrator and buffer separated by a hyphen. For example "1234" or "PPT-09".}
+\item{TimePoint}{Character or numeric.  The time point identified by the customer.}
+\item{SampleGroup}{Character. Cohort information provided by the customer.}
+\item{SampleNotes}{Character. Lab comments about the sample condition.}
+\item{AssayNotes}{Character. Lab comments about assay adverse events.}
+}
+Common optional columns:
+\describe{
+\item{PlateId}{Character. Identifier for the plate. For assay experiments,
+this also functions as an experiment identifier.}
+\item{SlideId}{Character. Agilent slide barcode.}
+\item{Subarray}{Integer. Agilent subarray number from 1 to 8.}
+\item{SampleType}{Character. Either "Sample, "QC", "Buffer" or "Calibrator".}
+\item{BarCode}{Character. 1D Barcode of aliquot.}
+\item{Barcode2d}{Character. 2D Barcode of aliquot.}
+\item{SiteId}{Character. The laboratory that ran the experiment, applicable
+if subcontracted.}
+\item{SampleUniqueId}{Character.  Where multiple experiments are combined,
+this column can be used to ensure a unique sample ID.}
+\item{Subject_ID}{Character. Identifier for the person/animal/thing being
+sampled.}
+\item{HybControlNormScale}{Numeric. Hybridization control normalization scale
+factor. For example, 1.23.}
+\item{NormScale_40}{Numeric. Median normalization scale factor, for only the
+sequences diluted to 40\% concentration. For example, 1.23.}
+\item{NormScale_0_005}{Numeric. Median normalization scale factor, for only
+the sequences diluted to 0.005\% concentration. For example, 1.23.}
+\item{NormScale_1}{Numeric. Median normalization scale factor, for only the
+sequences diluted to 1\% concentration. For example, 1.23.}
+\item{PercentDilution}{Numeric. How much was the sample diluted? Either 40,
+1, or 0.005.}
+\item{SampleMatrix}{Character. Either "EDTA-Plasma", "Sodium Citrate Plasma"
+or "Serum". Applicable if different matrices are used with different samples
+in the file, otherwise use the StudyMatrix metadata value.}
+\item{SampleDescription}{Character. Free text describing the sample.}
+\item{TubeUniqueID}{Character. A unique identifier for every sample tube,
+assigned by the customer.}
+\item{RowCheck}{Character. Either "PASS" or "FAIL". Did the sample pass
+quality control checks?}
+}
+
+\code{getSequenceData} returns a data table containing the sequence data. The
+following columns are compulsory.
+\describe{
+\item{SeqId}{A unique identifer for the SOMAmer reagent.}
+\item{Target}{ The unique name for the targeted proteins.}
+}
+The following columns are optional but should always be provided by
+SomaLogic.
+\describe{
+\item{SomaId}{Character.  The SomaLogic identifier for the protein target.
+For the 1129 and 1310 assays, there is a one-to-one correspondence between SeqId and SomaId, but in theory there is a
+many-to-one correspondence.}
+\item{TargetFullName}{Character.  A description of the proteins targeted by
+the SOMAmer reagent, taken from UniProt.}
+\item{UniProt}{Character. The UniProt identifiers for the targeted proteins.
+Older versions of the file format may also contain the value 'Family', referring to a whole family of proteins, though
+this behaviour is considered deprecated.}
+\item{EntrezGeneID}{Character. The Entrez Gene identifiers for the genes
+corresponding to the targeted proteins.}
+\item{EntrezGeneSymbol}{Character. The Entrez Gene symbols for the genes
+corresponding to the targeted proteins.}
+\item{Organism}{Character. What animal does the target protein refer to?}
+\item{ColCheck}{Character. Either PASS or FAIL. Did the sequence pass quality
+control checks?}
+\item{Units}{Character.  Unit of measurement for the SOMAmer reagent
+abundances. Should always be RFU.}
+\item{Type}{Character. One of "Spuriomer", "Protein",
+"Hybridization Control", "Non-human Protein".}
+\item{Cal_*PlateId*}{Numeric.  Calibration scale factor for each plate. For
+example, 1.23.}
+\item{CalReference}{Numeric. Calibration reference intensity, in RFU. For
+example, 543.21.}
+\item{Dilution}{Numeric. Concentration of the diluted sample compared to the
+neat sample, as a percentage. Either 40, 1, or 0.005.}
+}
+
+\code{getCheckSum} and \code{getMetadata} return the checksum (a string) and
+metadata (a list) attributes of the input.
+}
 \description{
 Accessors and mutators (getters and setters) for objects of class
 \code{WideSomaLogicData} or \code{LongSomaLogicData}.

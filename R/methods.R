@@ -132,7 +132,7 @@ getSampleData.LongSomaLogicData <- function(x, ...)
 #' should be.
 #' @param ... Variables passed to and from from other methods.
 #' @return \code{getIntensities} returns a numeric matrix of intensities for
-#' each protein. Row names are taken from the \code{ExtIdentifer} of the input.
+#' each protein. Row names are taken from the \code{ExtIdentifier} of the input.
 #' Column names are the protein sequence IDs.  (If you set
 #' \code{rowsContain = "sequences"}, then rows and columns and their names are
 #' swapped.)
@@ -169,11 +169,11 @@ getSampleData.LongSomaLogicData <- function(x, ...)
 #' \item{HybControlNormScale}{Numeric. Hybridization control normalization scale
 #' factor. For example, 1.23.}
 #' \item{NormScale_40}{Numeric. Median normalization scale factor, for only the
-#' sequences diluted to 40% concentration. For example, 1.23.}
+#' sequences diluted to 40\% concentration. For example, 1.23.}
 #' \item{NormScale_0_005}{Numeric. Median normalization scale factor, for only
-#' the sequences diluted to 0.005% concentration. For example, 1.23.}
+#' the sequences diluted to 0.005\% concentration. For example, 1.23.}
 #' \item{NormScale_1}{Numeric. Median normalization scale factor, for only the
-#' sequences diluted to 1% concentration. For example, 1.23.}
+#' sequences diluted to 1\% concentration. For example, 1.23.}
 #' \item{PercentDilution}{Numeric. How much was the sample diluted? Either 40,
 #' 1, or 0.005.}
 #' \item{SampleMatrix}{Character. Either "EDTA-Plasma", "Sodium Citrate Plasma"

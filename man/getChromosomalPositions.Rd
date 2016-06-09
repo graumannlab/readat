@@ -2,13 +2,13 @@
 % Please edit documentation in R/get-annotations.R
 \name{getChromosomalPositions}
 \alias{getChromosomalPositions}
-\title{Get Chromosomal Positions by SeqID}
+\title{Get Chromosomal Positions by AptamerId}
 \usage{
-getChromosomalPositions(seqIds = NULL, simplify = FALSE)
+getChromosomalPositions(aptamerIds = NULL, simplify = FALSE)
 }
 \arguments{
-\item{seqIds}{A character vector of SomaLogic Sequence IDs, or \code{NULL} to
-use all 1129 Sequence IDs.}
+\item{aptamerIds}{A character vector of SomaLogic aptamer IDs, or \code{NULL}
+to use all aptamer IDs.}
 
 \item{simplify}{Logical.  Should the output be collapsed into a single
 data.frame?}
@@ -24,10 +24,10 @@ SeqIds, and the data frame associated with that element contains:
 }
 }
 \description{
-Gets the chromosomal positions associated with SomaLogic Sequence IDs.
+Gets the chromosomal positions associated with SomaLogic aptamer IDs.
 }
 \examples{
-# Each SeqID may have one, many, or zero associated chromosomal positions
+# Each AptamerId may have one, many, or zero associated chromosomal positions
 getChromosomalPositions(c("2278-61", "4703-87_2", "4916-2"))
 
 # Get everything in the 1310 and 1129 panels.

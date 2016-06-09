@@ -4,24 +4,25 @@
 \alias{getKeggDefinitions}
 \alias{getKeggModules}
 \alias{getKeggPathways}
-\title{KEGG definitions, modules, and pathways by SeqID}
+\title{KEGG definitions, modules, and pathways by AptamerId}
 \usage{
-getKeggDefinitions(seqIds = NULL, simplify = FALSE)
+getKeggDefinitions(aptamerIds = NULL, simplify = FALSE)
 
-getKeggModules(seqIds = NULL, simplify = FALSE)
+getKeggModules(aptamerIds = NULL, simplify = FALSE)
 
-getKeggPathways(seqIds = NULL, simplify = FALSE)
+getKeggPathways(aptamerIds = NULL, simplify = FALSE)
 }
 \arguments{
-\item{seqIds}{A character vector of SomaLogic Sequence IDs, or \code{NULL} to
-use all Sequence IDs.}
+\item{aptamerIds}{A character vector of SomaLogic aptamer IDs, or \code{NULL}
+to use all aptamer IDs.}
 
 \item{simplify}{Logical.  Should the output be collapsed into a single
 data.frame?}
 }
 \value{
 A list of data frames.  The names of the list are the input
-SeqIds, and the data frame associated with that element contains:
+aptamerIds, and the data frame associated with that element contains:
+
 \describe{
 \item{UniProtId}{Character.  UniProt ID for the protein target.}
 \item{KeggId}{Character.  KEGG ID for the gene that produces the
@@ -33,10 +34,10 @@ locus.}
 }
 \description{
 Gets the KEGG definitions, modules, and pathways associated with SomaLogic
-Sequence IDs.
+aptamer IDs.
 }
 \examples{
-# Each SeqID may have one, many, or zero associated KEGG descriptions
+# Each AptamerId may have one, many, or zero associated KEGG descriptions
 getKeggDefinitions(c("2278-61", "3505-6", "4916-2"))
 getKeggModules(c("2278-61", "3505-6", "4916-2"))
 getKeggPathways(c("2278-61", "3505-6", "4916-2"))

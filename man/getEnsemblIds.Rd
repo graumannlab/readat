@@ -2,13 +2,13 @@
 % Please edit documentation in R/get-annotations.R
 \name{getEnsemblIds}
 \alias{getEnsemblIds}
-\title{Get Ensembl IDs by SeqID}
+\title{Get Ensembl IDs by AptamerId}
 \usage{
-getEnsemblIds(seqIds = NULL, simplify = FALSE)
+getEnsemblIds(aptamerIds = NULL, simplify = FALSE)
 }
 \arguments{
-\item{seqIds}{A character vector of SomaLogic Sequence IDs, or \code{NULL} to use
-all 1129 Sequence IDs.}
+\item{aptamerIds}{A character vector of SomaLogic aptamer IDs, or \code{NULL}
+to use all aptamer IDs.}
 
 \item{simplify}{Logical.  Should the output be collapsed into a single
 data.frame?}
@@ -19,10 +19,10 @@ Sequence IDs, and the character vector associated with that element contains the
 Ensembl IDs.
 }
 \description{
-Gets the Ensembl IDs associated with SomaLogic Sequence IDs.
+Gets the Ensembl IDs associated with SomaLogic aptamer IDs.
 }
 \examples{
-# Each SeqID may have one, many, or zero associated Ensembl IDs
+# Each AptamerId may have one, many, or zero associated Ensembl IDs
 getEnsemblIds(c("2278-61", "4703-87", "4916-2"))
 
 # Get everything in the 1129 panel.
