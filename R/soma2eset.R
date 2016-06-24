@@ -4,20 +4,21 @@
 ###############################################################################
 
 
-#' Convert objects into ExpressionSets.
+#' Convert objects into ExpressionSets or MSnSets.
 #'
-#' Converts objects into \code{ExpressionSet}s.
+#' Converts objects into \code{ExpressionSet} or \code{MSnSet} instances.
 #' @param x An object to transform.  Currently only \code{WideSomaLogicData}
 #' objects are supported.
 #' @param somaObj A \code{WideSomaLogicData} object to transform.
 #' @param log2Transform whether to log2 transform intensities or not
 #' @param ... Passed between methods.
-#' @return ExpressionSet object
+#' @return ExpressionSet or MSnSet object
 #' @author Aditya Bhagwat
 #' @examples
 #' somaFile <- extractSampleData()
 #' wideSomaData <- readAdat(somaFile)
 #' as.ExpressionSet(wideSomaData)
+#' as.MSnSet(wideSomaData)
 #' unlink(somaFile)
 #' @importFrom Biobase ExpressionSet
 #' @importFrom Biobase exprs exprs<-
@@ -66,4 +67,20 @@ soma2eset <- function(somaObj, log2Transform = TRUE){
 
   # return eset
   return(myEset)
+}
+
+
+#' @importFrom MSnbase as.MSnSet.ExpressionSet
+#' @rdname as.ExpressionSet
+#' @export
+as.MSnSet.WideSomaLogicData <- function(x, log2Transform = FALSE, ...) {
+    e <- as.ExpressionSet(x, log2Transform = log2Transform)
+    MSnbase::as.MSnSet.ExpressionSet(e)
+}
+
+#' @rdname as.ExpressionSet
+#' @export
+as.MSnSet <- function(x, log2Transform = FALSE, ...)
+{
+  UseMethod("as.MSnSet")
 }

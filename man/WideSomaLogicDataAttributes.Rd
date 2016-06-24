@@ -26,7 +26,7 @@ getIntensities(x, ...)
 
 \method{getIntensities}{LongSomaLogicData}(x, ...)
 
-\method{as.matrix}{WideSomaLogicData}(x, ...)
+as.matrix.WideSomaLogicData(x, ...)
 
 getSampleData(x, ...)
 
