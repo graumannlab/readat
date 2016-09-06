@@ -46,7 +46,7 @@ comments <- data.frame(
 # Generate Example Controls -----------------------------------------------
 
 nControls <- 12
-nCharsInBarCode <- 7
+nCharsInBarCode <- 6
 barCodes <- generateNumberStrings(nControls, nCharsInBarCode) %>%
   paste0("I", .)
 # Controls appear in order A1, A2, A3, ... rather than A1, B1, C1, ... as
