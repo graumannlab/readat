@@ -106,7 +106,7 @@ readSlides <- function(file = "slides.csv")
 readControls <- function(file = "controls.csv")
 {
   controls <- fread(
-    file, sep = ",", nrows = 96, header = FALSE, na.strings = "",
+    file, sep = ",", nrows = 96, header = FALSE, na.strings = c("", "NA"),
     select = 1:2, col.names = c("PlatePosition", "BarCode"))
   n_controls <- sum(!is.na(controls$BarCode))
   assert_all_are_less_than_or_equal_to(n_controls, 12, severity = "warning")
@@ -160,7 +160,7 @@ readControls <- function(file = "controls.csv")
 readComments <- function(file = "comments.csv")
 {
   comments <- fread(
-    file, sep = ",", header = FALSE, na.strings = "",
+    file, sep = ",", header = FALSE, na.strings = c("", "NA"),
     colClasses = "character", select = 1:3,
     col.names = c("PlatePosition", "SampleNotes", "AssayNotes")
   )
