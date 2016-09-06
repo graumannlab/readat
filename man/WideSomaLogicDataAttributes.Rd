@@ -123,8 +123,9 @@ assigned by the customer.}
 quality control checks?}
 }
 
-\code{getSequenceData} returns a data table containing the sequence data. The
-following columns are compulsory.
+\code{getSequenceData} returns a data table containing the sequence data.
+"Sequence" can be considered synonymous with "feature" or "SOMAmer reagent".
+The following columns are compulsory.
 \describe{
 \item{SeqId}{A unique identifer for the SOMAmer reagent.}
 \item{Target}{ The unique name for the targeted proteins.}
@@ -133,13 +134,14 @@ The following columns are optional but should always be provided by
 SomaLogic.
 \describe{
 \item{SomaId}{Character.  The SomaLogic identifier for the protein target.
-For the 1129 and 1310 assays, there is a one-to-one correspondence between SeqId and SomaId, but in theory there is a
-many-to-one correspondence.}
+For the 1129 and 1310 assays, there is a one-to-one correspondence between
+SeqId and SomaId, but in theory there is a many-to-one correspondence.}
 \item{TargetFullName}{Character.  A description of the proteins targeted by
 the SOMAmer reagent, taken from UniProt.}
 \item{UniProt}{Character. The UniProt identifiers for the targeted proteins.
-Older versions of the file format may also contain the value 'Family', referring to a whole family of proteins, though
-this behaviour is considered deprecated.}
+Older versions of the file format may also contain the value 'Family',
+referring to a whole family of proteins, though this behaviour is considered
+deprecated.}
 \item{EntrezGeneID}{Character. The Entrez Gene identifiers for the genes
 corresponding to the targeted proteins.}
 \item{EntrezGeneSymbol}{Character. The Entrez Gene symbols for the genes
@@ -179,7 +181,7 @@ sampleData <- getSampleData(wide_soma_data)
 
 # Intensities of a WideSomaLogicData object are a matrix
 intWideSamp <- getIntensities(wide_soma_data)
-\dontrun{
+\donttest{
 # Not run due to side effects of View
   View(intWideSamp, "Wide intensities, samples per row")
 }
@@ -187,13 +189,13 @@ intWideSeq <- getIntensities(                 # The transpose
   wide_soma_data,
   rowsContain = "sequences"
 )
-\dontrun{
+\donttest{
   View(intWideSeq, "Wide intensities, seqs per row")
 }
 
 # Sample data is always a data table
 sampWide <- getSampleData(wide_soma_data)
-\dontrun{
+\donttest{
   View(sampWide, "Wide sample data")
 }
 
@@ -201,13 +203,13 @@ sampWide <- getSampleData(wide_soma_data)
 # as a data.table
 long_soma_data <- reshape2::melt(wide_soma_data)
 intLong <- getIntensities(long_soma_data)
-\dontrun{
+\donttest{
   View(intLong, "Long intensities")
 }
 
 # Sample data has a different shape now
 sampLong <- getSampleData(long_soma_data)
-\dontrun{
+\donttest{
   View(sampLong, "Long sample data")
 }
 }
