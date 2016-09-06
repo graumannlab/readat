@@ -3,14 +3,20 @@
 \name{as.ExpressionSet}
 \alias{as.ExpressionSet}
 \alias{as.ExpressionSet.WideSomaLogicData}
+\alias{as.MSnSet}
+\alias{as.MSnSet.WideSomaLogicData}
 \alias{soma2eset}
-\title{Convert objects into ExpressionSets.}
+\title{Convert objects into ExpressionSets or MSnSets.}
 \usage{
 as.ExpressionSet(x, log2Transform = TRUE, ...)
 
 \method{as.ExpressionSet}{WideSomaLogicData}(x, log2Transform = TRUE, ...)
 
 soma2eset(somaObj, log2Transform = TRUE)
+
+\method{as.MSnSet}{WideSomaLogicData}(x, log2Transform = FALSE, ...)
+
+as.MSnSet(x, log2Transform = FALSE, ...)
 }
 \arguments{
 \item{x}{An object to transform.  Currently only \code{WideSomaLogicData}
@@ -23,15 +29,16 @@ objects are supported.}
 \item{somaObj}{A \code{WideSomaLogicData} object to transform.}
 }
 \value{
-ExpressionSet object
+ExpressionSet or MSnSet object
 }
 \description{
-Converts objects into \code{ExpressionSet}s.
+Converts objects into \code{ExpressionSet} or \code{MSnSet} instances.
 }
 \examples{
 somaFile <- extractSampleData()
 wideSomaData <- readAdat(somaFile)
 as.ExpressionSet(wideSomaData)
+as.MSnSet(wideSomaData)
 unlink(somaFile)
 }
 \author{
