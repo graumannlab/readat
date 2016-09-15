@@ -61,6 +61,9 @@ For Bioconductor workflows, the package also includes a function to convert `Wid
 ```{r, createExpressionSets}
 as.ExpressionSet(plasma1.3k)
 as.SummarizedExperiment(plasma1.3k)
-as.MSnSet(plasma1.3k)
+if(requireNamespace("MSnbase"))
+{
+  as.MSnSet(plasma1.3k)
+}
 ```
 

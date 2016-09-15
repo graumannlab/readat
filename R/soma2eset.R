@@ -18,7 +18,11 @@
 #' somaFile <- extractSampleData()
 #' wideSomaData <- readAdat(somaFile)
 #' as.ExpressionSet(wideSomaData)
-#' as.MSnSet(wideSomaData)
+#' if(requireNamespace("MSnbase"))
+#' {
+#'   as.MSnSet(wideSomaData)
+#' }
+#'
 #' unlink(somaFile)
 #' @importFrom Biobase ExpressionSet
 #' @importFrom Biobase exprs exprs<-
@@ -70,12 +74,17 @@ soma2eset <- function(somaObj, log2Transform = TRUE){
 }
 
 
-#' @importFrom MSnbase as.MSnSet.ExpressionSet
 #' @rdname as.ExpressionSet
 #' @export
-as.MSnSet.WideSomaLogicData <- function(x, log2Transform = FALSE, ...) {
-    e <- as.ExpressionSet(x, log2Transform = log2Transform)
-    MSnbase::as.MSnSet.ExpressionSet(e)
+as.MSnSet.WideSomaLogicData <- function(x, log2Transform = FALSE, ...)
+{
+  if(!requireNamespace("MSnbase", quietly = TRUE))
+  {
+    stop('MSnbase is not available; try running\nsource("https://bioconductor.org/biocLite.R")\nbiocLite("MSnbase")')
+  }
+  e <- as.ExpressionSet(x, log2Transform = log2Transform)
+  MSnbase::as.MSnSet.ExpressionSet(e)
+
 }
 
 #' @rdname as.ExpressionSet
