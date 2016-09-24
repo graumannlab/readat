@@ -1,0 +1,69 @@
+---
+title: "Introduction"
+author: "Richard Cotton <richierocks@gmail.com>"
+date: 'Last modified: 2016-09-07; Generated on `r Sys.Date()`'
+output: html_document
+---
+
+<!--
+%\VignetteEngine{knitr::rmarkdown}
+%\VignetteIndexEntry{Introduction}
+-->
+
+## Background
+
+[SomaLogic](http://www.somalogic.com/Homepage.aspx)'s SOMAscan&trade; assay platform allows the analysis of the relative abundance of over 1300 proteins directly from biological matrices such as blood plasma and serum.  The data resulting from the assay is provided in a proprietary text-based format called [ADAT](https://bitbucket.org/graumannlabtools/adat-spec). 
+
+## Data import
+
+The `readAdat` function imports data from `ADAT` files. The resultant data variable is an object of class `WideSomaLogicData`, which consists of a `data.table`, from the [package of the same name](https://github.com/Rdatatable/data.table), for the sample and intensity data, and three attributes for the sequence data, metadata, and checksum.
+
+*readat* contains sample datasets probed with both SomaLogic's 1129 (1.1k) and 1310 (1.3k) suites of SOMAmer reagents.  To demonstrate the features of the package, we exhibit the "1.3k" dataset.  This dataset represents plasma samples from 20 US adults aged between 35 and 75 years old, split into age groups ("old", 50 or older; "young", under 50).
+
+To import the data, type:
+
+```{r, import}
+library(readat)
+zipFile <- system.file(
+  "extdata", "PLASMA.1.3k.20151030.adat.zip", 
+  package = "readat"
+)
+adatFile <- unzip(zipFile, exdir = tempfile("readat"))
+plasma1.3k <- readAdat(adatFile)
+```
+
+Intensity readings for eleven of the SOMAmer reagents did not pass SomaLogic's quality control checks, and are excluded on import by default.
+
+```{r, dimSeq}
+sequenceData <- getSequenceData(plasma1.3k)
+nrow(sequenceData) # 1310 less 11
+```
+
+To include samples and sequences that did not pass QC, 
+
+```{r, importIncludeFails}
+plasma1.3kIncFailures <- readAdat(adatFile, keepOnlyPasses = FALSE)
+nrow(getSequenceData(plasma1.3kIncFailures))
+```
+
+## Reshaping
+
+The default format is not appropriate for all data analytical needs.  When using [*ggplot2*](https://github.com/hadley/ggplot2)  or [*dplyr*](https://github.com/hadley/dplyr), for example, it is more convenient to have one intensity per row rather than one sample per row.  The package contains a `melt` method to transform `WideSomaLogicData` into `LongSomaLogicData`.  This conversion requires access to the `melt` generic function in the [*reshape2*](https://github.com/hadley/reshape) package.
+
+```{r, melting}
+library(reshape2)
+longPlasma1.3k <- melt(plasma1.3k)
+str(longPlasma1.3k)
+```
+
+For Bioconductor workflows, the package also includes a function to convert `WideSomaLogicData` objects into [*Biobase*](https://www.bioconductor.org/packages/release/bioc/html/Biobase.html) `ExpressionSet`s, [*SummarizedExperiment*](https://www.bioconductor.org/packages/release/bioc/html/SummarizedExperiment.html) `SummarizedExperiment`s, and [*MSnbase*](https://www.bioconductor.org/packages/release/bioc/html/MSnbase.html) `MSnSet`s.
+
+```{r, createExpressionSets}
+as.ExpressionSet(plasma1.3k)
+as.SummarizedExperiment(plasma1.3k)
+if(requireNamespace("MSnbase"))
+{
+  as.MSnSet(plasma1.3k)
+}
+```
+

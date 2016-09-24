@@ -1,0 +1,1373 @@
+AptamerId,SeqId,Type,Target,SomaId,TargetFullName,UniProt,IsIn1310Panel,IsIn1129Panel,note,PlasmaDilution,SerumDilution
+4829-43,4829-43_6,Protein,STRATIFIN,SL001737,14-3-3 protein sigma,P31947,1,1,common,40,40
+3804-66,3804-66_2,Protein,DMP1,SL007403,Dentin matrix acidic phosphoprotein 1,Q13316,0,1,1.1k only,40,40
+3814-63,3814-63_1,Protein,IL-11 RA,SL007423,Interleukin-11 receptor subunit alpha,Q14626,0,1,1.1k only,40,40
+14156-33,14156-33_3,Protein,14-3-3 protein beta/alpha,SL004815,14-3-3 protein beta/alpha,P31946,1,0,1.3k only,1,1
+7625-27,7625-27_3,Protein,14-3-3 protein theta,SL008071,14-3-3 protein theta,P27348,1,0,1.3k only,1,1
+5858-6,5858-6_5,Protein,14-3-3 protein zeta/delta,SL005688,14-3-3 protein zeta/delta,P63104,1,0,1.3k only,1,1
+14157-21,14157-21_3,Protein,14-3-3E,SL004984,14-3-3 protein epsilon,P62258,1,0,1.3k only,40,40
+5861-78,5861-78_3,Protein,3HAO,SL008466,"3-hydroxyanthranilate 3,4-dioxygenase",P46952,1,0,1.3k only,1,1
+5792-8,5792-8_2,Protein,AFP,SL000011,alpha-Fetoprotein,P02771,1,0,1.3k only,40,40
+14134-49,14134-49_3,Protein,AMGO2,SL015046,Amphoterin-induced protein 2,Q86SJ2,1,0,1.3k only,40,40
+7624-19,7624-19_3,Protein,ANK2,SL014896,Ankyrin-2,Q01484,1,0,1.3k only,40,40
+9202-309,9202-309_3,Protein,ATPO,SL008113,"ATP synthase subunit O, mitochondrial",P48047,1,0,1.3k only,40,40
+14115-34,14115-34_3,Protein,Adrenomedullin,SL002782,Adrenomedullin,P35318,1,0,1.3k only,1,1
+11105-171,11105-171_3,Protein,Alpha enolase,SL003650,Alpha-enolase,P06733,1,0,1.3k only,1,1
+14158-17,14158-17_3,Protein,Annexin V,SL003848,Annexin A5,P08758,1,0,1.3k only,40,40
+11510-31,11510-31_3,Protein,Apo L1,SL005699,Apolipoprotein L1,O14791,1,0,1.3k only,0.005,0.005
+14125-5,14125-5_3,Protein,ApoM,SL004747,Apolipoprotein M,O95445,1,0,1.3k only,40,40
+13097-11,13097-11_3,Protein,Apoptosis regulator Bcl-W,SL003774,Bcl-2-like protein 2,Q92843,1,0,1.3k only,40,40
+5870-23,5870-23_2,Protein,BAD,SL003700,Bcl2-associated agonist of cell death,Q92934,1,0,1.3k only,40,40
+13111-79,13111-79_3,Protein,BCL6,SL007223,B-cell lymphoma 6 protein,P41182,1,0,1.3k only,40,1
+5798-3,5798-3_3,Protein,BID,SL003704,BH3-interacting domain death agonist,P55957,1,0,1.3k only,40,40
+13088-397,13088-397_3,Protein,BTC,SL000137,Betacellulin,P35070,1,0,1.3k only,40,40
+14136-234,14136-234_3,Protein,C1QR1,SL007696,Complement component C1q receptor,Q9NPY3,1,0,1.3k only,1,1
+9212-22,9212-22_3,Protein,CATF,SL008381,Cathepsin F,Q9UBX1,1,0,1.3k only,1,1
+13116-25,13116-25_3,Protein,CD177,SL008931,CD177 antigen,Q8N6Q3,1,0,1.3k only,1,1
+5063-12,5063-12_2,Protein,CD244,SL014188,Natural killer cell receptor 2B4,Q9BZW8,1,0,1.3k only,40,40
+11513-92,11513-92_3,Protein,CD38,SL002722,ADP-ribosyl cyclase/cyclic ADP-ribose hydrolase 1,P28907,1,0,1.3k only,40,40
+6653-58,6653-58_3,Protein,CD47,SL004838,Leukocyte surface antigen CD47,Q08722,1,0,1.3k only,40,40
+11514-196,11514-196_3,Protein,CD59,SL004557,CD59 glycoprotein,P13987,1,0,1.3k only,1,1
+9190-7,9190-7_3,Protein,CD63,SL008837,CD63 antigen,P08962,1,0,1.3k only,1,1
+5065-8,5065-8_2,Protein,CD83,SL014229,CD83 antigen,Q01151,1,0,1.3k only,40,40
+10337-83,10337-83_3,Protein,CEBPB,SL007136,CCAAT/enhancer-binding protein beta,P17676,1,0,1.3k only,40,40
+10336-3,10336-3_3,Protein,CHIP,SL019100,E3 ubiquitin-protein ligase CHIP,Q9UNE7,1,0,1.3k only,40,40
+13117-232,13117-232_3,Protein,CHKB,SL018256,Choline/ethanolamine kinase,Q9Y259,1,0,1.3k only,1,1
+7628-40,7628-40_3,Protein,CREL1,SL012774,Cysteine-rich with EGF-like domain protein 1,Q96HD1,1,0,1.3k only,1,1
+13103-125,13103-125_3,Protein,CSH,SL009328,Chorionic somatomammotropin hormone,P0DML2 P0DML3,1,0,1.3k only,40,1
+9171-11,9171-11_3,Protein,CSRP3,SL016969,Cysteine and glycine-rich protein 3,P50461,1,0,1.3k only,40,40
+8476-11,8476-11_3,Protein,CgA,SL002762,Chromogranin-A,P10645,1,0,1.3k only,1,1
+9204-33,9204-33_3,Protein,Corticotropin-lipotropin,SL009210,Pro-opiomelanocortin,P01189,1,0,1.3k only,40,40
+13126-52,13126-52_3,Protein,DSC2,SL008631,Desmocollin-2,Q02487,1,0,1.3k only,1,1
+9175-48,9175-48_3,Protein,DSCAM,SL018891,Down syndrome cell adhesion molecule,O60469,1,0,1.3k only,40,40
+13104-32,13104-32_3,Protein,EFNB1,SL008614,Ephrin-B1,P98172,1,0,1.3k only,1,1
+14131-37,14131-37_3,Protein,EFNB2,SL007274,Ephrin-B2,P52799,1,0,1.3k only,40,40
+5509-7,5509-7_3,Protein,EGF,SL000084,Epidermal growth factor,P01133,1,0,1.3k only,1,1
+5328-33,5328-33_37,Protein,EGFRvIII,SL016828,Epidermal growth factor receptor variant III,P00533,1,0,1.3k only,40,40
+9168-31,9168-31_3,Protein,Eotaxin-3,SL003170,C-C motif chemokine 26,Q9Y258,1,0,1.3k only,40,40
+14124-6,14124-6_3,Protein,Ephrin-A2,SL004843,Ephrin-A2,O43921,1,0,1.3k only,1,1
+14153-8,14153-8_3,Protein,Ephrin-A3,SL004139,Ephrin-A3,P52797,1,0,1.3k only,40,40
+11516-7,11516-7_3,Protein,FABPL,SL006131,"Fatty acid-binding protein, liver",P07148,1,0,1.3k only,40,40
+9177-6,9177-6_3,Protein,FAM3B,SL007306,Protein FAM3B,P58499,1,0,1.3k only,1,1
+13102-1,13102-1_3,Protein,FAM3D,SL012769,Protein FAM3D,Q96BQ1,1,0,1.3k only,40,1
+8480-29,8480-29_3,Protein,FBLN3,SL006527,EGF-containing fibulin-like extracellular matrix protein 1,Q12805,1,0,1.3k only,0.005,0.005
+13122-19,13122-19_3,Protein,FLRT2,SL008360,Leucine-rich repeat transmembrane protein FLRT2,O43155,1,0,1.3k only,40,40
+13123-3,13123-3_3,Protein,FLRT3,SL008372,Leucine-rich repeat transmembrane protein FLRT3,Q9NZU0,1,0,1.3k only,40,40
+13112-179,13112-179_3,Protein,FSTL1,SL009349,Follistatin-related protein 1,Q12841,1,0,1.3k only,1,1
+9213-24,9213-24_3,Protein,FTCD,SL018900,Formimidoyltransferase-cyclodeaminase,O95954,1,0,1.3k only,40,40
+5392-73,5392-73_2,Protein,"Fas, soluble",SL002731,Tumor necrosis factor receptor superfamily member 6,P25445,1,0,1.3k only,1,1
+12060-28,12060-28_3,Protein,GDF-11,SL004345,Growth/differentiation factor 11,O95390,1,0,1.3k only,40,40
+5822-22,5822-22_3,Protein,GDNF,SL004248,Glial cell line-derived neurotrophic factor,P39905,1,0,1.3k only,40,40
+14123-34,14123-34_3,Protein,GI24,SL017424,Platelet receptor Gi24,Q9H7M9,1,0,1.3k only,1,1
+5350-14,5350-14_2,Protein,GPC6,SL012881,Glypican-6,Q9Y625,1,0,1.3k only,1,1
+11081-1,11081-1_3,Protein,GPDA,SL007151,"Glycerol-3-phosphate dehydrogenase [NAD(+)], cytoplasmic",P21695,1,0,1.3k only,40,40
+5464-52,5464-52_3,Protein,GRB2 adapter protein,SL003792,Growth factor receptor-bound protein 2,P62993,1,0,1.3k only,40,1
+9196-8,9196-8_3,Protein,Galectin-7,SL005166,Galectin-7,P47929,1,0,1.3k only,1,1
+5897-58,5897-58_3,Protein,Gastrin-releasing peptide,SL002071,Gastrin-releasing peptide,P07492,1,0,1.3k only,40,40
+14144-3,14144-3_3,Protein,H2A3,SL019979,Histone H2A type 3,Q7L7L0,1,0,1.3k only,1,1
+14143-8,14143-8_3,Protein,H2B2E,SL014983,Histone H2B type 2-E,Q16778,1,0,1.3k only,40,40
+14146-92,14146-92_3,Protein,H31,SL008158,Histone H3.1,P68431,1,0,1.3k only,40,40
+11096-57,11096-57_3,Protein,HEMK2,SL018921,HemK methyltransferase family member 2,Q9Y5N5,1,0,1.3k only,1,1
+8462-18,8462-18_3,Protein,HGH,SL000442,Somatotropin,P01241,1,0,1.3k only,40,40
+14132-21,14132-21_3,Protein,HHLA2,SL020171,HERV-H LTR-associating protein 2,Q9UM44,1,0,1.3k only,40,1
+13089-6,13089-6_3,Protein,HIF-1a,SL003349,Hypoxia-inducible factor 1-alpha,Q16665,1,0,1.3k only,40,1
+9187-2,9187-2_3,Protein,HMGN1,SL013165,Non-histone chromosomal protein HMG-14,P05114,1,0,1.3k only,1,1
+11103-24,11103-24_3,Protein,HSP 27,SL000448,Heat shock protein beta-1,P04792,1,0,1.3k only,40,40
+5467-15,5467-15_3,Protein,HSP 90b,SL000454,Heat shock protein HSP 90-beta,P08238,1,0,1.3k only,1,1
+13131-5,13131-5_3,Protein,HXK1,SL011180,Hexokinase-1,P19367,1,0,1.3k only,40,1
+13130-150,13130-150_3,Protein,HXK2,SL007272,Hexokinase-2,P52789,1,0,1.3k only,40,40
+9183-7,9183-7_3,Protein,IFN-a/b R1,SL004475,Interferon alpha/beta receptor 1,P17181,1,0,1.3k only,40,1
+14127-240,14127-240_3,Protein,IFN-b,SL001880,Interferon beta,P01574,1,0,1.3k only,40,40
+14128-121,14128-121_3,Protein,IFN10,SL017106,Interferon alpha-10,P01566,1,0,1.3k only,40,40
+14129-1,14129-1_3,Protein,IFNA7,SL019978,Interferon alpha-7,P01567,1,0,1.3k only,40,40
+14133-93,14133-93_3,Protein,IL-1 sRII,SL000145,Interleukin-1 receptor type 2,P27930,1,0,1.3k only,1,1
+10344-334,10344-334_3,Protein,IL-10 Ra,SL005173,Interleukin-10 receptor subunit alpha,Q13651,1,0,1.3k only,1,1
+14150-7,14150-7_3,Protein,IL-1F6,SL005177,Interleukin-36 alpha,Q9UHA7,1,0,1.3k only,1,1
+14149-9,14149-9_3,Protein,IL-1F8,SL005179,Interleukin-36 beta,Q9NZH7,1,0,1.3k only,40,40
+5353-89,5353-89_2,Protein,IL-1Ra,SL001990,Interleukin-1 receptor antagonist protein,P18510,1,0,1.3k only,40,1
+5834-18,5834-18_3,Protein,IL-9,SL000485,Interleukin-9,P15248,1,0,1.3k only,40,40
+9180-6,9180-6_3,Protein,INGR2,SL007217,Interferon gamma receptor 2,P38484,1,0,1.3k only,40,40
+10351-51,10351-51_3,Protein,IRF1,SL007108,Interferon regulatory factor 1,P10914,1,0,1.3k only,40,1
+13124-20,13124-20_3,Protein,ISLR2,SL018587,Immunoglobulin superfamily containing leucine-rich repeat protein 2,Q6UXK2,1,0,1.3k only,40,1
+11089-7,11089-7_3,Protein,IgA,SL000459,Immunoglobulin A,P01876 P01877,1,0,1.3k only,0.005,0.005
+8485-7,8485-7_3,Protein,KEAP1,SL017529,Kelch-like ECH-associated protein 1,Q14145,1,0,1.3k only,40,1
+13129-40,13129-40_3,Protein,LDLR,SL007070,Low-density lipoprotein receptor,P01130,1,0,1.3k only,40,40
+9197-4,9197-4_3,Protein,LEG9,SL008486,Galectin-9,O00182,1,0,1.3k only,40,40
+11094-104,11094-104_3,Protein,LPPL,SL007361,Galectin-10,Q05315,1,0,1.3k only,40,40
+7640-29,7640-29_3,Protein,LRP1B,SL013872,Low-density lipoprotein receptor-related protein 1B,Q9NZR2,1,0,1.3k only,0.005,0.005
+10990-21,10990-21_3,Protein,LRRK2,SL017128,Leucine-rich repeat serine/threonine-protein kinase 2,Q5S007,1,0,1.3k only,1,1
+13133-73,13133-73_3,Protein,LTBP4,SL007033,Latent-transforming growth factor beta-binding protein 4,Q8N2S1,1,0,1.3k only,1,1
+13107-9,13107-9_3,Protein,LYPD3,SL008402,Ly6/PLAUR domain-containing protein 3,O95274,1,0,1.3k only,40,1
+7638-30,7638-30_3,Protein,"Lectin, mannose-binding 2",SL005403,Vesicular integral-membrane protein VIP36,Q12907,1,0,1.3k only,1,0.005
+13114-50,13114-50_3,Protein,Lumican,SL006230,Lumican,P51884,1,0,1.3k only,0.005,0.005
+4374-45,4374-45_2,Protein,MIC-1,SL003869,Growth/differentiation factor 15,Q99988,1,0,1.3k only,1,1
+9188-119,9188-119_3,Protein,MIG,SL003188,C-X-C motif chemokine 9,Q07325,1,0,1.3k only,40,40
+6151-18,6151-18_3,Protein,MP2K3,SL007242,Dual specificity mitogen-activated protein kinase kinase 3,P46734,1,0,1.3k only,40,40
+9176-3,9176-3_3,Protein,MUC1,SL000001,Mucin-1,P15941,1,0,1.3k only,40,40
+7648-9,7648-9_3,Protein,MYPC1,SL017328,"Myosin-binding protein C, slow-type",Q00872,1,0,1.3k only,40,1
+10358-33,10358-33_3,Protein,Mcl-1,SL003755,Induced myeloid leukemia cell differentiation protein Mcl-1,Q07820,1,0,1.3k only,40,40
+14583-49,14583-49_3,Protein,Myostatin,SL004357,Growth/differentiation factor 8,O14793,1,0,1.3k only,40,1
+7655-11,7655-11_3,Protein,N-terminal pro-BNP,SL002785,N-terminal pro-BNP,P16860,1,0,1.3k only,40,40
+13109-82,13109-82_3,Protein,NEGR1,SL008810,Neuronal growth regulator 1,Q7Z3B1,1,0,1.3k only,1,1
+6649-51,6649-51_3,Protein,NET1,SL012395,Netrin-1,O95631,1,0,1.3k only,40,40
+9178-30,9178-30_3,Protein,NEUREGULIN-1,SL004297,Neuregulin-1,Q02297,1,0,1.3k only,40,40
+14139-16,14139-16_3,Protein,NRG4,SL007828,Neuregulin-4,Q8WWG1,1,0,1.3k only,40,40
+10339-48,10339-48_3,Protein,NSE,SL001731,Gamma-enolase,P09104,1,0,1.3k only,40,1
+10361-25,10361-25_3,Protein,OAS1,SL014684,2'-5'-oligoadenylate synthase 1,P00973,1,0,1.3k only,40,40
+11067-13,11067-13_3,Protein,Osteocalcin,SL001791,Osteocalcin,P02818,1,0,1.3k only,1,1
+13113-7,13113-7_3,Protein,Osteopontin,SL002688,Osteopontin,P10451,1,0,1.3k only,40,1
+5253-1,5253-1_1,Protein,PDE1A,SL011400,"Calcium/calmodulin-dependent 3',5'-cyclic nucleotide phosphodiesterase 1A",P54750,1,0,1.3k only,40,40
+10366-11,10366-11_3,Protein,PDGFRA,SL001728,Platelet-derived growth factor receptor alpha,P16234,1,0,1.3k only,40,40
+11098-1,11098-1_3,Protein,PDXK,SL007953,Pyridoxal kinase,O00764,1,0,1.3k only,40,40
+9211-19,9211-19_3,Protein,PEDF,SL003066,Pigment epithelium-derived factor,P36955,1,0,1.3k only,0.005,0.005
+5915-58,5915-58_3,Protein,PEX5,SL012148,Peroxisomal targeting signal 1 receptor,P50542,1,0,1.3k only,40,40
+9173-21,9173-21_3,Protein,PGM1,SL008094,Phosphoglucomutase-1,P36871,1,0,1.3k only,40,40
+14114-18,14114-18_3,Protein,PIANP,SL019019,PILR alpha-associated neural protein,Q8IYJ0,1,0,1.3k only,40,40
+10342-55,10342-55_3,Protein,PIAS4,SL019096,E3 SUMO-protein ligase PIAS4,Q8N2W9,1,0,1.3k only,40,40
+5360-9,5360-9_2,Protein,PKB beta,SL003722,RAC-beta serine/threonine-protein kinase,P31751,1,0,1.3k only,40,1
+9216-100,9216-100_3,Protein,PLXB2,SL009948,Plexin-B2,O15031,1,0,1.3k only,1,1
+13095-51,13095-51_3,Protein,PSP,SL005357,Lithostathine-1-alpha,P05451,1,0,1.3k only,0.005,0.005
+6641-60,6641-60_3,Protein,PolyUbiquitin K48,SL017289,PolyUbiquitin K48-linked,P0CG47,1,0,1.3k only,1,1
+6647-55,6647-55_3,Protein,PolyUbiquitin K63,SL017290,PolyUbiquitin K63-linked,P0CG48,1,0,1.3k only,40,1
+9207-60,9207-60_3,Protein,QORL1,SL018887,Quinone oxidoreductase-like protein 1,O95825,1,0,1.3k only,1,1
+5271-5,5271-5_1,Protein,RAC3,SL007310,Ras-related C3 botulinum toxin substrate 3,P60763,1,0,1.3k only,40,40
+11102-22,11102-22_3,Protein,REG4,SL012561,Regenerating islet-derived protein 4,Q9BYZ8,1,0,1.3k only,1,1
+14120-2,14120-2_3,Protein,RNF43,SL018629,E3 ubiquitin-protein ligase RNF43,Q68DV7,1,0,1.3k only,40,1
+8470-213,8470-213_3,Protein,RNase H1,SL017528,Ribonuclease H1,O60930,1,0,1.3k only,40,40
+5484-63,5484-63_3,Protein,RS3A,SL011588,40S ribosomal protein S3a,P61247,1,0,1.3k only,40,40
+13094-75,13094-75_3,Protein,RSPO3,SL018509,R-spondin-3,Q9BXY4,1,0,1.3k only,40,40
+8464-31,8464-31_3,Protein,RSPO4,SL012517,R-spondin-4,Q2I0M5,1,0,1.3k only,40,40
+14135-3,14135-3_3,Protein,RXFP1,SL020172,Relaxin receptor 1,Q9HBX9,1,0,1.3k only,40,40
+5852-6,5852-6_3,Protein,S100A12,SL004783,Protein S100-A12,P80511,1,0,1.3k only,1,1
+14116-129,14116-129_3,Protein,S100A4,SL004821,Protein S100-A4,P26447,1,0,1.3k only,1,1
+13090-17,13090-17_3,Protein,S100A6,SL004827,Protein S100-A6,P06703,1,0,1.3k only,1,1
+5921-58,5921-58_3,Protein,S100A7,SL004829,Protein S100-A7,P31151,1,0,1.3k only,40,40
+13093-6,13093-6_3,Protein,SECTM1,SL005430,Secreted and transmembrane protein 1,Q8WVN6,1,0,1.3k only,1,1
+13132-14,13132-14_3,Protein,SEM5A,SL008522,Semaphorin-5A,Q13591,1,0,1.3k only,40,1
+5121-3,5121-3_2,Protein,SEM6B,SL014248,Semaphorin-6B,Q9H3T3,1,0,1.3k only,40,40
+5430-66,5430-66_3,Protein,SHPS1,SL008967,Tyrosine-protein phosphatase non-receptor type substrate 1,P78324,1,0,1.3k only,40,40
+3643-90,3643-90_2,Protein,SLIK1,SL008760,SLIT and NTRK-like protein 1,Q96PX8,1,0,1.3k only,40,1
+10364-6,10364-6_3,Protein,SMAD2,SL004101,Mothers against decapentaplegic homolog 2,Q15796,1,0,1.3k only,40,40
+10363-13,10363-13_3,Protein,SMAD3,SL004097,Mothers against decapentaplegic homolog 3,P84022,1,0,1.3k only,40,1
+13118-5,13118-5_3,Protein,SMOC1,SL011888,SPARC-related modular calcium-binding protein 1,Q9H4F8,1,0,1.3k only,1,1
+13105-7,13105-7_3,Protein,SNP25,SL007311,Synaptosomal-associated protein 25,P60880,1,0,1.3k only,40,1
+8463-2,8463-2_3,Protein,SOD3,SL003672,Extracellular superoxide dismutase [Cu-Zn],P08294,1,0,1.3k only,0.005,0.005
+13101-60,13101-60_3,Protein,SOST,SL007631,Sclerostin,Q9BQB4,1,0,1.3k only,40,40
+10370-21,10370-21_3,Protein,STAT1,SL004396,Signal transducer and activator of transcription 1-alpha/beta,P42224,1,0,1.3k only,40,40
+10346-5,10346-5_3,Protein,STAT3,SL007221,Signal transducer and activator of transcription 3,P40763,1,0,1.3k only,1,1
+10372-18,10372-18_3,Protein,STAT6,SL007229,Signal transducer and activator of transcription 6,P42226,1,0,1.3k only,1,1
+9169-14,9169-14_3,Protein,SUMO3,SL018938,Small ubiquitin-related modifier 3,P55854,1,0,1.3k only,1,1
+9185-15,9185-15_3,Protein,TFF1,SL008591,Trefoil factor 1,P04155,1,0,1.3k only,40,40
+11101-18,11101-18_3,Protein,TLR4,SL004489,Toll-like receptor 4,O00206,1,0,1.3k only,40,40
+5534-49,5534-49_2,Protein,TRAIL R2,SL004157,Tumor necrosis factor receptor superfamily member 10B,O14763,1,0,1.3k only,40,40
+14121-24,14121-24_3,Protein,TRAIL R4,SL004159,Tumor necrosis factor receptor superfamily member 10D,Q9UBN6,1,0,1.3k only,40,40
+5947-90,5947-90_3,Protein,Tpo,SL000598,Thrombopoietin,P40225,1,0,1.3k only,40,40
+9201-13,9201-13_3,Protein,Transgelin-2,SL004811,Transgelin-2,P37802,1,0,1.3k only,1,1
+9191-8,9191-8_3,Protein,Trefoil factor 2,SL002602,Trefoil factor 2,Q03403,1,0,1.3k only,40,1
+7660-21,7660-21_3,Protein,Tropomyosin 4,SL003646,Tropomyosin alpha-4 chain,P67936,1,0,1.3k only,1,1
+5315-22,5315-22_3,Protein,Troponin T,SL000052,"Troponin T, cardiac muscle",P45379,1,0,1.3k only,40,1
+9199-6,9199-6_3,Protein,UB2G2,SL018946,Ubiquitin-conjugating enzyme E2 G2,P60604,1,0,1.3k only,1,1
+9215-117,9215-117_3,Protein,UBP25,SL018947,Ubiquitin carboxyl-terminal hydrolase 25,Q9UHP3,1,0,1.3k only,40,40
+14151-4,14151-4_3,Protein,UCRP,SL015510,Ubiquitin-like protein ISG15,P05161,1,0,1.3k only,40,40
+5275-28,5275-28_2,Protein,VAV,SL014488,Proto-oncogene vav,P15498,1,0,1.3k only,40,40
+13098-93,13098-93_3,Protein,VEGF-D,SL003320,Vascular endothelial growth factor D,O43915,1,0,1.3k only,1,1
+13125-45,13125-45_3,Protein,Vitronectin,SL000616,Vitronectin,P04004,1,0,1.3k only,1,1
+5927-4,5927-4_3,Protein,WISP-3,SL004690,WNT1-inducible-signaling pathway protein 3,O95389,1,0,1.3k only,40,40
+5493-17,5493-17_3,Protein,WNK3,SL010524,Serine/threonine-protein kinase WNK3,Q9BYP7,1,0,1.3k only,1,1
+11104-13,11104-13_3,Protein,YKL-40,SL003340,Chitinase-3-like protein 1,P36222,1,0,1.3k only,1,1
+14122-132,14122-132_3,Protein,ZNRF3,SL018971,E3 ubiquitin-protein ligase ZNRF3,Q9ULT6,1,0,1.3k only,40,40
+8458-111,8458-111_3,Protein,a-Synuclein,SL005266,Alpha-synuclein,P37840,1,0,1.3k only,40,1
+5864-10,5864-10_3,Protein,aldolase A,SL004910,Fructose-bisphosphate aldolase A,P04075,1,0,1.3k only,1,1
+10356-21,10356-21_3,Protein,c-Jun,SL000455,Transcription factor AP-1,P05412,1,0,1.3k only,40,40
+10362-35,10362-35_3,Protein,c-Myc,SL002565,Myc proto-oncogene protein,P01106,1,0,1.3k only,40,40
+5885-55,5885-55_3,Protein,eIF-4H,SL004924,Eukaryotic translation initiation factor 4H,Q15056,1,0,1.3k only,40,1
+8447-11,8447-11_3,Protein,ghrelin,SL004269,Appetite-regulating hormone,Q9UBU3,1,0,1.3k only,40,40
+6152-111,6152-111_3,Protein,p53,SL000074,Cellular tumor antigen p53,P04637,1,0,1.3k only,1,1
+13119-26,13119-26_3,Protein,protein Z inhibitor,SL004467,Protein Z-dependent protease inhibitor,Q9UK55,1,0,1.3k only,1,1
+9182-3,9182-3_3,Protein,sLRP1,SL004733,"Low-density lipoprotein receptor-related protein 1, soluble",Q07954,1,0,1.3k only,40,40
+3583-54,3583-54_6,Protein,Arylsulfatase A,SL005392,Arylsulfatase A,P15289,1,1,common,40,1
+3587-53,3587-53_7,Protein,BMP10,SL007056,Bone morphogenetic protein 10,O95393,1,1,common,40,1
+3606-2,3606-2_5,Protein,Discoidin domain receptor 2,SL004120,Discoidin domain-containing receptor 2,Q16832,1,1,common,40,1
+3633-70,3633-70_5,Protein,NID2,SL008193,Nidogen-2,Q14112,1,1,common,1,1
+3309-2,3309-2_2,Protein,FCG2A,SL010459,Low affinity immunoglobulin gamma Fc region receptor II-a,P12318,1,1,common,1,1
+3310-62,3310-62_1,Protein,FCG2B,SL010460,Low affinity immunoglobulin gamma Fc region receptor II-b,P31994,1,1,common,1,1
+2765-4,2765-4_3,Protein,GDF-11/8,SL021043,Growth/differentiation factor 11/8,O95390 O14793,1,1,common,1,1
+4179-57,4179-57_3,Protein,14-3-3,SL017611,14-3-3 protein family,"P31946, P62258, P61981, Q04917, P27348, P63104, P31947",1,1,common,1,1
+4708-3,4708-3_2,Protein,17-beta-HSD 1,SL004253,Estradiol 17-beta-dehydrogenase 1,P14061,1,1,common,40,1
+4693-72,4693-72_2,Protein,3HIDH,SL008085,"3-hydroxyisobutyrate dehydrogenase, mitochondrial",P31937,1,1,common,40,40
+2598-9,2598-9_3,Protein,4-1BB,SL004126,Tumor necrosis factor receptor superfamily member 9,Q07011,1,1,common,40,40
+2599-51,2599-51_2,Protein,4-1BB ligand,SL003735,Tumor necrosis factor ligand superfamily member 9,P41273,1,1,common,40,40
+4957-1,4957-1_2,Protein,40S ribosomal protein SA,SL004605,40S ribosomal protein SA,P08865,1,1,common,40,1
+4706-17,4706-17_2,Protein,41,SL010830,Protein 4.1,P11171,1,1,common,1,1
+4184-43,4184-43_3,Protein,4EBP2,SL008378,Eukaryotic translation initiation factor 4E-binding protein 2,Q13542,1,1,common,40,40
+4187-49,4187-49_2,Protein,6-Phosphogluconate dehydrogenase,SL000247,"6-phosphogluconate dehydrogenase, decarboxylating",P52209,1,1,common,1,1
+2516-57,2516-57_3,Protein,6Ckine,SL003193,C-C motif chemokine 21,O00585,1,1,common,1,1
+3341-33,3341-33_4,Protein,ABL1,SL006892,Tyrosine-protein kinase ABL1,P00519,1,1,common,40,40
+5261-13,5261-13_3,Protein,ABL2,SL010488,Abelson tyrosine-protein kinase 2,P42684,1,1,common,40,1
+2805-6,2805-6_2,Protein,ACE2,SL004415,Angiotensin-converting enzyme 2,Q9BYF1,1,1,common,40,40
+4890-10,4890-10_1,Protein,ACTH,SL003461,Corticotropin,P01189,1,1,common,40,40
+3795-6,3795-6_2,Protein,ADAM 9,SL004642,Disintegrin and metalloproteinase domain-containing protein 9,Q13443,1,1,common,40,40
+4420-7,4420-7_2,Protein,ADAM12,SL009988,Disintegrin and metalloproteinase domain-containing protein 12,O43184,1,1,common,40,40
+2809-25,2809-25_2,Protein,ADAMTS-4,SL004625,A disintegrin and metalloproteinase with thrombospondin motifs 4,O75173,1,1,common,40,40
+3168-8,3168-8_2,Protein,ADAMTS-5,SL004626,A disintegrin and metalloproteinase with thrombospondin motifs 5,Q9UNA0,1,1,common,40,40
+4959-2,4959-2_1,Protein,AGR2,SL004925,Anterior gradient protein 2 homolog,O95994,1,1,common,40,40
+2849-49,2849-49_1,Protein,AIF1,SL004768,Allograft inflammatory factor 1,P55008,1,1,common,1,1
+3839-60,3839-60_2,Protein,AIP,SL011629,AH receptor-interacting protein,O00170,1,1,common,40,40
+4192-10,4192-10_2,Protein,AK1A1,SL008039,Alcohol dehydrogenase [NADP(+)],P14550,1,1,common,1,1
+5451-1,5451-1_3,Protein,ALCAM,SL003166,CD166 antigen,Q13740,1,1,common,1,1
+2969-11,2969-11_1,Protein,ALK-1,SL004851,Serine/threonine-protein kinase receptor R3,P37023,1,1,common,40,40
+3709-4,3709-4_2,Protein,ALT,SL000617,Alanine aminotransferase 1,P24298,1,1,common,1,1
+4322-28,4322-28_3,Protein,AMNLS,SL013489,Protein amnionless,Q9BXJ7,1,1,common,40,40
+5183-53,5183-53_3,Protein,AMPK a1b1g1,SL016548,AMP Kinase (alpha1beta1gamma1),Q13131 Q9Y478 P54619,1,1,common,40,40
+5245-40,5245-40_5,Protein,AMPK a2b2g1,SL016549,AMP Kinase (alpha2beta2gamma1),P54646 O43741 P54619,1,1,common,40,40
+3170-6,3170-6_1,Protein,AMPM2,SL007261,Methionine aminopeptidase 2,P50579,1,1,common,40,40
+4194-26,4194-26_3,Protein,AN32B,SL011769,Acidic leucine-rich nuclear phosphoprotein 32 family member B,Q92688,1,1,common,1,1
+3281-19,3281-19_1,Protein,ANGL3,SL006803,Angiopoietin-related protein 3,Q9Y5C1,1,1,common,40,40
+3796-79,3796-79_2,Protein,ANGL4,SL007642,Angiopoietin-related protein 4,Q9BY76,1,1,common,40,40
+5443-62,5443-62_2,Rat Protein,ANP,SL002505,Atrial natriuretic factor,P01160,1,1,common,40,40
+2970-60,2970-60_2,Protein,AREG,SL000136,Amphiregulin,P15514,1,1,common,40,40
+3875-62,3875-62_1,Protein,ARI3A,SL011549,AT-rich interactive domain-containing protein 3A,Q99856,1,1,common,40,40
+4962-52,4962-52_1,Protein,ARMEL,SL012538,Cerebral dopamine neurotrophic factor,Q49AH0,1,1,common,40,40
+4963-19,4963-19_1,Protein,ARP19,SL011708,cAMP-regulated phosphoprotein 19,P56211,1,1,common,40,40
+3172-28,3172-28_2,Protein,ARSB,SL008956,Arylsulfatase B,P15848,1,1,common,40,1
+2813-11,2813-11_2,Protein,ART,SL006924,Agouti-related protein,O00253,1,1,common,40,40
+4964-67,4964-67_1,Protein,ARTS1,SL007729,Endoplasmic reticulum aminopeptidase 1,Q9NZ08,1,1,common,40,40
+3212-30,3212-30_3,Protein,ASAH2,SL010375,Neutral ceramidase,Q9NR71,1,1,common,40,40
+3173-49,3173-49_2,Protein,ASAHL,SL008611,N-acylethanolamine-hydrolyzing acid amidase,Q02083,1,1,common,40,40
+4771-10,4771-10_3,Protein,ASM3A,SL012754,Acid sphingomyelinase-like phosphodiesterase 3a,Q92484,1,1,common,1,1
+4965-27,4965-27_1,Protein,ATP synthase beta chain,SL005675,"ATP synthase subunit beta, mitochondrial",P06576,1,1,common,40,40
+3174-2,3174-2_1,Protein,ATS1,SL008421,A disintegrin and metalloproteinase with thrombospondin motifs 1,Q9UHI8,1,1,common,40,40
+3175-51,3175-51_5,Protein,ATS13,SL006610,A disintegrin and metalloproteinase with thrombospondin motifs 13,Q76LX8,1,1,common,1,1
+4533-76,4533-76_2,Protein,ATS15,SL012740,A disintegrin and metalloproteinase with thrombospondin motifs 15,Q8TE58,1,1,common,40,40
+3346-72,3346-72_2,Protein,AURKB,SL010520,Aurora kinase B,Q96GD4,1,1,common,40,40
+3758-68,3758-68_3,Protein,Activated Protein C,SL003974,Activated Protein C,P04070,1,1,common,40,1
+2748-3,2748-3_2,Protein,Activin A,SL001938,Inhibin beta A chain,P08476,1,1,common,40,40
+2806-49,2806-49_2,Protein,Activin RIB,SL004128,Activin receptor type-1B,P36896,1,1,common,40,40
+3554-24,3554-24_1,Protein,Adiponectin,SL004258,Adiponectin,Q15848,1,1,common,0.005,0.005
+4763-31,4763-31_3,Protein,Afamin,SL004742,Afamin,P43652,1,1,common,0.005,0.005
+4188-1,4188-1_2,Protein,Aflatoxin B1 aldehyde reductase,SL003658,Aflatoxin B1 aldehyde reductase member 2,O43488,1,1,common,1,40
+3280-49,3280-49_2,Protein,Aggrecan,SL004661,Aggrecan core protein,P16112,1,1,common,40,40
+3707-12,3707-12_2,Protein,Albumin,SL000254,Serum albumin,P02768,1,1,common,0.005,0.005
+2795-23,2795-23_3,Protein,"Alkaline phosphatase, bone",SL002077,"Alkaline phosphatase, tissue-nonspecific isozyme",P05186,1,1,common,1,0.005
+3343-1,3343-1_4,Protein,Aminoacylase-1,SL005574,Aminoacylase-1,Q03154,1,1,common,1,1
+4874-3,4874-3_1,Protein,Angiogenin,SL000003,Angiogenin,P03950,1,1,common,0.005,0.005
+2811-27,2811-27_1,Protein,Angiopoietin-1,SL001995,Angiopoietin-1,Q15389,1,1,common,1,1
+2602-2,2602-2_2,Protein,Angiopoietin-2,SL001996,Angiopoietin-2,O15123,1,1,common,1,1
+2500-2,2500-2_3,Protein,Angiopoietin-4,SL004643,Angiopoietin-4,Q9Y264,1,1,common,40,40
+3710-49,3710-49_2,Protein,Angiostatin,SL000268,Angiostatin,P00747,1,1,common,1,1
+3484-60,3484-60_2,Protein,Angiotensinogen,SL000271,Angiotensinogen,P01019,1,1,common,0.005,0.005
+3344-60,3344-60_4,Protein,Antithrombin III,SL000272,Antithrombin-III,P01008,1,1,common,0.005,0.005
+2750-3,2750-3_2,Protein,Apo A-I,SL000019,Apolipoprotein A-I,P02647,1,1,common,0.005,0.005
+2797-56,2797-56_2,Protein,Apo B,SL000020,Apolipoprotein B,P04114,1,1,common,40,40
+4712-28,4712-28_2,Protein,Apo D,SL005361,Apolipoprotein D,P05090,1,1,common,1,1
+2418-55,2418-55_9,Protein,Apo E,SL000276,Apolipoprotein E,P02649,1,1,common,0.005,0.005
+5312-49,5312-49_3,Protein,Apo E2,SL000277,Apolipoprotein E (isoform E2),P02649,1,1,common,0.005,0.005
+2937-10,2937-10_2,Protein,Apo E3,SL004668,Apolipoprotein E (isoform E3),P02649,1,1,common,0.005,0.005
+2938-55,2938-55_2,Protein,Apo E4,SL004669,Apolipoprotein E (isoform E4),P02649,1,1,common,0.005,0.005
+2939-10,2939-10_2,Protein,Artemin,SL004670,Artemin,Q5T4W7,1,1,common,40,40
+3091-70,3091-70_2,Protein,Aurora kinase A,SL004771,Aurora kinase A,O14965,1,1,common,40,40
+2751-16,2751-16_2,Protein,Azurocidin,SL004589,Azurocidin,P20160,1,1,common,40,40
+2603-61,2603-61_2,Protein,B7,SL003738,T-lymphocyte activation antigen CD80,P33681,1,1,common,40,40
+5337-64,5337-64_3,Protein,B7-2,SL004131,T-lymphocyte activation antigen CD86,P42081,1,1,common,40,40
+5060-62,5060-62_3,Protein,B7-H1,SL004852,Programmed cell death 1 ligand 1,Q9NZQ7,1,1,common,40,40
+5061-27,5061-27_3,Protein,B7-H2,SL004853,ICOS ligand,O75144,1,1,common,1,1
+3059-50,3059-50_2,Protein,BAFF,SL004327,Tumor necrosis factor ligand superfamily member 13B,Q9Y275,1,1,common,40,40
+5383-14,5383-14_3,Protein,BAFF Receptor,SL004671,Tumor necrosis factor receptor superfamily member 13C,Q96RJ3,1,1,common,40,1
+3347-9,3347-9_2,Protein,BARK1,SL002792,beta-adrenergic receptor kinase 1,P25098,1,1,common,40,40
+3585-54,3585-54_4,Protein,BASI,SL009341,Basigin,P35613,1,1,common,1,1
+2816-50,2816-50_2,Protein,BCAM,SL001902,Basal Cell Adhesion Molecule,P50895,1,1,common,40,40
+5262-57,5262-57_3,Protein,BCAR3,SL014470,Breast cancer anti-estrogen resistance protein 3,O75815,1,1,common,40,1
+4423-77,4423-77_2,Protein,BCL2-like 1 protein,SL003674,Bcl-2-like protein 1,Q07817,1,1,common,40,40
+2665-26,2665-26_2,Protein,BCMA,SL004672,Tumor necrosis factor receptor superfamily member 17,Q02223,1,1,common,1,1
+2421-7,2421-7_3,Protein,BDNF,SL003951,Brain-derived neurotrophic factor,P23560,1,1,common,40,1
+3413-50,3413-50_2,Protein,BFL1,SL003703,Bcl-2-related protein A1,Q16548,1,1,common,1,1
+3283-21,3283-21_1,Protein,BGH3,SL006544,Transforming growth factor-beta-induced protein ig-h3,Q15582,1,1,common,1,1
+3284-75,3284-75_1,Protein,BGN,SL007804,Biglycan,P21810,1,1,common,40,40
+3487-32,3487-32_2,Protein,BLC,SL003167,C-X-C motif chemokine 13,O43927,1,1,common,40,40
+4862-63,4862-63_1,Protein,BMP RII,SL004133,Bone morphogenetic protein receptor type-2,Q13873,1,1,common,40,40
+3348-49,3348-49_2,Protein,BMP-1,SL003994,Bone morphogenetic protein 1,P13497,1,1,common,1,1
+2752-62,2752-62_2,Protein,BMP-14,SL004329,Growth/differentiation factor 5,P43026,1,1,common,40,40
+2972-57,2972-57_2,Protein,BMP-7,SL004078,Bone morphogenetic protein 7,P18075,1,1,common,40,40
+3654-27,3654-27_4,Protein,BMPER,SL007531,BMP-binding endothelial regulator protein,Q8N8U9,1,1,common,40,40
+4859-6,4859-6_1,Protein,BMPR1A,SL004080,Bone morphogenetic protein receptor type-1A,P36894,1,1,common,40,40
+3414-40,3414-40_2,Protein,BMX,SL006374,Cytoplasmic tyrosine-protein kinase BMX,P51813,1,1,common,40,40
+3723-1,3723-1_2,Protein,BNP-32,SL000306,Brain natriuretic peptide 32,P16860,1,1,common,40,40
+4328-2,4328-2_2,Protein,BOC,SL013490,Brother of CDO,Q9BWV1,1,1,common,40,40
+4126-22,4126-22_1,Protein,BPI,SL004511,Bactericidal permeability-increasing protein,P17213,1,1,common,1,1
+5384-67,5384-67_3,Protein,BRF-1,SL016130,Transcription factor IIIB 90 kDa subunit,Q92994,1,1,common,40,40
+3415-61,3415-61_2,Protein,BSP,SL004660,Bone sialoprotein 2,P21815,1,1,common,40,40
+4534-10,4534-10_2,Protein,BSSP4,SL012822,Brain-specific serine protease 4,Q9GZN4,1,1,common,40,40
+4535-50,4535-50_2,Protein,BST1,SL008644,ADP-ribosyl cyclase/cyclic ADP-ribose hydrolase 2,Q10588,1,1,common,40,40
+3416-2,3416-2_2,Protein,BTK,SL010521,Tyrosine-protein kinase BTK,Q06187,1,1,common,1,1
+3412-7,3412-7_1,Protein,Bcl-2,SL000104,Apoptosis regulator Bcl-2,P10415,1,1,common,40,40
+2666-53,2666-53_2,Protein,Bone proteoglycan II,SL004081,Decorin,P07585,1,1,common,40,40
+4479-14,4479-14_2,Protein,C1-Esterase Inhibitor,SL000308,Plasma protease C1 inhibitor,P05155,1,1,common,1,1
+4967-1,4967-1_1,Protein,C1QBP,SL008177,"Complement component 1 Q subcomponent-binding protein, mitochondrial",Q07021,1,1,common,1,1
+2753-2,2753-2_2,Protein,C1q,SL000309,Complement C1q subcomponent,P02745  P02746  P02747,1,1,common,0.005,0.005
+3285-23,3285-23_2,Protein,C1r,SL000310,Complement C1r subcomponent,P00736,1,1,common,0.005,0.005
+3590-8,3590-8_3,Protein,C1s,SL000311,Complement C1s subcomponent,P09871,1,1,common,0.005,0.005
+3186-2,3186-2_2,Protein,C2,SL002525,Complement C2,P06681,1,1,common,0.005,0.005
+2754-50,2754-50_2,Protein,C3,SL000312,Complement C3,P01024,1,1,common,0.005,0.005
+4792-51,4792-51_2,Protein,C34 gp41 HIV Fragment,SL016148,"gp41 C34 peptide, HIV",Q70626,1,1,common,40,40
+4900-8,4900-8_1,Protein,C3a,SL000313,C3a anaphylatoxin,P01024,1,1,common,0.005,0.005
+2755-8,2755-8_2,Protein,C3adesArg,SL003220,C3a anaphylatoxin des Arginine,P01024,1,1,common,0.005,0.005
+4480-59,4480-59_2,Protein,C3b,SL000314,Complement C3b,P01024,1,1,common,40,40
+4481-34,4481-34_2,Protein,C4,SL000316,Complement C4,"P0C0L4, P0C0L5",1,1,common,0.005,0.005
+2182-54,2182-54_1,Protein,C4b,SL000318,Complement C4b,P0C0L4  P0C0L5,1,1,common,0.005,0.005
+2381-52,2381-52_4,Protein,C5,SL000319,Complement C5,P01031,1,1,common,0.005,0.005
+2851-63,2851-63_3,Protein,C5a,SL000320,C5a anaphylatoxin,P01031,1,1,common,1,1
+4482-66,4482-66_2,Protein,"C5b, 6 Complex",SL000321,Complement C5b-C6 complex,"P01031,P13671",1,1,common,0.005,0.005
+4127-75,4127-75_1,Protein,C6,SL000322,Complement component C6,P13671,1,1,common,0.005,0.005
+2888-49,2888-49_2,Protein,C7,SL000323,Complement component C7,P10643,1,1,common,0.005,0.005
+2429-27,2429-27_4,Protein,C8,SL000324,Complement component C8,"P07357,P07358,P07360",1,1,common,40,40
+3060-43,3060-43_2,Protein,C9,SL000325,Complement component C9,P02748,1,1,common,0.005,0.005
+5410-53,5410-53_3,Protein,CAD15,SL007295,Cadherin-15,P55291,1,1,common,40,1
+3592-4,3592-4_3,Protein,CAMK1,SL010489,Calcium/calmodulin-dependent protein kinase type 1,Q14012,1,1,common,1,1
+3418-12,3418-12_2,Protein,CAMK1D,SL010490,Calcium/calmodulin-dependent protein kinase type 1D,Q8IU85,1,1,common,40,1
+3350-53,3350-53_2,Protein,CAMK2A,SL010491,Calcium/calmodulin-dependent protein kinase type II subunit alpha,Q9UQM7,1,1,common,40,40
+3351-1,3351-1_1,Protein,CAMK2B,SL010492,Calcium/calmodulin-dependent protein kinase type II subunit beta,Q13554,1,1,common,40,40
+3419-49,3419-49_2,Protein,CAMK2D,SL010493,Calcium/calmodulin-dependent protein kinase type II subunit delta,Q13557,1,1,common,40,40
+4968-50,4968-50_1,Protein,CAPG,SL008099,Macrophage-capping protein,P40121,1,1,common,40,40
+3178-5,3178-5_2,Protein,CATC,SL007280,Dipeptidyl peptidase 1,P53634,1,1,common,40,40
+3594-6,3594-6_5,Protein,CATE,SL007121,Cathepsin E,P14091,1,1,common,40,40
+4971-1,4971-1_1,Protein,CATZ,SL008380,Cathepsin Z,Q9UBR2,1,1,common,1,1
+4785-30,4785-30_3,Protein,CBG,SL000347,Corticosteroid-binding globulin,P08185,1,1,common,40,40
+5343-74,5343-74_3,Protein,CBPE,SL008703,Carboxypeptidase E,P16870,1,1,common,40,40
+4540-11,4540-11_2,Protein,CBX5,SL009768,Chromobox protein homolog 5,P45973,1,1,common,40,40
+2890-59,2890-59_2,Protein,CCL28,SL003303,C-C motif chemokine 28,Q9NRJ3,1,1,common,40,40
+3290-50,3290-50_2,Protein,CD109,SL008773,CD109 antigen,Q6YHK3,1,1,common,40,40
+2891-1,2891-1_3,Protein,CD22,SL004330,B-cell receptor CD22,P20273,1,1,common,40,40
+5062-60,5062-60_3,Protein,CD226,SL011100,CD226 antigen,Q15762,1,1,common,40,40
+3291-30,3291-30_2,Protein,CD23,SL002706,Low affinity immunoglobulin epsilon Fc receptor,P06734,1,1,common,1,1
+5412-53,5412-53_3,Protein,CD27,SL004134,CD27 antigen,P26842,1,1,common,0.005,0.005
+2605-49,2605-49_2,Protein,CD30,SL004180,Tumor necrosis factor receptor superfamily member 8,P28908,1,1,common,40,40
+3421-54,3421-54_2,Protein,CD30 Ligand,SL004635,Tumor necrosis factor ligand superfamily member 8,P32971,1,1,common,40,40
+2973-15,2973-15_2,Protein,CD36 ANTIGEN,SL000668,Platelet glycoprotein 4,P16671,1,1,common,40,40
+3182-38,3182-38_2,Protein,CD39,SL010371,Ectonucleoside triphosphate diphosphohydrolase 1,P49961,1,1,common,40,1
+3534-14,3534-14_2,Protein,"CD40 ligand, soluble",SL003862,CD40 ligand,P29965,1,1,common,40,40
+3292-75,3292-75_1,Protein,CD48,SL010450,CD48 antigen,P09326,1,1,common,1,1
+3293-2,3293-2_4,Protein,CD5L,SL006108,CD5 antigen-like,O43866,1,1,common,0.005,0.005
+2822-56,2822-56_2,Protein,CD97,SL004726,CD97 antigen,P48960,1,1,common,40,40
+3879-50,3879-50_1,Protein,CDC37,SL011232,Hsp90 co-chaperone Cdc37,Q16543,1,1,common,40,40
+3422-4,3422-4_2,Protein,CDK1/cyclin B,SL010494,Cyclin-dependent kinase 1:G2/mitotic-specific cyclin-B1 complex,P06493 P14635,1,1,common,40,40
+3357-67,3357-67_2,Protein,CDK2/cyclin A,SL010495,Cyclin-dependent kinase 2:Cyclin-A2 complex,P24941 P20248,1,1,common,40,40
+3358-51,3358-51_2,Protein,CDK5/p35,SL010496,Cyclin-dependent kinase 5:Cyclin-dependent kinase 5 activator 1 complex,Q00535 Q15078,1,1,common,40,40
+3359-11,3359-11_2,Protein,CDK8/cyclin C,SL010522,Cyclin-dependent kinase 8:Cyclin-C complex,P49336 P24863,1,1,common,40,40
+4541-49,4541-49_2,Protein,CDON,SL014092,Cell adhesion molecule-related/down-regulated by oncogenes,Q4KMG0,1,1,common,1,1
+3294-55,3294-55_2,Protein,CFC1,SL010451,Cryptic protein,P0CG37,1,1,common,40,40
+2853-68,2853-68_2,Protein,CHK1,SL006911,Serine/threonine-protein kinase Chk1,O14757,1,1,common,40,40
+3601-54,3601-54_3,Protein,CHL1,SL008936,Neural cell adhesion molecule L1-like protein,O00533,1,1,common,1,1
+4428-1,4428-1_2,Protein,CHST2,SL013988,Carbohydrate sulfotransferase 2,Q9Y4C5,1,1,common,40,40
+4429-51,4429-51_2,Protein,CHST6,SL014130,Carbohydrate sulfotransferase 6,Q9GZX3,1,1,common,40,40
+3800-71,3800-71_2,Protein,CK-BB,SL000377,Creatine kinase B-type,P12277,1,1,common,40,40
+3714-49,3714-49_2,Protein,CK-MB,SL000382,Creatine kinase M-type:Creatine kinase B-type heterodimer,P12277 P06732,1,1,common,1,1
+2670-67,2670-67_4,Protein,CK-MM,SL000383,Creatine kinase M-type,P06732,1,1,common,1,1
+5225-50,5225-50_3,Protein,CK2-A1:B,SL016550,Casein kinase II 2-alpha:2-beta heterotetramer,P68400 P67870,1,1,common,40,40
+5226-36,5226-36_3,Protein,CK2-A2:B,SL016551,Casein kinase II 2-alpha':2-beta heterotetramer,P19784 P67870,1,1,common,40,40
+5345-51,5345-51_3,Protein,CKAP2,SL006675,Cytoskeleton-associated protein 2,Q8WWK9,1,1,common,40,40
+4332-6,4332-6_2,Protein,CLC1B,SL013488,C-type lectin domain family 1 member B,Q9P126,1,1,common,40,1
+3361-26,3361-26_2,Protein,CLC4K,SL010610,C-type lectin domain family 4 member K,Q9UJ71,1,1,common,40,40
+3603-60,3603-60_4,Protein,CLC7A,SL007640,C-type lectin domain family 7 member A,Q9BXN2,1,1,common,40,1
+2607-54,2607-54_2,Protein,CLF-1/CLC Complex,SL004692,Cytokine receptor-like factor 1:Cardiotrophin-like cytokine factor 1 Complex,O75462 Q9UBD9,1,1,common,40,40
+5066-134,5066-134_3,Protein,CLM6,SL014270,CMRF35-like molecule 6,Q08708,1,1,common,1,1
+3489-9,3489-9_2,Protein,CNTF,SL004331,Ciliary neurotrophic factor,P26441,1,1,common,40,40
+2711-6,2711-6_2,Protein,CNTFR alpha,SL005153,Ciliary neurotrophic factor receptor subunit alpha,P26992,1,1,common,40,40
+3296-92,3296-92_2,Protein,CNTN2,SL008623,Contactin-2,Q02246,1,1,common,40,40
+4807-13,4807-13_3,Protein,CO8A1,SL008072,Collagen alpha-1(VIII) chain,P27658,1,1,common,40,40
+2823-7,2823-7_1,Protein,COMMD7,SL004704,COMM domain-containing protein 7,Q86VX2,1,1,common,40,40
+4543-65,4543-65_2,Protein,CONA1,SL014048,Collagen alpha-1(XXIII) chain,Q86Y22,1,1,common,40,40
+3761-4,3761-4_2,Protein,COX-2,SL000027,Prostaglandin G/H synthase 2,P35354,1,1,common,40,40
+5346-24,5346-24_3,Protein,CPNE1,SL011808,Copine-1,Q99829,1,1,common,1,1
+3362-61,3362-61_2,Protein,CRDL1,SL009400,Chordin-like protein 1,Q9BU40,1,1,common,1,1
+3187-52,3187-52_2,Protein,CRIS3,SL007284,Cysteine-rich secretory protein 3,P54108,1,1,common,40,40
+4976-57,4976-57_1,Protein,CRK,SL013240,Adapter molecule crk,P46108,1,1,common,40,40
+4337-49,4337-49_2,Protein,CRP,SL000051,C-reactive protein,P02741,1,1,common,1,1
+5068-54,5068-54_3,Protein,CRTAM,SL014208,Cytotoxic and regulatory T-cell molecule,O95727,1,1,common,40,40
+3738-54,3738-54_1,Protein,CSF-1,SL002684,Macrophage colony-stimulating factor 1,P09603,1,1,common,40,40
+3363-31,3363-31_4,Protein,CSK,SL004781,Tyrosine-protein kinase CSK,P41240,1,1,common,1,1
+3427-63,3427-63_2,Protein,CSK21,SL007324,Casein kinase II subunit alpha,P68400,1,1,common,40,40
+2192-63,2192-63_10,Protein,CTACK,SL003168,C-C motif chemokine 27,Q9Y4X3,1,1,common,40,40
+4544-4,4544-4_3,Protein,CTAP-III,SL004708,Connective tissue-activating peptide III,P02775,1,1,common,0.005,0.005
+2975-19,2975-19_2,Protein,CTGF,SL002655,Connective tissue growth factor,P29279,1,1,common,40,40
+3022-4,3022-4_2,Protein,CTLA-4,SL000384,Cytotoxic T-lymphocyte protein 4,P16410,1,1,common,40,40
+2436-49,2436-49_4,Protein,"CXCL16, soluble",SL004016,C-X-C motif chemokine 16,Q9H2A7,1,1,common,1,1
+3803-10,3803-10_2,Protein,CYTD,SL008382,Cystatin-D,P28325,1,1,common,40,40
+3302-58,3302-58_1,Protein,CYTF,SL007049,Cystatin-F,O76096,1,1,common,40,1
+5459-33,5459-33_3,Protein,CYTN,SL010456,Cystatin-SN,P01037,1,1,common,1,1
+4324-33,4324-33_2,Protein,CYTT,SL008516,Cystatin-SA,P09228,1,1,common,40,40
+3877-67,3877-67_2,Protein,CaMKK alpha,SL004938,Calcium/calmodulin-dependent protein kinase kinase 1,Q8N5S9,1,1,common,1,1
+2501-51,2501-51_3,Protein,Cadherin E,SL000055,Cadherin-1,P12830,1,1,common,1,1
+3656-9,3656-9_1,Protein,Cadherin-12,SL004864,Cadherin-12,P55289,1,1,common,40,40
+3797-1,3797-1_1,Protein,Cadherin-2,SL000638,Cadherin-2,P19022,1,1,common,40,40
+2819-23,2819-23_2,Protein,Cadherin-5,SL002081,Cadherin-5,P33151,1,1,common,1,1
+3591-51,3591-51_3,Protein,Cadherin-6,SL004865,Cadherin-6,P55285,1,1,common,1,1
+4903-72,4903-72_1,Protein,Calcineurin,SL003657,Calcineurin,Q08209  P63098,1,1,common,1,1
+3657-74,3657-74_3,Protein,Calcineurin B a,SL004720,Calcineurin subunit B type 1,P63098,1,1,common,1,1
+2668-70,2668-70_2,Protein,Calpain I,SL000337,Calpain I,P07384 P04632,1,1,common,1,1
+3026-5,3026-5_2,Protein,Calpastatin,SL000338,Calpastatin,P20810,1,1,common,1,1
+3177-49,3177-49_2,Protein,Carbonic Anhydrase IV,SL010369,Carbonic anhydrase 4,P22748,1,1,common,40,40
+3289-19,3289-19_2,Protein,Carbonic Anhydrase X,SL010449,Carbonic anhydrase-related protein 10,Q9NS85,1,1,common,40,40
+3352-80,3352-80_3,Protein,Carbonic anhydrase 6,SL010288,Carbonic anhydrase 6,P23280,1,1,common,1,1
+3798-71,3798-71_1,Protein,Carbonic anhydrase 9,SL005508,Carbonic anhydrase 9,Q16790,1,1,common,40,40
+4969-2,4969-2_1,Protein,Carbonic anhydrase I,SL004866,Carbonic anhydrase 1,P00915,1,1,common,1,1
+3799-11,3799-11_2,Protein,Carbonic anhydrase III,SL004867,Carbonic anhydrase 3,P07451,1,1,common,1,1
+3356-50,3356-50_1,Protein,Carbonic anhydrase VII,SL004868,Carbonic anhydrase 7,P43166,1,1,common,40,40
+3420-21,3420-21_2,Protein,Carbonic anhydrase XIII,SL004869,Carbonic anhydrase 13,Q8N1Q1,1,1,common,40,40
+2889-37,2889-37_2,Protein,Cardiotrophin-1,SL002783,Cardiotrophin-1,Q16619,1,1,common,40,40
+5340-24,5340-24_3,Protein,Caspase-10,SL003717,Caspase-10,Q92851,1,1,common,1,1
+4904-7,4904-7_1,Protein,Caspase-2,SL003710,Caspase-2,P42575,1,1,common,40,40
+3593-72,3593-72_3,Protein,Caspase-3,SL003711,Caspase-3,P42574,1,1,common,40,40
+3488-64,3488-64_2,Protein,Catalase,SL000342,Catalase,P04040,1,1,common,1,1
+3179-51,3179-51_2,Protein,Cathepsin A,SL009213,Lysosomal protective protein,P10619,1,1,common,1,1
+3061-61,3061-61_2,Protein,Cathepsin B,SL000343,Cathepsin B,P07858,1,1,common,1,1
+2431-17,2431-17_3,Protein,Cathepsin G,SL000345,Cathepsin G,P08311,1,1,common,40,40
+3181-50,3181-50_2,Protein,Cathepsin S,SL004673,Cathepsin S,P25774,1,1,common,1,1
+3364-76,3364-76_2,Protein,Cathepsin V,SL006910,Cathepsin L2,O60911,1,1,common,40,40
+3600-2,3600-2_3,Protein,Chitotriosidase-1,SL006029,Chitotriosidase-1,Q13231,1,1,common,1,1
+3360-50,3360-50_4,Protein,Chk2,SL003726,Serine/threonine-protein kinase Chk2,O96017,1,1,common,40,40
+3423-59,3423-59_2,Protein,Chymase,SL005250,Chymase,P23946,1,1,common,40,40
+3028-36,3028-36_2,Protein,Ck-b-8-1,SL003301,Ck-beta-8-1,P55773,1,1,common,40,40
+4542-24,4542-24_2,Protein,Clusterin,SL001896,Clusterin,P10909,1,1,common,0.005,0.005
+4905-63,4905-63_1,Protein,Coactosin-like protein,SL004814,Coactosin-like protein,Q14019,1,1,common,40,1
+4876-32,4876-32_1,Protein,Coagulation Factor IX,SL000357,Coagulation factor IX,P00740,1,1,common,0.005,0.005
+5307-12,5307-12_3,Protein,Coagulation Factor IXab,SL004400,Coagulation factor IXab,P00740,1,1,common,0.005,0.005
+4906-35,4906-35_1,Protein,Coagulation Factor V,SL000622,Coagulation Factor V,P12259,1,1,common,0.005,0.005
+3184-25,3184-25_2,Protein,Coagulation Factor VII,SL000358,Coagulation factor VII,P08709,1,1,common,0.005,0.005
+4878-3,4878-3_1,Protein,Coagulation Factor X,SL000360,Coagulation Factor X,P00742,1,1,common,0.005,0.005
+2190-55,2190-55_1,Protein,Coagulation Factor XI,SL002662,Coagulation Factor XI,P03951,1,1,common,0.005,0.005
+3077-66,3077-66_2,Protein,Coagulation Factor Xa,SL003324,Coagulation factor Xa,P00742,1,1,common,0.005,0.005
+4203-50,4203-50_2,Protein,Cofilin-1,SL004920,Cofilin-1,P23528,1,1,common,40,1
+4430-44,4430-44_3,Protein,Collectin Kidney 1,SL006713,Collectin-11,Q9BWP8,1,1,common,1,1
+3298-52,3298-52_2,Protein,Contactin-4,SL010454,Contactin-4,Q8IWV2,1,1,common,1,1
+3299-29,3299-29_2,Protein,Contactin-5,SL010455,Contactin-5,O94779,1,1,common,40,40
+5347-59,5347-59_3,Protein,Cyclin B1,SL000130,G2/mitotic-specific cyclin-B1,P14635,1,1,common,40,40
+3844-2,3844-2_1,Protein,Cyclophilin A,SL004823,Peptidyl-prolyl cis-trans isomerase A,P62937,1,1,common,1,1
+5248-68,5248-68_2,Protein,Cyclophilin F,SL005793,"Peptidyl-prolyl cis-trans isomerase F, mitochondrial",P30405,1,1,common,40,40
+2609-59,2609-59_2,Protein,Cystatin C,SL001777,Cystatin-C,P01034,1,1,common,0.005,0.005
+3303-23,3303-23_2,Protein,Cystatin M,SL004438,Cystatin-M,Q15828,1,1,common,1,1
+3802-50,3802-50_1,Protein,Cystatin-S,SL007888,Cystatin-S,P01036,1,1,common,40,40
+4786-58,4786-58_3,Protein,Cytidylate kinase,SL007871,UMP-CMP kinase,P30085,1,1,common,40,1
+2943-5,2943-5_2,Protein,Cytochrome P450 3A4,SL000398,Cytochrome P450 3A4,P08684,1,1,common,1,0.005
+2942-50,2942-50_2,Protein,Cytochrome c,SL000396,Cytochrome c,P99999,1,1,common,40,1
+4907-56,4907-56_1,Protein,D-dimer,SL000022,D-dimer,P02671 P02675 P02679,1,1,common,0.005,1
+5069-9,5069-9_3,Protein,DAF,SL004556,Complement decay-accelerating factor,P08174,1,1,common,1,1
+2944-66,2944-66_2,Protein,DAN,SL005156,Neuroblastoma suppressor of tumorigenicity 1,P41271,1,1,common,40,40
+4355-13,4355-13_1,Protein,DAPK2,SL007752,Death-associated protein kinase 2,Q9UIK4,1,1,common,40,1
+4978-54,4978-54_2,Protein,DBNL,SL011628,Drebrin-like protein,Q9UJU6,1,1,common,1,1
+3029-52,3029-52_2,Protein,DC-SIGN,SL005157,CD209 antigen,Q9NNX6,1,1,common,1,1
+3030-3,3030-3_2,Protein,DC-SIGNR,SL005158,C-type lectin domain family 4 member M,Q9H2X3,1,1,common,1,0.005
+4979-34,4979-34_2,Protein,DERM,SL008178,Dermatopontin,Q07507,1,1,common,1,1
+4389-2,4389-2_1,Protein,DHH,SL007003,Desert hedgehog protein N-product,O43323,1,1,common,40,40
+3535-84,3535-84_1,Protein,DKK1,SL004367,Dickkopf-related protein 1,O94907,1,1,common,40,1
+3607-71,3607-71_1,Protein,DKK3,SL009412,Dickkopf-related protein 3,Q9UBP4,1,1,common,1,1
+3881-49,3881-49_2,Protein,DLC8,SL003753,"Dynein light chain 1, cytoplasmic",P63167,1,1,common,40,40
+5349-69,5349-69_3,Protein,DLL1,SL006970,Delta-like protein 1,O00548,1,1,common,1,1
+3305-6,3305-6_1,Protein,DLL4,SL010457,Delta-like protein 4,Q9NR61,1,1,common,40,1
+3845-51,3845-51_2,Protein,DLRB1,SL011530,Dynein light chain roadblock-type 1,Q9NP97,1,1,common,40,40
+3608-12,3608-12_1,Protein,DPP2,SL008916,Dipeptidyl peptidase 2,Q9UHL4,1,1,common,1,1
+5073-30,5073-30_2,Protein,DR3,SL004791,Tumor necrosis factor receptor superfamily member 25,Q93038,1,1,common,0.005,0.005
+5404-53,5404-53_3,Protein,DR6,SL004871,Tumor necrosis factor receptor superfamily member 21,O75509,1,1,common,1,1
+5249-31,5249-31_3,Protein,DRAK2,SL016566,Serine/threonine-protein kinase 17B,O94768,1,1,common,40,1
+4209-60,4209-60_2,Protein,DRG-1,SL004757,Vacuolar protein sorting-associated protein VTA1 homolog,Q9NP79,1,1,common,40,1
+2760-2,2760-2_2,Protein,DRR1,SL004752,Protein FAM107A,O95990,1,1,common,40,40
+4981-6,4981-6_1,Protein,DSC3,SL008709,Desmocollin-3,Q14574,1,1,common,40,40
+3480-7,3480-7_1,Protein,DUS3,SL008122,Dual specificity protein phosphatase 3,P51452,1,1,common,40,40
+4359-87,4359-87_1,Protein,DYRK3,SL013570,Dual specificity tyrosine-phosphorylation-regulated kinase 3,O43781,1,1,common,40,1
+5070-76,5070-76_3,Protein,DcR3,SL003739,Tumor necrosis factor receptor superfamily member 6B,O95407,1,1,common,40,40
+2976-58,2976-58_2,Protein,Desmoglein-1,SL004856,Desmoglein-1,Q02413,1,1,common,40,1
+5071-3,5071-3_3,Protein,Desmoglein-2,SL004857,Desmoglein-2,Q14126,1,1,common,0.005,0.005
+3365-7,3365-7_2,Protein,Dkk-4,SL010612,Dickkopf-related protein 4,Q9UBT3,1,1,common,40,1
+4545-53,4545-53_3,Protein,DnaJ homolog,SL006197,Mitochondrial import inner membrane translocase subunit TIM14,Q96DA6,1,1,common,40,40
+2611-72,2611-72_2,Protein,Dtk,SL004136,Tyrosine-protein kinase receptor TYRO3,Q06418,1,1,common,40,40
+3366-51,3366-51_2,Protein,ECM1,SL006550,Extracellular matrix protein 1,Q16610,1,1,common,0.005,0.005
+2826-53,2826-53_2,Protein,EDA,SL004644,"Ectodysplasin-A, secreted form",Q92838,1,1,common,40,40
+2977-7,2977-7_2,Protein,EDAR,SL004872,Tumor necrosis factor receptor superfamily member EDAR,Q9UNE0,1,1,common,40,40
+2247-20,2247-20_11,Protein,EG-VEGF,SL004332,Prokineticin-1,P58294,1,1,common,40,40
+2714-78,2714-78_2,Protein,EMAP-2,SL003334,Endothelial monocyte-activating polypeptide 2,Q12904,1,1,common,40,1
+4546-27,4546-27_3,Protein,EMR2,SL008822,Adhesion G protein-coupled receptor E2,Q9UHX3,1,1,common,1,1
+2979-8,2979-8_2,Protein,ENA-78,SL003169,C-X-C motif chemokine 5,P42830,1,1,common,40,40
+4435-66,4435-66_2,Protein,ENPP7,SL009045,Ectonucleotide pyrophosphatase/phosphodiesterase family member 7,Q6UWV6,1,1,common,40,40
+4436-1,4436-1_2,Protein,ENTP3,SL014093,Ectonucleoside triphosphate diphosphohydrolase 3,O75355,1,1,common,40,40
+4437-56,4437-56_3,Protein,ENTP5,SL014028,Ectonucleoside triphosphate diphosphohydrolase 5,O75356,1,1,common,1,1
+4212-5,4212-5_3,Protein,EP15R,SL012188,Epidermal growth factor receptor substrate 15-like 1,Q9UBC2,1,1,common,40,40
+3432-21,3432-21_2,Protein,EPHA3,SL010498,Ephrin type-A receptor 3,P29320,1,1,common,40,40
+5076-53,5076-53_2,Protein,EPHAA,SL014294,Ephrin type-A receptor 10,Q5JZY3,1,1,common,40,40
+5077-28,5077-28_3,Protein,EPHB2,SL007179,Ephrin type-B receptor 2,P29323,1,1,common,40,1
+4956-2,4956-2_1,Protein,EPI,SL000139,Epiregulin,O14944,1,1,common,40,40
+2715-25,2715-25_2,Protein,EPO-R,SL005159,Erythropoietin receptor,P19235,1,1,common,40,40
+2945-25,2945-25_1,Protein,ER,SL000007,Estrogen receptor,P03372,1,1,common,40,40
+4217-49,4217-49_3,Protein,ERAB,SL004795,3-hydroxyacyl-CoA dehydrogenase type-2,Q99714,1,1,common,40,40
+2677-1,2677-1_1,Protein,ERBB1,SL002644,Epidermal growth factor receptor,P00533,1,1,common,1,1
+2616-23,2616-23_18,Protein,ERBB2,SL000009,Receptor tyrosine-protein kinase erbB-2,P04626,1,1,common,40,40
+2617-56,2617-56_35,Protein,ERBB3,SL002519,Receptor tyrosine-protein kinase erbB-3,P21860,1,1,common,1,1
+2618-10,2618-10_2,Protein,ERBB4,SL003803,Receptor tyrosine-protein kinase erbB-4,Q15303,1,1,common,40,40
+2855-49,2855-49_2,Protein,ERK-1,SL000409,Mitogen-activated protein kinase 3,P27361,1,1,common,40,1
+4983-6,4983-6_1,Protein,ERP29,SL003522,Endoplasmic reticulum resident protein 29,P30040,1,1,common,0.005,0.005
+2981-9,2981-9_3,Protein,ESAM,SL005160,Endothelial cell-selective adhesion molecule,Q96AP7,1,1,common,1,1
+3847-56,3847-56_2,Protein,ETHE1,SL011532,"Persulfide dioxygenase ETHE1, mitochondrial",O95571,1,1,common,40,1
+4982-54,4982-54_1,Protein,Elafin,SL004458,Elafin,P19957,1,1,common,1,1
+5308-89,5308-89_2,Protein,Elastase,SL000401,Neutrophil elastase,P08246,1,1,common,40,1
+3805-16,3805-16_2,Protein,Endocan,SL010458,Endothelial cell-specific molecule 1,Q9NQ30,1,1,common,1,1
+4908-6,4908-6_1,Protein,Endoglin,SL004482,Endoglin,P17813,1,1,common,40,40
+2201-17,2201-17_6,Protein,Endostatin,SL000403,Endostatin,P39060,1,1,common,1,1
+3611-70,3611-70_4,Protein,Endothelin-converting enzyme 1,SL004060,Endothelin-converting enzyme 1,P42892,1,1,common,1,1
+3189-61,3189-61_2,Protein,Enterokinase,SL010372,Enteropeptidase,P98073,1,1,common,40,40
+5301-7,5301-7_3,Protein,Eotaxin,SL000406,Eotaxin,P51671,1,1,common,40,1
+4128-27,4128-27_2,Protein,Eotaxin-2,SL003104,C-C motif chemokine 24,O00175,1,1,common,40,40
+3431-54,3431-54_2,Protein,EphA1,SL004137,Ephrin type-A receptor 1,P21709,1,1,common,40,1
+3806-55,3806-55_1,Protein,EphA5,SL004844,Ephrin type-A receptor 5,P54756,1,1,common,40,40
+3612-6,3612-6_4,Protein,EphB4,SL004845,Ephrin type-B receptor 4,P54760,1,1,common,1,1
+5078-82,5078-82_3,Protein,EphB6,SL008414,Ephrin type-B receptor 6,O15197,1,1,common,1,1
+2614-28,2614-28_2,Protein,Ephrin-A4,SL004140,Ephrin-A4,P52798,1,1,common,40,40
+2615-60,2615-60_2,Protein,Ephrin-A5,SL004141,Ephrin-A5,P52803,1,1,common,40,40
+2514-65,2514-65_3,Protein,Ephrin-B3,SL004142,Ephrin-B3,Q15768,1,1,common,40,40
+4834-61,4834-61_2,Protein,Epithelial cell kinase,SL002654,Ephrin type-A receptor 2,P29317,1,1,common,40,40
+4984-83,4984-83_1,Protein,Esterase D,SL006378,S-formylglutathione hydrolase,P10768,1,1,common,40,1
+4985-11,4985-11_1,Protein,FABPE,SL005352,"Fatty acid-binding protein, epidermal",Q01469,1,1,common,40,1
+4986-59,4986-59_1,Protein,FAK1,SL012248,Focal adhesion kinase 1,Q05397,1,1,common,40,40
+4774-62,4774-62_3,Protein,FAM107B,SL016129,Protein FAM107B,Q9H098,1,1,common,40,40
+4987-17,4987-17_1,Protein,FCAR,SL010373,Immunoglobulin alpha Fc receptor,P24071,1,1,common,40,40
+3311-27,3311-27_1,Protein,FCG3B,SL008609,Low affinity immunoglobulin gamma Fc region receptor III-B,O75015,1,1,common,0.005,0.005
+3312-64,3312-64_1,Protein,FCGR1,SL010461,High affinity immunoglobulin gamma Fc receptor I,P12314,1,1,common,40,40
+3613-62,3613-62_5,Protein,FCN1,SL010462,Ficolin-1,O00602,1,1,common,40,1
+3313-21,3313-21_2,Protein,FCN2,SL006542,Ficolin-2,Q15485,1,1,common,1,1
+4440-15,4440-15_2,Protein,FCRL3,SL014088,Fc receptor-like protein 3,Q96P31,1,1,common,40,40
+4220-39,4220-39_2,Protein,FER,SL005588,Tyrosine-protein kinase Fer,P16591,1,1,common,40,40
+3367-8,3367-8_3,Protein,FETUB,SL006777,Fetuin-B,Q9UGM5,1,1,common,0.005,0.005
+2441-2,2441-2_4,Protein,FGF-10,SL004333,Fibroblast growth factor 10,O15520,1,1,common,40,40
+4392-54,4392-54_2,Protein,FGF-12,SL005161,Fibroblast growth factor 12,P61328,1,1,common,40,40
+4393-3,4393-3_1,Protein,FGF-16,SL004334,Fibroblast growth factor 16,O43320,1,1,common,40,40
+3494-71,3494-71_3,Protein,FGF-17,SL004335,Fibroblast growth factor 17,O60258,1,1,common,40,40
+2761-49,2761-49_2,Protein,FGF-18,SL004336,Fibroblast growth factor 18,O76093,1,1,common,40,40
+2762-30,2762-30_2,Protein,FGF-19,SL004337,Fibroblast growth factor 19,O95750,1,1,common,40,1
+2763-66,2763-66_2,Protein,FGF-20,SL004338,Fibroblast growth factor 20,Q9NP95,1,1,common,40,40
+4123-60,4123-60_2,Protein,FGF-4,SL003171,Fibroblast growth factor 4,P08620,1,1,common,40,40
+3065-65,3065-65_1,Protein,FGF-5,SL004339,Fibroblast growth factor 5,P12034,1,1,common,40,40
+4130-71,4130-71_1,Protein,FGF-6,SL004340,Fibroblast growth factor 6,P10767,1,1,common,40,40
+4394-71,4394-71_2,Protein,FGF-8A,SL014308,Fibroblast growth factor 8 isoform A,P55075,1,1,common,40,40
+2443-10,2443-10_4,Protein,FGF-8B,SL004342,Fibroblast growth factor 8 isoform B,P55075,1,1,common,40,40
+3807-1,3807-1_2,Protein,FGF23,SL007651,Fibroblast growth factor 23,Q9GZV9,1,1,common,40,40
+4487-1,4487-1_1,Protein,FGF7,SL001691,Fibroblast growth factor 7,P21781,1,1,common,40,40
+2764-20,2764-20_2,Protein,FGF9,SL003849,Fibroblast growth factor 9,P31371,1,1,common,40,40
+3808-76,3808-76_2,Protein,FGFR-2,SL003990,Fibroblast growth factor receptor 2,P21802,1,1,common,40,40
+3809-1,3809-1_2,Protein,FGFR-3,SL004063,Fibroblast growth factor receptor 3,P22607,1,1,common,40,40
+4988-49,4988-49_2,Protein,FGFR4,SL002036,Fibroblast growth factor receptor 4,P22455,1,1,common,40,1
+3810-50,3810-50_2,Protein,FGR,SL006912,Tyrosine-protein kinase Fgr,P09769,1,1,common,40,40
+4547-59,4547-59_2,Protein,FLRT1,SL014071,Leucine-rich repeat transmembrane protein FLRT1,Q9NZU1,1,1,common,40,40
+3434-34,3434-34_1,Protein,FN1.3,SL010349,Fibronectin Fragment 3,P02751,1,1,common,0.005,0.005
+3435-53,3435-53_2,Protein,FN1.4,SL010348,Fibronectin Fragment 4,P02751,1,1,common,1,0.005
+3032-11,3032-11_2,Protein,FSH,SL000428,Follicle stimulating hormone,"P01215,  P01225",1,1,common,1,1
+4132-27,4132-27_2,Protein,FST,SL000674,Follistatin,P19883,1,1,common,40,40
+3438-10,3438-10_2,Protein,FSTL3,SL009324,Follistatin-related protein 3,O95633,1,1,common,1,1
+4549-78,4549-78_2,Protein,FUT5,SL014008,"Alpha-(1,3)-fucosyltransferase 5",Q11128,1,1,common,40,40
+3813-3,3813-3_2,Protein,FYN,SL006913,Tyrosine-protein kinase Fyn,P06241,1,1,common,40,40
+4129-72,4129-72_1,Protein,Factor B,SL000414,Complement factor B,P00751,1,1,common,0.005,0.005
+2946-52,2946-52_2,Protein,Factor D,SL003327,Complement factor D,P00746,1,1,common,0.005,0.005
+4159-130,4159-130_1,Protein,Factor H,SL000415,Complement factor H,P08603,1,1,common,0.005,0.005
+2567-5,2567-5_6,Protein,Factor I,SL003328,Complement factor I,P05156,1,1,common,0.005,0.005
+3052-8,3052-8_2,Protein,"Fas ligand, soluble",SL000633,"Tumor necrosis factor ligand superfamily member 6, soluble form",P48023,1,1,common,40,40
+2796-62,2796-62_2,Protein,Fibrinogen,SL000424,Fibrinogen,P02671 P02675 P02679,1,1,common,0.005,1
+4989-7,4989-7_1,Protein,Fibrinogen g-chain dimer,SL003341,Fibrinogen gamma chain,P02679,1,1,common,0.005,1
+4131-72,4131-72_2,Protein,Fibronectin,SL000426,Fibronectin,P02751,1,1,common,0.005,0.005
+3437-80,3437-80_3,Protein,Flt-3,SL004636,Receptor-type tyrosine-protein kinase FLT3,P36888,1,1,common,40,1
+3053-49,3053-49_2,Protein,Flt3 ligand,SL004343,Fms-related tyrosine kinase 3 ligand,P49771,1,1,common,40,40
+2827-23,2827-23_2,Protein,Fractalkine/CX3CL-1,SL000427,Fractalkine,P78423,1,1,common,40,40
+4548-4,4548-4_2,Protein,Fucosyltransferase 3,SL005575,Galactoside 3(4)-L-fucosyltransferase,P21217,1,1,common,40,40
+4840-73,4840-73_1,Protein,G-CSF,SL001729,Granulocyte colony-stimulating factor,P09919,1,1,common,40,40
+2719-3,2719-3_4,Protein,G-CSF-R,SL004591,Granulocyte colony-stimulating factor receptor,Q99062,1,1,common,40,40
+2619-72,2619-72_2,Protein,GA733-1 protein,SL001890,Tumor-associated calcium signal transducer 2,P09758,1,1,common,40,40
+3848-14,3848-14_2,Protein,"GAPDH, liver",SL003785,Glyceraldehyde-3-phosphate dehydrogenase,P04406,1,1,common,1,1
+5223-59,5223-59_3,Protein,GCKR,SL015728,Glucokinase regulatory protein,Q14397,1,1,common,40,40
+3495-15,3495-15_2,Protein,GCP-2,SL003172,C-X-C motif chemokine 6,P80162,1,1,common,40,40
+3067-67,3067-67_1,Protein,GDF-9,SL005234,Growth/differentiation factor 9,O60383,1,1,common,40,40
+4880-21,4880-21_1,Protein,GDF2,SL007756,Growth/differentiation factor 2,Q9UK05,1,1,common,40,40
+3034-1,3034-1_2,Protein,GFAP,SL004271,Glial fibrillary acidic protein,P14136,1,1,common,40,40
+3314-74,3314-74_2,Protein,GFRa-1,SL004858,GDNF family receptor alpha-1,P56159,1,1,common,40,40
+2515-14,2515-14_3,Protein,GFRa-2,SL004143,GDNF family receptor alpha-2,O00451,1,1,common,1,1
+2505-49,2505-49_3,Protein,GFRa-3,SL004144,GDNF family receptor alpha-3,O60609,1,1,common,40,40
+5280-68,5280-68_5,Protein,GHC2,SL016563,Mitochondrial glutamate carrier 2,Q9H1K4,1,1,common,40,40
+4910-21,4910-21_1,Protein,GIB,SL004064,Phospholipase A2,P04054,1,1,common,40,40
+2447-7,2447-7_4,Protein,GIIE,SL004066,Group IIE secretory phospholipase A2,Q9NZK7,1,1,common,40,40
+4697-59,4697-59_2,Protein,GM-CSF,SL001726,Granulocyte-macrophage colony-stimulating factor,P04141,1,1,common,40,40
+3616-3,3616-3_5,Protein,GNS,SL008504,N-acetylglucosamine-6-sulfatase,P15586,1,1,common,40,40
+4912-17,4912-17_1,Protein,GOT1,SL000280,"Aspartate aminotransferase, cytoplasmic",P17174,1,1,common,40,1
+4551-72,4551-72_3,Protein,GP114,SL014094,Adhesion G-protein coupled receptor G5,Q8IZF4,1,1,common,40,40
+4990-87,4990-87_1,Protein,GP1BA,SL006460,Platelet glycoprotein Ib alpha chain,P07359,1,1,common,1,1
+3315-15,3315-15_1,Protein,GPC2,SL010463,Glypican-2,Q8N158,1,1,common,40,40
+4991-12,4991-12_1,Protein,GPC5,SL012469,Glypican-5,P78333,1,1,common,40,40
+5080-131,5080-131_3,Protein,GPNMB,SL007429,Transmembrane glycoprotein NMB,Q14956,1,1,common,1,1
+3194-36,3194-36_2,Protein,GPVI,SL008759,Platelet glycoprotein VI,Q9HCN6,1,1,common,1,1
+5265-12,5265-12_3,Protein,GRB2-related adapter protein 2,SL005725,GRB2-related adapter protein 2,O75791,1,1,common,40,40
+4449-67,4449-67_3,Protein,GREM1,SL007024,Gremlin-1,O60565,1,1,common,40,40
+4992-49,4992-49_1,Protein,GRN,SL007173,Granulins,P28799,1,1,common,1,1
+3441-64,3441-64_2,Protein,GSK-3 alpha/beta,SL017188,Glycogen synthase kinase-3 alpha/beta,P49840 P49841,1,1,common,40,40
+4993-16,4993-16_1,Protein,GSTA3,SL000670,Glutathione S-transferase A3,Q16772,1,1,common,40,40
+2449-1,2449-1_4,Protein,GV,SL004182,Calcium-dependent phospholipase A2,P39877,1,1,common,40,40
+2949-6,2949-6_2,Protein,GX,SL004067,Group 10 secretory phospholipase A2,O15496,1,1,common,40,40
+3033-57,3033-57_1,Protein,Galectin-2,SL005164,Galectin-2,P05162,1,1,common,40,40
+3066-12,3066-12_1,Protein,Galectin-3,SL003744,Galectin-3,P17931,1,1,common,1,1
+2982-82,2982-82_2,Protein,Galectin-4,SL005165,Galectin-4,P56470,1,1,common,40,40
+4909-68,4909-68_1,Protein,Galectin-8,SL005167,Galectin-8,O00214,1,1,common,40,40
+4775-34,4775-34_3,Protein,Gelsolin,SL005572,Gelsolin,P06396,1,1,common,0.005,0.005
+4891-50,4891-50_1,Protein,Glucagon,SL000433,Glucagon,P01275,1,1,common,40,40
+2857-70,2857-70_2,Protein,Glucocorticoid receptor,SL006914,Glucocorticoid receptor,P04150,1,1,common,1,1
+3192-3,3192-3_2,Protein,Glutamate carboxypeptidase,SL002695,Cytosolic non-specific dipeptidase,Q96KP4,1,1,common,40,40
+4911-49,4911-49_2,Protein,Glutathione S-transferase Pi,SL003643,Glutathione S-transferase P,P09211,1,1,common,40,1
+4842-62,4842-62_2,Protein,Glypican 3,SL000070,Glypican-3,P51654,1,1,common,40,40
+3195-50,3195-50_2,Protein,Granulysin,SL000678,Granulysin,P22749,1,1,common,1,1
+4133-54,4133-54_2,Protein,Granzyme B,SL004068,Granzyme B,P10144,1,1,common,40,40
+3373-5,3373-5_2,Protein,Granzyme H,SL004654,Granzyme H,P20718,1,1,common,40,40
+2985-35,2985-35_1,Protein,Gro-a,SL003173,Growth-regulated alpha protein,P09341,1,1,common,40,1
+2986-49,2986-49_2,Protein,Gro-b/g,SL017610,Gro-beta/gamma,P19876 P19875,1,1,common,1,1
+2948-58,2948-58_2,Protein,Growth hormone receptor,SL005168,Growth hormone receptor,P10912,1,1,common,1,1
+2828-82,2828-82_2,Protein,HAI-1,SL004645,Kunitz-type protease inhibitor 1,O43278,1,1,common,40,40
+4134-4,4134-4_2,Protein,HB-EGF,SL000138,Heparin-binding EGF-like growth factor,Q99075,1,1,common,40,40
+2900-53,2900-53_3,Protein,HCC-1,SL003329,C-C motif chemokine 14,Q16627,1,1,common,1,1
+4913-78,4913-78_1,Protein,HCC-4,SL003300,C-C motif chemokine 16,O15467,1,1,common,1,1
+4914-10,4914-10_1,Protein,HCG,SL001766,Human Chorionic Gonadotropin,"P01215,P01233",1,1,common,40,40
+3374-49,3374-49_2,Protein,HCK,SL010499,Tyrosine-protein kinase HCK,P08631,1,1,common,40,40
+2859-69,2859-69_2,Protein,HDAC8,SL004723,Histone deacetylase 8,Q9BY41,1,1,common,40,1
+4553-65,4553-65_3,Protein,HDGR2,SL014009,Hepatoma-derived growth factor-related protein 2,Q7Z4V5,1,1,common,40,40
+2681-23,2681-23_2,Protein,HGF,SL000441,Hepatocyte growth factor,P14210,1,1,common,40,40
+3617-80,3617-80_4,Protein,HGFA,SL006512,Hepatocyte growth factor activator,Q04756,1,1,common,0.005,0.005
+3443-61,3443-61_2,Protein,HIPK3,SL010523,Homeodomain-interacting protein kinase 3,Q9H422,1,1,common,40,40
+2769-3,2769-3_2,Protein,HIV-2 Rev,SL000445,Protein Rev_HV2BE,P18093,1,1,common,40,40
+2524-56,2524-56_3,Protein,HMG-1,SL003280,High mobility group protein B1,P09429,1,1,common,40,1
+5230-99,5230-99_3,Protein,HMGR,SL016557,3-hydroxy-3-methylglutaryl-coenzyme A reductase,P04035,1,1,common,40,40
+4224-7,4224-7_2,Protein,HNRPQ,SL007022,Heterogeneous nuclear ribonucleoprotein Q,O60506,1,1,common,40,40
+2622-18,2622-18_1,Protein,HO-2,SL004751,Heme oxygenase 2,P30519,1,1,common,40,40
+4995-16,4995-16_1,Protein,HPG-,SL003930,15-hydroxyprostaglandin dehydrogenase [NAD(+)],P15428,1,1,common,1,1
+3196-6,3196-6_2,Protein,HPLN1,SL008023,Hyaluronan and proteoglycan link protein 1,P10915,1,1,common,40,40
+2623-54,2623-54_4,Protein,HPV E7 Type 16,SL004697,Protein E7_HPV16,P03129,1,1,common,40,40
+2624-31,2624-31_2,Protein,HPV E7 Type18,SL004698,Protein E7_HPV18,P06788,1,1,common,40,40
+4996-66,4996-66_1,Protein,HRG,SL006448,Histidine-rich glycoprotein,P04196,1,1,common,0.005,0.005
+3852-19,3852-19_2,Protein,HSP 40,SL000449,DnaJ homolog subfamily B member 1,P25685,1,1,common,40,40
+2682-68,2682-68_1,Protein,HSP 60,SL000450,"60 kDa heat shock protein, mitochondrial",P10809,1,1,common,40,1
+4124-24,4124-24_2,Protein,HSP 70,SL000451,Heat shock 70 kDa protein 1A,P0DMV8,1,1,common,40,40
+2625-53,2625-53_4,Protein,HSP 90a/b,SL017612,Heat shock protein HSP 90-alpha/beta,P07900 P08238,1,1,common,1,1
+3317-33,3317-33_1,Protein,HTRA2,SL004860,"Serine protease HTRA2, mitochondrial",O43464,1,1,common,40,40
+5352-11,5352-11_3,Protein,HVEM,SL004145,Tumor necrosis factor receptor superfamily member 14,Q92956,1,1,common,40,40
+3054-3,3054-3_2,Protein,"Haptoglobin, Mixed Type",SL000437,Haptoglobin,P00738,1,1,common,0.005,0.005
+2858-29,2858-29_2,Protein,Hat1,SL004725,Histone acetyltransferase type B catalytic subunit,O14929,1,1,common,40,40
+4915-64,4915-64_2,Protein,Hemoglobin,SL000836,Hemoglobin,"P69905, P68871",1,1,common,1,1
+2768-56,2768-56_2,Protein,Hemopexin,SL000440,Hemopexin,P02790,1,1,common,0.005,0.005
+3316-58,3316-58_1,Protein,Heparin cofactor II,SL004466,Heparin cofactor 2,P05546,1,1,common,0.005,0.005
+2987-37,2987-37_3,Protein,Histone H1.2,SL005256,Histone H1.2,P16403,1,1,common,40,40
+4163-5,4163-5_2,Protein,Histone H2A.z,SL002093,Histone H2A.z,P0C0S5,1,1,common,40,40
+2770-51,2770-51_2,Protein,I-309,SL003176,C-C motif chemokine 1,P22362,1,1,common,40,1
+3038-9,3038-9_2,Protein,I-TAC,SL003326,C-X-C motif chemokine 11,O14625,1,1,common,40,40
+2988-57,2988-57_2,Protein,ICOS,SL005170,Inducible T-cell costimulator,Q9Y6W8,1,1,common,40,40
+3197-70,3197-70_2,Protein,IDE,SL007122,Insulin-degrading enzyme,P14735,1,1,common,40,40
+3198-4,3198-4_1,Protein,IDS,SL008639,Iduronate 2-sulfatase,P22304,1,1,common,40,1
+3169-70,3169-70_2,Protein,IDUA,SL010368,Alpha-L-iduronidase,P35475,1,1,common,1,1
+4997-19,4997-19_1,Protein,IF4A3,SL011616,Eukaryotic initiation factor 4A-III,P38919,1,1,common,40,40
+4230-1,4230-1_2,Protein,IF4G2,SL011211,Eukaryotic translation initiation factor 4 gamma 2,P78344,1,1,common,40,40
+3497-13,3497-13_2,Protein,IFN-aA,SL002075,Interferon alpha-2,P01563,1,1,common,40,40
+4396-54,4396-54_1,Protein,IFN-lambda 1,SL004348,Interferon lambda-1,Q8IU54,1,1,common,40,40
+4397-26,4397-26_2,Protein,IFN-lambda 2,SL004349,Interferon lambda-2,Q8IZJ0,1,1,common,40,40
+2952-75,2952-75_2,Protein,IGF-I,SL000047,Insulin-like growth factor I,P05019,1,1,common,0.005,0.005
+4232-19,4232-19_2,Protein,IGF-I sR,SL003304,Insulin-like growth factor 1 receptor,P08069,1,1,common,40,40
+3676-15,3676-15_3,Protein,IGF-II receptor,SL003679,Cation-independent mannose-6-phosphate receptor,P11717,1,1,common,1,1
+2771-35,2771-35_2,Protein,IGFBP-1,SL000462,Insulin-like growth factor-binding protein 1,P08833,1,1,common,1,1
+2571-12,2571-12_3,Protein,IGFBP-3,SL000045,Insulin-like growth factor-binding protein 3,P17936,1,1,common,0.005,0.005
+2950-57,2950-57_2,Protein,IGFBP-4,SL005171,Insulin-like growth factor-binding protein 4,P22692,1,1,common,0.005,0.005
+2685-21,2685-21_2,Protein,IGFBP-5,SL004676,Insulin-like growth factor-binding protein 5,P24593,1,1,common,0.005,0.005
+2686-67,2686-67_2,Protein,IGFBP-6,SL005172,Insulin-like growth factor-binding protein 6,P24592,1,1,common,0.005,0.005
+3320-49,3320-49_2,Protein,IGFBP-7,SL005087,Insulin-like growth factor-binding protein 7,Q16270,1,1,common,1,1
+2630-12,2630-12_2,Protein,IL-1 R AcP,SL004588,Interleukin-1 Receptor accessory protein,Q9NPH3,1,1,common,1,1
+4234-8,4234-8_2,Protein,IL-1 R4,SL004146,Interleukin-1 receptor-like 1,Q01638,1,1,common,1,1
+5082-51,5082-51_3,Protein,IL-1 sR9,SL004849,X-linked interleukin-1 receptor accessory protein-like 2,Q9NP60,1,1,common,40,1
+2991-9,2991-9_2,Protein,IL-1 sRI,SL001997,Interleukin-1 receptor type 1,P14778,1,1,common,40,40
+2773-50,2773-50_2,Protein,IL-10,SL001717,Interleukin-10,P22301,1,1,common,40,40
+2631-50,2631-50_2,Protein,IL-10 Rb,SL004147,Interleukin-10 receptor subunit beta,Q08334,1,1,common,40,40
+4493-92,4493-92_1,Protein,IL-11,SL000470,Interleukin-11,P20809,1,1,common,40,40
+3815-14,3815-14_1,Protein,IL-12 RB2,SL007620,Interleukin-12 receptor subunit beta-2,Q99665,1,1,common,40,40
+2632-5,2632-5_2,Protein,IL-12 Rb1,SL004148,Interleukin-12 receptor subunit beta-1,P42701,1,1,common,40,40
+3072-4,3072-4_2,Protein,IL-13,SL001718,Interleukin-13,P35225,1,1,common,40,40
+2633-52,2633-52_2,Protein,IL-13 Ra1,SL004149,Interleukin-13 receptor subunit alpha-1,P78552,1,1,common,40,1
+3445-53,3445-53_2,Protein,IL-15 Ra,SL004151,Interleukin-15 receptor subunit alpha,Q13261,1,1,common,40,40
+2774-10,2774-10_3,Protein,IL-16,SL000474,Interleukin-16,Q14005,1,1,common,1,1
+5468-67,5468-67_3,Protein,IL-17 RC,SL011068,Interleukin-17 receptor C,Q8NAC3,1,1,common,40,40
+3376-49,3376-49_2,Protein,IL-17 RD,SL010613,Interleukin-17 receptor D,Q8NFM7,1,1,common,40,40
+2992-59,2992-59_2,Protein,IL-17 sR,SL004850,Interleukin-17 receptor A,Q96F46,1,1,common,1,1
+3499-77,3499-77_2,Protein,IL-17B,SL004350,Interleukin-17B,Q9UHF5,1,1,common,40,40
+5084-154,5084-154_3,Protein,IL-17B R,SL005174,Interleukin-17 receptor B,Q9NRM6,1,1,common,40,1
+4136-40,4136-40_2,Protein,IL-17D,SL004353,Interleukin-17D,Q8TAD2,1,1,common,40,40
+4137-57,4137-57_2,Protein,IL-17E,SL004351,Interleukin-25,Q9H293,1,1,common,40,40
+2775-54,2775-54_2,Protein,IL-17F,SL004352,Interleukin-17F,Q96PD4,1,1,common,40,40
+3073-51,3073-51_2,Protein,IL-18 BPa,SL002508,Interleukin-18-binding protein,O95998,1,1,common,40,40
+3446-7,3446-7_2,Protein,IL-18 Ra,SL004152,Interleukin-18 receptor 1,Q13478,1,1,common,40,1
+2993-1,2993-1_2,Protein,IL-18 Rb,SL004861,Interleukin-18 receptor accessory protein,O95256,1,1,common,40,40
+3035-80,3035-80_2,Protein,IL-19,SL004354,Interleukin-19,Q9UHD0,1,1,common,1,1
+2723-9,2723-9_2,Protein,IL-1F7,SL005178,Interleukin-37,Q9NZH6,1,1,common,40,40
+2994-71,2994-71_2,Protein,IL-1Rrp2,SL004875,Interleukin-1 receptor-like 2,Q9HB29,1,1,common,40,40
+4851-25,4851-25_1,Protein,IL-1a,SL000125,Interleukin-1 alpha,P01583,1,1,common,40,40
+3037-62,3037-62_1,Protein,IL-1b,SL001795,Interleukin-1 beta,P01584,1,1,common,40,1
+3070-1,3070-1_2,Protein,IL-2,SL000478,Interleukin-2,P60568,1,1,common,40,40
+3151-6,3151-6_1,Protein,IL-2 sRa,SL003305,Interleukin-2 receptor subunit alpha,P01589,1,1,common,40,40
+2634-2,2634-2_2,Protein,IL-2 sRg,SL003307,Cytokine receptor common subunit gamma,P31785,1,1,common,40,40
+4138-25,4138-25_2,Protein,IL-20,SL004346,Interleukin-20,Q9NYY1,1,1,common,40,40
+5085-18,5085-18_3,Protein,IL-20 Ra,SL005181,Interleukin-20 receptor subunit alpha,Q9UHF4,1,1,common,40,40
+2778-10,2778-10_2,Protein,IL-22,SL004347,Interleukin-22,Q9GZX6,1,1,common,40,1
+5087-5,5087-5_3,Protein,IL-22BP,SL005183,Interleukin-22 receptor subunit alpha-2,Q969J5,1,1,common,40,40
+5088-175,5088-175_3,Protein,IL-23 R,SL005185,Interleukin-23 receptor,Q5VWK5,1,1,common,40,40
+2829-19,2829-19_2,Protein,IL-27,SL006915,Interleukin-27,Q8NEV9 Q14213,1,1,common,40,40
+4717-55,4717-55_2,Protein,IL-3,SL000479,Interleukin-3,P08700,1,1,common,40,40
+4490-65,4490-65_2,Protein,IL-3 Ra,SL005187,Interleukin-3 receptor subunit alpha,P26951,1,1,common,40,40
+4556-10,4556-10_2,Protein,IL-34,SL013548,Interleukin-34,Q6ZMJ4,1,1,common,40,40
+2906-55,2906-55_3,Protein,IL-4,SL000480,Interleukin-4,P05112,1,1,common,40,40
+3055-54,3055-54_2,Protein,IL-4 sR,SL003308,Interleukin-4 receptor subunit alpha,P24394,1,1,common,40,40
+4491-4,4491-4_2,Protein,IL-5 Ra,SL005188,Interleukin-5 receptor subunit alpha,Q01344,1,1,common,40,40
+4673-13,4673-13_2,Protein,IL-6,SL000087,Interleukin-6,P05231,1,1,common,40,40
+4139-71,4139-71_2,Protein,IL-6 sRa,SL001943,Interleukin-6 receptor subunit alpha,P08887,1,1,common,1,1
+4140-3,4140-3_2,Protein,IL-7,SL000483,Interleukin-7,P13232,1,1,common,40,40
+5089-11,5089-11_3,Protein,IL-7 Ra,SL005189,Interleukin-7 receptor subunit alpha,P16871,1,1,common,40,40
+3447-64,3447-64_2,Protein,IL-8,SL000039,Interleukin-8,P10145,1,1,common,40,40
+3620-67,3620-67_5,Protein,IL22RA1,SL007806,Interleukin-22 receptor subunit alpha-1,Q8N6P7,1,1,common,40,40
+3321-2,3321-2_2,Protein,IL24,SL007385,Interleukin-24,Q13007,1,1,common,40,40
+5090-49,5090-49_2,Protein,ILT-2,SL005190,Leukocyte immunoglobulin-like receptor subfamily B member 1,Q8NHL6,1,1,common,1,1
+5091-28,5091-28_3,Protein,ILT-4,SL005191,Leukocyte immunoglobulin-like receptor subfamily B member 2,Q8N423,1,1,common,1,1
+3887-90,3887-90_2,Protein,IMB1,SL010927,Importin subunit beta-1,Q14974,1,1,common,40,40
+5229-90,5229-90_3,Protein,IMDH1,SL014735,Inosine-5'-monophosphate dehydrogenase 1,P20839,1,1,common,40,40
+5250-53,5250-53_3,Protein,IMDH2,SL010928,Inosine-5'-monophosphate dehydrogenase 2,P12268,1,1,common,1,1
+3888-8,3888-8_1,Protein,ING1,SL009628,Inhibitor of growth protein 1,Q9UK53,1,1,common,40,1
+4141-79,4141-79_1,Protein,IP-10,SL003183,C-X-C motif chemokine 10,P02778,1,1,common,40,40
+3448-13,3448-13_2,Protein,IR,SL004125,Insulin receptor,P06213,1,1,common,40,40
+4811-33,4811-33_3,Protein,ITI heavy chain H4,SL004739,Inter-alpha-trypsin inhibitor heavy chain H4,Q14624,1,1,common,0.005,0.005
+4916-2,4916-2_1,Protein,IgD,SL000460,Immunoglobulin D,P01880,1,1,common,1,1
+4135-84,4135-84_2,Protein,IgE,SL000461,Immunoglobulin E,P01854,1,1,common,1,1
+3069-52,3069-52_3,Protein,IgM,SL000468,Immunoglobulin M,P01871,1,1,common,0.005,0.005
+4883-56,4883-56_2,Protein,Insulin,SL000021,Insulin,P01308,1,1,common,40,40
+3503-4,3503-4_2,Protein,Integrin a1b1,SL003179,Integrin alpha-I: beta-1 complex,"P56199, P05556",1,1,common,1,1
+4917-62,4917-62_1,Protein,Integrin aVb5,SL003182,Integrin alpha-V: beta-5 complex,"P06756, P18084",1,1,common,1,40
+5092-51,5092-51_3,Protein,JAG1,SL007328,Protein jagged-1,P78504,1,1,common,1,1
+5093-47,5093-47_3,Protein,JAG2,SL007774,Protein jagged-2,Q9Y219,1,1,common,40,40
+4998-50,4998-50_1,Protein,JAK2,SL007025,Tyrosine-protein kinase JAK2,O60674,1,1,common,1,1
+2997-8,2997-8_1,Protein,JAM-B,SL005193,Junctional adhesion molecule B,P57087,1,1,common,40,1
+2998-53,2998-53_2,Protein,JAM-C,SL005194,Junctional adhesion molecule C,Q9BX67,1,1,common,40,40
+5094-62,5094-62_3,Protein,JAML1,SL009202,Junctional adhesion molecule-like,Q86YT9,1,1,common,40,40
+5244-12,5244-12_3,Protein,JNK2,SL004716,Mitogen-activated protein kinase 9,P45984,1,1,common,40,40
+5193-51,5193-51_3,Protein,K-ras,SL002542,GTPase KRas,P01116,1,1,common,40,40
+5095-21,5095-21_3,Protein,KI2L4,SL012698,Killer cell immunoglobulin-like receptor 2DL4,Q99706,1,1,common,40,40
+5096-51,5096-51_3,Protein,KI3L2,SL014269,Killer cell immunoglobulin-like receptor 3DL2,P43630,1,1,common,40,40
+5097-14,5097-14_3,Protein,KI3S1,SL014289,Killer cell immunoglobulin-like receptor 3DS1,Q14943,1,1,common,40,40
+5228-25,5228-25_2,Protein,KIF23,SL006189,Kinesin-like protein KIF23,Q02241,1,1,common,40,40
+4557-61,4557-61_2,Protein,KIRR3,SL014111,Kin of IRRE-like protein 3,Q8IZU9,1,1,common,40,40
+5098-79,5098-79_3,Protein,KLRF1,SL014209,Killer cell lectin-like receptor subfamily F member 1,Q9NZS2,1,1,common,40,40
+3379-29,3379-29_1,Protein,KPCI,SL007228,Protein kinase C iota type,P41743,1,1,common,40,40
+3817-18,3817-18_1,Protein,KPCT,SL007358,Protein kinase C theta type,Q04759,1,1,common,40,40
+3202-28,3202-28_2,Protein,KREM2,SL010393,Kremen protein 2,Q8NCW0,1,1,common,40,40
+4559-64,4559-64_2,Protein,KYNU,SL013969,Kynureninase,Q16719,1,1,common,40,40
+2831-29,2831-29_1,Protein,Kallikrein 11,SL002763,Kallikrein-11,Q9UBX7,1,1,common,40,40
+2833-20,2833-20_1,Protein,Kallikrein 4,SL003800,Kallikrein-4,Q9Y5K2,1,1,common,40,40
+3450-4,3450-4_2,Protein,Kallikrein 6,SL001797,Kallikrein-6,Q92876,1,1,common,40,1
+3378-49,3378-49_2,Protein,Kallikrein 7,SL000064,Kallikrein-7,P49862,1,1,common,1,0.005
+3449-58,3449-58_2,Protein,Kallistatin,SL004876,Kallistatin,P29622,1,1,common,0.005,0.005
+2860-19,2860-19_2,Protein,Karyopherin-a2,SL004718,Importin subunit alpha-1,P52292,1,1,common,40,1
+5354-11,5354-11_3,Protein,Keratin 18,SL000655,"Keratin, type I cytoskeletal 18",P05783,1,1,common,40,40
+4495-33,4495-33_2,Protein,"Kininogen, HMW",SL017189,Kininogen-1,P01042,1,1,common,0.005,0.005
+2835-1,2835-1_4,Protein,Ku70,SL004301,X-ray repair cross-complementing protein 6,P12956,1,1,common,40,40
+2781-63,2781-63_2,Protein,LAG-1,SL004356,C-C motif chemokine 4-like,Q8NHW4,1,1,common,40,40
+5099-14,5099-14_3,Protein,LAG-3,SL005195,Lymphocyte activation gene 3 protein,P18627,1,1,common,40,40
+3074-6,3074-6_2,Protein,LBP,SL003309,Lipopolysaccharide-binding protein,P18428,1,1,common,0.005,0.005
+3452-17,3452-17_2,Protein,LCK,SL006916,Tyrosine-protein kinase Lck,P06239,1,1,common,40,40
+4237-70,4237-70_3,Protein,LCMT1,SL011770,Leucine carboxyl methyltransferase 1,Q9UIC8,1,1,common,40,40
+2783-18,2783-18_2,Protein,LD78-beta,SL004355,C-C motif chemokine 3-like 1,P16619,1,1,common,40,1
+3890-8,3890-8_2,Protein,LDH-H 1,SL000493,L-lactate dehydrogenase B chain,P07195,1,1,common,0.005,0.005
+3504-58,3504-58_2,Protein,LEAP-1,SL004536,Hepcidin,P81172,1,1,common,1,1
+5000-52,5000-52_1,Protein,LG3BP,SL006522,Galectin-3-binding protein,Q08380,1,1,common,1,1
+3622-33,3622-33_4,Protein,LGMN,SL008909,Legumain,Q99538,1,1,common,1,1
+5355-69,5355-69_3,Protein,LIGHT,SL004648,Tumor necrosis factor ligand superfamily member 14,O43557,1,1,common,40,40
+5100-53,5100-53_3,Protein,LIMP II,SL005197,Lysosome membrane protein 2,Q14108,1,1,common,40,40
+4238-4,4238-4_2,Protein,LIN7B,SL012168,Protein lin-7 homolog B,Q9HAP6,1,1,common,40,40
+3204-2,3204-2_2,Protein,LKHA4,SL007100,Leukotriene A-4 hydrolase,P09960,1,1,common,40,40
+3322-52,3322-52_2,Protein,LRIG3,SL010464,Leucine-rich repeats and immunoglobulin-like domains protein 3,Q6UXM1,1,1,common,40,40
+3323-37,3323-37_1,Protein,LRP8,SL004610,Low-density lipoprotein receptor-related protein 8,Q14114,1,1,common,40,40
+4452-9,4452-9_2,Protein,LRRT1,SL014096,Leucine-rich repeat transmembrane neuronal protein 1,Q86UE6,1,1,common,40,40
+4453-83,4453-83_3,Protein,LRRT3,SL014108,Leucine-rich repeat transmembrane neuronal protein 3,Q86VH5,1,1,common,40,40
+2999-6,2999-6_2,Protein,LSAMP,SL005196,Limbic system-associated membrane protein,Q13449,1,1,common,1,1
+3623-84,3623-84_4,Protein,LY86,SL007059,Lymphocyte antigen 86,O95711,1,1,common,1,1
+3324-51,3324-51_1,Protein,LY9,SL007674,T-lymphocyte surface antigen Ly-9,Q9HBG7,1,1,common,40,40
+3453-87,3453-87_2,Protein,LYN,SL006917,Tyrosine-protein kinase Lyn,P07948,1,1,common,40,40
+3381-24,3381-24_2,Protein,LYNB,SL010500,"Tyrosine-protein kinase Lyn, isoform B",P07948,1,1,common,40,1
+3206-4,3206-4_2,Protein,LYVE1,SL008904,Lymphatic vessel endothelial hyaluronic acid receptor 1,Q9Y5Y7,1,1,common,0.005,0.005
+2780-35,2780-35_2,Protein,Lactoferrin,SL000496,Lactotransferrin,P02788,1,1,common,1,0.005
+3889-64,3889-64_2,Protein,Lamin-B1,SL006132,Lamin-B1,P20700,1,1,common,40,40
+2728-62,2728-62_2,Protein,Laminin,SL000497,Laminin,"P25391, P07942, P11047",1,1,common,40,40
+2635-61,2635-61_2,Protein,Layilin,SL004646,Layilin,Q6UX15,1,1,common,40,40
+2836-68,2836-68_2,Protein,Lipocalin 2,SL000695,Neutrophil gelatinase-associated lipocalin,P80188,1,1,common,1,0.005
+4561-65,4561-65_2,Protein,Livin B,SL004299,Baculoviral IAP repeat-containing protein 7 Isoform beta,Q96CA5,1,1,common,40,40
+2953-31,2953-31_2,Protein,Luteinizing hormone,SL000506,Luteinizing hormone,"P01215, P01229",1,1,common,1,1
+4143-74,4143-74_2,Protein,Lymphotactin,SL003186,Lymphotactin,P47992,1,1,common,40,40
+3505-6,3505-6_2,Protein,Lymphotoxin a1/b2,SL000507,Lymphotoxin alpha1:beta2,"P01374, Q06643",1,1,common,40,40
+3506-49,3506-49_1,Protein,Lymphotoxin a2/b1,SL000508,Lymphotoxin alpha2:beta1,"P01374, Q06643",1,1,common,40,40
+2636-10,2636-10_2,Protein,Lymphotoxin b R,SL000509,Tumor necrosis factor receptor superfamily member 3,P36941,1,1,common,40,1
+4920-10,4920-10_1,Protein,Lysozyme,SL000510,Lysozyme C,P61626,1,1,common,1,0.005
+2638-12,2638-12_2,Protein,M-CSF R,SL004153,Macrophage colony-stimulating factor 1 receptor,P07333,1,1,common,0.005,0.005
+4240-31,4240-31_2,Protein,M2-PK,SL002650,Pyruvate kinase PKM,P14618,1,1,common,1,1
+5007-1,5007-1_1,Protein,MAPK14,SL006920,Mitogen-activated protein kinase 14,Q16539,1,1,common,1,1
+3820-68,3820-68_2,Protein,MAPK2,SL010503,MAP kinase-activated protein kinase 2,P49137,1,1,common,40,40
+3821-28,3821-28_1,Protein,MAPK5,SL010504,MAP kinase-activated protein kinase 5,Q8IW41,1,1,common,40,40
+3822-54,3822-54_2,Protein,MAPKAPK3,SL004765,MAP kinase-activated protein kinase 3,Q16644,1,1,common,1,1
+3605-77,3605-77_4,Protein,MASP3,SL011049,Mannan-binding lectin serine protease 1,P48740,1,1,common,40,1
+3823-9,3823-9_1,Protein,MATK,SL010505,Megakaryocyte-associated tyrosine-protein kinase,P42679,1,1,common,40,40
+3325-2,3325-2_2,Protein,MATN2,SL010465,Matrilin-2,O00339,1,1,common,1,1
+3208-2,3208-2_4,Protein,MATN3,SL006992,Matrilin-3,O15232,1,1,common,40,40
+3891-56,3891-56_1,Protein,MBD4,SL009629,Methyl-CpG-binding domain protein 4,O95243,1,1,common,40,40
+3000-66,3000-66_1,Protein,MBL,SL004516,Mannose-binding protein C,P11226,1,1,common,1,1
+2578-67,2578-67_2,Protein,MCP-1,SL000038,C-C motif chemokine 2,P13500,1,1,common,40,40
+2785-15,2785-15_2,Protein,MCP-2,SL000515,C-C motif chemokine 8,P80075,1,1,common,40,40
+4886-3,4886-3_1,Protein,MCP-3,SL000516,C-C motif chemokine 7,P80098,1,1,common,40,40
+4144-13,4144-13_1,Protein,MCP-4,SL000517,C-C motif chemokine 13,Q99616,1,1,common,40,40
+3508-78,3508-78_3,Protein,MDC,SL003187,C-C motif chemokine 22,O00626,1,1,common,1,1
+3853-56,3853-56_1,Protein,MDHC,SL008102,"Malate dehydrogenase, cytoplasmic",P40925,1,1,common,1,1
+4245-80,4245-80_2,Protein,MDM2,SL001999,E3 ubiquitin-protein ligase Mdm2,Q00987,1,1,common,40,40
+2864-2,2864-2_3,Protein,MEK1,SL003793,Dual specificity mitogen-activated protein kinase kinase 1,Q02750,1,1,common,40,40
+3209-69,3209-69_1,Protein,MEPE,SL005437,Matrix extracellular phosphoglycoprotein,Q9NQ76,1,1,common,40,40
+3210-1,3210-1_2,Protein,METAP1,SL010374,Methionine aminopeptidase 1,P53582,1,1,common,40,40
+4455-89,4455-89_2,Protein,MFGM,SL006523,Lactadherin,Q08431,1,1,common,40,40
+3685-53,3685-53_1,Protein,MFRP,SL010466,Membrane frizzled-related protein,Q9BY79,1,1,common,40,1
+2687-2,2687-2_1,Protein,MIA,SL001947,Melanoma-derived growth regulatory protein,Q16674,1,1,common,1,1
+2730-58,2730-58_2,Protein,MICA,SL005199,MHC class I polypeptide-related sequence A,Q29983,1,1,common,40,40
+5102-55,5102-55_3,Protein,MICB,SL005200,MHC class I polypeptide-related sequence B,Q29980,1,1,common,40,40
+5356-2,5356-2_3,Protein,MIF,SL003080,Macrophage migration inhibitory factor,P14174,1,1,common,1,1
+3040-59,3040-59_1,Protein,MIP-1a,SL000519,C-C motif chemokine 3,P10147,1,1,common,40,40
+2468-62,2468-62_3,Protein,MIP-3a,SL000133,C-C motif chemokine 20,P78556,1,1,common,40,40
+4922-13,4922-13_1,Protein,MIP-3b,SL003189,C-C motif chemokine 19,Q99731,1,1,common,40,40
+3509-1,3509-1_1,Protein,MIP-5,SL003190,C-C motif chemokine 15,Q16663,1,1,common,1,1
+4923-79,4923-79_1,Protein,MIS,SL005201,Muellerian-inhibiting factor,P03971,1,1,common,1,0.005
+3115-64,3115-64_2,Protein,MK01,SL006918,Mitogen-activated protein kinase 1,P28482,1,1,common,40,40
+3825-18,3825-18_2,Protein,MK08,SL010502,Mitogen-activated protein kinase 8,P45983,1,1,common,40,40
+5004-69,5004-69_1,Protein,MK11,SL007453,Mitogen-activated protein kinase 11,Q15759,1,1,common,40,40
+5005-4,5005-4_1,Protein,MK12,SL007281,Mitogen-activated protein kinase 12,P53778,1,1,common,40,40
+5006-71,5006-71_1,Protein,MK13,SL006993,Mitogen-activated protein kinase 13,O15264,1,1,common,40,40
+3627-71,3627-71_4,Protein,MMEL2,SL010376,Membrane metallo-endopeptidase-like 1,Q495T6,1,1,common,40,1
+4924-32,4924-32_1,Protein,MMP-1,SL000521,Interstitial collagenase,P03956,1,1,common,1,1
+4496-60,4496-60_2,Protein,MMP-12,SL000522,Macrophage metalloelastase,P39900,1,1,common,40,40
+4925-54,4925-54_2,Protein,MMP-13,SL000523,Collagenase 3,P45452,1,1,common,40,40
+5002-76,5002-76_1,Protein,MMP-14,SL002646,Matrix metalloproteinase-14,P50281,1,1,common,40,40
+5268-49,5268-49_3,Protein,MMP-16,SL003331,Matrix metalloproteinase-16,P51512,1,1,common,40,40
+2838-53,2838-53_1,Protein,MMP-17,SL003332,Matrix metalloproteinase-17,Q9ULZ9,1,1,common,40,40
+4160-49,4160-49_1,Protein,MMP-2,SL000124,72 kDa type IV collagenase,P08253,1,1,common,1,1
+2788-55,2788-55_1,Protein,MMP-3,SL000524,Stromelysin-1,P08254,1,1,common,40,1
+2789-26,2789-26_2,Protein,MMP-7,SL000525,Matrilysin,P09237,1,1,common,1,1
+2579-17,2579-17_5,Protein,MMP-9,SL000527,Matrix metalloproteinase-9,P14780,1,1,common,1,0.005
+5103-30,5103-30_3,Protein,MO2R1,SL014288,Cell surface glycoprotein CD200 receptor 1,Q8TD46,1,1,common,40,40
+2865-77,2865-77_2,Protein,MOZ,SL004724,Histone acetyltransferase KAT6A,Q92794,1,1,common,40,40
+3628-3,3628-3_4,Protein,MP2K2,SL010501,Dual specificity mitogen-activated protein kinase kinase 2,P36507,1,1,common,1,1
+5242-37,5242-37_3,Protein,MP2K4,SL007237,Dual specificity mitogen-activated protein kinase kinase 4,P45985,1,1,common,1,1
+2913-1,2913-1_2,Protein,MPIF-1,SL003302,C-C motif chemokine 23,P55773,1,1,common,1,1
+3041-55,3041-55_2,Protein,MRC2,SL008416,C-type mannose receptor 2,Q9UBG0,1,1,common,1,1
+3629-60,3629-60_4,Protein,MRCKB,SL006805,Serine/threonine-protein kinase MRCK beta,Q9Y5S2,1,1,common,40,1
+4407-10,4407-10_1,Protein,MSP,SL005202,Hepatocyte growth factor-like protein,P26927,1,1,common,0.005,0.005
+2640-3,2640-3_2,Protein,MSP R,SL004637,Macrophage-stimulating protein receptor,Q04912,1,1,common,40,40
+2637-77,2637-77_2,Protein,Macrophage mannose receptor,SL004579,Macrophage mannose receptor 1,P22897,1,1,common,1,1
+3684-78,3684-78_3,Protein,Macrophage scavenger receptor,SL004580,Macrophage scavenger receptor types I and II,P21757,1,1,common,40,40
+5001-6,5001-6_2,Protein,Mammaglobin 2,SL001973,Mammaglobin-B,O75556,1,1,common,1,1
+3624-3,3624-3_4,Protein,Marapsin,SL011069,Serine protease 27,Q9BQR3,1,1,common,40,1
+3893-64,3893-64_1,Protein,Mesothelin,SL001905,Mesothelin,Q13421,1,1,common,40,40
+2837-3,2837-3_2,Protein,Met,SL000134,Hepatocyte growth factor receptor,P08581,1,1,common,1,1
+2911-27,2911-27_2,Protein,Midkine,SL002621,Midkine,P21741,1,1,common,40,40
+5008-51,5008-51_1,Protein,Mn SOD,SL001815,"Superoxide dismutase [Mn], mitochondrial",P04179,1,1,common,1,1
+5009-11,5009-11_1,Protein,Moesin,SL005846,Moesin,P26038,1,1,common,40,40
+2580-83,2580-83_2,Protein,Myeloperoxidase,SL001796,Myeloperoxidase,P05164,1,1,common,1,1
+3042-7,3042-7_2,Protein,Myoglobin,SL000164,Myoglobin,P02144,1,1,common,1,1
+5012-67,5012-67_1,Protein,"Myokinase, human",SL004296,Adenylate kinase isoenzyme 1,P00568,1,1,common,1,1
+3854-24,3854-24_1,Protein,NACA,SL011631,Nascent polypeptide-associated complex subunit alpha,Q13765,1,1,common,40,40
+2731-29,2731-29_2,Protein,NADPH-P450 Oxidoreductase,SL000528,NADPH--cytochrome P450 reductase,P16435,1,1,common,40,40
+3894-15,3894-15_2,Protein,NAGK,SL005629,N-acetyl-D-glucosamine kinase,Q9UJ70,1,1,common,1,1
+2732-58,2732-58_3,Protein,NANOG,SL005235,Homeobox protein NANOG,Q9H9S0,1,1,common,40,40
+2790-54,2790-54_2,Protein,NAP-2,SL003191,Neutrophil-activating peptide 2,P02775,1,1,common,0.005,0.005
+4498-62,4498-62_2,Protein,NCAM-120,SL003764,"Neural cell adhesion molecule 1, 120 kDa isoform",P13591,1,1,common,1,1
+4246-40,4246-40_2,Protein,NCAM-L1,SL004154,Neural cell adhesion molecule L1,P32004,1,1,common,1,1
+5013-2,5013-2_1,Protein,NCC27,SL004915,Chloride intracellular channel protein 1,O00299,1,1,common,1,1
+5014-49,5014-49_1,Protein,NCK1,SL006091,Cytoplasmic protein NCK1,P16333,1,1,common,40,40
+4249-64,4249-64_2,Protein,NDP kinase B,SL004921,Nucleoside diphosphate kinase B,P22392,1,1,common,40,40
+3327-27,3327-27_1,Protein,NET4,SL007673,Netrin-4,Q9HB63,1,1,common,1,1
+3056-11,3056-11_1,Protein,NKG2D,SL005204,NKG2-D type II integral membrane protein,P26718,1,1,common,40,40
+3003-29,3003-29_2,Protein,NKp30,SL005205,Natural cytotoxicity triggering receptor 3,O14931,1,1,common,40,40
+2734-49,2734-49_4,Protein,NKp44,SL005206,Natural cytotoxicity triggering receptor 2,O95944,1,1,common,40,40
+5104-57,5104-57_3,Protein,NKp46,SL005207,Natural cytotoxicity triggering receptor 1,O76036,1,1,common,40,40
+5357-60,5357-60_3,Protein,NLGNX,SL014113,"Neuroligin-4, X-linked",Q8N0W4,1,1,common,40,40
+5196-7,5196-7_3,Protein,NMT1,SL006476,Glycylpeptide N-tetradecanoyltransferase 1,P30419,1,1,common,40,40
+5106-52,5106-52_3,Protein,NOTC2,SL007356,Neurogenic locus notch homolog protein 2,Q04721,1,1,common,40,40
+2692-74,2692-74_2,Protein,NPS-PLA2,SL002528,"Phospholipase A2, membrane associated",P14555,1,1,common,1,1
+5236-2,5236-2_3,Protein,NR1D1,SL007145,Nuclear receptor subfamily 1 group D member 1,P20393,1,1,common,40,40
+5110-84,5110-84_3,Protein,NRX1B,SL009054,Neurexin-1-beta,P58400,1,1,common,40,40
+5111-15,5111-15_3,Protein,NRX3B,SL008728,Neurexin-3-beta,Q9HDB5,1,1,common,1,1
+4250-23,4250-23_3,Protein,NSF1C,SL006268,NSFL1 cofactor p47,Q9UNZ2,1,1,common,40,40
+4254-6,4254-6_2,Protein,NUDC3,SL011768,NudC domain-containing protein 3,Q8IVD9,1,1,common,40,40
+4562-1,4562-1_2,Protein,NXPH1,SL012457,Neurexophilin-1,P58417,1,1,common,1,1
+3630-27,3630-27_4,Protein,Nectin-like protein 1,SL004804,Cell adhesion molecule 3,Q8N126,1,1,common,40,1
+3326-58,3326-58_2,Protein,Nectin-like protein 2,SL004805,Cell adhesion molecule 1,Q9BY67,1,1,common,40,40
+4145-58,4145-58_2,Protein,Neurotrophin-3,SL004359,Neurotrophin-3,P20783,1,1,common,40,40
+4146-58,4146-58_2,Protein,Neurotrophin-5,SL004360,Neurotrophin-4,P34130,1,1,common,40,40
+3213-65,3213-65_2,Protein,Nidogen,SL000640,Nidogen-1,P14543,1,1,common,1,1
+5105-2,5105-2_3,Protein,Nogo Receptor,SL005208,Reticulon-4 receptor,Q9BZR6,1,1,common,1,1
+5107-7,5107-7_2,Protein,Notch 1,SL005703,Neurogenic locus notch homolog protein 1,P46531,1,1,common,1,1
+5108-72,5108-72_3,Protein,Notch-3,SL005209,Neurogenic locus notch homolog protein 3,Q9UM47,1,1,common,0.005,0.005
+2737-22,2737-22_2,Protein,NovH,SL005236,Protein NOV homolog,P48745,1,1,common,40,40
+5109-24,5109-24_3,Protein,Nr-CAM,SL005210,Neuronal cell adhesion molecule,Q92823,1,1,common,40,40
+3634-5,3634-5_4,Protein,OBCAM,SL005491,Opioid-binding protein/cell adhesion molecule,Q14982,1,1,common,1,1
+3635-76,3635-76_4,Protein,OCAD1,SL010530,OCIA domain-containing protein 1,Q9NX40,1,1,common,40,1
+3636-37,3636-37_4,Protein,OLR1,SL007327,Oxidized low-density lipoprotein receptor 1,P78380,1,1,common,40,1
+5358-3,5358-3_3,Protein,OMD,SL008574,Osteomodulin,Q99983,1,1,common,1,1
+3043-49,3043-49_2,Protein,ON,SL000532,SPARC,P09486,1,1,common,1,0.005
+2526-53,2526-53_3,Protein,OPG,SL002539,Tumor necrosis factor receptor superfamily member 11B,O00300,1,1,common,40,40
+2693-20,2693-20_3,Protein,OSM,SL000530,Oncostatin-M,P13725,1,1,common,40,1
+5112-73,5112-73_3,Protein,OX2G,SL014268,OX-2 membrane glycoprotein,P41217,1,1,common,40,40
+2839-2,2839-2_1,Protein,OX40 Ligand,SL004649,Tumor necrosis factor ligand superfamily member 4,P23510,1,1,common,40,40
+4769-10,4769-10_3,Protein,Olfactomedin-4,SL008590,Olfactomedin-4,Q6UX06,1,1,common,40,40
+2643-57,2643-57_2,Protein,P-Cadherin,SL004183,Cadherin-3,P22223,1,1,common,1,1
+4154-57,4154-57_2,Protein,P-Selectin,SL000560,P-selectin,P16109,1,1,common,1,1
+4258-15,4258-15_2,Protein,PA2G4,SL008331,Proliferation-associated protein 2G4,Q9UQ80,1,1,common,1,1
+5015-15,5015-15_1,Protein,PAFAH,SL003440,Platelet-activating factor acetylhydrolase,Q13093,1,1,common,0.005,0.005
+2642-4,2642-4_1,Protein,PAFAH beta subunit,SL004760,Platelet-activating factor acetylhydrolase IB subunit beta,P68402,1,1,common,40,40
+2925-9,2925-9_1,Protein,PAI-1,SL000006,Plasminogen activator inhibitor 1,P05121,1,1,common,1,1
+3387-1,3387-1_2,Protein,PAK3,SL010508,Serine/threonine-protein kinase PAK 3,O75914,1,1,common,40,40
+3827-22,3827-22_1,Protein,PAK6,SL010509,Serine/threonine-protein kinase PAK 6,Q9NQU5,1,1,common,40,40
+3388-58,3388-58_2,Protein,PAK7,SL010510,Serine/threonine-protein kinase PAK 7,Q9P286,1,1,common,40,40
+4148-49,4148-49_2,Protein,PAPP-A,SL002755,Pappalysin-1,Q13219,1,1,common,1,1
+3044-3,3044-3_2,Protein,PARC,SL003323,C-C motif chemokine 18,P55774,1,1,common,0.005,0.005
+5016-61,5016-61_2,Protein,PARK7,SL008933,Protein deglycase DJ-1,Q99497,1,1,common,40,40
+5011-11,5011-11_1,Protein,PBEF,SL003685,Nicotinamide phosphoribosyltransferase,P43490,1,1,common,40,40
+3389-7,3389-7_2,Protein,PCI,SL000550,Plasma serine protease inhibitor,P05154,1,1,common,0.005,0.005
+2915-6,2915-6_2,Protein,PCNA,SL000131,Proliferating cell nuclear antigen,P12004,1,1,common,40,40
+4459-68,4459-68_2,Protein,PCSK7,SL014069,Proprotein convertase subtilisin/kexin type 7,Q16549,1,1,common,40,40
+5231-79,5231-79_3,Protein,PCSK9,SL012707,Proprotein convertase subtilisin/kexin type 9,Q8NBP7,1,1,common,0.005,0.005
+3004-67,3004-67_2,Protein,PD-L2,SL004862,Programmed cell death 1 ligand 2,Q9BQ51,1,1,common,40,40
+5252-33,5252-33_3,Protein,PDE11,SL016555,"Dual 3',5'-cyclic-AMP and -GMP phosphodiesterase 11A",Q9HCR9,1,1,common,1,1
+5254-69,5254-69_3,Protein,PDE3A,SL016553,"cGMP-inhibited 3',5'-cyclic phosphodiesterase A",Q14432,1,1,common,40,1
+5255-22,5255-22_3,Protein,PDE4D,SL011404,"cAMP-specific 3',5'-cyclic phosphodiesterase 4D",Q08499,1,1,common,40,1
+5256-86,5256-86_3,Protein,PDE5A,SL011405,"cGMP-specific 3',5'-cyclic phosphodiesterase",O76074,1,1,common,40,1
+5178-5,5178-5_3,Protein,PDE7A,SL011406,"High affinity cAMP-specific 3',5'-cyclic phosphodiesterase 7A",Q13946,1,1,common,40,40
+5201-50,5201-50_4,Protein,PDE9A,SL016554,"High affinity cGMP-specific 3',5'-cyclic phosphodiesterase 9A",O76083,1,1,common,40,40
+3459-49,3459-49_2,Protein,PDGF Rb,SL004155,Platelet-derived growth factor receptor beta,P09619,1,1,common,40,40
+4499-21,4499-21_1,Protein,PDGF-AA,SL000535,Platelet-derived growth factor subunit A,P04085,1,1,common,40,1
+4149-8,4149-8_2,Protein,PDGF-BB,SL000537,Platelet-derived growth factor subunit B,P01127,1,1,common,40,1
+3828-54,3828-54_2,Protein,PDGF-CC,SL011071,Platelet-derived growth factor C,Q9NRA1,1,1,common,40,40
+5227-60,5227-60_3,Protein,PDK1,SL006921,"[Pyruvate dehydrogenase (acetyl-transferring)] kinase isozyme 1, mitochondrial",Q15118,1,1,common,40,1
+4460-8,4460-8_2,Protein,PDPK1,SL006998,3-phosphoinositide-dependent protein kinase 1,O15530,1,1,common,40,40
+2695-25,2695-25_1,Protein,PECAM-1,SL001721,Platelet endothelial cell adhesion molecule,P16284,1,1,common,40,40
+4801-13,4801-13_3,Protein,PERL,SL007153,Lactoperoxidase,P22079,1,1,common,40,40
+4267-81,4267-81_3,Protein,PESC,SL011772,Pescadillo homolog,O00541,1,1,common,40,40
+2697-7,2697-7_2,Protein,PF-4,SL003041,Platelet factor 4,P02776,1,1,common,0.005,0.005
+4271-75,4271-75_2,Protein,PFD5,SL006705,Prefoldin subunit 5,Q99471,1,1,common,40,40
+3461-58,3461-58_1,Protein,PGCB,SL009089,Brevican core protein,Q96GW7,1,1,common,40,40
+5019-16,5019-16_2,Protein,PGP9.5,SL002803,Ubiquitin carboxyl-terminal hydrolase isozyme L1,P09936,1,1,common,1,1
+3329-14,3329-14_2,Protein,PGRP-S,SL004515,Peptidoglycan recognition protein 1,O75594,1,1,common,1,1
+4588-1,4588-1_2,Protein,PH,SL011499,Pancreatic hormone,P01298,1,1,common,40,40
+4272-46,4272-46_2,Protein,PHI,SL000539,Glucose-6-phosphate isomerase,P06744,1,1,common,40,1
+3216-2,3216-2_2,Protein,PIGR,SL005797,Polymeric immunoglobulin receptor,P01833,1,1,common,1,1
+3390-72,3390-72_2,Protein,PIK3CA/PIK3R1,SL010512,PIK3CA/PIK3R1,P42336 P27986,1,1,common,40,40
+5359-65,5359-65_3,Protein,PIM1,SL002702,Serine/threonine-protein kinase pim-1,P11309,1,1,common,40,40
+3391-10,3391-10_2,Protein,PK3CG,SL007250,"Phosphatidylinositol 4,5-bisphosphate 3-kinase catalytic subunit gamma isoform",P48736,1,1,common,40,1
+3392-68,3392-68_2,Protein,PKB a/b/g,SL017614,RAC-alpha/beta/gamma serine/threonine-protein kinase,P31749 P31751 Q9Y243,1,1,common,1,1
+2644-11,2644-11_2,Protein,PKC-A,SL000551,Protein kinase C alpha type,P17252,1,1,common,40,40
+5475-10,5475-10_3,Protein,PKC-B-II,SL000553,Protein kinase C beta type (splice variant beta-II),P05771,1,1,common,1,40
+2869-68,2869-68_3,Protein,PKC-D,SL000554,Protein kinase C delta type,Q05655,1,1,common,40,40
+5476-66,5476-66_3,Protein,PKC-G,SL000556,Protein kinase C gamma type,P05129,1,1,common,40,40
+2645-54,2645-54_1,Protein,PKC-Z,SL000557,Protein kinase C zeta type,Q05513,1,1,common,40,40
+4563-61,4563-61_2,Protein,PLCG1,SL012108,"1-phosphatidylinositol 4,5-bisphosphate phosphodiesterase gamma-1",P19174,1,1,common,40,40
+3394-81,3394-81_2,Protein,PLK-1,SL005258,Serine/threonine-protein kinase PLK1,P53350,1,1,common,40,40
+3897-61,3897-61_1,Protein,PLPP,SL011709,Pyridoxal phosphate phosphatase,Q96GD0,1,1,common,40,40
+4564-2,4564-2_2,Protein,PLXC1,SL006406,Plexin-C1,O60486,1,1,common,1,1
+3858-5,3858-5_1,Protein,PPAC,SL008063,Low molecular weight phosphotyrosine protein phosphatase,P24666,1,1,common,40,40
+4718-5,4718-5_2,Protein,PPIB,SL007869,Peptidyl-prolyl cis-trans isomerase B,P23284,1,1,common,40,1
+5202-4,5202-4_3,Protein,PPID,SL007373,Peptidyl-prolyl cis-trans isomerase D,Q08752,1,1,common,40,40
+5238-26,5238-26_3,Protein,PPIE,SL013928,Peptidyl-prolyl cis-trans isomerase E,Q9UNP9,1,1,common,40,40
+5021-13,5021-13_1,Protein,PPase,SL004914,Inorganic pyrophosphatase,Q15181,1,1,common,40,1
+3466-8,3466-8_2,Protein,PRKACA,SL010513,cAMP-dependent protein kinase catalytic subunit alpha,P17612,1,1,common,40,40
+2585-2,2585-2_5,Protein,PRL,SL000546,Prolactin,P01236,1,1,common,1,1
+3859-50,3859-50_2,Protein,PSA1,SL010973,Proteasome subunit alpha type-1,P25786,1,1,common,40,40
+4280-47,4280-47_2,Protein,PSA2,SL008865,Proteasome subunit alpha type-2,P25787,1,1,common,40,40
+3860-7,3860-7_2,Protein,PSA6,SL005630,Proteasome subunit alpha type-6,P60900,1,1,common,40,40
+3898-5,3898-5_2,Protein,PSD7,SL007266,26S proteasome non-ATPase regulatory subunit 7,P51665,1,1,common,40,40
+5204-13,5204-13_3,Protein,PSME3,SL005308,Proteasome activator complex subunit 3,P61289,1,1,common,40,40
+2962-50,2962-50_2,Protein,PTHrP,SL002561,Parathyroid hormone-related protein,P12272,1,1,common,40,40
+3832-51,3832-51_1,Protein,PTK6,SL010514,Protein-tyrosine kinase 6,Q13882,1,1,common,40,40
+3045-72,3045-72_2,Protein,PTN,SL002704,Pleiotrophin,P21246,1,1,common,1,1
+3005-5,3005-5_2,Protein,PTP-1B,SL004939,Tyrosine-protein phosphatase non-receptor type 1,P18031,1,1,common,1,1
+4318-12,4318-12_3,Protein,PTP-1C,SL004940,Tyrosine-protein phosphatase non-receptor type 6,P29350,1,1,common,40,40
+5023-23,5023-23_1,Protein,PUR8,SL009792,Adenylosuccinate lyase,P30566,1,1,common,40,40
+3727-35,3727-35_1,Protein,PYY,SL011509,Peptide YY,P10082,1,1,common,40,40
+3457-57,3457-57_1,Protein,Periostin,SL005084,Periostin,Q15063,1,1,common,40,40
+3855-56,3855-56_1,Protein,Peroxiredoxin-1,SL004919,Peroxiredoxin-1,Q06830,1,1,common,1,1
+5017-19,5017-19_1,Protein,Peroxiredoxin-5,SL004932,"Peroxiredoxin-5, mitochondrial",P30044,1,1,common,40,40
+5018-68,5018-68_1,Protein,Peroxiredoxin-6,SL005694,Peroxiredoxin-6,P30041,1,1,common,0.005,1
+2696-87,2696-87_2,Protein,Persephin,SL004685,Persephin,O60542,1,1,common,40,40
+3896-5,3896-5_2,Protein,Phosphoglycerate mutase 1,SL004820,Phosphoglycerate mutase 1,P18669,1,1,common,40,40
+3078-1,3078-1_2,Protein,PlGF,SL002640,Placenta growth factor,P49763,1,1,common,40,40
+4150-75,4150-75_2,Protein,Plasmin,SL000540,Plasmin,P00747,1,1,common,40,40
+4151-6,4151-6_2,Protein,Plasminogen,SL000541,Plasminogen,P00747,1,1,common,0.005,0.005
+4152-58,4152-58_2,Protein,Prekallikrein,SL000545,Plasma kallikrein,P03952,1,1,common,0.005,0.005
+5114-65,5114-65_3,Protein,Prolactin Receptor,SL005212,Prolactin receptor,P16471,1,1,common,40,1
+2960-66,2960-66_2,Protein,Properdin,SL003192,Properdin,P27918,1,1,common,0.005,0.005
+3217-74,3217-74_2,Protein,Protease nexin I,SL004457,Glia-derived nexin,P07093,1,1,common,40,0.005
+2961-1,2961-1_2,Protein,Protein C,SL000048,Vitamin K-dependent protein C,P04070,1,1,common,0.005,0.005
+2700-56,2700-56_2,Protein,Protein S,SL000049,Vitamin K-dependent protein S,P07225,1,1,common,0.005,0.005
+4719-58,4719-58_2,Protein,Protein disulfide isomerase A3,SL003524,Protein disulfide-isomerase A3,P30101,1,1,common,1,1
+4278-14,4278-14_3,Protein,Protein disulfide-isomerase,SL004901,Protein disulfide-isomerase,P07237,1,1,common,40,40
+3514-49,3514-49_2,Protein,Proteinase-3,SL004008,Myeloblastin,P24158,1,1,common,1,1
+5316-54,5316-54_3,Protein,Prothrombin,SL000558,Prothrombin,P00734,1,1,common,0.005,0.005
+2870-29,2870-29_2,Protein,RAC1,SL004009,Ras-related C3 botulinum toxin substrate 1,P63000,1,1,common,1,1
+2871-73,2871-73_2,Protein,RAD51,SL006922,DNA repair protein RAD51 homolog 1,Q06609,1,1,common,40,40
+4282-3,4282-3_2,Protein,RAN,SL005034,GTP-binding nuclear protein Ran,P62826,1,1,common,1,1
+5424-55,5424-55_3,Protein,RANK,SL003690,Tumor necrosis factor receptor superfamily member 11A,Q9Y6Q6,1,1,common,40,1
+3640-14,3640-14_3,Protein,RAP,SL005263,alpha-2-macroglobulin receptor-associated protein,P30533,1,1,common,1,1
+4284-18,4284-18_3,Protein,RBM39,SL011535,RNA-binding protein 39,Q14498,1,1,common,40,40
+5115-31,5115-31_3,Protein,RELT,SL005213,Tumor necrosis factor receptor superfamily member 19L,Q969Z4,1,1,common,40,40
+3220-40,3220-40_2,Protein,RET,SL010378,Proto-oncogene tyrosine-protein kinase receptor Ret,P07949,1,1,common,1,1
+3332-57,3332-57_1,Protein,RGM-C,SL010469,Hemojuvelin,Q6ZVN8,1,1,common,1,1
+3331-8,3331-8_1,Protein,RGMB,SL010468,RGM domain family member B,Q6NW40,1,1,common,1,1
+5116-62,5116-62_2,Protein,ROBO2,SL007680,Roundabout homolog 2,Q9HCK4,1,1,common,1,1
+5117-14,5117-14_3,Protein,ROBO3,SL014148,Roundabout homolog 3,Q96MS0,1,1,common,40,40
+3469-74,3469-74_1,Protein,RPS6KA3,SL010515,Ribosomal protein S6 kinase alpha-3,P51812,1,1,common,40,40
+5026-66,5026-66_1,Protein,RS3,SL008059,40S ribosomal protein S3,P23396,1,1,common,40,40
+3864-5,3864-5_2,Protein,RS7,SL011528,40S ribosomal protein S7,P62081,1,1,common,40,40
+3865-53,3865-53_1,Protein,RSK-like protein kinase,SL006919,Ribosomal protein S6 kinase alpha-5,O75582,1,1,common,40,40
+4566-24,4566-24_3,Protein,RSPO2,SL013989,R-spondin-2,Q6UXX9,1,1,common,40,40
+5118-74,5118-74_2,Protein,RTN4,SL008309,Reticulon-4,Q9NQC3,1,1,common,0.005,0.005
+5494-52,5494-52_3,Protein,RUXF,SL009790,Small nuclear ribonucleoprotein F,P62306,1,1,common,40,1
+2647-66,2647-66_2,Protein,Rab GDP dissociation inhibitor beta,SL003648,Rab GDP dissociation inhibitor beta,P50395,1,1,common,1,1
+5024-67,5024-67_1,Protein,Rb,SL002522,Retinoblastoma-associated protein,P06400,1,1,common,40,40
+3396-54,3396-54_2,Protein,Renin,SL000565,Renin,P00797,1,1,common,1,1
+4336-2,4336-2_1,Protein,SAA,SL000572,Serum amyloid A-1 protein,P0DJI8,1,1,common,1,1
+2474-54,2474-54_5,Protein,SAP,SL000573,Serum amyloid P-component,P02743,1,1,common,0.005,0.005
+3221-54,3221-54_1,Protein,SARP-2,SL003770,Secreted frizzled-related protein 1,Q8N474,1,1,common,40,40
+3866-7,3866-7_2,Protein,SBDS,SL011529,Ribosome maturation protein SBDS,Q9Y3A5,1,1,common,40,40
+2475-1,2475-1_3,Protein,SCF sR,SL004010,Mast/stem cell growth factor receptor Kit,P10721,1,1,common,1,1
+4500-50,4500-50_2,Protein,SCGF-alpha,SL004363,Stem cell growth factor-alpha,Q9Y240,1,1,common,1,1
+2966-65,2966-65_2,Protein,SCGF-beta,SL004362,Stem Cell Growth Factor-beta,Q9Y240,1,1,common,1,1
+3516-60,3516-60_2,Protein,SDF-1,SL004712,Stromal cell-derived factor 1,P48061,1,1,common,1,1
+3867-49,3867-49_1,Protein,SE6L2,SL011630,Seizure 6-like protein 2,Q6UXD5,1,1,common,40,40
+5029-3,5029-3_1,Protein,SEPR,SL006528,Prolyl endopeptidase FAP,Q12884,1,1,common,1,1
+5364-7,5364-7_3,Protein,SET,SL007336,Protein SET,Q01105,1,1,common,0.005,1
+3868-8,3868-8_1,Protein,SGTA,SL011533,Small glutamine-rich tetratricopeptide repeat-containing protein alpha,O43765,1,1,common,40,40
+4567-82,4567-82_2,Protein,SH21A,SL014468,SH2 domain-containing protein 1A,O60880,1,1,common,40,40
+4929-55,4929-55_1,Protein,SHBG,SL005102,Sex hormone-binding globulin,P04278,1,1,common,0.005,0.005
+5272-55,5272-55_2,Protein,SHC1,SL014469,SHC-transforming protein 1,P29353,1,1,common,40,1
+3397-7,3397-7_4,Protein,SHP-2,SL010616,Tyrosine-protein phosphatase non-receptor type 11,Q06124,1,1,common,40,40
+5125-6,5125-6_3,Protein,SIG14,SL014292,Sialic acid-binding Ig-like lectin 14,Q08ET2,1,1,common,1,1
+5030-52,5030-52_1,Protein,SIRT2,SL006629,NAD-dependent protein deacetylase sirtuin-2,Q8IXJ6,1,1,common,40,40
+3902-21,3902-21_2,Protein,SKP1,SL008808,S-phase kinase-associated protein 1,P63208,1,1,common,40,1
+3642-4,3642-4_1,Protein,SLAF5,SL008588,SLAM family member 5,Q9UIB8,1,1,common,40,1
+5128-53,5128-53_3,Protein,SLAF6,SL014228,SLAM family member 6,Q96DU3,1,1,common,40,40
+5487-7,5487-7_3,Protein,SLAF7,SL016928,SLAM family member 7,Q9NQ25,1,1,common,40,40
+4568-17,4568-17_2,Protein,SLIK5,SL014070,SLIT and NTRK-like protein 5,O94991,1,1,common,40,40
+4413-3,4413-3_2,Protein,SLPI,SL001888,Antileukoproteinase,P03973,1,1,common,1,1
+3122-6,3122-6_2,Protein,SMAC,SL003733,"Diablo homolog, mitochondrial",Q9NR28,1,1,common,40,1
+4292-5,4292-5_3,Protein,SNAA,SL011202,Alpha-soluble NSF attachment protein,P54920,1,1,common,1,1
+2794-60,2794-60_2,Protein,SOD,SL000581,Superoxide dismutase [Cu-Zn],P00441,1,1,common,40,40
+4569-52,4569-52_2,Protein,SORC2,SL014091,VPS10 domain-containing receptor SorCS2,Q96PQ0,1,1,common,40,40
+4414-69,4414-69_2,Protein,SP-D,SL004484,Pulmonary surfactant-associated protein D,P35247,1,1,common,1,1
+4467-49,4467-49_2,Protein,SPARCL1,SL005488,SPARC-like protein 1,Q14515,1,1,common,1,1
+4468-21,4468-21_2,Protein,SPHK2,SL014029,Sphingosine kinase 2,Q9NRA0,1,1,common,40,40
+2843-13,2843-13_2,Protein,SPINT2,SL001897,Kunitz-type protease inhibitor 2,O43291,1,1,common,40,40
+5031-10,5031-10_1,Protein,SPTA2,SL008190,"Spectrin alpha chain, non-erythrocytic 1",Q13813,1,1,common,40,40
+5488-74,5488-74_3,Protein,SRCN1,SL010516,Proto-oncogene tyrosine-protein kinase Src,P12931,1,1,common,40,40
+5129-12,5129-12_3,Protein,SREC-I,SL005221,Scavenger receptor class F member 1,Q14162,1,1,common,1,1
+5130-67,5130-67_3,Protein,SREC-II,SL005222,Scavenger receptor class F member 2,Q96GP6,1,1,common,40,40
+5032-64,5032-64_1,Protein,SSRP1,SL009868,FACT complex subunit SSRP1,Q08945,1,1,common,40,40
+4469-78,4469-78_2,Protein,ST4S6,SL007502,Carbohydrate sulfotransferase 15,Q7LFX5,1,1,common,1,1
+3399-31,3399-31_2,Protein,STAB2,SL007560,Stabilin-2,Q8WWQ8,1,1,common,40,1
+3471-49,3471-49_1,Protein,STK16,SL010517,Serine/threonine-protein kinase 16,O75716,1,1,common,40,1
+3766-51,3766-51_4,Protein,STX1a,SL004304,Syntaxin-1A,Q16623,1,1,common,40,40
+3728-52,3728-52_2,Protein,Secretin,SL000570,Secretin,P09683,1,1,common,40,40
+3222-11,3222-11_2,Protein,Semaphorin 3A,SL010379,Semaphorin-3A,Q14563,1,1,common,40,40
+5363-51,5363-51_3,Protein,Semaphorin 3E,SL010470,Semaphorin-3E,O15041,1,1,common,40,40
+5122-92,5122-92_2,Protein,Semaphorin-6A,SL005214,Semaphorin-6A,Q9H2E6,1,1,common,40,40
+4464-10,4464-10_2,Protein,Sialoadhesin,SL001753,Sialoadhesin,Q9BZZ2,1,1,common,40,40
+3166-92,3166-92_1,Protein,Siglec-3,SL005215,Myeloid cell surface antigen CD33,P20138,1,1,common,40,40
+2741-22,2741-22_2,Protein,Siglec-6,SL005217,Sialic acid-binding Ig-like lectin 6,O43699,1,1,common,40,40
+2742-68,2742-68_2,Protein,Siglec-7,SL005218,Sialic acid-binding Ig-like lectin 7,Q9Y286,1,1,common,1,1
+3007-7,3007-7_2,Protein,Siglec-9,SL005219,Sialic acid-binding Ig-like lectin 9,Q9Y336,1,1,common,40,1
+3644-5,3644-5_4,Protein,Soggy-1,SL010381,Dickkopf-like protein 1,Q9UK85,1,1,common,1,1
+2743-5,2743-5_2,Protein,Sonic Hedgehog,SL005220,Sonic hedgehog protein,Q15465,1,1,common,40,40
+3903-49,3903-49_2,Protein,Sorting nexin 4,SL005372,Sorting nexin-4,O95219,1,1,common,40,40
+4294-16,4294-16_2,Protein,Sphingosine kinase 1,SL006088,Sphingosine kinase 1,Q9NYA1,1,1,common,40,40
+4297-62,4297-62_3,Protein,Spondin-1,SL005115,Spondin-1,Q9HCB6,1,1,common,1,1
+4930-21,4930-21_1,Protein,Stanniocalcin-1,SL005789,Stanniocalcin-1,P52823,1,1,common,1,1
+5489-18,5489-18_3,Protein,Stress-induced-phosphoprotein 1,SL010250,Stress-induced-phosphoprotein 1,P31948,1,1,common,1,1
+3472-40,3472-40_2,Protein,Survivin,SL000582,Baculoviral IAP repeat-containing protein 5,O15392,1,1,common,40,40
+2704-74,2704-74_1,Protein,TACI,SL004364,Tumor necrosis factor receptor superfamily member 13B,O14836,1,1,common,40,40
+3518-54,3518-54_2,Protein,TAFI,SL004015,Carboxypeptidase B2,Q96IY4,1,1,common,0.005,0.005
+5131-15,5131-15_3,Protein,TAJ,SL004863,Tumor necrosis factor receptor superfamily member 19,Q9NS68,1,1,common,40,40
+5259-2,5259-2_3,Protein,TAK1-TAB1,SL016567,Mitogen-activated protein kinase kinase kinase 7:TGF-beta-activated kinase 1 and MAP3K7-binding protein 1 fusion,O43318 Q15750,1,1,common,40,1
+3519-3,3519-3_2,Protein,TARC,SL003196,C-C motif chemokine 17,Q92583,1,1,common,40,1
+3400-49,3400-49_2,Protein,TBK1,SL007747,Serine/threonine-protein kinase TBK1,Q9UHD2,1,1,common,40,40
+2875-15,2875-15_2,Protein,TBP,SL006923,TATA-box-binding protein,P20226,1,1,common,40,40
+5132-71,5132-71_3,Protein,TCCR,SL005223,Interleukin-27 receptor subunit alpha,Q6UWB1,1,1,common,1,1
+3401-8,3401-8_2,Protein,TCPTP,SL005261,Tyrosine-protein phosphatase non-receptor type 2,P17706,1,1,common,40,40
+3872-2,3872-2_1,Protein,TCTP,SL005679,Translationally-controlled tumor protein,P13693,1,1,common,1,1
+3646-7,3646-7_4,Protein,TEC,SL010518,Tyrosine-protein kinase Tec,P42680,1,1,common,40,1
+2705-5,2705-5_2,Protein,TECK,SL003197,C-C motif chemokine 25,O15444,1,1,common,40,40
+4931-59,4931-59_1,Protein,TF,SL000024,Tissue Factor,P13726,1,1,common,40,40
+4721-54,4721-54_2,Protein,TFF3,SL006119,Trefoil factor 3,Q07654,1,1,common,1,1
+3336-50,3336-50_1,Protein,TFPI,SL001998,Tissue factor pathway inhibitor,P10646,1,1,common,1,1
+5133-17,5133-17_3,Protein,TGF-b R II,SL002078,TGF-beta receptor type-2,P37173,1,1,common,40,40
+3009-3,3009-3_2,Protein,TGF-b R III,SL005059,Transforming growth factor beta receptor type 3,Q03167,1,1,common,1,1
+2333-72,2333-72_1,Protein,TGF-b1,SL000584,Transforming growth factor beta-1,P01137,1,1,common,40,40
+4156-74,4156-74_1,Protein,TGF-b2,SL000088,Transforming growth factor beta-2,P61812,1,1,common,40,40
+3520-58,3520-58_1,Protein,TGF-b3,SL000089,Transforming growth factor beta-3,P10600,1,1,common,40,40
+4471-50,4471-50_2,Protein,TGM3,SL008945,Protein-glutamine gamma-glutamyltransferase E,Q08188,1,1,common,40,40
+3079-62,3079-62_2,Protein,TIG2,SL005152,Retinoic acid receptor responder protein 2,Q99969,1,1,common,0.005,0.005
+5134-52,5134-52_2,Protein,TIMD3,SL007547,Hepatitis A virus cellular receptor 2,Q8TDQ0,1,1,common,40,40
+2211-9,2211-9_6,Protein,TIMP-1,SL000591,Metalloproteinase inhibitor 1,P01033,1,1,common,0.005,0.005
+2278-61,2278-61_4,Protein,TIMP-2,SL000592,Metalloproteinase inhibitor 2,P16035,1,1,common,0.005,0.005
+2480-58,2480-58_3,Protein,TIMP-3,SL003043,Metalloproteinase inhibitor 3,P35625,1,1,common,1,1
+3835-11,3835-11_2,Protein,TLR2,SL004492,Toll-like receptor 2,O60603,1,1,common,40,40
+3647-49,3647-49_4,Protein,TLR4:MD-2 complex,SL018625,Toll-like receptor 4:Lymphocyte antigen 96 complex,O00206  Q9Y6Y9,1,1,common,40,1
+3873-51,3873-51_2,Protein,TMA,SL000588,Thyroid peroxidase,P07202,1,1,common,40,40
+2654-19,2654-19_1,Protein,TNF sR-I,SL001992,Tumor necrosis factor receptor superfamily member 1A,P19438,1,1,common,1,1
+3152-57,3152-57_1,Protein,TNF sR-II,SL001800,Tumor necrosis factor receptor superfamily member 1B,P20333,1,1,common,1,1
+4703-87,4703-87_2,Protein,TNF-b,SL000597,Lymphotoxin-alpha,P01374,1,1,common,40,40
+2968-61,2968-61_1,Protein,TNFSF15,SL004686,Tumor necrosis factor ligand superfamily member 15,O95150,1,1,common,40,40
+2708-54,2708-54_2,Protein,TNFSF18,SL004326,Tumor necrosis factor ligand superfamily member 18,Q9UNG2,1,1,common,40,40
+3730-81,3730-81_2,Protein,TNR4,SL011448,Tumor necrosis factor receptor superfamily member 4,P43489,1,1,common,40,40
+3403-1,3403-1_2,Protein,TPSB2,SL010617,Tryptase beta-2,P20231,1,1,common,1,1
+3404-51,3404-51_2,Protein,TPSG1,SL010619,Tryptase gamma,Q9NRR2,1,1,common,40,40
+4832-75,4832-75_2,Protein,TRAIL R1,SL004156,Tumor necrosis factor receptor superfamily member 10A,O00220,1,1,common,40,40
+3479-71,3479-71_2,Protein,TRY3,SL006480,Trypsin-3,P35030,1,1,common,40,40
+5035-7,5035-7_1,Protein,TS,SL000142,Thymidylate synthase,P04818,1,1,common,40,40
+5036-50,5036-50_1,Protein,TSG-6,SL004782,Tumor necrosis factor-inducible gene 6 protein,P98066,1,1,common,40,40
+3521-16,3521-16_2,Protein,TSH,SL000589,Thyroid Stimulating Hormone,P01215 P01222,1,1,common,40,40
+3010-53,3010-53_2,Protein,TSLP,SL004687,Thymic stromal lymphopoietin,Q969D9,1,1,common,40,40
+2746-56,2746-56_1,Protein,TSLP R,SL005226,Cytokine receptor-like factor 2,Q9HC73,1,1,common,40,40
+3339-33,3339-33_1,Protein,TSP2,SL007206,Thrombospondin-2,P35442,1,1,common,40,1
+3340-53,3340-53_1,Protein,TSP4,SL007207,Thrombospondin-4,P35443,1,1,common,0.005,1
+5138-50,5138-50_3,Protein,TWEAKR,SL004366,Tumor necrosis factor receptor superfamily member 12A,Q9NP84,1,1,common,40,40
+4815-25,4815-25_3,Protein,TXD12,SL016128,Thioredoxin domain-containing protein 12,O95881,1,1,common,1,1
+5260-80,5260-80_3,Protein,TYK2,SL007181,Non-receptor tyrosine-protein kinase TYK2,P29597,1,1,common,1,1
+4155-3,4155-3_2,Protein,Tenascin,SL003198,Tenascin,P24821,1,1,common,1,1
+5490-53,5490-53_3,Protein,Testican-1,SL010384,Testican-1,Q08629,1,1,common,1,1
+5491-12,5491-12_3,Protein,Testican-2,SL010471,Testican-2,Q92563,1,1,common,1,1
+4157-2,4157-2_1,Protein,Thrombin,SL000586,Thrombin,P00734,1,1,common,40,1
+3473-78,3473-78_2,Protein,Thrombopoietin Receptor,SL005224,Thrombopoietin Receptor,P40238,1,1,common,40,40
+3474-19,3474-19_2,Protein,Thrombospondin-1,SL002705,Thrombospondin-1,P07996,1,1,common,0.005,0.005
+4301-58,4301-58_2,Protein,Thymidine kinase,SL000057,"Thymidine kinase, cytosolic",P04183,1,1,common,40,40
+4165-2,4165-2_1,Protein,Thyroglobulin,SL000587,Thyroglobulin,P01266,1,1,common,40,40
+2706-69,2706-69_2,Protein,Thyroxine-Binding Globulin,SL000590,Thyroxine-binding globulin,P05543,1,1,common,0.005,0.005
+2876-74,2876-74_2,Protein,Topoisomerase I,SL004305,DNA topoisomerase 1,P11387,1,1,common,40,40
+3232-28,3232-28_2,Protein,TrATPase,SL004118,Tartrate-resistant acid phosphatase type 5,P13686,1,1,common,1,1
+4162-54,4162-54_2,Protein,Transferrin,SL000601,Serotransferrin,P02787,1,1,common,0.005,0.005
+4306-4,4306-4_2,Protein,Transketolase,SL003655,Transketolase,P29401,1,1,common,1,1
+4309-59,4309-59_3,Protein,Triosephosphate isomerase,SL004812,Triosephosphate isomerase,P60174,1,1,common,1,1
+3477-63,3477-63_2,Protein,TrkA,SL005225,High affinity nerve growth factor receptor,P04629,1,1,common,40,40
+4866-59,4866-59_2,Protein,TrkB,SL004160,BDNF/NT-3 growth factors receptor,Q16620,1,1,common,1,1
+2658-27,2658-27_1,Protein,TrkC,SL004639,NT-3 growth factor receptor,Q16288,1,1,common,40,40
+5033-27,5033-27_1,Protein,Tropomyosin 1 alpha chain,SL004737,Tropomyosin alpha-1 chain,P09493,1,1,common,40,40
+4472-5,4472-5_2,Protein,Tropomyosin 2,SL004908,Tropomyosin beta chain,P07951,1,1,common,40,40
+5441-67,5441-67_3,Rat Protein,Troponin I,SL001761,"Troponin I, cardiac muscle",P19429,1,1,common,40,40
+5440-26,5440-26_3,Rat Protein,"Troponin I, skeletal, fast twitch",SL004594,"Troponin I, fast skeletal muscle",P48788,1,1,common,40,40
+3049-61,3049-61_2,Protein,Trypsin,SL000603,Trypsin-1,P07477,1,1,common,1,1
+5034-79,5034-79_1,Protein,Trypsin 2,SL010388,Trypsin-2,P07478,1,1,common,1,1
+3874-8,3874-8_1,Protein,UB2L3,SL008157,Ubiquitin-conjugating enzyme E2 L3,P68036,1,1,common,40,40
+2877-3,2877-3_1,Protein,UBC9,SL004306,SUMO-conjugating enzyme UBC9,P63279,1,1,common,1,1
+3905-62,3905-62_1,Protein,UBE2N,SL008143,Ubiquitin-conjugating enzyme E2 N,P61088,1,1,common,1,1
+3405-6,3405-6_2,Protein,UFC1,SL010529,Ubiquitin-fold modifier-conjugating enzyme 1,Q9Y3C8,1,1,common,40,40
+3836-51,3836-51_2,Protein,UFM1,SL010528,Ubiquitin-fold modifier 1,P61960,1,1,common,40,40
+3081-70,3081-70_2,Protein,ULBP-1,SL005227,NKG2D ligand 1,Q9BZM6,1,1,common,40,40
+3082-9,3082-9_2,Protein,ULBP-2,SL005228,NKG2D ligand 2,Q9BZM5,1,1,common,40,40
+2747-3,2747-3_2,Protein,ULBP-3,SL005229,NKG2D ligand 3,Q9BZM4,1,1,common,40,40
+5139-32,5139-32_3,Protein,UNC5H3,SL005230,Netrin receptor UNC5C,O95185,1,1,common,1,1
+5140-56,5140-56_3,Protein,UNC5H4,SL005231,Netrin receptor UNC5D,Q6UXZ4,1,1,common,40,40
+3234-23,3234-23_2,Protein,URB,SL010390,Coiled-coil domain-containing protein 80,Q76M96,1,1,common,1,1
+4474-19,4474-19_2,Protein,Ubiquitin,SL004070,Ubiquitin,P62979,1,1,common,0.005,1
+2846-24,2846-24_2,Protein,Ubiquitin+1,SL000605,"Ubiquitin+1, truncated mutation for UbB",P62979,1,1,common,1,1
+2967-8,2967-8_1,Protein,VCAM-1,SL001720,Vascular cell adhesion protein 1,P19320,1,1,common,1,1
+2597-8,2597-8_3,Protein,VEGF,SL000002,Vascular endothelial growth factor A,P15692,1,1,common,40,1
+3651-50,3651-50_5,Protein,VEGF sR2,SL003201,Vascular endothelial growth factor receptor 2,P35968,1,1,common,1,1
+2358-19,2358-19_2,Protein,VEGF sR3,SL003322,Vascular endothelial growth factor receptor 3,P35916,1,1,common,1,1
+3132-1,3132-1_1,Protein,VEGF-C,SL004486,Vascular endothelial growth factor C,P49767,1,1,common,40,40
+4867-15,4867-15_2,Protein,VEGF121,SL003310,"Vascular endothelial growth factor A, isoform 121",P15692,1,1,common,40,40
+3522-57,3522-57_1,Protein,Vasoactive Intestinal Peptide,SL000615,Vasoactive Intestinal Peptide,P01282,1,1,common,40,40
+3191-50,3191-50_2,Protein,WFKN1,SL012783,"WAP, kazal, immunoglobulin, kunitz and NTR domain-containing protein 1",Q96NZ8,1,1,common,40,40
+3235-50,3235-50_2,Protein,WFKN2,SL010391,"WAP, Kazal, immunoglobulin, Kunitz and NTR domain-containing protein 2",Q8TEU8,1,1,common,40,40
+2848-2,2848-2_2,Protein,WIF-1,SL004652,Wnt inhibitory factor 1,Q9Y5W5,1,1,common,40,40
+3057-55,3057-55_1,Protein,WISP-1,SL004689,WNT1-inducible-signaling pathway protein 1,O95388,1,1,common,0.005,0.005
+4889-82,4889-82_1,Protein,WNT7A,SL009951,Protein Wnt-7a,O00755,1,1,common,40,40
+3083-71,3083-71_1,Protein,XEDAR,SL005233,Tumor necrosis factor receptor superfamily member 27,Q9HAV5,1,1,common,40,40
+3481-87,3481-87_1,Protein,XPNPEP1,SL011073,Xaa-Pro aminopeptidase 1,Q9NQW7,1,1,common,40,40
+4314-12,4314-12_2,Protein,XTP3A,SL011809,dCTP pyrophosphatase 1,Q9H773,1,1,common,40,1
+2878-66,2878-66_2,Protein,YES,SL006372,Tyrosine-protein kinase Yes,P07947,1,1,common,40,40
+4476-22,4476-22_2,Protein,ZAP70,SL010519,Tyrosine-protein kinase ZAP-70,P43403,1,1,common,40,1
+2879-9,2879-9_2,Protein,a1-Antichymotrypsin,SL000248,Alpha-1-antichymotrypsin,P01011,1,1,common,0.005,0.005
+3580-25,3580-25_8,Protein,a1-Antitrypsin,SL000249,Alpha-1-antitrypsin,P01009,1,1,common,0.005,0.005
+3024-18,3024-18_2,Protein,a2-Antiplasmin,SL000250,Alpha-2-antiplasmin,P08697,1,1,common,0.005,0.005
+3581-53,3581-53_3,Protein,a2-HS-Glycoprotein,SL000251,Alpha-2-HS-glycoprotein,P02765,1,1,common,0.005,0.005
+3708-62,3708-62_1,Protein,a2-Macroglobulin,SL000252,Alpha-2-macroglobulin,P01023,1,1,common,1,1
+4153-11,4153-11_2,Protein,alpha-1-antichymotrypsin complex,SL018548,Alpha-1-antichymotrypsin complex,P01011,1,1,common,0.005,0.005
+3171-57,3171-57_2,Protein,amyloid precursor protein,SL004469,Amyloid beta A4 protein,P05067,1,1,common,1,0.005
+4960-72,4960-72_1,Protein,annexin I,SL004208,Annexin A1,P04083,1,1,common,40,1
+4961-17,4961-17_1,Protein,annexin II,SL004209,Annexin A2,P07355,1,1,common,40,40
+5335-73,5335-73_3,Protein,annexin VI,SL003647,Annexin A6,P08133,1,1,common,40,40
+3486-58,3486-58_2,Protein,b-ECGF,SL000299,Fibroblast growth factor 1,P05230,1,1,common,40,40
+2558-51,2558-51_3,Protein,b-Endorphin,SL000300,Beta-endorphin,P01189,1,1,common,40,40
+3485-28,3485-28_2,Protein,b2-Microglobulin,SL000283,Beta-2-microglobulin,P61769,1,1,common,0.005,0.005
+3025-50,3025-50_1,Protein,bFGF,SL000004,Fibroblast growth factor 2,P09038,1,1,common,40,40
+5246-64,5246-64_3,Protein,cGMP-stimulated PDE,SL005730,"cGMP-dependent 3',5'-cyclic phosphodiesterase",O00408,1,1,common,1,1
+4973-18,4973-18_1,Protein,cIAP-2,SL003728,Baculoviral IAP repeat-containing protein 3,Q13489,1,1,common,40,40
+5339-49,5339-49_3,Protein,calgranulin B,SL004477,Protein S100-A9,P06702,1,1,common,40,40
+5264-65,5264-65_3,Protein,calreticulin,SL003520,Calreticulin,P27797,1,1,common,40,1
+4970-55,4970-55_1,Protein,carbonic anhydrase II,SL000339,Carbonic anhydrase 2,P00918,1,1,common,40,40
+3666-17,3666-17_4,Protein,complement factor H-related 5,SL006830,Complement factor H-related protein 5,Q9BXR6,1,1,common,0.005,0.005
+2974-61,2974-61_2,Protein,contactin-1,SL004855,Contactin-1,Q12860,1,1,common,0.005,1
+4122-12,4122-12_2,Protein,discoidin domain receptor 1,SL004119,Epithelial discoidin domain-containing receptor 1,Q08345,1,1,common,40,40
+3538-26,3538-26_1,Protein,dopa decarboxylase,SL009216,Aromatic-L-amino-acid decarboxylase,P20711,1,1,common,40,40
+2612-5,2612-5_2,Protein,eIF-5,SL004759,Eukaryotic translation initiation factor 5,P55010,1,1,common,40,40
+2620-4,2620-4_2,Protein,"gp130, soluble",SL003872,Interleukin-6 receptor subunit beta,P40189,1,1,common,1,1
+3440-7,3440-7_2,Protein,granzyme A,SL004298,Granzyme A,P12544,1,1,common,40,40
+4450-26,4450-26_2,Protein,hnRNP A/B,SL009791,Heterogeneous nuclear ribonucleoprotein A/B,Q99729,1,1,common,1,1
+5351-52,5351-52_3,Protein,hnRNP A2/B1,SL004891,Heterogeneous nuclear ribonucleoproteins A2/B1,P22626,1,1,common,1,1
+4994-178,4994-178_1,Protein,hnRNP K,SL002756,Heterogeneous nuclear ribonucleoprotein K,P61978,1,1,common,40,40
+2683-1,2683-1_2,Protein,iC3b,SL000456,"Complement C3b, inactivated",P01024,1,1,common,0.005,0.005
+3199-54,3199-54_2,Protein,kallikrein 12,SL003916,Kallikrein-12,Q9UKR0,1,1,common,40,1
+3200-49,3200-49_2,Protein,kallikrein 13,SL003918,Kallikrein-13,Q9UKR3,1,1,common,40,40
+3681-87,3681-87_3,Protein,kallikrein 14,SL003919,Kallikrein-14,Q9P0G3,1,1,common,1,1
+3201-49,3201-49_2,Protein,kallikrein 5,SL003863,Kallikrein-5,Q9Y337,1,1,common,40,0.005
+2834-54,2834-54_1,Protein,kallikrein 8,SL003915,Kallikrein-8,O60259,1,1,common,40,40
+3719-2,3719-2_2,Protein,p27Kip1,SL000076,Cyclin-dependent kinase inhibitor 1B,P46527,1,1,common,40,40
+3831-21,3831-21_1,Protein,pTEN,SL003761,"Phosphatidylinositol 3,4,5-trisphosphate 3-phosphatase and dual-specificity protein phosphatase PTEN",P60484,1,1,common,40,40
+4261-55,4261-55_2,Protein,paraoxonase 1,SL005493,Serum paraoxonase/arylesterase 1,P27169,1,1,common,40,40
+5020-50,5020-50_1,Protein,phosphoglycerate kinase 1,SL003653,Phosphoglycerate kinase 1,P00558,1,1,common,40,1
+4276-10,4276-10_2,Protein,prostatic binding protein,SL005358,Phosphatidylethanolamine-binding protein 1,P30086,1,1,common,1,1
+3046-31,3046-31_1,Protein,resistin,SL004260,Resistin,Q9HD89,1,1,common,1,1
+5028-59,5028-59_1,Protein,sCD163,SL005764,Scavenger receptor cysteine-rich type 1 protein M130,Q86VB7,1,1,common,1,1
+3143-3,3143-3_1,Protein,sCD4,SL002524,T-cell surface glycoprotein CD4,P01730,1,1,common,40,40
+3470-1,3470-1_2,Protein,sE-Selectin,SL001945,E-selectin,P16581,1,1,common,1,1
+2841-13,2841-13_2,Protein,sFRP-3,SL004650,Secreted frizzled-related protein 3,Q92765,1,1,common,1,1
+4342-10,4342-10_3,Protein,sICAM-1,SL002922,Intercellular adhesion molecule 1,P05362,1,1,common,1,1
+2649-77,2649-77_2,Protein,sICAM-3,SL003178,Intercellular adhesion molecule 3,P32942,1,1,common,40,40
+5124-69,5124-69_3,Protein,sICAM-5,SL005169,Intercellular adhesion molecule 5,Q9UMF0,1,1,common,1,1
+4831-4,4831-4_2,Protein,sL-Selectin,SL002823,L-Selectin,P14151,1,1,common,0.005,0.005
+5400-52,5400-52_3,Protein,sLeptin R,SL003184,Leptin receptor,P48357,1,1,common,1,1
+4125-52,4125-52_2,Protein,sRAGE,SL003680,"Advanced glycosylation end product-specific receptor, soluble",Q15109,1,1,common,1,1
+2917-3,2917-3_2,Protein,sRANKL,SL002541,Tumor necrosis factor ligand superfamily member 11,O14788,1,1,common,40,40
+2844-53,2844-53_2,Protein,sTie-1,SL003199,"Tyrosine-protein kinase receptor Tie-1, soluble",P35590,1,1,common,1,1
+3773-15,3773-15_4,Protein,sTie-2,SL003200,"Angiopoietin-1 receptor, soluble",Q02763,1,1,common,40,40
+2652-15,2652-15_1,Protein,suPAR,SL002506,Urokinase plasminogen activator surface receptor,Q03405,1,1,common,40,1
+2212-69,2212-69_1,Protein,tPA,SL000053,Tissue-type plasminogen activator,P00750,1,1,common,1,1
+4304-18,4304-18_2,Protein,"transcription factor MLR1, isoform CRA_b",SL006698,Ligand-dependent nuclear receptor corepressor-like protein,Q8N3X6,1,1,common,40,40
+4158-54,4158-54_2,Protein,uPA,SL000613,Urokinase-type plasminogen activator,P00749,1,1,common,40,40
+3050-7,3050-7_2,Protein,vWF,SL000017,von Willebrand factor,P04275,1,1,common,0.005,0.005
+5867-60,5867-60_3,Protein,ARGI1,SL008008,Arginase-1,P05089,1,0,replaced,40,40
+2850-3,2850-3_2,Protein,ARGI1,SL008008,Arginase-1,P05089,0,1,replaced,40,40
+5452-71,5452-71_3,Protein,ASGR1,SL008835,Asialoglycoprotein receptor 1,P07306,1,0,replaced,40,1
+3876-15,3876-15_2,Protein,ASGR1,SL008835,Asialoglycoprotein receptor 1,P07306,0,1,replaced,40,40
+8467-9,8467-9_3,Protein,Activin AB,SL004837,Inhibin beta A chain:Inhibin beta B chain heterodimer,P08476 P09529,1,0,replaced,40,40
+4383-97,4383-97_1,Protein,Activin AB,SL004837,Inhibin beta A chain:Inhibin beta B chain heterodimer,P08476 P09529,0,1,replaced,40,40
+8459-10,8459-10_3,Protein,BMP-6,SL003993,Bone morphogenetic protein 6,P22004,1,0,replaced,40,1
+3736-60,3736-60_3,Protein,BMP-6,SL003993,Bone morphogenetic protein 6,P22004,0,1,replaced,40,1
+5803-24,5803-24_3,Protein,C3d,SL003362,Complement C3d fragment,P01024,1,0,replaced,0.005,0.005
+4875-73,4875-73_1,Protein,C3d,SL003362,Complement C3d fragment,P01024,0,1,replaced,40,40
+5807-77,5807-77_3,Protein,CD70,SL007195,CD70 antigen,P32970,1,0,replaced,40,40
+5317-3,5317-3_3,Protein,CD70,SL007195,CD70 antigen,P32970,0,1,replaced,1,1
+5456-59,5456-59_2,Protein,CNDP1,SL006694,Beta-Ala-His dipeptidase,Q96KN2,1,0,replaced,0.005,0.005
+3604-6,3604-6_4,Protein,CNDP1,SL006694,Beta-Ala-His dipeptidase,Q96KN2,0,1,replaced,1,1
+5457-5,5457-5_2,Protein,COLEC12,SL007471,Collectin-12,Q5KU26,1,0,replaced,40,40
+3665-64,3665-64_3,Protein,COLEC12,SL007471,Collectin-12,Q5KU26,0,1,replaced,40,1
+5508-62,5508-62_3,Protein,Cathepsin D,SL000344,Cathepsin D,P07339,1,0,replaced,0.005,0.005
+3180-46,3180-46_2,Protein,Cathepsin D,SL000344,Cathepsin D,P07339,0,1,replaced,0.005,0.005
+8465-52,8465-52_3,Protein,Cathepsin H,SL000346,Cathepsin H,P09668,1,0,replaced,40,40
+3737-6,3737-6_3,Protein,Cathepsin H,SL000346,Cathepsin H,P09668,0,1,replaced,1,1
+5810-25,5810-25_3,Protein,Cripto,SL005155,Teratocarcinoma-derived growth factor 1,P13385,1,0,replaced,40,40
+2672-60,2672-60_1,Protein,Cripto,SL005155,Teratocarcinoma-derived growth factor 1,P13385,0,1,replaced,40,40
+5460-60,5460-60_3,Protein,DEAD-box protein 19B,SL004750,ATP-dependent RNA helicase DDX19B,Q9UMR2,1,0,replaced,40,40
+3104-8,3104-8_2,Protein,DEAD-box protein 19B,SL004750,ATP-dependent RNA helicase DDX19B,Q9UMR2,0,1,replaced,40,40
+5879-51,5879-51_3,Protein,Dynactin subunit 2,SL009207,Dynactin subunit 2,Q13561,1,0,replaced,1,1
+4210-19,4210-19_2,Protein,Dynactin subunit 2,SL009207,Dynactin subunit 2,Q13561,0,1,replaced,40,40
+5882-34,5882-34_2,Protein,EF-1-beta,SL005685,Elongation factor 1-beta,P24534,1,0,replaced,40,40
+3882-10,3882-10_1,Protein,EF-1-beta,SL005685,Elongation factor 1-beta,P24534,0,1,replaced,40,40
+5813-58,5813-58_3,Protein,Epo,SL000408,Erythropoietin,P01588,1,0,replaced,40,40
+3492-58,3492-58_1,Protein,Epo,SL000408,Erythropoietin,P01588,0,1,replaced,40,40
+5437-63,5437-63_3,Rat Protein,FABP,SL001774,"Fatty acid-binding protein, heart",P05413,1,0,replaced,1,1
+4696-2,4696-2_2,Protein,FABP,SL001774,"Fatty acid-binding protein, heart",P05413,0,1,replaced,40,40
+5934-1,5934-1_3,Protein,Ferritin,SL000420,Ferritin,P02794 P02792,1,0,replaced,1,1
+3031-66,3031-66_1,Protein,Ferritin,SL000420,Ferritin,P02794 P02792,0,1,replaced,0.005,0.005
+5462-62,5462-62_3,Protein,Ficolin-3,SL002086,Ficolin-3,O75636,1,0,replaced,0.005,0.005
+3811-1,3811-1_2,Protein,Ficolin-3,SL002086,Ficolin-3,O75636,0,1,replaced,1,1
+5463-22,5463-22_3,Protein,GAS1,SL000658,Growth arrest-specific protein 1,P54826,1,0,replaced,1,1
+3190-43,3190-43_1,Protein,GAS1,SL000658,Growth arrest-specific protein 1,P54826,0,1,replaced,40,40
+5526-53,5526-53_3,Protein,GITR,SL004859,Tumor necrosis factor receptor superfamily member 18,Q9Y5U5,1,0,replaced,40,40
+5079-11,5079-11_3,Protein,GITR,SL004859,Tumor necrosis factor receptor superfamily member 18,Q9Y5U5,0,1,replaced,40,40
+5465-32,5465-32_3,Protein,H6ST1,SL014129,Heparan-sulfate 6-O-sulfotransferase 1,O60243,1,0,replaced,1,1
+4552-13,4552-13_2,Protein,H6ST1,SL014129,Heparan-sulfate 6-O-sulfotransferase 1,O60243,0,1,replaced,40,40
+5900-11,5900-11_2,Protein,HINT1,SL009431,Histidine triad nucleotide-binding protein 1,P49773,1,0,replaced,40,40
+3886-72,3886-72_1,Protein,HINT1,SL009431,Histidine triad nucleotide-binding protein 1,P49773,0,1,replaced,40,40
+5903-91,5903-91_2,Protein,HSP70 protein 8,SL004899,Heat shock cognate 71 kDa protein,P11142,1,0,replaced,1,1
+4228-37,4228-37_2,Protein,HSP70 protein 8,SL004899,Heat shock cognate 71 kDa protein,P11142,0,1,replaced,40,40
+2989-17,2989-17_2,Protein,IFN-g,SL001802,Interferon gamma,P01579,0,1,replaced,40,40
+14147-50,14147-50_3,Protein,IFN-g,SL001802,Interferon gamma,P01579,1,0,replaced,40,40
+5825-49,5825-49_3,Protein,IFN-g R1,SL000458,Interferon gamma receptor 1,P15260,1,0,replaced,40,40
+3716-63,3716-63_2,Protein,IFN-g R1,SL000458,Interferon gamma receptor 1,P15260,0,1,replaced,40,40
+8469-41,8469-41_3,Protein,IGFBP-2,SL000466,Insulin-like growth factor-binding protein 2,P18065,1,0,replaced,0.005,0.005
+2570-72,2570-72_5,Protein,IGFBP-2,SL000466,Insulin-like growth factor-binding protein 2,P18065,0,1,replaced,1,1
+2455-17,2455-17_4,Protein,IL-12,SL001716,Interleukin-12,"P29459,  P29460",0,1,replaced,40,40
+10367-62,10367-62_3,Protein,IL-12,SL001716,Interleukin-12,"P29459,  P29460",1,0,replaced,40,40
+9170-24,9170-24_3,Protein,IL-17,SL001713,Interleukin-17A,Q16552,1,0,replaced,40,40
+3498-53,3498-53_2,Protein,IL-17,SL001713,Interleukin-17A,Q16552,0,1,replaced,40,40
+4494-63,4494-63_2,Protein,IL-23,SL005184,Interleukin-23,"P29460, Q9NPF7",0,1,replaced,40,40
+10365-132,10365-132_3,Protein,IL-23,SL005184,Interleukin-23,"P29460, Q9NPF7",1,0,replaced,40,40
+3741-4,3741-4_3,Protein,IL-5,SL000481,Interleukin-5,P05113,0,1,replaced,40,1
+11071-1,11071-1_3,Protein,IL-5,SL000481,Interleukin-5,P05113,1,0,replaced,40,40
+3700-15,3700-15_4,Protein,IgG,SL000467,Immunoglobulin G,P01857,0,1,replaced,0.005,0.005
+2744-57,2744-57_2,Protein,IgG,SL000467,Immunoglobulin G,P01857,1,0,replaced,0.005,0.005
+5837-49,5837-49_3,Protein,LIF sR,SL004714,Leukemia inhibitory factor receptor,P42702,1,0,replaced,40,40
+4919-56,4919-56_2,Protein,LIF sR,SL004714,Leukemia inhibitory factor receptor,P42702,0,1,replaced,40,40
+8484-24,8484-24_3,Protein,Leptin,SL000498,Leptin,P41159,1,0,replaced,1,1
+2575-5,2575-5_5,Protein,Leptin,SL000498,Leptin,P41159,0,1,replaced,40,1
+5470-69,5470-69_2,Protein,MED-1,SL010328,Mediator of RNA polymerase II transcription subunit 1,Q15648,1,0,replaced,1,1
+3892-21,3892-21_2,Protein,MED-1,SL010328,Mediator of RNA polymerase II transcription subunit 1,Q15648,0,1,replaced,40,40
+8479-4,8479-4_3,Protein,MMP-10,SL000645,Stromelysin-2,P09238,1,0,replaced,40,40
+3743-1,3743-1_2,Protein,MMP-10,SL000645,Stromelysin-2,P09238,0,1,replaced,40,40
+9172-69,9172-69_3,Protein,MMP-8,SL000526,Neutrophil collagenase,P22894,1,0,replaced,40,1
+2954-56,2954-56_2,Protein,MMP-8,SL000526,Neutrophil collagenase,P22894,0,1,replaced,1,1
+5843-60,5843-60_3,Protein,NG36,SL003542,Histone-lysine N-methyltransferase EHMT2,Q96KQ7,1,0,replaced,1,1
+2957-21,2957-21_2,Protein,NG36,SL003542,Histone-lysine N-methyltransferase EHMT2,Q96KQ7,0,1,replaced,40,40
+5542-22,5542-22_2,Protein,NRP1,SL006397,Neuropilin-1,O14786,1,0,replaced,0.005,0.005
+3214-3,3214-3_2,Protein,NRP1,SL006397,Neuropilin-1,O14786,0,1,replaced,0.005,0.005
+5846-24,5846-24_3,Protein,Noggin,SL004683,Noggin,Q13253,1,0,replaced,40,1
+2735-6,2735-6_4,Protein,Noggin,SL004683,Noggin,Q13253,0,1,replaced,40,1
+5909-51,5909-51_3,Protein,Nucleoside diphosphate kinase A,SL003687,Nucleoside diphosphate kinase A,P15531,1,0,replaced,1,1
+4252-33,4252-33_4,Protein,Nucleoside diphosphate kinase A,SL003687,Nucleoside diphosphate kinase A,P15531,0,1,replaced,0.005,0.005
+8446-4,8446-4_3,Protein,PACAP-27,SL011508,Pituitary adenylate cyclase-activating polypeptide 27,P18509,1,0,replaced,40,40
+4593-11,4593-11_1,Protein,PACAP-27,SL011508,Pituitary adenylate cyclase-activating polypeptide 27,P18509,0,1,replaced,40,1
+8450-36,8450-36_3,Protein,PACAP-38,SL011498,Pituitary adenylate cyclase-activating polypeptide 38,P18509,1,0,replaced,40,40
+4594-22,4594-22_2,Protein,PACAP-38,SL011498,Pituitary adenylate cyclase-activating polypeptide 38,P18509,0,1,replaced,40,40
+4330-4,4330-4_2,Protein,PSA,SL000062,Prostate-specific antigen,P07288,0,1,replaced,40,40
+8468-19,8468-19_3,Protein,PSA,SL000062,Prostate-specific antigen,P07288,1,0,replaced,40,40
+5478-50,5478-50_2,Protein,PSMA,SL000158,Glutamate carboxypeptidase 2,Q04609,1,0,replaced,40,40
+3218-8,3218-8_2,Protein,PSMA,SL000158,Glutamate carboxypeptidase 2,Q04609,0,1,replaced,40,1
+5918-5,5918-5_3,Protein,PSME1,SL008176,Proteasome activator complex subunit 1,Q06323,1,0,replaced,1,1
+5022-61,5022-61_1,Protein,PSME1,SL008176,Proteasome activator complex subunit 1,Q06323,0,1,replaced,1,1
+5954-62,5954-62_3,Protein,PTH,SL003970,Parathyroid hormone,P01270,1,0,replaced,40,40
+3726-62,3726-62_4,Protein,PTH,SL003970,Parathyroid hormone,P01270,0,1,replaced,40,40
+5480-49,5480-49_3,Protein,RANTES,SL000563,C-C motif chemokine 5,P13501,1,0,replaced,1,1
+2523-31,2523-31_3,Protein,RANTES,SL000563,C-C motif chemokine 5,P13501,0,1,replaced,1,0.005
+5481-16,5481-16_3,Protein,RASA1,SL013754,Ras GTPase-activating protein 1,P20936,1,0,replaced,40,40
+4462-8,4462-8_2,Protein,RASA1,SL013754,Ras GTPase-activating protein 1,P20936,0,1,replaced,40,40
+5482-61,5482-61_3,Protein,RBP,SL000566,Retinol-binding protein 4,P02753,1,0,replaced,0.005,0.005
+3641-49,3641-49_4,Protein,RBP,SL000566,Retinol-binding protein 4,P02753,0,1,replaced,0.005,0.005
+5483-1,5483-1_3,Protein,RGMA,SL010467,Repulsive guidance molecule A,Q96B86,1,0,replaced,1,1
+3833-10,3833-10_2,Protein,RGMA,SL010467,Repulsive guidance molecule A,Q96B86,0,1,replaced,40,1
+8474-6,8474-6_3,Protein,ROR1,SL006114,Tyrosine-protein kinase transmembrane receptor ROR1,Q01973,1,0,replaced,1,1
+2590-69,2590-69_4,Protein,ROR1,SL006114,Tyrosine-protein kinase transmembrane receptor ROR1,Q01973,0,1,replaced,1,1
+5957-30,5957-30_3,Protein,Somatostatin-28,SL011510,Somatostatin-28,P61278,1,0,replaced,40,40
+3729-16,3729-16_2,Protein,Somatostatin-28,SL011510,Somatostatin-28,P61278,0,1,replaced,40,40
+5936-53,5936-53_3,Protein,TNF-a,SL002517,Tumor necrosis factor,P01375,1,0,replaced,40,40
+3722-49,3722-49_2,Protein,TNF-a,SL002517,Tumor necrosis factor,P01375,0,1,replaced,40,40
+5939-42,5939-42_3,Protein,TWEAK,SL004365,Tumor necrosis factor ligand superfamily member 12,O43508,1,0,replaced,40,40
+2484-49,2484-49_3,Protein,TWEAK,SL004365,Tumor necrosis factor ligand superfamily member 12,O43508,0,1,replaced,1,1
+5801-72,5801-72_3,Protein,b-NGF,SL000305,beta-nerve growth factor,P01138,1,0,replaced,40,40
+4368-8,4368-8_2,Protein,b-NGF,SL000305,beta-nerve growth factor,P01138,0,1,replaced,40,40
+5532-53,5532-53_3,Protein,bFGF-R,SL003060,Fibroblast growth factor receptor 1,P11362,1,0,replaced,0.005,0.005
+2424-69,2424-69_4,Protein,bFGF-R,SL003060,Fibroblast growth factor receptor 1,P11362,0,1,replaced,1,1
+5888-29,5888-29_3,Protein,eIF-5A-1,SL005687,Eukaryotic translation initiation factor 5A-1,P63241,1,0,replaced,40,1
+3884-5,3884-5_1,Protein,eIF-5A-1,SL005687,Eukaryotic translation initiation factor 5A-1,P63241,0,1,replaced,40,40
+8488-33,8488-33_3,Protein,gpIIbIIIa,SL000542,Integrin alpha-IIb: beta-3 complex,P08514 P05106,1,0,replaced,40,40
+3739-72,3739-72_4,Protein,gpIIbIIIa,SL000542,Integrin alpha-IIb: beta-3 complex,P08514 P05106,0,1,replaced,40,1
+5486-73,5486-73_3,Protein,sICAM-2,SL003177,Intercellular adhesion molecule 2,P13598,1,0,replaced,1,1
+2842-68,2842-68_1,Protein,sICAM-2,SL003177,Intercellular adhesion molecule 2,P13598,0,1,replaced,40,40
+5854-60,5854-60_3,Protein,tau,SL004230,Microtubule-associated protein tau,P10636,1,0,replaced,40,40
+2653-62,2653-62_1,Protein,tau,SL004230,Microtubule-associated protein tau,P10636,0,1,replaced,40,40
