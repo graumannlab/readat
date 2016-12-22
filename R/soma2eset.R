@@ -24,6 +24,7 @@
 #' }
 #'
 #' unlink(somaFile)
+#' @importFrom Biobase annotation<-
 #' @importFrom Biobase ExpressionSet
 #' @importFrom Biobase exprs exprs<-
 #' @importFrom Biobase pData
@@ -63,6 +64,7 @@ soma2eset <- function(somaObj, log2Transform = TRUE){
   myEset <- ExpressionSet(myIntensities)
   Biobase::pData(myEset) <- sampleDF
   Biobase::fData(myEset) <- featureDF
+  Biobase::annotation(myEset) <- 'somascan'
 
   # log2 transform
   if (log2Transform){
@@ -73,6 +75,14 @@ soma2eset <- function(somaObj, log2Transform = TRUE){
   return(myEset)
 }
 
+#' Is object a soma eset?
+#' @param esetObj eSet
+#' @return logical
+#' @importFrom Biobase annotation
+#' @export
+isSomaEset <- function(esetObj){
+   Biobase::annotation(esetObj) %in% c('somascan')
+}
 
 #' @rdname as.ExpressionSet
 #' @export
