@@ -43,6 +43,7 @@ as.ExpressionSet.WideSomaLogicData <- function(x, log2Transform = TRUE, ...)
 }
 
 #' @rdname as.ExpressionSet
+#' @importFrom Biobase   annotation<-   experimentData<-   preproc<-
 #' @export
 soma2eset <- function(somaObj, log2Transform = TRUE){
 
@@ -70,6 +71,17 @@ soma2eset <- function(somaObj, log2Transform = TRUE){
   if (log2Transform){
     Biobase::exprs(myEset) <- log2(Biobase::exprs(myEset))
   }
+
+  # Add preprocessing and annotation info
+  parameters <- attributes(somaObj)$Metadata
+  Biobase::preproc(Biobase::experimentData(myEset)) <-
+    list(assay    = 'somascan',
+         entity   = 'epitope',
+         quantity = 'abundance',
+         software = 'somalogic',
+         parameters = parameters
+         )
+  Biobase::annotation(myEset) <- parameters$StudyOrganism
 
   # return eset
   return(myEset)
