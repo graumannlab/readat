@@ -43,7 +43,8 @@ as.ExpressionSet.WideSomaLogicData <- function(x, log2Transform = TRUE, ...)
 }
 
 #' @rdname as.ExpressionSet
-#' @importFrom Biobase   annotation<-   experimentData<-   preproc<-
+#' @importFrom Biobase  annotation<-   experimentData<-   preproc<-
+#' @importFrom dplyr    mutate_if
 #' @export
 soma2eset <- function(somaObj, log2Transform = TRUE){
 
@@ -56,6 +57,7 @@ soma2eset <- function(somaObj, log2Transform = TRUE){
   # fData
   featureDF <- getSequenceData(somaObj)
   featureDF <- data.frame(featureDF, row.names = featureDF$SeqId)
+  featureDF %<>% dplyr::mutate_if(is.factor, as.character)
 
   # pData
   sampleDF <- getSampleData(somaObj)
