@@ -90,10 +90,10 @@ soma2eset <- function(somaObj, log2Transform = TRUE){
 #' Is object a soma eset?
 #' @param esetObj eSet
 #' @return logical
-#' @importFrom Biobase annotation
+#' @importFrom Biobase   experimentData   preproc
 #' @export
 isSomaEset <- function(esetObj){
-   Biobase::annotation(esetObj) %in% c('somascan')
+   Biobase::preproc(Biobase::experimentData(esetObj))$assay == 'somascan'
 }
 
 #' @rdname as.ExpressionSet
