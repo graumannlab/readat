@@ -96,6 +96,14 @@ isSomaEset <- function(esetObj){
    Biobase::preproc(Biobase::experimentData(esetObj))$assay == 'somascan'
 }
 
+#' Get name of sample id variable
+#' @param somaEset eset with soma data
+#' @return character
+#' @export
+getSampleIdVar <- function(somaEset){
+   'SampleId'
+}
+
 #' @rdname as.ExpressionSet
 #' @export
 as.MSnSet.WideSomaLogicData <- function(x, log2Transform = FALSE, ...)
