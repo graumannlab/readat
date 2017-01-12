@@ -18,7 +18,7 @@ Imports:
     assertive.properties (>= 0.0-3),
     assertive.sets (>= 0.0-2),
     assertive.types (>= 0.0-2),
-    Biobase (>= 2.32.0),
+    Biobase (>= 2.30.0),
     data.table (>= 1.9.6),
     dplyr (>= 0.5.0),
     magrittr (>= 1.5),
