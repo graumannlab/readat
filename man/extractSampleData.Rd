@@ -24,4 +24,3 @@ directory.
 extractSampleData() ##1.3k dataset by default
 extractSampleData("1.1k")
 }
-

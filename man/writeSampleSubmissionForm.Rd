@@ -42,4 +42,3 @@ writeSampleSubmissionForm(submission, tempdir())
 \seealso{
 \code{\link{readSlides}} and \code{\link{createSampleSubmission}}
 }
-

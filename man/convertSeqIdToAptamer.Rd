@@ -18,4 +18,3 @@ Converts SomaLogic sequence IDs to aptamer IDs.
 \examples{
 convertSeqIdToAptamer("2717-12_5")
 }
-

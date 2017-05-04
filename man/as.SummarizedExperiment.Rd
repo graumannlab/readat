@@ -27,4 +27,3 @@ wideSomaData <- readAdat(somaFile)
 as.SummarizedExperiment(wideSomaData)
 unlink(somaFile)
 }
-

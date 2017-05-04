@@ -35,4 +35,3 @@ getChromosomalPositions(c("2278-61", "4703-87_2", "4916-2"))
 getChromosomalPositions()
 }
 }
-

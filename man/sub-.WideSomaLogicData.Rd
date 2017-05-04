@@ -35,4 +35,3 @@ unlink(soma_file)
 \seealso{
 \code{\link[data.table]{data.table}}
 }
-

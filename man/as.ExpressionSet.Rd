@@ -3,9 +3,9 @@
 \name{as.ExpressionSet}
 \alias{as.ExpressionSet}
 \alias{as.ExpressionSet.WideSomaLogicData}
-\alias{as.MSnSet}
-\alias{as.MSnSet.WideSomaLogicData}
 \alias{soma2eset}
+\alias{as.MSnSet.WideSomaLogicData}
+\alias{as.MSnSet}
 \title{Convert objects into ExpressionSets or MSnSets.}
 \usage{
 as.ExpressionSet(x, log2Transform = TRUE, ...)
@@ -48,4 +48,3 @@ unlink(somaFile)
 \author{
 Aditya Bhagwat
 }
-

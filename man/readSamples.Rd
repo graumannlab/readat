@@ -32,6 +32,7 @@ need to be in order.}
 }
 Additional columns are ignored.
 }
+
 \examples{
 # See ?writeSampleSubmissionForm for a more complete example
 withr::with_dir(
@@ -46,4 +47,3 @@ withr::with_dir(
 \code{\link{readControls}} for reading other submission forms and
 \code{\link{writeSampleSubmissionForm}} for usage examples.
 }
-

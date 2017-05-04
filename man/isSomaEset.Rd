@@ -15,4 +15,3 @@ logical
 \description{
 Is object a soma eset?
 }
-

@@ -44,4 +44,3 @@ in this PDF:
 Those from the 1129 assay can be found here:
 \url{http://www.somalogic.com/somalogic/media/Assets/PDFs/SSM-011-Rev-11-SOMAscan-Assay-\%28V1-1k\%29-Content.pdf}
 }
-

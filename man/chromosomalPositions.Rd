@@ -21,4 +21,3 @@ A lookup of chromosomal positions by SomaLogic Aptamer ID.
 \examples{
 head(chromosomalPositions)
 }
-

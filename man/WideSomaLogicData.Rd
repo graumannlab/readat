@@ -30,4 +30,3 @@ wsld <- WideSomaLogicData(
 )
 str(wsld)
 }
-

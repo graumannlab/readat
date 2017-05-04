@@ -60,4 +60,3 @@ Creates a data table of contents for a SomaLogic sample submission form.
 \seealso{
 \code{\link{writeSampleSubmissionForm}} for usage examples.
 }
-

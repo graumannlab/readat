@@ -35,6 +35,7 @@ need to be in order.}
 \item{Assay notes. Free text.}
 }
 }
+
 \examples{
 # See ?writeSampleSubmissionForm for a more complete example
 withr::with_dir(
@@ -49,4 +50,3 @@ withr::with_dir(
 \code{\link{readSamples}} for reading other submission forms and
 \code{\link{writeSampleSubmissionForm}} for usage examples.
 }
-

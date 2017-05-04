@@ -19,4 +19,3 @@ head(uniprotKeywords)
 More information on UniProt keywords can be found at:
 \url{http://www.uniprot.org/help/keywords}
 }
-

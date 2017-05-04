@@ -21,4 +21,3 @@ wideSomaData <- readAdat(somaFile)
 colnamesStartWithSeqId(wideSomaData)
 unlink(somaFile)
 }
-

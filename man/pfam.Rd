@@ -22,4 +22,3 @@ head(pfam)
 More information on PFAM IDs can be found at:
 \url{http://pfam.xfam.org/}
 }
-

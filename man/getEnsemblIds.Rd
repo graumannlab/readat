@@ -30,4 +30,3 @@ getEnsemblIds(c("2278-61", "4703-87", "4916-2"))
 getEnsemblIds()
 }
 }
-

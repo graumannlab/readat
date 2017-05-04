@@ -18,4 +18,3 @@ Reads the first character of each line of a text file.
 \references{
 See \url{http://stackoverflow.com/q/27747426/134830}
 }
-

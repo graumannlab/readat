@@ -15,4 +15,3 @@ character
 \description{
 Get name of sample id variable
 }
-

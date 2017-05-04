@@ -15,4 +15,3 @@ head(ensemblIds)
 More information on Ensembl IDs can be found at:
 \url{http://www.ensembl.org/index.html}
 }
-

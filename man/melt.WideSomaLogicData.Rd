@@ -28,4 +28,3 @@ the \code{Metadata} and \code{Checksum} attributes are preserved.
 \description{
 Convert a \code{WideSomaLogicData} object from wide format to long format.
 }
-

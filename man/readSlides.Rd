@@ -39,6 +39,7 @@ column as follows.
 \item{Slide IDs, each 12 digits long.}
 }
 }
+
 \examples{
 # See ?writeSampleSubmissionForm for a more complete example
 withr::with_dir(
@@ -53,4 +54,3 @@ withr::with_dir(
 \code{\link{readSamples}} for reading other submission forms and
 \code{\link{writeSampleSubmissionForm}} for usage examples.
 }
-

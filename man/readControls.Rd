@@ -31,6 +31,7 @@ columns as follows.
 \item{Barcodes in the form "I" followed by 6 digits.}
 }
 }
+
 \examples{
 # See ?writeSampleSubmissionForm for a more complete example
 withr::with_dir(
@@ -45,4 +46,3 @@ withr::with_dir(
 \code{\link{readSamples}} for reading other submission forms and
 \code{\link{writeSampleSubmissionForm}} for usage examples.
 }
-

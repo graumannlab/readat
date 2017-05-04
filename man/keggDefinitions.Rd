@@ -3,10 +3,10 @@
 \docType{data}
 \name{keggDefinitions}
 \alias{keggDefinitions}
-\alias{keggDefinitions1129}
 \alias{keggModules}
-\alias{keggModules1129}
 \alias{keggPathways}
+\alias{keggDefinitions1129}
+\alias{keggModules1129}
 \alias{keggPathways1129}
 \title{KEGG definitions, modules, and pathways by SomaLogic AptamerId}
 \format{A list of data frames, each with the following columns.
@@ -31,4 +31,3 @@ head(keggPathways)
 More information on KEGG can be found at:
 \url{http://www.kegg.jp/}
 }
-

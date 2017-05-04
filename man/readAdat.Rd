@@ -58,4 +58,3 @@ unlink(somaFile)
 \author{
 Richard Cotton
 }
-

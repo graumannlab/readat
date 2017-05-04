@@ -19,4 +19,3 @@ Checks if a string is "PASS".
 \author{
 Richard Cotton
 }
-

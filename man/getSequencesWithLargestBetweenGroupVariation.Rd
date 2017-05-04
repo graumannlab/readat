@@ -31,4 +31,3 @@ A data table with \code{n} rows and the following columns.
 Get the sequences with the largest between group variation in mean log
 intensity.
 }
-

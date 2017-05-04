@@ -2,9 +2,9 @@
 % Please edit documentation in R/dataset-docs.R
 \docType{data}
 \name{goMolecularFunction}
+\alias{goMolecularFunction}
 \alias{goBiologicalProcess}
 \alias{goCellularComponent}
-\alias{goMolecularFunction}
 \title{GO definitions by SomaLogic AptamerId}
 \format{A list of data frames, each with the following columns.
 \describe{
@@ -26,4 +26,3 @@ head(goCellularComponent)
 More information on GO can be found at:
 \url{http://geneontology.org/}
 }
-
