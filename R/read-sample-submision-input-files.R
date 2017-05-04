@@ -6,6 +6,10 @@ PLATE_POSITIONS <- within(
   }
 )
 
+#' Order Plate position
+#' @param pp character vector with plate positions
+#' @return ordered vector
+#' @export
 orderPlatePosition <- function(pp)
 {
   ordered(pp, levels = levels(PLATE_POSITIONS$PlatePosition))
