@@ -1,0 +1,15 @@
+https://bioconductor.org/developers/how-to/git-mirrors/
+
+1) curl -O https://raw.githubusercontent.com/Bioconductor/mirror/master/update_remotes.sh
+2) git clone https://bitbucket.org/graumannlabtools/readat.git
+3) cd readat
+4) bash ../update_remotes.sh
+5) ... Commit to git and push to GitHub as you normally would.
+6) Each time you want to push git commits to svn:
+	- git checkout devel
+	- git svn rebase
+	- git merge master --log --allow-unrelated-historie
+	- git svn dcommit --add-author-from
+7) When you’re done, be sure and merge any changes from svn back into the git master branch:
+	- git checkout master
+	- git merge devel
