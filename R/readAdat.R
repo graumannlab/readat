@@ -101,13 +101,13 @@ readAdat <- function(file, keepOnlyPasses = TRUE, keepOnlySamples = TRUE,
   # stri_read_lines and fread don't behave well with file connections
   # Also, the logic gets complicated because the position in the file
   # keeps moving.
-  if(is_connection(file))
+  if(assertive.files::is_connection(file))
   {
     file <- summary(file)$description
   }
 
-  assert_is_a_string(file)
-  assert_all_are_existing_files(file)
+  assertive.types::assert_is_a_string(file)
+  assertive.files::assert_all_are_existing_files(file)
 
   # The file is split into several groups of data:
   # A checksum, header data, column data and row data.  Read each separately.
