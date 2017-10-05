@@ -55,8 +55,6 @@ sfread <- function(input, ..., colClasses = NULL, integer64 = 'numeric')
     list(...),
     {
       input <- input
-      header <- NULL
-      nrows <- NULL
     }
   )
 
@@ -79,9 +77,9 @@ sfread <- function(input, ..., colClasses = NULL, integer64 = 'numeric')
 #' @return A character vector of column names.
 #' @importFrom data.table fread
 #' @noRd
-readHeader <- function(input, ...)
+readHeader <- function(input, nrows = 0, header = TRUE,  ...)
 {
-  DT <- suppressWarnings(fread(input, nrows = 0, header = TRUE, ...))
+  DT <- suppressWarnings(fread(input, nrows = nrows, header = header, ...))
   colnames(DT)
 }
 
