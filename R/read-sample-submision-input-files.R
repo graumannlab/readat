@@ -331,11 +331,10 @@ createSampleSubmission <- function(slides, controls, comments, samples,
 #' )
 #' writeSampleSubmissionForm(submission, tempdir())
 #' @importFrom openxlsx write.xlsx
-#' @importFrom pathological create_dirs
 #' @export
 writeSampleSubmissionForm <- function(submission, outdir = ".")
 {
-  create_dirs(outdir)
+  dir.create(outdir, recursive = TRUE)
   filename <- paste(
       format(Sys.Date(), "%Y%m%d"),
       valuesOf(submission$StudyId),

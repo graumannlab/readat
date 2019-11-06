@@ -10,7 +10,8 @@
 \usage{
 as.ExpressionSet(x, log2Transform = TRUE, ...)
 
-\method{as.ExpressionSet}{WideSomaLogicData}(x, log2Transform = TRUE, ...)
+\method{as.ExpressionSet}{WideSomaLogicData}(x, log2Transform = TRUE,
+  ...)
 
 soma2eset(somaObj, log2Transform = TRUE)
 
