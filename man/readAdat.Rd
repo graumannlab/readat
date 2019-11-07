@@ -54,6 +54,9 @@ somaFile <- extractSampleData()
 wideSomaData <- readAdat(somaFile)
 str(wideSomaData, list.len = 35)
 unlink(somaFile)
+
+# For compatibility with rest of Bioconductor you may want an ExpressionSet
+as.ExpressionSet(wideSomaData)
 }
 \author{
 Richard Cotton

@@ -1,5 +1,9 @@
 PLATE_POSITIONS <- within(
-  expand.grid(Subarray = 1:8, Slide = 1:12, KEEP.OUT.ATTRS = FALSE),
+  expand.grid(
+    Subarray = seq_len(8),
+    Slide = seq_len(12),
+    KEEP.OUT.ATTRS = FALSE
+  ),
   {
     PlatePosition <- paste0(LETTERS[Subarray], Slide)
     PlatePosition <- ordered(PlatePosition, PlatePosition)
@@ -67,7 +71,7 @@ readSlides <- function(file = "slides.csv")
     severity = "warning"
   )
   as.tbl(data.table(
-    SampleNumber = 1:96,
+    SampleNumber = seq_len(96),
     SlideId = rep(slides, each = 8),
     Subarray = PLATE_POSITIONS$Subarray,
     PlatePosition = PLATE_POSITIONS$PlatePosition,
@@ -111,7 +115,7 @@ readControls <- function(file = "controls.csv")
 {
   controls <- fread(
     file, sep = ",", nrows = 96, header = FALSE, na.strings = c("", "NA"),
-    select = 1:2, col.names = c("PlatePosition", "BarCode"))
+    select = seq_len(2), col.names = c("PlatePosition", "BarCode"))
   n_controls <- sum(!is.na(controls$BarCode))
   assert_all_are_less_than_or_equal_to(n_controls, 12, severity = "warning")
   assert_all_are_not_false(
@@ -165,7 +169,7 @@ readComments <- function(file = "comments.csv")
 {
   comments <- fread(
     file, sep = ",", header = FALSE, na.strings = c("", "NA"),
-    colClasses = "character", select = 1:3,
+    colClasses = "character", select = seq_len(3),
     col.names = c("PlatePosition", "SampleNotes", "AssayNotes")
   )
   assert_all_are_less_than_or_equal_to(nrow(comments), 96, severity = "warning")
@@ -221,7 +225,7 @@ readSamples <- function(file = "samples.csv")
 {
   samples <- fread(
     file, sep = ",", nrows = 96, header = FALSE, na.strings = "NO READ",
-    select = 1:2, col.names = c("PlatePosition", "SampleId")
+    select = seq_len(2), col.names = c("PlatePosition", "SampleId")
   )
   n_controls <- sum(is.na(samples$SampleId))
   assert_all_are_less_than_or_equal_to(n_controls, 12, severity = "warning")
@@ -270,7 +274,26 @@ readSamples <- function(file = "samples.csv")
 #' \item{StudyId}{\code{studyId} for samples; blank for controls.}
 #' \item{RunName}{\code{runName} for samples; blank for controls.}
 #' }
-#' @seealso \code{\link{writeSampleSubmissionForm}} for usage examples.
+#' @seealso \code{\link{writeSampleSubmissionForm}} for a more complete usage
+#' example.
+#' @examples
+#' # Import the input files
+#' withr::with_dir(
+#'   system.file("extdata", package = "readat"),
+#'   {
+#'     slides <- readSlides()
+#'     controls <- readControls()
+#'     comments <- readComments()
+#'     samples <- readSamples()
+#'   }
+#' )
+#'
+#' # Create the sample submission form and write to Excel spreadsheet
+#' submission <- createSampleSubmission(
+#'   slides, controls, comments, samples,
+#'   studyName = "Taheri01", studyId = "WCQ-16-002"
+#' )
+#' str(submission)
 #' @importFrom dplyr inner_join
 #' @importFrom dplyr arrange_
 #' @importFrom dplyr bind_cols

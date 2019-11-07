@@ -99,18 +99,31 @@ isSomaEset <- function(esetObj){
 #' Get name of sample id variable
 #' @param somaEset eset with soma data
 #' @return character
+#' @examples
+#' getSampleIdVar()
 #' @export
 getSampleIdVar <- function(somaEset){
    'SampleId'
 }
 
 #' @rdname as.ExpressionSet
+#' @examples
+#' \donttest{
+#' # Not testing, since this is a repeat of readAdat() examples
+#' somaFile <- extractSampleData()
+#' wideSomaData <- readAdat(somaFile)
+#' as.ExpressionSet(wideSomaData)
+#' unlink(somaFile)
+#' }
 #' @export
 as.MSnSet.WideSomaLogicData <- function(x, log2Transform = FALSE, ...)
 {
   if(!requireNamespace("MSnbase", quietly = TRUE))
   {
-    stop('MSnbase is not available; try running\nsource("https://bioconductor.org/biocLite.R")\nbiocLite("MSnbase")')
+    stop(
+      'MSnbase is not available; try running\n',
+      'BiocManager::install("MSnbase")'
+    )
   }
   e <- as.ExpressionSet(x, log2Transform = log2Transform)
   MSnbase::as.MSnSet.ExpressionSet(e)

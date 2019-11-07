@@ -1,1 +1,5 @@
+1.4.0
+  - Drop pathological dependency.
+  - More example()s.
+  - Some internal changes for easier debugging.
 0.99.0 First publically useable package.

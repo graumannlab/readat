@@ -13,8 +13,8 @@ getGoBiologicalProcesses(aptamerIds = NULL, simplify = FALSE)
 getGoCellularComponents(aptamerIds = NULL, simplify = FALSE)
 }
 \arguments{
-\item{aptamerIds}{A character vector of SomaLogic Sequence IDs, or \code{NULL} to
-use all 1129 Sequence IDs.}
+\item{aptamerIds}{A character vector of SomaLogic Sequence IDs, or
+\code{NULL} to use all 1129 Sequence IDs.}
 
 \item{simplify}{Logical.  Should the output be collapsed into a single
 data.frame?}
@@ -41,9 +41,7 @@ getGoBiologicalProcesses(c("2278-61", "3505-6", "4916-2"))
 getGoCellularComponents(c("2278-61", "3505-6", "4916-2"))
 
 # Get everything in the 1310 and 1129 panels.
-\dontrun{
 getGoMolecularFunctions()
 getGoBiologicalProcesses()
 getGoCellularComponents()
-}
 }

@@ -15,3 +15,6 @@ character
 \description{
 Get name of sample id variable
 }
+\examples{
+getSampleIdVar()
+}

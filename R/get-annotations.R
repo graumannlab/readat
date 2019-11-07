@@ -6,16 +6,14 @@
 #' @param simplify Logical.  Should the output be collapsed into a single
 #' data.frame?
 #' @return A list of character vectors.  The names of the list are the input
-#' Sequence IDs, and the character vector associated with that element contains the
-#' Ensembl IDs.
+#' Sequence IDs, and the character vector associated with that element contains
+#' the Ensembl IDs.
 #' @examples
 #' # Each AptamerId may have one, many, or zero associated Ensembl IDs
 #' getEnsemblIds(c("2278-61", "4703-87", "4916-2"))
 #'
 #' # Get everything in the 1129 panel.
-#' \dontrun{
 #' getEnsemblIds()
-#' }
 #' @export
 getEnsemblIds <- function(aptamerIds = NULL, simplify = FALSE)
 {
@@ -49,9 +47,7 @@ getEnsemblIds <- function(aptamerIds = NULL, simplify = FALSE)
 #' getUniProtKeywords(c("2278-61", "4703-87", "4916-2"))
 #'
 #' # Get everything in the 1310 and 1129 panels.
-#' \dontrun{
 #' getUniProtKeywords()
-#' }
 #' @importFrom dplyr bind_rows
 #' @export
 getUniProtKeywords <- function(aptamerIds = NULL, simplify = FALSE)
@@ -69,19 +65,20 @@ getUniProtKeywords <- function(aptamerIds = NULL, simplify = FALSE)
 #' @return A list of data frames.  The names of the list are the input
 #' SeqIds, and the data frame associated with that element contains:
 #' \describe{
-#'  \item{UniProtId}{Character.  UniProt ID for the protein target.}
-#' \item{Chromsome}{Character.  Either '1' to '22' or 'X' . (Currently no 'Y' values.)}
-#' \item{StartPosition}{Integer. Distance in base pairs from the 5' end of the gene to the start of the protein.}
-#' \item{EndPosition}{Integer. Distance in base pairs from the 5' end of the gene to the end of the protein.}
+#' \item{UniProtId}{Character.  UniProt ID for the protein target.}
+#' \item{Chromsome}{Character.  Either '1' to '22' or 'X' . (Currently no 'Y'
+#' values.)}
+#' \item{StartPosition}{Integer. Distance in base pairs from the 5' end of the
+#' gene to the start of the protein.}
+#' \item{EndPosition}{Integer. Distance in base pairs from the 5' end of the
+#' gene to the end of the protein.}
 #' }
 #' @examples
 #' # Each AptamerId may have one, many, or zero associated chromosomal positions
 #' getChromosomalPositions(c("2278-61", "4703-87_2", "4916-2"))
 #'
 #' # Get everything in the 1310 and 1129 panels.
-#' \dontrun{
 #' getChromosomalPositions()
-#' }
 #' @importFrom dplyr bind_rows
 #' @export
 getChromosomalPositions <- function(aptamerIds = NULL, simplify = FALSE)
@@ -109,9 +106,7 @@ getChromosomalPositions <- function(aptamerIds = NULL, simplify = FALSE)
 #' getPfam(c("2278-61", "4703-87", "4916-2"))
 #'
 #' # Get everything in the 1310 and 1129 panels.
-#' \dontrun{
 #' getPfam()
-#' }
 #' @importFrom dplyr bind_rows
 #' @export
 getPfam <- function(aptamerIds = NULL, simplify = FALSE)
@@ -145,11 +140,9 @@ getPfam <- function(aptamerIds = NULL, simplify = FALSE)
 #' getKeggPathways(c("2278-61", "3505-6", "4916-2"))
 #'
 #' # Get everything in the 1310 and 1129 panels.
-#' \dontrun{
 #' getKeggDefinitions()
 #' getKeggModules()
 #' getKeggPathways()
-#' }
 #' @importFrom dplyr bind_rows
 #' @export
 getKeggDefinitions <- function(aptamerIds = NULL, simplify = FALSE)
@@ -177,8 +170,8 @@ getKeggPathways <- function(aptamerIds = NULL, simplify = FALSE)
 #' Gets the GO definitions associated with SomaLogic Sequence IDs.  There are
 #' three datasets, one for each of these domains: molecular function, biological
 #' process, and cellular compartment.
-#' @param aptamerIds A character vector of SomaLogic Sequence IDs, or \code{NULL} to
-#' use all 1129 Sequence IDs.
+#' @param aptamerIds A character vector of SomaLogic Sequence IDs, or
+#' \code{NULL} to use all 1129 Sequence IDs.
 #' @param simplify Logical.  Should the output be collapsed into a single
 #' data.frame?
 #' @return A list of data frames.  The names of the list are the input
@@ -196,11 +189,9 @@ getKeggPathways <- function(aptamerIds = NULL, simplify = FALSE)
 #' getGoCellularComponents(c("2278-61", "3505-6", "4916-2"))
 #'
 #' # Get everything in the 1310 and 1129 panels.
-#' \dontrun{
 #' getGoMolecularFunctions()
 #' getGoBiologicalProcesses()
 #' getGoCellularComponents()
-#' }
 #' @importFrom dplyr bind_rows
 #' @export
 getGoMolecularFunctions <- function(aptamerIds = NULL, simplify = FALSE)

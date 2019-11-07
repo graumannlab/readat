@@ -8,10 +8,10 @@
 Each Apatmer ID has an element that is a \code{\link[GenomicRanges]{GRanges}}
 object with 3 metadata columns.
 \describe{
-\item{AptamerId}{Character, primary key.  The identifier of the aptamer sequence
-identified using SELEX.  It consists of an SomaLogic SeqId truncated at the
-underscore, to remove its sequence version number.}
- \item{UniProtId}{Character.  UniProt ID for the protein target.}
+\item{AptamerId}{Character, primary key.  The identifier of the aptamer
+sequence identified using SELEX.  It consists of an SomaLogic SeqId truncated
+at the underscore, to remove its sequence version number.}
+\item{UniProtId}{Character.  UniProt ID for the protein target.}
 \item{EntrezGeneId}{Character.  EntrezGene IDs for the gene that produces
 the target protein.}
 }}

@@ -7,16 +7,18 @@
 #' @name aptamers
 #' @format A data frame with the following columns.
 #' \describe{
-#' \item{AptamerId}{Character, primary key.  The identifier of the aptamer sequence
-#' identified using SELEX.  It consists of an SomaLogic SeqId truncated at the
-#' underscore, to remove its sequence version number.}
+#' \item{AptamerId}{Character, primary key.  The identifier of the aptamer
+#' sequence identified using SELEX.  It consists of an SomaLogic SeqId truncated
+#' at the underscore, to remove its sequence version number.}
 #' \item{SomaId}{Character. The SomaLogic identifier for the protein target.
 #' For the 1129 and 1310 assays, there is a one-to-one correspondence between
 #' SeqId and SomaId, but in theory there is a many-to-one correspondence.}
 #' \item{Target}{Character. The name of the protein target, from the protein
 #' standard supplier, sometimes with additional annotation by SomaLogic.}
-#' \item{TargetFullName}{Character. The name of the protein target, from UniProt.}
-#' \item{UniProt}{List of character vectors. UniProt IDs for the protein target.}
+#' \item{TargetFullName}{Character. The name of the protein target, from
+#' UniProt.}
+#' \item{UniProt}{List of character vectors. UniProt IDs for the protein
+#' target.}
 #' \item{EntrezGeneID}{List of character vectors. Entrez Gene IDs for the gene
 #' associated with protein target.}
 #' \item{EntrezGeneSymbol}{List of character vectors. Entrez Gene symbols for
@@ -46,7 +48,8 @@ NULL
 #'
 #' @docType data
 #' @name ensemblIds
-#' @format A list of character vectors.  The names of the list are SomaLogic Seq IDs, and the character vectors contain Ensembl IDs for each Seq ID.
+#' @format A list of character vectors.  The names of the list are SomaLogic
+#' Seq IDs, and the character vectors contain Ensembl IDs for each Seq ID.
 #' @references More information on Ensembl IDs can be found at:
 #' \url{http://www.ensembl.org/index.html}
 #' @examples
@@ -80,10 +83,10 @@ NULL
 #' Each Apatmer ID has an element that is a \code{\link[GenomicRanges]{GRanges}}
 #' object with 3 metadata columns.
 #' \describe{
-#' \item{AptamerId}{Character, primary key.  The identifier of the aptamer sequence
-#' identified using SELEX.  It consists of an SomaLogic SeqId truncated at the
-#' underscore, to remove its sequence version number.}
-#'  \item{UniProtId}{Character.  UniProt ID for the protein target.}
+#' \item{AptamerId}{Character, primary key.  The identifier of the aptamer
+#' sequence identified using SELEX.  It consists of an SomaLogic SeqId truncated
+#' at the underscore, to remove its sequence version number.}
+#' \item{UniProtId}{Character.  UniProt ID for the protein target.}
 #' \item{EntrezGeneId}{Character.  EntrezGene IDs for the gene that produces
 #' the target protein.}
 #' }
@@ -118,7 +121,8 @@ NULL
 #'
 #' @docType data
 #' @name keggDefinitions
-#' @aliases keggModules keggPathways keggDefinitions1129 keggModules1129 keggPathways1129
+#' @aliases keggModules keggPathways keggDefinitions1129 keggModules1129
+#' keggPathways1129
 #' @format A list of data frames, each with the following columns.
 #' \describe{
 #' \item{UniProtId}{Character.  UniProt ID for the protein target.}

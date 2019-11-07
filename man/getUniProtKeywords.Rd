@@ -31,7 +31,5 @@ Gets the UniProt Keywords associated with SomaLogic aptamer IDs.
 getUniProtKeywords(c("2278-61", "4703-87", "4916-2"))
 
 # Get everything in the 1310 and 1129 panels.
-\dontrun{
 getUniProtKeywords()
-}
 }

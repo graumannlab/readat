@@ -5,8 +5,10 @@ ENTREZ_GENE_ID <- "^(?:[0-9]+)$"
 
 # From http://www.genenames.org/about/guidelines#genesymbols
 ## 1. The initial character of the symbol should always be a letter.
-## 2. Subsequent characters may be other letters, or if necessary, Arabic numerals.
-## 3. No punctuation may be used, with the exception of hyphens in specific families and locus types
+## 2. Subsequent characters may be other letters, or if necessary, Arabic
+##    numerals.
+## 3. No punctuation may be used, with the exception of hyphens in specific
+##    families and locus types
 
 # From http://www.genenames.org/about/guidelines#specificusage
 # @, # punctuation character allowed (all other allowed prefixes/suffixes are
