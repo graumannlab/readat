@@ -3,7 +3,7 @@
 #' Safe, fast, flat-file reader
 #'
 #' Wrapper to  \code{data.table::fread} that reads a flat file, providing
-#' additional fixing of the \code{colClasses} argument, and a default behaviour
+#' additional fixing of the \code{colClasses} argument, and a default behavior
 #' to treat large numbers as numeric rather than integer64.
 #'
 #' @param input A string giving the name of a file (or other input types
@@ -41,10 +41,16 @@
 #'
 #' # Compare to fread
 #' assertive.base::dont_stop(
-#'   data.table::fread("foo,bar\n1,a", colClasses = list(numeric = c("foo", "baz")))
+#'   data.table::fread(
+#'     "foo,bar\n1,a",
+#'     colClasses = list(numeric = c("foo", "baz"))
+#'   )
 #' )
 #' assertive.base::dont_stop(
-#'   data.table::fread("foo,bar\n1,a", colClasses = c(foo = "numeric", baz = "numeric"))
+#'   data.table::fread(
+#'     "foo,bar\n1,a",
+#'     colClasses = c(foo = "numeric", baz = "numeric")
+#'   )
 #' )
 #' }
 #' @importFrom data.table fread

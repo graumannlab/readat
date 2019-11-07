@@ -57,6 +57,26 @@ representing a sample). It contains the following columns:
 \description{
 Creates a data table of contents for a SomaLogic sample submission form.
 }
+\examples{
+# Import the input files
+withr::with_dir(
+  system.file("extdata", package = "readat"),
+  {
+    slides <- readSlides()
+    controls <- readControls()
+    comments <- readComments()
+    samples <- readSamples()
+  }
+)
+
+# Create the sample submission form and write to Excel spreadsheet
+submission <- createSampleSubmission(
+  slides, controls, comments, samples,
+  studyName = "Taheri01", studyId = "WCQ-16-002"
+)
+str(submission)
+}
 \seealso{
-\code{\link{writeSampleSubmissionForm}} for usage examples.
+\code{\link{writeSampleSubmissionForm}} for a more complete usage
+example.
 }

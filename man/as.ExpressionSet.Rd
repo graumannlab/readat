@@ -10,7 +10,8 @@
 \usage{
 as.ExpressionSet(x, log2Transform = TRUE, ...)
 
-\method{as.ExpressionSet}{WideSomaLogicData}(x, log2Transform = TRUE, ...)
+\method{as.ExpressionSet}{WideSomaLogicData}(x, log2Transform = TRUE,
+  ...)
 
 soma2eset(somaObj, log2Transform = TRUE)
 
@@ -44,6 +45,13 @@ if(requireNamespace("MSnbase"))
 }
 
 unlink(somaFile)
+\donttest{
+# Not testing, since this is a repeat of readAdat() examples
+somaFile <- extractSampleData()
+wideSomaData <- readAdat(somaFile)
+as.ExpressionSet(wideSomaData)
+unlink(somaFile)
+}
 }
 \author{
 Aditya Bhagwat

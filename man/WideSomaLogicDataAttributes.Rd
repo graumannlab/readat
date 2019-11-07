@@ -80,10 +80,14 @@ column:
 \describe{
 \item{ExternalId}{Character. A unique identifer for the sample.}
 }
-These columns are not compulsory for the file spec, but are always included by SomaLogic:
+These columns are not compulsory for the file spec, but are always included
+by SomaLogic:
 \describe{
-\item{SampleId}{Character. The customer's original sample identifier. This is either the same as the subject identifier, or the calibrator and buffer separated by a hyphen. For example "1234" or "PPT-09".}
-\item{TimePoint}{Character or numeric.  The time point identified by the customer.}
+\item{SampleId}{Character. The customer's original sample identifier. This is
+either the same as the subject identifier, or the calibrator and buffer
+separated by a hyphen. For example "1234" or "PPT-09".}
+\item{TimePoint}{Character or numeric.  The time point identified by the
+customer.}
 \item{SampleGroup}{Character. Cohort information provided by the customer.}
 \item{SampleNotes}{Character. Lab comments about the sample condition.}
 \item{AssayNotes}{Character. Lab comments about assay adverse events.}

@@ -31,7 +31,5 @@ Gets the PFAM Ids and descriptions associated with SomaLogic aptamer IDs.
 getPfam(c("2278-61", "4703-87", "4916-2"))
 
 # Get everything in the 1310 and 1129 panels.
-\dontrun{
 getPfam()
-}
 }

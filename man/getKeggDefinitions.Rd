@@ -43,9 +43,7 @@ getKeggModules(c("2278-61", "3505-6", "4916-2"))
 getKeggPathways(c("2278-61", "3505-6", "4916-2"))
 
 # Get everything in the 1310 and 1129 panels.
-\dontrun{
 getKeggDefinitions()
 getKeggModules()
 getKeggPathways()
-}
 }
