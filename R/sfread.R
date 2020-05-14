@@ -31,27 +31,27 @@
 #' should be incredibly rare.
 #' @seealso \code{\link[data.table]{fread}}
 #' @examples
-#' \donttest{
-#' # In both these examples, colClasses specifies behaviour for non-existent
-#' # column "baz".
-#' # List syntax
-#' sfread("foo,bar\n1,a", colClasses = list(numeric = c("foo", "baz")))
-#' # Character syntax
-#' sfread("foo,bar\n1,a", colClasses = c(foo = "numeric", baz = "numeric"))
+#' if (interactive()) {
+#'   # In both these examples, colClasses specifies behaviour for non-existent
+#'   # column "baz".
+#'   # List syntax
+#'   sfread("foo,bar\n1,a", colClasses = list(numeric = c("foo", "baz")))
+#'   # Character syntax
+#'   sfread("foo,bar\n1,a", colClasses = c(foo = "numeric", baz = "numeric"))
 #'
-#' # Compare to fread
-#' assertive.base::dont_stop(
-#'   data.table::fread(
-#'     "foo,bar\n1,a",
-#'     colClasses = list(numeric = c("foo", "baz"))
+#'   # Compare to fread
+#'   assertive.base::dont_stop(
+#'     data.table::fread(
+#'       "foo,bar\n1,a",
+#'       colClasses = list(numeric = c("foo", "baz"))
+#'     )
 #'   )
-#' )
-#' assertive.base::dont_stop(
-#'   data.table::fread(
-#'     "foo,bar\n1,a",
-#'     colClasses = c(foo = "numeric", baz = "numeric")
+#'   assertive.base::dont_stop(
+#'     data.table::fread(
+#'       "foo,bar\n1,a",
+#'       colClasses = c(foo = "numeric", baz = "numeric")
+#'     )
 #'   )
-#' )
 #' }
 #' @importFrom data.table fread
 #' @noRd

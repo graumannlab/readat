@@ -45,12 +45,12 @@ if(requireNamespace("MSnbase"))
 }
 
 unlink(somaFile)
-\donttest{
-# Not testing, since this is a repeat of readAdat() examples
-somaFile <- extractSampleData()
-wideSomaData <- readAdat(somaFile)
-as.ExpressionSet(wideSomaData)
-unlink(somaFile)
+if (interactive()) {
+    # Not testing, since this is a repeat of readAdat() examples
+    somaFile <- extractSampleData()
+    wideSomaData <- readAdat(somaFile)
+    as.ExpressionSet(wideSomaData)
+    unlink(somaFile)
 }
 }
 \author{

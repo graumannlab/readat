@@ -108,12 +108,12 @@ getSampleIdVar <- function(somaEset){
 
 #' @rdname as.ExpressionSet
 #' @examples
-#' \donttest{
-#' # Not testing, since this is a repeat of readAdat() examples
-#' somaFile <- extractSampleData()
-#' wideSomaData <- readAdat(somaFile)
-#' as.ExpressionSet(wideSomaData)
-#' unlink(somaFile)
+#' if (interactive()) {
+#'     # Not testing, since this is a repeat of readAdat() examples
+#'     somaFile <- extractSampleData()
+#'     wideSomaData <- readAdat(somaFile)
+#'     as.ExpressionSet(wideSomaData)
+#'     unlink(somaFile)
 #' }
 #' @export
 as.MSnSet.WideSomaLogicData <- function(x, log2Transform = FALSE, ...)

@@ -244,7 +244,7 @@ getSampleData.LongSomaLogicData <- function(x, ...)
 #'
 #' # Intensities of a WideSomaLogicData object are a matrix
 #' intWideSamp <- getIntensities(wide_soma_data)
-#' \donttest{
+#' if (interactive()) {
 #' # Not run due to side effects of View
 #'   View(intWideSamp, "Wide intensities, samples per row")
 #' }
@@ -252,13 +252,13 @@ getSampleData.LongSomaLogicData <- function(x, ...)
 #'   wide_soma_data,
 #'   rowsContain = "sequences"
 #' )
-#' \donttest{
+#' if (interactive()) {
 #'   View(intWideSeq, "Wide intensities, seqs per row")
 #' }
 #'
 #' # Sample data is always a data table
 #' sampWide <- getSampleData(wide_soma_data)
-#' \donttest{
+#' if (interactive()) {
 #'   View(sampWide, "Wide sample data")
 #' }
 #'
@@ -266,13 +266,13 @@ getSampleData.LongSomaLogicData <- function(x, ...)
 #' # as a data.table
 #' long_soma_data <- reshape2::melt(wide_soma_data)
 #' intLong <- getIntensities(long_soma_data)
-#' \donttest{
+#' if (interactive()) {
 #'   View(intLong, "Long intensities")
 #' }
 #'
 #' # Sample data has a different shape now
 #' sampLong <- getSampleData(long_soma_data)
-#' \donttest{
+#' if (interactive()) {
 #'   View(sampLong, "Long sample data")
 #' }
 #' @name WideSomaLogicDataAttributes

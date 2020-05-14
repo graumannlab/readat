@@ -18,23 +18,23 @@
 #' @noRd
 suppressSomeFeedback <- function(expr, msgRegex = NULL, warnRegex = NULL)
 {
-  # Could use pander::evals or set options(warn = 1) + capture.output. See
-  # https://stat.ethz.ch/pipermail/r-devel/2015-November/072046.html
-  evaluated <- testthat::evaluate_promise(expr)
-  if(!is.null(msgRegex))
-  {
-    evaluated$messages <- evaluated$messages[
-      !stri_detect_regex(evaluated$messages, msgRegex)
-    ]
-  }
-  lapply(evaluated$messages, message)
-  if(!is.null(warnRegex))
-  {
-    evaluated$warnings <- evaluated$warnings[
-      !stri_detect_regex(evaluated$warnings, warnRegex)
-    ]
-  }
-  lapply(evaluated$warnings, warning, call. = FALSE)
-  evaluated$result
+    # Could use pander::evals or set options(warn = 1) + capture.output. See
+    # https://stat.ethz.ch/pipermail/r-devel/2015-November/072046.html
+    evaluated <- testthat::evaluate_promise(expr)
+    if(!is.null(msgRegex))
+    {
+        evaluated$messages <- evaluated$messages[
+            !stri_detect_regex(evaluated$messages, msgRegex)
+            ]
+    }
+    lapply(evaluated$messages, message)
+    if(!is.null(warnRegex))
+    {
+        evaluated$warnings <- evaluated$warnings[
+            !stri_detect_regex(evaluated$warnings, warnRegex)
+            ]
+    }
+    lapply(evaluated$warnings, warning, call. = FALSE)
+    evaluated$result
 }
 
