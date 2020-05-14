@@ -1,3 +1,5 @@
 .settings
 .Rproj.user
 inst/doc
+.project
+readat.Rproj
