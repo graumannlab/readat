@@ -4,7 +4,8 @@
 \name{chromosomalPositions}
 \alias{chromosomalPositions}
 \title{Chromosomal Positions by SomaLogic AptamerId}
-\format{A \code{\link[GenomicRanges]{GRangesList}} with the hg38 genome.
+\format{
+A \code{\link[GenomicRanges]{GRangesList}} with the hg38 genome.
 Each Apatmer ID has an element that is a \code{\link[GenomicRanges]{GRanges}}
 object with 3 metadata columns.
 \describe{
@@ -14,7 +15,8 @@ at the underscore, to remove its sequence version number.}
 \item{UniProtId}{Character.  UniProt ID for the protein target.}
 \item{EntrezGeneId}{Character.  EntrezGene IDs for the gene that produces
 the target protein.}
-}}
+}
+}
 \description{
 A lookup of chromosomal positions by SomaLogic Aptamer ID.
 }

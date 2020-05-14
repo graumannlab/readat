@@ -6,13 +6,15 @@
 \alias{goBiologicalProcess}
 \alias{goCellularComponent}
 \title{GO definitions by SomaLogic AptamerId}
-\format{A list of data frames, each with the following columns.
+\format{
+A list of data frames, each with the following columns.
 \describe{
 \item{UniProtId}{Character.  UniProt ID for the protein target.}
 \item{GoId}{Character.  GO ID for property of the target protein.}
 \item{GoName}{Character.  Name corresponding to the GO ID.}
 \item{GoDefinition}{Character.  Description corresponding to the GO ID.}
-}}
+}
+}
 \description{
 A lookup of GO (Gene Ontology) definitions, for molecular function,
 biological process, and cellular component by SomaLogic Aptamer ID.

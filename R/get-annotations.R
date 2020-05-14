@@ -17,14 +17,14 @@
 #' @export
 getEnsemblIds <- function(aptamerIds = NULL, simplify = FALSE)
 {
-  y <- getData(aptamerIds, FALSE, "ensembl", "ensemblIds")
-  if(simplify)
-  {
-    list_to_data.frame(y, "SeqId", "EnsemblId")
-  } else
-  {
-    y
-  }
+    y <- getData(aptamerIds, FALSE, "ensembl", "ensemblIds")
+    if(simplify)
+    {
+        list_to_data.frame(y, "SeqId", "EnsemblId")
+    } else
+    {
+        y
+    }
 }
 
 #' Get UniProt Keywords by AptamerId
@@ -52,7 +52,7 @@ getEnsemblIds <- function(aptamerIds = NULL, simplify = FALSE)
 #' @export
 getUniProtKeywords <- function(aptamerIds = NULL, simplify = FALSE)
 {
-  getData(aptamerIds, simplify, "uniprotKeywords", "uniprotKeywords")
+    getData(aptamerIds, simplify, "uniprotKeywords", "uniprotKeywords")
 }
 
 #' Get Chromosomal Positions by AptamerId
@@ -83,7 +83,8 @@ getUniProtKeywords <- function(aptamerIds = NULL, simplify = FALSE)
 #' @export
 getChromosomalPositions <- function(aptamerIds = NULL, simplify = FALSE)
 {
-  getData(aptamerIds, simplify, "chromosomalPositions", "chromosomalPositions")
+    getData(
+        aptamerIds, simplify, "chromosomalPositions", "chromosomalPositions")
 }
 
 #' Get PFAM IDs by AptamerId
@@ -111,7 +112,7 @@ getChromosomalPositions <- function(aptamerIds = NULL, simplify = FALSE)
 #' @export
 getPfam <- function(aptamerIds = NULL, simplify = FALSE)
 {
-  getData(aptamerIds, simplify, "pfam", "pfam")
+    getData(aptamerIds, simplify, "pfam", "pfam")
 }
 
 #' KEGG definitions, modules, and pathways by AptamerId
@@ -147,21 +148,21 @@ getPfam <- function(aptamerIds = NULL, simplify = FALSE)
 #' @export
 getKeggDefinitions <- function(aptamerIds = NULL, simplify = FALSE)
 {
-  getData(aptamerIds, simplify, "keggDefinitions", "keggDefinitions")
+    getData(aptamerIds, simplify, "keggDefinitions", "keggDefinitions")
 }
 
 #' @rdname getKeggDefinitions
 #' @export
 getKeggModules <- function(aptamerIds = NULL, simplify = FALSE)
 {
-  getData(aptamerIds, simplify, "keggModules", "keggModules")
+    getData(aptamerIds, simplify, "keggModules", "keggModules")
 }
 
 #' @rdname getKeggDefinitions
 #' @export
 getKeggPathways <- function(aptamerIds = NULL, simplify = FALSE)
 {
-  getData(aptamerIds, simplify, "keggPathways", "keggPathways")
+    getData(aptamerIds, simplify, "keggPathways", "keggPathways")
 }
 
 
@@ -196,46 +197,46 @@ getKeggPathways <- function(aptamerIds = NULL, simplify = FALSE)
 #' @export
 getGoMolecularFunctions <- function(aptamerIds = NULL, simplify = FALSE)
 {
-  getData(aptamerIds, simplify, "goMolecularFunction", "goMolecularFunction")
+    getData(aptamerIds, simplify, "goMolecularFunction", "goMolecularFunction")
 }
 
 #' @rdname getGoMolecularFunctions
 #' @export
 getGoBiologicalProcesses <- function(aptamerIds = NULL, simplify = FALSE)
 {
-  getData(aptamerIds, simplify, "goBiologicalProcess", "goBiologicalProcess")
+    getData(aptamerIds, simplify, "goBiologicalProcess", "goBiologicalProcess")
 }
 
 #' @rdname getGoMolecularFunctions
 #' @export
 getGoCellularComponents <- function(aptamerIds = NULL, simplify = FALSE)
 {
-  getData(aptamerIds, simplify, "goCellularComponent", "goCellularComponent")
+    getData(aptamerIds, simplify, "goCellularComponent", "goCellularComponent")
 }
 
 #' @importFrom utils data
 getData <- function(aptamerIds = NULL, simplify = FALSE, dataName, dataElement)
 {
-  e <- new.env()
-  if(is.null(aptamerIds))
-  {
-    data(list = "aptamers", package = "readat", envir = e)
-    aptamerIds = e$aptamers$AptamerId
-  }
-  data(list = dataName, package = "readat", envir = e)
-  y <- e[[dataElement]][names(e[[dataElement]]) %in% aptamerIds]
-  if(simplify)
-  {
-    if(inherits(y, "GRangesList")) # For, e.g., chromosomalPositions
+    e <- new.env()
+    if(is.null(aptamerIds))
     {
-      # See https://support.bioconductor.org/p/83599/#83602
-      unlist(y)
+        data(list = "aptamers", package = "readat", envir = e)
+        aptamerIds = e$aptamers$AptamerId
+    }
+    data(list = dataName, package = "readat", envir = e)
+    y <- e[[dataElement]][names(e[[dataElement]]) %in% aptamerIds]
+    if(simplify)
+    {
+        if(inherits(y, "GRangesList")) # For, e.g., chromosomalPositions
+        {
+            # See https://support.bioconductor.org/p/83599/#83602
+            unlist(y)
+        } else
+        {
+            bind_rows(y, .id = "AptamerId")
+        }
     } else
     {
-      bind_rows(y, .id = "AptamerId")
+        y
     }
-  } else
-  {
-    y
-  }
 }

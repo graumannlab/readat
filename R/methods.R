@@ -20,26 +20,26 @@
 #' @export
 #' @include readAdat.R
 melt.WideSomaLogicData <- function(data, ..., na.rm = FALSE,
-  value.name = "Intensity")
+    value.name = "Intensity")
 {
-  isSeqColumn <- colnamesStartWithSeqId(data)
-  data <- copy(data)
-  class(data) <- c("data.table", "data.frame")
+    isSeqColumn <- colnamesStartWithSeqId(data)
+    data <- copy(data)
+    class(data) <- c("data.table", "data.frame")
 
-  long <- suppressMessages(data.table::melt.data.table(
-    data,
-    id.vars       = colnames(data)[!isSeqColumn],
-    measure.vars  = colnames(data)[isSeqColumn],
-    variable.name = "SeqId",
-    value.name    = value.name
-  ))
-  long$SeqId <- substring(long$SeqId, 7)
-  setkeyv(long, "SeqId")
-  setattr(long, "Metadata", attr(data, "Metadata"))
-  setattr(long, "Checksum", attr(data, "Checksum"))
-  setattr(long, "SequenceData", attr(data, "SequenceData"))
-  setattr(long, "class", c("LongSomaLogicData", "data.table", "data.frame"))
-  long
+    long <- suppressMessages(data.table::melt.data.table(
+        data,
+        id.vars       = colnames(data)[!isSeqColumn],
+        measure.vars  = colnames(data)[isSeqColumn],
+        variable.name = "SeqId",
+        value.name    = value.name
+    ))
+    long$SeqId <- substring(long$SeqId, 7)
+    setkeyv(long, "SeqId")
+    setattr(long, "Metadata", attr(data, "Metadata"))
+    setattr(long, "Checksum", attr(data, "Checksum"))
+    setattr(long, "SequenceData", attr(data, "SequenceData"))
+    setattr(long, "class", c("LongSomaLogicData", "data.table", "data.frame"))
+    long
 }
 
 #' @rdname WideSomaLogicDataAttributes
@@ -47,29 +47,29 @@ melt.WideSomaLogicData <- function(data, ..., na.rm = FALSE,
 #' @export
 getIntensities <- function(x, ...)
 {
-  UseMethod("getIntensities")
+    UseMethod("getIntensities")
 }
 
 #' @rdname WideSomaLogicDataAttributes
 #' @importFrom data.table copy
 #' @export
 getIntensities.WideSomaLogicData <- function(x,
-  rowsContain = c("samples", "sequences"), reorder = FALSE, ...)
+    rowsContain = c("samples", "sequences"), reorder = FALSE, ...)
 {
-  x <- copy(x)
-  class(x) <- c("data.table", "data.frame")
-  rowsContain <- match.arg(rowsContain)
-  isSeqColumn <- colnamesStartWithSeqId(x)
-  m <- as.matrix(x[, isSeqColumn, with = FALSE])
-  rownames(m) <- x$ExtIdentifier
-  colnames(m) <- substring(colnames(m), 7)
-  if(reorder)
-  {
-    rowOrder <- order(x$ExtIdentifier)
-    colOrder <- order(colnames(m))
-    m <- m[rowOrder, colOrder]
-  }
-  if(rowsContain == "samples") m else t(m)
+    x <- copy(x)
+    class(x) <- c("data.table", "data.frame")
+    rowsContain <- match.arg(rowsContain)
+    isSeqColumn <- colnamesStartWithSeqId(x)
+    m <- as.matrix(x[, isSeqColumn, with = FALSE])
+    rownames(m) <- x$ExtIdentifier
+    colnames(m) <- substring(colnames(m), 7)
+    if(reorder)
+    {
+        rowOrder <- order(x$ExtIdentifier)
+        colOrder <- order(colnames(m))
+        m <- m[rowOrder, colOrder]
+    }
+    if(rowsContain == "samples") m else t(m)
 }
 
 #' @rdname WideSomaLogicDataAttributes
@@ -77,23 +77,23 @@ getIntensities.WideSomaLogicData <- function(x,
 #' @export
 getIntensities.LongSomaLogicData <- function(x, ...)
 {
-  x <- copy(x)
-  class(x) <- c("data.table", "data.frame")
-  x[, c("SeqId", "ExtIdentifier", "Intensity"), with = FALSE]
+    x <- copy(x)
+    class(x) <- c("data.table", "data.frame")
+    x[, c("SeqId", "ExtIdentifier", "Intensity"), with = FALSE]
 }
 
 #' @rdname WideSomaLogicDataAttributes
 as.matrix.WideSomaLogicData <- function(x, ...)
 {
-  .Deprecated("getIntensities")
-  getIntensities(x, ...)
+    .Deprecated("getIntensities")
+    getIntensities(x, ...)
 }
 
 #' @rdname WideSomaLogicDataAttributes
 #' @export
 getSampleData <- function(x, ...)
 {
-  UseMethod("getSampleData")
+    UseMethod("getSampleData")
 }
 
 #' @rdname WideSomaLogicDataAttributes
@@ -101,10 +101,10 @@ getSampleData <- function(x, ...)
 #' @export
 getSampleData.WideSomaLogicData <- function(x, ...)
 {
-  x <- copy(x)
-  class(x) <- c("data.table", "data.frame")
-  isSampleColumn <- !colnamesStartWithSeqId(x)
-  x[, isSampleColumn, with = FALSE]
+    x <- copy(x)
+    class(x) <- c("data.table", "data.frame")
+    isSampleColumn <- !colnamesStartWithSeqId(x)
+    x[, isSampleColumn, with = FALSE]
 }
 
 #' @rdname WideSomaLogicDataAttributes
@@ -112,9 +112,9 @@ getSampleData.WideSomaLogicData <- function(x, ...)
 #' @export
 getSampleData.LongSomaLogicData <- function(x, ...)
 {
-  x <- copy(x)
-  class(x) <- c("data.table", "data.frame")
-  x[, -"Intensity", with = FALSE]
+    x <- copy(x)
+    class(x) <- c("data.table", "data.frame")
+    x[, -"Intensity", with = FALSE]
 }
 
 #' Get WideSomaLogicData attributes
@@ -282,21 +282,21 @@ NULL
 #' @export
 getSequenceData <- function(x)
 {
-  attr(x, "SequenceData", exact = TRUE)
+    attr(x, "SequenceData", exact = TRUE)
 }
 
 #' @rdname WideSomaLogicDataAttributes
 #' @export
 getMetadata <- function(x)
 {
-  attr(x, "Metadata", exact = TRUE)
+    attr(x, "Metadata", exact = TRUE)
 }
 
 #' @rdname WideSomaLogicDataAttributes
 #' @export
 getChecksum <- function(x)
 {
-  attr(x, "Checksum", exact = TRUE)
+    attr(x, "Checksum", exact = TRUE)
 }
 
 #' @rdname WideSomaLogicDataAttributes
@@ -305,9 +305,9 @@ getChecksum <- function(x)
 #' @export
 setSequenceData <- function(x, value)
 {
-  assert_is_inherited_from(value, "data.table")
-  setattr(x, "SequenceData", value)
-  invisible(x)
+    assert_is_inherited_from(value, "data.table")
+    setattr(x, "SequenceData", value)
+    invisible(x)
 }
 
 #' @rdname WideSomaLogicDataAttributes
@@ -315,9 +315,9 @@ setSequenceData <- function(x, value)
 #' @export
 setMetadata <- function(x, value)
 {
-  assert_is_list(value)
-  attr(x, "Metadata") <- value
-  invisible(x)
+    assert_is_list(value)
+    attr(x, "Metadata") <- value
+    invisible(x)
 }
 
 #' @rdname WideSomaLogicDataAttributes
@@ -325,9 +325,9 @@ setMetadata <- function(x, value)
 #' @export
 setChecksum <- function(x, value)
 {
-  assert_is_character(value)
-  attr(x, "Checksum") <- value
-  invisible(x)
+    assert_is_character(value)
+    attr(x, "Checksum") <- value
+    invisible(x)
 }
 
 #' @rdname WideSomaLogicDataAttributes
@@ -338,21 +338,21 @@ setChecksum <- function(x, value)
 #' @export
 setSampleData <- function(x, value)
 {
-  assert_is_data.frame(value)
-  value <- as.data.table(value)
-  assert_is_not_null(value$ExtIdentifier)
-  intensities <- getIntensities(x)
-  assert_are_identical(nrow(intensities), nrow(value))
-  # Can't use dplyr::bind_cols with matrices
-  sampleAndIntensityData <- cbind(value, intensities)
-  invisible(
-    WideSomaLogicData(
-      sampleAndIntensityData,
-      getSequenceData(x),
-      getMetadata(x),
-      getChecksum(x)
+    assert_is_data.frame(value)
+    value <- as.data.table(value)
+    assert_is_not_null(value$ExtIdentifier)
+    intensities <- getIntensities(x)
+    assert_are_identical(nrow(intensities), nrow(value))
+    # Can't use dplyr::bind_cols with matrices
+    sampleAndIntensityData <- cbind(value, intensities)
+    invisible(
+        WideSomaLogicData(
+            sampleAndIntensityData,
+            getSequenceData(x),
+            getMetadata(x),
+            getChecksum(x)
+        )
     )
-  )
 }
 
 #' @rdname WideSomaLogicDataAttributes
@@ -362,49 +362,51 @@ setSampleData <- function(x, value)
 #' @export
 setIntensities <- function(x, value, prependSeqIdToColNames = NA)
 {
-  assert_is_inherited_from(value, c("data.frame", "matrix"))
-  sampleData <- getSampleData(x)
-  assert_are_identical(nrow(sampleData), nrow(value))
-  # Should column names be prefixed with "SeqId.", or do they have it already?
-  if(is.na(prependSeqIdToColNames))
-  {
-    seqIdPrefix <- colnamesStartWithSeqId(value)
-    prependSeqIdToColNames <- if(any(seqIdPrefix))
+    assert_is_inherited_from(value, c("data.frame", "matrix"))
+    sampleData <- getSampleData(x)
+    assert_are_identical(nrow(sampleData), nrow(value))
+    # Should column names be prefixed with "SeqId.", or do they have it already?
+    if(is.na(prependSeqIdToColNames))
     {
-      if(!all(seqIdPrefix))
-      {
-        stop("Some column names are prefixed with 'SeqId.' but not others.")
-      }
-      FALSE
+        seqIdPrefix <- colnamesStartWithSeqId(value)
+        prependSeqIdToColNames <- if(any(seqIdPrefix))
+        {
+            if(!all(seqIdPrefix))
+            {
+                stop(
+                    "Some column names are prefixed with 'SeqId.' but not ",
+                    "others.")
+            }
+            FALSE
+        } else
+        {
+            TRUE
+        }
+    }
+    if(prependSeqIdToColNames)
+    {
+        colnames(value) <- paste0("SeqId.", colnames(value))
+    }
+
+    # If rows match in x and value, we can just cbind, otherwise need to merge
+    sampleAndIntensityData <- if(
+        are_identical(as.character(sampleData$ExtIdentifier), rownames(value))
+    )
+    {
+        cbind(sampleData, value)
     } else
     {
-      TRUE
+        valueDF <- data.frame(ExtIdentifier = rownames(value), value)
+        merge(sampleData, valueDF, by = "ExtIdentifier")
     }
-  }
-  if(prependSeqIdToColNames)
-  {
-    colnames(value) <- paste0("SeqId.", colnames(value))
-  }
-
-  # If rows match in x and value, we can just cbind, otherwise need to merge
-  sampleAndIntensityData <- if(
-    are_identical(as.character(sampleData$ExtIdentifier), rownames(value))
-  )
-  {
-    cbind(sampleData, value)
-  } else
-  {
-    valueDF <- data.frame(ExtIdentifier = rownames(value), value)
-    merge(sampleData, valueDF, by = "ExtIdentifier")
-  }
-  invisible(
-    WideSomaLogicData(
-      sampleAndIntensityData,
-      getSequenceData(x),
-      getMetadata(x),
-      getChecksum(x)
+    invisible(
+        WideSomaLogicData(
+            sampleAndIntensityData,
+            getSequenceData(x),
+            getMetadata(x),
+            getChecksum(x)
+        )
     )
-  )
 }
 
 #' Indexing for WideSomaLogicData objects
@@ -434,27 +436,27 @@ setIntensities <- function(x, value, prependSeqIdToColNames = NA)
 #' @export
 `[.WideSomaLogicData` <- function(x, ...)
 {
-  sequenceData <- getSequenceData(x)
-  metadata     <- getMetadata(x)
-  checksum     <- getChecksum(x)
-  x <- copy(x)
-  y <- NextMethod("[")
+    sequenceData <- getSequenceData(x)
+    metadata     <- getMetadata(x)
+    checksum     <- getChecksum(x)
+    x <- copy(x)
+    y <- NextMethod("[")
 
-  # result may be a data.table, or have been simplified to a vector
-  if(is.data.table(y))
-  {
-    setattr(y, "SequenceData", sequenceData)
-    setattr(y, "Metadata", metadata)
-    setattr(y, "Checksum", checksum)
-    setattr(y, "class", c("WideSomaLogicData", "data.table", "data.frame"))
-    y
-  } else
-  {
-    structure(
-      y,
-      SequenceData = sequenceData,
-      Metadata     = metadata,
-      Checksum     = checksum
-    )
-  }
+    # result may be a data.table, or have been simplified to a vector
+    if(is.data.table(y))
+    {
+        setattr(y, "SequenceData", sequenceData)
+        setattr(y, "Metadata", metadata)
+        setattr(y, "Checksum", checksum)
+        setattr(y, "class", c("WideSomaLogicData", "data.table", "data.frame"))
+        y
+    } else
+    {
+        structure(
+            y,
+            SequenceData = sequenceData,
+            Metadata     = metadata,
+            Checksum     = checksum
+        )
+    }
 }

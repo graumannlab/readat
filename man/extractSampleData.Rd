@@ -4,8 +4,10 @@
 \alias{extractSampleData}
 \title{Extract the sample datasets}
 \usage{
-extractSampleData(somascanMenuVersion = c("1.3k", "1.1k"),
-  intermediateDir = tempdir())
+extractSampleData(
+  somascanMenuVersion = c("1.3k", "1.1k"),
+  intermediateDir = tempdir()
+)
 }
 \arguments{
 \item{somascanMenuVersion}{String describing which data file to extract.

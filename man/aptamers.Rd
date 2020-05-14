@@ -4,7 +4,8 @@
 \name{aptamers}
 \alias{aptamers}
 \title{Sequence data for the Somalogic SOMAscan assay}
-\format{A data frame with the following columns.
+\format{
+A data frame with the following columns.
 \describe{
 \item{AptamerId}{Character, primary key.  The identifier of the aptamer
 sequence identified using SELEX.  It consists of an SomaLogic SeqId truncated
@@ -31,7 +32,8 @@ protein standard sources in the SELEX.}
 \item{SerumDilution}{What dilution factor is used in serum?}
 \item{IsIn1129Panel}{Is the aptamer in the 1129 panel of the SOMAscan assay?}
 \item{IsIn1310Panel}{Is the aptamer in the 1310 panel of the SOMAscan assay?}
-}}
+}
+}
 \description{
 Sequence data for the SOMAmers in the 1129 and 1310 panels of the Somalogic
 SOMAscan assay.

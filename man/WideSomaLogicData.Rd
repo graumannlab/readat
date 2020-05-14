@@ -4,8 +4,12 @@
 \alias{WideSomaLogicData}
 \title{Create a WideSomaLogicData object}
 \usage{
-WideSomaLogicData(sampleAndIntensityData, sequenceData, metadata,
-  checksum = paste0(rep.int("f", 40), collapse = ""))
+WideSomaLogicData(
+  sampleAndIntensityData,
+  sequenceData,
+  metadata,
+  checksum = paste0(rep.int("f", 40), collapse = "")
+)
 }
 \arguments{
 \item{sampleAndIntensityData}{A data.table of sample and intensity data.}

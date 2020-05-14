@@ -4,9 +4,17 @@
 \alias{createSampleSubmission}
 \title{Create a SomaLogic Sample Submission Form}
 \usage{
-createSampleSubmission(slides, controls, comments, samples,
+createSampleSubmission(
+  slides,
+  controls,
+  comments,
+  samples,
   sampleMatrix = c("EDTA-Plasma", "Sodium Citrate Plasma", "Serum"),
-  siteId = "WCQ", studyName = "", studyId = "", runName = "Set A")
+  siteId = "WCQ",
+  studyName = "",
+  studyId = "",
+  runName = "Set A"
+)
 }
 \arguments{
 \item{slides}{A data frame of slide data, as imported by
@@ -60,19 +68,19 @@ Creates a data table of contents for a SomaLogic sample submission form.
 \examples{
 # Import the input files
 withr::with_dir(
-  system.file("extdata", package = "readat"),
-  {
-    slides <- readSlides()
-    controls <- readControls()
-    comments <- readComments()
-    samples <- readSamples()
-  }
+    system.file("extdata", package = "readat"),
+    {
+        slides <- readSlides()
+        controls <- readControls()
+        comments <- readComments()
+        samples <- readSamples()
+    }
 )
 
 # Create the sample submission form and write to Excel spreadsheet
 submission <- createSampleSubmission(
-  slides, controls, comments, samples,
-  studyName = "Taheri01", studyId = "WCQ-16-002"
+    slides, controls, comments, samples,
+    studyName = "Taheri01", studyId = "WCQ-16-002"
 )
 str(submission)
 }

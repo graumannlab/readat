@@ -1,13 +1,13 @@
 PLATE_POSITIONS <- within(
-  expand.grid(
-    Subarray = seq_len(8),
-    Slide = seq_len(12),
-    KEEP.OUT.ATTRS = FALSE
-  ),
-  {
-    PlatePosition <- paste0(LETTERS[Subarray], Slide)
-    PlatePosition <- ordered(PlatePosition, PlatePosition)
-  }
+    expand.grid(
+        Subarray = seq_len(8),
+        Slide = seq_len(12),
+        KEEP.OUT.ATTRS = FALSE
+    ),
+    {
+        PlatePosition <- paste0(LETTERS[Subarray], Slide)
+        PlatePosition <- ordered(PlatePosition, PlatePosition)
+    }
 )
 
 #' Order Plate position
@@ -16,7 +16,7 @@ PLATE_POSITIONS <- within(
 #' @export
 orderPlatePosition <- function(pp)
 {
-  ordered(pp, levels = levels(PLATE_POSITIONS$PlatePosition))
+    ordered(pp, levels = levels(PLATE_POSITIONS$PlatePosition))
 }
 
 #' Read SomaLogic Sample Submission Slides File
@@ -62,21 +62,21 @@ orderPlatePosition <- function(pp)
 #' @export
 readSlides <- function(file = "slides.csv")
 {
-  slides <- fread(
-    file, sep = ",", header = FALSE, colClasses = "character", select = 1
-  )[[1]]
-  length(slides) <- 12
-  assert_all_are_not_false(
-    stri_detect_regex(slides, "^[0-9]{12}$"),
-    severity = "warning"
-  )
-  as.tbl(data.table(
-    SampleNumber = seq_len(96),
-    SlideId = rep(slides, each = 8),
-    Subarray = PLATE_POSITIONS$Subarray,
-    PlatePosition = PLATE_POSITIONS$PlatePosition,
-    PercentDilution = 40
-  ))
+    slides <- fread(
+        file, sep = ",", header = FALSE, colClasses = "character", select = 1
+    )[[1]]
+    length(slides) <- 12
+    assert_all_are_not_false(
+        stri_detect_regex(slides, "^[0-9]{12}$"),
+        severity = "warning"
+    )
+    as.tbl(data.table(
+        SampleNumber = seq_len(96),
+        SlideId = rep(slides, each = 8),
+        Subarray = PLATE_POSITIONS$Subarray,
+        PlatePosition = PLATE_POSITIONS$PlatePosition,
+        PercentDilution = 40
+    ))
 }
 
 #' Read SomaLogic Sample Submission Controls File
@@ -113,17 +113,17 @@ readSlides <- function(file = "slides.csv")
 #' @export
 readControls <- function(file = "controls.csv")
 {
-  controls <- fread(
-    file, sep = ",", nrows = 96, header = FALSE, na.strings = c("", "NA"),
-    select = seq_len(2), col.names = c("PlatePosition", "BarCode"))
-  n_controls <- sum(!is.na(controls$BarCode))
-  assert_all_are_less_than_or_equal_to(n_controls, 12, severity = "warning")
-  assert_all_are_not_false(
-    stri_detect_regex(controls$BarCode, "^I[0-9]{6}$"),
-    severity = "warning"
-  )
-  controls$PlatePosition <- orderPlatePosition(controls$PlatePosition)
-  as.tbl(controls)
+    controls <- fread(
+        file, sep = ",", nrows = 96, header = FALSE, na.strings = c("", "NA"),
+        select = seq_len(2), col.names = c("PlatePosition", "BarCode"))
+    n_controls <- sum(!is.na(controls$BarCode))
+    assert_all_are_less_than_or_equal_to(n_controls, 12, severity = "warning")
+    assert_all_are_not_false(
+        stri_detect_regex(controls$BarCode, "^I[0-9]{6}$"),
+        severity = "warning"
+    )
+    controls$PlatePosition <- orderPlatePosition(controls$PlatePosition)
+    as.tbl(controls)
 }
 
 #' Read SomaLogic Sample Submission Comments File
@@ -167,26 +167,27 @@ readControls <- function(file = "controls.csv")
 #' @export
 readComments <- function(file = "comments.csv")
 {
-  comments <- fread(
-    file, sep = ",", header = FALSE, na.strings = c("", "NA"),
-    colClasses = "character", select = seq_len(3),
-    col.names = c("PlatePosition", "SampleNotes", "AssayNotes")
-  )
-  assert_all_are_less_than_or_equal_to(nrow(comments), 96, severity = "warning")
-  not_na <- !is.na(comments$SampleNotes)
-  comments$SampleNotes[not_na] <- comments$SampleNotes[not_na] %>%
-    stri_trim_both %>%
-    tolower %>%
-    strsplit("[, ]+") %>%     # standardize separator
-    vapply(paste, collapse = ", ", character(1))
-  assert_is_subset(
-    comments$SampleNotes,
-    c("red", "yellow", "turbid", "red, turbid", "yellow, turbid", NA),
-    severity = "warning"
-  )
-  comments$PlatePosition <- orderPlatePosition(comments$PlatePosition)
-  data.table(PlatePosition = PLATE_POSITIONS$PlatePosition) %>%
-    left_join(comments, by = "PlatePosition")
+    comments <- fread(
+        file, sep = ",", header = FALSE, na.strings = c("", "NA"),
+        colClasses = "character", select = seq_len(3),
+        col.names = c("PlatePosition", "SampleNotes", "AssayNotes")
+    )
+    assert_all_are_less_than_or_equal_to(
+        nrow(comments), 96, severity = "warning")
+    not_na <- !is.na(comments$SampleNotes)
+    comments$SampleNotes[not_na] <- comments$SampleNotes[not_na] %>%
+        stri_trim_both %>%
+        tolower %>%
+        strsplit("[, ]+") %>%     # standardize separator
+        vapply(paste, collapse = ", ", character(1))
+    assert_is_subset(
+        comments$SampleNotes,
+        c("red", "yellow", "turbid", "red, turbid", "yellow, turbid", NA),
+        severity = "warning"
+    )
+    comments$PlatePosition <- orderPlatePosition(comments$PlatePosition)
+    data.table(PlatePosition = PLATE_POSITIONS$PlatePosition) %>%
+        left_join(comments, by = "PlatePosition")
 }
 
 #' Read SomaLogic Sample Submission Samples File
@@ -223,18 +224,18 @@ readComments <- function(file = "comments.csv")
 #' @export
 readSamples <- function(file = "samples.csv")
 {
-  samples <- fread(
-    file, sep = ",", nrows = 96, header = FALSE, na.strings = "NO READ",
-    select = seq_len(2), col.names = c("PlatePosition", "SampleId")
-  )
-  n_controls <- sum(is.na(samples$SampleId))
-  assert_all_are_less_than_or_equal_to(n_controls, 12, severity = "warning")
-  assert_all_are_not_false(
-    stri_detect_regex(samples$SampleId, "^[0-9]{9}$"),
-    severity = "warning"
-  )
-  samples$PlatePosition <- orderPlatePosition(samples$PlatePosition)
-  as.tbl(samples)
+    samples <- fread(
+        file, sep = ",", nrows = 96, header = FALSE, na.strings = "NO READ",
+        select = seq_len(2), col.names = c("PlatePosition", "SampleId")
+    )
+    n_controls <- sum(is.na(samples$SampleId))
+    assert_all_are_less_than_or_equal_to(n_controls, 12, severity = "warning")
+    assert_all_are_not_false(
+        stri_detect_regex(samples$SampleId, "^[0-9]{9}$"),
+        severity = "warning"
+    )
+    samples$PlatePosition <- orderPlatePosition(samples$PlatePosition)
+    as.tbl(samples)
 }
 
 #' Create a SomaLogic Sample Submission Form
@@ -279,19 +280,19 @@ readSamples <- function(file = "samples.csv")
 #' @examples
 #' # Import the input files
 #' withr::with_dir(
-#'   system.file("extdata", package = "readat"),
-#'   {
-#'     slides <- readSlides()
-#'     controls <- readControls()
-#'     comments <- readComments()
-#'     samples <- readSamples()
-#'   }
+#'     system.file("extdata", package = "readat"),
+#'     {
+#'         slides <- readSlides()
+#'         controls <- readControls()
+#'         comments <- readComments()
+#'         samples <- readSamples()
+#'     }
 #' )
 #'
 #' # Create the sample submission form and write to Excel spreadsheet
 #' submission <- createSampleSubmission(
-#'   slides, controls, comments, samples,
-#'   studyName = "Taheri01", studyId = "WCQ-16-002"
+#'     slides, controls, comments, samples,
+#'     studyName = "Taheri01", studyId = "WCQ-16-002"
 #' )
 #' str(submission)
 #' @importFrom dplyr inner_join
@@ -300,29 +301,29 @@ readSamples <- function(file = "samples.csv")
 #' @importFrom magrittr extract
 #' @export
 createSampleSubmission <- function(slides, controls, comments, samples,
-  sampleMatrix = c("EDTA-Plasma", "Sodium Citrate Plasma", "Serum"),
-  siteId = "WCQ", studyName = "", studyId = "", runName = "Set A")
+    sampleMatrix = c("EDTA-Plasma", "Sodium Citrate Plasma", "Serum"),
+    siteId = "WCQ", studyName = "", studyId = "", runName = "Set A")
 {
-  sampleMatrix <- match.arg(sampleMatrix)
-  submission <- slides %>%
-    inner_join(controls, by = "PlatePosition") %>%
-    inner_join(comments, by = "PlatePosition") %>%
-    inner_join(samples, by = "PlatePosition") %>%
-    arrange_(~ SampleNumber)
-  isSample <- is.na(submission$BarCode)
-  details <- data.table(
-    SampleMatrix = ifelse(isSample, sampleMatrix, NA_character_),
-    SiteId = ifelse(isSample, siteId, NA_character_),
-    StudyName = ifelse(isSample, studyName, NA_character_),
-    TimePoint = NA_character_,  # TODO
-    SampleGroup = NA_character_,
-    SampleDescription = NA_character_,
-    StudyId = ifelse(isSample, studyId, NA_character_),
-    RunName = ifelse(isSample, runName, NA_character_)
-  )
-  submission %>%
-    bind_cols(details) %>%
-    extract(, c(2:4, 1, 5:17)) # Move PlatePosition column
+    sampleMatrix <- match.arg(sampleMatrix)
+    submission <- slides %>%
+        inner_join(controls, by = "PlatePosition") %>%
+        inner_join(comments, by = "PlatePosition") %>%
+        inner_join(samples, by = "PlatePosition") %>%
+        arrange_(~ SampleNumber)
+    isSample <- is.na(submission$BarCode)
+    details <- data.table(
+        SampleMatrix = ifelse(isSample, sampleMatrix, NA_character_),
+        SiteId = ifelse(isSample, siteId, NA_character_),
+        StudyName = ifelse(isSample, studyName, NA_character_),
+        TimePoint = NA_character_,  # TODO
+        SampleGroup = NA_character_,
+        SampleDescription = NA_character_,
+        StudyId = ifelse(isSample, studyId, NA_character_),
+        RunName = ifelse(isSample, runName, NA_character_)
+    )
+    submission %>%
+        bind_cols(details) %>%
+        extract(, c(2:4, 1, 5:17)) # Move PlatePosition column
 }
 
 #' Write a SomaLogic sample submission form
@@ -357,20 +358,20 @@ createSampleSubmission <- function(slides, controls, comments, samples,
 #' @export
 writeSampleSubmissionForm <- function(submission, outdir = ".")
 {
-  dir.create(outdir, recursive = TRUE)
-  filename <- paste(
-      format(Sys.Date(), "%Y%m%d"),
-      valuesOf(submission$StudyId),
-      valuesOf(submission$RunName),
-      sep = "_"
+    dir.create(outdir, recursive = TRUE)
+    filename <- paste(
+        format(Sys.Date(), "%Y%m%d"),
+        valuesOf(submission$StudyId),
+        valuesOf(submission$RunName),
+        sep = "_"
     )
-  outfile <- file.path(outdir, paste0(filename, ".xlsx"))
-  message("Writing to ", outfile)
-  write.xlsx(submission, outfile, row.names = FALSE)
-  invisible(outfile)
+    outfile <- file.path(outdir, paste0(filename, ".xlsx"))
+    message("Writing to ", outfile)
+    write.xlsx(submission, outfile, row.names = FALSE)
+    invisible(outfile)
 }
 
 valuesOf <- function(x)
 {
-  toString(unique(x[!is.na(x)]))
+    toString(unique(x[!is.na(x)]))
 }

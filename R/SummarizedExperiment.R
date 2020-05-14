@@ -14,18 +14,18 @@
 #' @export
 as.SummarizedExperiment <- function(x, ...)
 {
-  UseMethod("as.SummarizedExperiment")
+    UseMethod("as.SummarizedExperiment")
 }
 
 #' @rdname as.SummarizedExperiment
 #' @export
 as.SummarizedExperiment.WideSomaLogicData <- function(x, ...)
 {
-  SummarizedExperiment(
-    list(intensities = getIntensities(x, rowsContain = "sequences")),
-    rowData = getSequenceData(x),
-    colData = getSampleData(x),
-    metadata = getMetadata
-  )
+    SummarizedExperiment(
+        list(intensities = getIntensities(x, rowsContain = "sequences")),
+        rowData = getSequenceData(x),
+        colData = getSampleData(x),
+        metadata = getMetadata
+    )
 }
 

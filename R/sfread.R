@@ -57,20 +57,20 @@
 #' @noRd
 sfread <- function(input, ..., colClasses = NULL, integer64 = 'numeric')
 {
-  dots <- within(
-    list(...),
-    {
-      input <- input
-    }
-  )
+    dots <- within(
+        list(...),
+        {
+            input <- input
+        }
+    )
 
-  theHeader <- do.call(readHeader, dots)
-  colClasses <- switch(
-    class(colClasses),
-    character = fixCharacterColClasses(colClasses, theHeader),
-    list      = fixListColClasses(colClasses, theHeader)
-  )
-  fread(input, ..., colClasses = colClasses, integer64 = integer64)
+    theHeader <- do.call(readHeader, dots)
+    colClasses <- switch(
+        class(colClasses),
+        character = fixCharacterColClasses(colClasses, theHeader),
+        list      = fixListColClasses(colClasses, theHeader)
+    )
+    fread(input, ..., colClasses = colClasses, integer64 = integer64)
 }
 
 #' Read the header of a flat file
@@ -85,16 +85,16 @@ sfread <- function(input, ..., colClasses = NULL, integer64 = 'numeric')
 #' @noRd
 readHeader <- function(input, nrows = 0, header = TRUE,  ...)
 {
-  DT <- suppressWarnings(fread(input, nrows = nrows, header = header, ...))
-  colnames(DT)
+    DT <- suppressWarnings(fread(input, nrows = nrows, header = header, ...))
+    colnames(DT)
 }
 
 fixCharacterColClasses <- function(colClasses, header)
 {
-  intersect(colClasses, header)
+    intersect(colClasses, header)
 }
 
 fixListColClasses <- function(colClasses, header)
 {
-  lapply(colClasses, intersect, y = header)
+    lapply(colClasses, intersect, y = header)
 }

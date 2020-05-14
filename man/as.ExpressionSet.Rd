@@ -10,8 +10,7 @@
 \usage{
 as.ExpressionSet(x, log2Transform = TRUE, ...)
 
-\method{as.ExpressionSet}{WideSomaLogicData}(x, log2Transform = TRUE,
-  ...)
+\method{as.ExpressionSet}{WideSomaLogicData}(x, log2Transform = TRUE, ...)
 
 soma2eset(somaObj, log2Transform = TRUE)
 
@@ -41,7 +40,7 @@ wideSomaData <- readAdat(somaFile)
 as.ExpressionSet(wideSomaData)
 if(requireNamespace("MSnbase"))
 {
-  as.MSnSet(wideSomaData)
+    as.MSnSet(wideSomaData)
 }
 
 unlink(somaFile)

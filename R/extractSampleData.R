@@ -12,26 +12,26 @@
 #' @importFrom utils unzip
 #' @export
 extractSampleData <- function(somascanMenuVersion = c("1.3k", "1.1k"),
-  intermediateDir = tempdir())
+    intermediateDir = tempdir())
 {
-  somascanMenuVersion <- match.arg(somascanMenuVersion)
-  if(!file.exists(intermediateDir))
-  {
-    dir.create(intermediateDir, recursive = TRUE)
-  }
-  zipFile <- system.file(
-    "extdata",
-    paste("PLASMA", somascanMenuVersion, "20151030.adat.zip", sep = "."),
-    package = "readat"
-  )
-  unzip(zipFile, exdir = intermediateDir)
-  file.path(
-    intermediateDir,
-    paste(
-      "PLASMA",
-      somascanMenuVersion,
-      "HybNorm.MedNorm.Cal.20151030.adat",
-      sep = "."
+    somascanMenuVersion <- match.arg(somascanMenuVersion)
+    if(!file.exists(intermediateDir))
+    {
+        dir.create(intermediateDir, recursive = TRUE)
+    }
+    zipFile <- system.file(
+        "extdata",
+        paste("PLASMA", somascanMenuVersion, "20151030.adat.zip", sep = "."),
+        package = "readat"
     )
-  )
+    unzip(zipFile, exdir = intermediateDir)
+    file.path(
+        intermediateDir,
+        paste(
+            "PLASMA",
+            somascanMenuVersion,
+            "HybNorm.MedNorm.Cal.20151030.adat",
+            sep = "."
+        )
+    )
 }

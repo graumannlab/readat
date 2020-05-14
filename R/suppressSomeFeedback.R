@@ -9,9 +9,9 @@
 #' @references This uses copies of \code{evaluate_promise} and \code{with_sink}
 #' from the \code{testthat} package.
 #' @examples
-#' \donttest{
-#' suppressSomeFeedback(log(-1))
-#' suppressSomeFeedback(log(-1), warnRegex = "NaN")
+#' if (interactive()) {
+#'   suppressSomeFeedback(log(-1))
+#'   suppressSomeFeedback(log(-1), warnRegex = "NaN")
 #' }
 #' @importFrom stringi stri_detect_regex
 #' @importFrom testthat evaluate_promise

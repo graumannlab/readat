@@ -4,8 +4,13 @@
 \alias{readAdat}
 \title{Read a SomaLogic data file}
 \usage{
-readAdat(file, keepOnlyPasses = TRUE, keepOnlySamples = TRUE,
-  dateFormat = "\%Y-\%m-\%d", verbose = getOption("verbose"))
+readAdat(
+  file,
+  keepOnlyPasses = TRUE,
+  keepOnlySamples = TRUE,
+  dateFormat = "\%Y-\%m-\%d",
+  verbose = getOption("verbose")
+)
 }
 \arguments{
 \item{file}{A string containing the path to the file to be read.}

@@ -4,8 +4,12 @@
 \alias{getSequencesWithLargestBetweenGroupVariation}
 \title{Get sequences with the largest between group variation}
 \usage{
-getSequencesWithLargestBetweenGroupVariation(x, n = 10,
-  group = ~SampleGroup, ...)
+getSequencesWithLargestBetweenGroupVariation(
+  x,
+  n = 10,
+  group = ~SampleGroup,
+  ...
+)
 }
 \arguments{
 \item{x}{An object of class LongSomaLogicData.}

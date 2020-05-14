@@ -21,8 +21,12 @@
 \usage{
 getIntensities(x, ...)
 
-\method{getIntensities}{WideSomaLogicData}(x, rowsContain = c("samples",
-  "sequences"), reorder = FALSE, ...)
+\method{getIntensities}{WideSomaLogicData}(
+  x,
+  rowsContain = c("samples", "sequences"),
+  reorder = FALSE,
+  ...
+)
 
 \method{getIntensities}{LongSomaLogicData}(x, ...)
 

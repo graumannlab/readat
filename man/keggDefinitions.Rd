@@ -9,7 +9,8 @@
 \alias{keggModules1129}
 \alias{keggPathways1129}
 \title{KEGG definitions, modules, and pathways by SomaLogic AptamerId}
-\format{A list of data frames, each with the following columns.
+\format{
+A list of data frames, each with the following columns.
 \describe{
 \item{UniProtId}{Character.  UniProt ID for the protein target.}
 \item{KeggId}{Character.  KEGG ID for the gene that produces the
@@ -17,7 +18,8 @@ target protein.}
 \item{KeggDefinition}{Character.  Description corresponding to the KEGG ID.}
 \item{KeggCytogenicLocation}{Character.  KEGG determination of the gene's
 locus.}
-}}
+}
+}
 \description{
 A lookup of KEGG (Kyoto Encyclopedia of Genes and Genomes) definitions,
 modules, and pathways by SomaLogic Aptamer ID.

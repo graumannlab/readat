@@ -99,91 +99,91 @@ utils::globalVariables("NormScale_0_005")
 #' @export
 #' @author Richard Cotton
 readAdat <- function(file, keepOnlyPasses = TRUE, keepOnlySamples = TRUE,
-  dateFormat = "%Y-%m-%d",  verbose = getOption("verbose"))
+    dateFormat = "%Y-%m-%d",  verbose = getOption("verbose"))
 {
-  # stri_read_lines and fread don't behave well with file connections
-  # Also, the logic gets complicated because the position in the file
-  # keeps moving.
-  if(assertive.files::is_connection(file))
-  {
-    file <- summary(file)$description
-  }
+    # stri_read_lines and fread don't behave well with file connections
+    # Also, the logic gets complicated because the position in the file
+    # keeps moving.
+    if(assertive.files::is_connection(file))
+    {
+        file <- summary(file)$description
+    }
 
-  assertive.types::assert_is_a_string(file)
-  assertive.files::assert_all_are_existing_files(file)
+    assertive.types::assert_is_a_string(file)
+    assertive.files::assert_all_are_existing_files(file)
 
-  # The file is split into several groups of data:
-  # A checksum, header data, column data and row data.  Read each separately.
+    # The file is split into several groups of data:
+    # A checksum, header data, column data and row data.  Read each separately.
 
-  # Opening and resaving in Excel appends TAB characters to make the data
-  # rectangular.  This means that the number of fields is not reliable.
-  # (Can't use count.fields.)
-  firstChar <- readFirstChar(file)
+    # Opening and resaving in Excel appends TAB characters to make the data
+    # rectangular.  This means that the number of fields is not reliable.
+    # (Can't use count.fields.)
+    firstChar <- readFirstChar(file)
 
-  dataGroupRow <- which(firstChar == "^")
+    dataGroupRow <- which(firstChar == "^")
 
-  if(length(dataGroupRow) < 4L)
-  {
-    stop(
-      "The input file is malformed; there should be four rows begining with ",
-      "the ^ character but there are ",
-      length(dataGroupRow)
+    if(length(dataGroupRow) < 4L)
+    {
+        stop(
+            "The input file is malformed; there should be four rows begining ",
+            "with  the ^ character but there are ",
+            length(dataGroupRow)
+        )
+    }
+
+    # Read SHA1 checksum
+    # First line, without "!Checksum\t"
+    checksum <- substring(readLines(file, 1), 11)
+
+
+    # Read header
+    metadata <- readMetadata(file, dataGroupRow[1], dataGroupRow[2], dateFormat)
+
+    nSequenceFields <- getNFields(file, dataGroupRow[2], verbose = verbose)
+    nSampleFields <- getNFields(file, dataGroupRow[3], verbose = verbose)
+
+    # Read column data
+    sequenceData <- readSequenceData(
+        file,
+        nSequenceFields,
+        nSampleFields,
+        dataGroupRow[4],
+        verbose = verbose
     )
-  }
 
-  # Read SHA1 checksum
-  # First line, without "!Checksum\t"
-  checksum <- substring(readLines(file, 1), 11)
+    # Check for bad UniProt and EntrezGene Ids/symbols.
+    checkUniprotIds(sequenceData)
+    checkEntrezGeneIds(sequenceData)
+    checkEntrezGeneSymbols(sequenceData)
 
+    sampleAndIntensityData <- readSampleAndIntensityData(
+        file,
+        nSequenceFields,
+        nSampleFields,
+        dataGroupRow[4] + nSequenceFields,
+        sequenceData$SeqId,
+        verbose = verbose
+    )
 
-  # Read header
-  metadata <- readMetadata(file, dataGroupRow[1], dataGroupRow[2], dateFormat)
+    # Remove QC, buffer, calibrator samples
+    if(keepOnlySamples)
+    {
+        sampleAndIntensityData <- removeNonSamples(sampleAndIntensityData)
+    }
 
-  nSequenceFields <- getNFields(file, dataGroupRow[2], verbose = verbose)
-  nSampleFields <- getNFields(file, dataGroupRow[3], verbose = verbose)
+    # Remove failures
+    if(keepOnlyPasses)
+    {
+        l <- removeFailures(sequenceData, sampleAndIntensityData)
+        sequenceData <- l$sequenceData
+        sampleAndIntensityData <- l$sampleAndIntensityData
+    }
 
-  # Read column data
-  sequenceData <- readSequenceData(
-    file,
-    nSequenceFields,
-    nSampleFields,
-    dataGroupRow[4],
-    verbose = verbose
-  )
+    setkeyv(sequenceData, "SeqId")
+    setkeyv(sampleAndIntensityData, "ExtIdentifier")
 
-  # Check for bad UniProt and EntrezGene Ids/symbols.
-  checkUniprotIds(sequenceData)
-  checkEntrezGeneIds(sequenceData)
-  checkEntrezGeneSymbols(sequenceData)
-
-  sampleAndIntensityData <- readSampleAndIntensityData(
-    file,
-    nSequenceFields,
-    nSampleFields,
-    dataGroupRow[4] + nSequenceFields,
-    sequenceData$SeqId,
-    verbose = verbose
-  )
-
-  # Remove QC, buffer, calibrator samples
-  if(keepOnlySamples)
-  {
-    sampleAndIntensityData <- removeNonSamples(sampleAndIntensityData)
-  }
-
-  # Remove failures
-  if(keepOnlyPasses)
-  {
-    l <- removeFailures(sequenceData, sampleAndIntensityData)
-    sequenceData <- l$sequenceData
-    sampleAndIntensityData <- l$sampleAndIntensityData
-  }
-
-  setkeyv(sequenceData, "SeqId")
-  setkeyv(sampleAndIntensityData, "ExtIdentifier")
-
-  # Return everything
-  WideSomaLogicData(sampleAndIntensityData, sequenceData, metadata, checksum)
+    # Return everything
+    WideSomaLogicData(sampleAndIntensityData, sequenceData, metadata, checksum)
 }
 
 #' Create a WideSomaLogicData object
@@ -209,38 +209,38 @@ readAdat <- function(file, keepOnlyPasses = TRUE, keepOnlySamples = TRUE,
 #' str(wsld)
 #' @export
 WideSomaLogicData <- function(sampleAndIntensityData, sequenceData, metadata,
-  checksum = paste0(rep.int("f", 40), collapse = ""))
+    checksum = paste0(rep.int("f", 40), collapse = ""))
 {
-  assert_is_data.frame(sampleAndIntensityData)
-  sampleAndIntensityData <- if(is.data.table(sampleAndIntensityData))
-  {
-    copy(sampleAndIntensityData)
-  } else # is.data.frame(sampleAndIntensityData)
-  {
-    as.data.table(sampleAndIntensityData)
-  }
+    assert_is_data.frame(sampleAndIntensityData)
+    sampleAndIntensityData <- if(is.data.table(sampleAndIntensityData))
+    {
+        copy(sampleAndIntensityData)
+    } else # is.data.frame(sampleAndIntensityData)
+    {
+        as.data.table(sampleAndIntensityData)
+    }
 
-  assert_is_data.frame(sequenceData)
-  sequenceData <- if(is.data.table(sequenceData))
-  {
-    copy(sequenceData)
-  } else # is.data.frame(sequenceData)
-  {
-    as.data.table(sequenceData)
-  }
+    assert_is_data.frame(sequenceData)
+    sequenceData <- if(is.data.table(sequenceData))
+    {
+        copy(sequenceData)
+    } else # is.data.frame(sequenceData)
+    {
+        as.data.table(sequenceData)
+    }
 
-  assert_is_list(metadata)
-  assert_is_a_string(checksum)
+    assert_is_list(metadata)
+    assert_is_a_string(checksum)
 
-  setattr(sampleAndIntensityData, "SequenceData", sequenceData)
-  setattr(sampleAndIntensityData, "Metadata", metadata)
-  setattr(sampleAndIntensityData, "Checksum", checksum)
-  setattr(
-    sampleAndIntensityData,
-    "class",
-    c("WideSomaLogicData", "data.table", "data.frame")
-  )
-  sampleAndIntensityData
+    setattr(sampleAndIntensityData, "SequenceData", sequenceData)
+    setattr(sampleAndIntensityData, "Metadata", metadata)
+    setattr(sampleAndIntensityData, "Checksum", checksum)
+    setattr(
+        sampleAndIntensityData,
+        "class",
+        c("WideSomaLogicData", "data.table", "data.frame")
+    )
+    sampleAndIntensityData
 }
 
 #' Read the first character of each line
@@ -253,8 +253,8 @@ WideSomaLogicData <- function(sampleAndIntensityData, sequenceData, metadata,
 #' @importFrom stringi stri_sub
 readFirstChar <- function(file)
 {
-  # substring(readLines(file), 1, 1)
-  stri_sub(stri_read_lines(file), 1, 1)
+    # substring(readLines(file), 1, 1)
+    stri_sub(stri_read_lines(file), 1, 1)
 }
 
 #' @importFrom data.table fread
@@ -262,148 +262,151 @@ readFirstChar <- function(file)
 #' @importFrom stringi stri_detect_regex
 readMetadata <- function(file, headerRow, colDataRow, dateFormat)
 {
-  # (Ab)using fread for this tends to results in unnecessary warnings.
-  metadata <- fread(
-    file,
-    sep        = "\t",
-    nrows      = colDataRow - headerRow - 1,
-    header     = FALSE,
-    skip       = headerRow,
-    integer64  = "numeric",
-    na.strings = c("", "NA", "null")
-  )
-  # V1 and V2 are column names autogenerated by fread
-  # (since there are no headers)
-  metadata <- setNames(
-    as.list(metadata$V2),
-    stri_replace_first_regex(metadata$V1, "^!", "")
-  )
-  plateTestFields <- names(metadata)[
-    stri_detect_regex(names(metadata), "(?:PlateMedianCal|PlateTailPercent)")
-  ]
-  metadata %>%
-    updateFields("Version", as.package_version) %>%
-    updateFields(
-      c("CreatedDate", "ExpDate", "ProteinEffectiveDate"),
-      as.Date,
-      dateFormat
-    ) %>%
-    updateFields(plateTestFields, as.numeric)
+    # (Ab)using fread for this tends to results in unnecessary warnings.
+    metadata <- fread(
+        file,
+        sep        = "\t",
+        nrows      = colDataRow - headerRow - 1,
+        header     = FALSE,
+        skip       = headerRow,
+        integer64  = "numeric",
+        na.strings = c("", "NA", "null")
+    )
+    # V1 and V2 are column names autogenerated by fread
+    # (since there are no headers)
+    metadata <- setNames(
+        as.list(metadata$V2),
+        stri_replace_first_regex(metadata$V1, "^!", "")
+    )
+    plateTestFields <- names(metadata)[
+        stri_detect_regex(
+            names(metadata), "(?:PlateMedianCal|PlateTailPercent)")
+        ]
+    metadata %>%
+        updateFields("Version", as.package_version) %>%
+        updateFields(
+            c("CreatedDate", "ExpDate", "ProteinEffectiveDate"),
+            as.Date,
+            dateFormat
+        ) %>%
+        updateFields(plateTestFields, as.numeric)
 }
 
 #' @importFrom data.table fread
 #' @importFrom data.table as.data.table
 #' @importFrom magrittr %<>%
 readSequenceData <- function(file, nSequenceFields, nSampleFields, skip,
-  verbose = getOption("verbose"))
+    verbose = getOption("verbose"))
 {
-  # Can't use sfread here because data needs transposing before type checking
-  sequenceData <- fread(
-    file,
-    sep              = "\t",
-    nrows            = nSequenceFields,
-    colClasses       = "character",
-    skip             = skip,
-    header           = FALSE,
-    stringsAsFactors = FALSE,
-    integer64        = 'numeric',
-    na.strings       = c("", "NA", "null"),
-    verbose          = verbose
-  )
-  # Get the column that contains the headers
-  sequenceHeaderColumnNumber <- nSampleFields + 1
-  sequenceHeaderNames <- sequenceData[[sequenceHeaderColumnNumber]]
+    # Can't use sfread here because data needs transposing before type checking
+    sequenceData <- fread(
+        file,
+        sep              = "\t",
+        nrows            = nSequenceFields,
+        colClasses       = "character",
+        skip             = skip,
+        header           = FALSE,
+        stringsAsFactors = FALSE,
+        integer64        = 'numeric',
+        na.strings       = c("", "NA", "null"),
+        verbose          = verbose
+    )
+    # Get the column that contains the headers
+    sequenceHeaderColumnNumber <- nSampleFields + 1
+    sequenceHeaderNames <- sequenceData[[sequenceHeaderColumnNumber]]
 
-  # Remove leading blank columns
-  sequenceData <- sequenceData[
-    j = -seq_len(sequenceHeaderColumnNumber),
-    with = FALSE
-  ]
+    # Remove leading blank columns
+    sequenceData <- sequenceData[
+        j = -seq_len(sequenceHeaderColumnNumber),
+        with = FALSE
+        ]
 
-  #Transpose, and undo the conversion to matrix
-  sequenceData <- as.data.table(t(sequenceData))
-  setnames(sequenceData, sequenceHeaderNames)
+    #Transpose, and undo the conversion to matrix
+    sequenceData <- as.data.table(t(sequenceData))
+    setnames(sequenceData, sequenceHeaderNames)
 
-  # Update column types.
-  # SeqId and Target are compulsory.
-  # Other common fields are updated if they exist.
-  cnames <- colnames(sequenceData)
-  calCols <- cnames[stri_detect_regex(cnames, "^Cal_")]
-  sequenceData %<>%
-    updateFields(
-      c("SeqId", "Target", "SomaId", "TargetFullName", "Organism", "Units"),
-      factor
-    ) %>%
-    updateFields(
-      c("UniProt", "EntrezGeneID", "EntrezGeneSymbol"),
-      fixMultiValueSeparators
-    ) %>%
-    updateFields("ColCheck", fixFailFlag) %>%
-    updateFields(c("CalReference", "Dilution", calCols), as.numeric)
+    # Update column types.
+    # SeqId and Target are compulsory.
+    # Other common fields are updated if they exist.
+    cnames <- colnames(sequenceData)
+    calCols <- cnames[stri_detect_regex(cnames, "^Cal_")]
+    sequenceData %<>%
+        updateFields(
+            c("SeqId", "Target", "SomaId", "TargetFullName", "Organism",
+                "Units"),
+            factor
+        ) %>%
+        updateFields(
+            c("UniProt", "EntrezGeneID", "EntrezGeneSymbol"),
+            fixMultiValueSeparators
+        ) %>%
+        updateFields("ColCheck", fixFailFlag) %>%
+        updateFields(c("CalReference", "Dilution", calCols), as.numeric)
 
-  sequenceData
+    sequenceData
 }
 
 
 readSampleAndIntensityData <- function(file, nSequenceFields, nSampleFields,
-  skip, seqIds, verbose = getOption("verbose"))
+    skip, seqIds, verbose = getOption("verbose"))
 {
-  # Read row data
-  # Don't set nrows arg; just read to the end of the file.
-  sampleAndIntensityData <- sfread(
-    file,
-    sep              = "\t",
-    header           = TRUE,
-    na.strings       = c("", "NA", "null"),
-    stringsAsFactors = TRUE,
-    skip             = skip,
-    colClasses       = list(
-      character = c(
-        "ExtIdentifier", "SampleId", "SampleGroup", "SampleGroup",
-        "SampleNotes", "AssayNotes", "PlateId", "SlideId",
-        "ScannerID", "Subject_ID", "SiteId", "TubeUniqueID",
-        "SsfExtId", "Barcode", "Barcode2d", "SampleUniqueId",
-        "SampleType", "SampleMatrix", "SampleDescription", "PlatePosition",
-        "RowCheck"
-      ),
-      numeric = c(
-        "HybControlNormScale", "NormScale_40", "NormScale_1", "NormScale_0_005"
-      ),
-      integer = "Subarray"
-    ),
-    verbose          = verbose
-  )
-  # Remove blank column between sample data and intensity data
-  sequenceHeaderColumnNumber <- nSampleFields + 1
-  sampleAndIntensityData <- sampleAndIntensityData[
-    j = -sequenceHeaderColumnNumber,
-    with = FALSE
-  ]
+    # Read row data
+    # Don't set nrows arg; just read to the end of the file.
+    sampleAndIntensityData <- sfread(
+        file,
+        sep              = "\t",
+        header           = TRUE,
+        na.strings       = c("", "NA", "null"),
+        stringsAsFactors = TRUE,
+        skip             = skip,
+        colClasses       = list(
+            character = c(
+                "ExtIdentifier", "SampleId", "SampleGroup", "SampleGroup",
+                "SampleNotes", "AssayNotes", "PlateId", "SlideId",
+                "ScannerID", "Subject_ID", "SiteId", "TubeUniqueID",
+                "SsfExtId", "Barcode", "Barcode2d", "SampleUniqueId",
+                "SampleType", "SampleMatrix", "SampleDescription",
+                "PlatePosition", "RowCheck"
+            ),
+            numeric = c(
+                "HybControlNormScale", "NormScale_40", "NormScale_1",
+                "NormScale_0_005"
+            ),
+            integer = "Subarray"
+        ),
+        verbose          = verbose
+    )
+    # Remove blank column between sample data and intensity data
+    sequenceHeaderColumnNumber <- nSampleFields + 1
+    sampleAndIntensityData <- sampleAndIntensityData[
+        j = -sequenceHeaderColumnNumber,
+        with = FALSE
+        ]
 
-  # Give intensity data columns a name
-  setnames(
-    sampleAndIntensityData,
-    seq.int(sequenceHeaderColumnNumber, ncol(sampleAndIntensityData)),
-    paste0("SeqId.", seqIds)
-  )
+    # Give intensity data columns a name
+    setnames(
+        sampleAndIntensityData,
+        seq.int(sequenceHeaderColumnNumber, ncol(sampleAndIntensityData)),
+        paste0("SeqId.", seqIds)
+    )
 
-  sampleAndIntensityData %>%
-    updateFields("RowCheck", fixFailFlag)
+    sampleAndIntensityData %>%
+        updateFields("RowCheck", fixFailFlag)
 
-  sampleAndIntensityData
+    sampleAndIntensityData
 }
 
 getNFields <- function(file, skip, verbose = getOption("verbose"))
 {
-  y <- scan(
-    file,
-    character(),
-    sep = "\t",
-    skip = skip,
-    nlines = 1L,
-    quiet = !verbose
-  )
-  as.integer(sum(nzchar(y))) - 1L
+    y <- scan(
+        file,
+        character(),
+        sep = "\t",
+        skip = skip,
+        nlines = 1L,
+        quiet = !verbose
+    )
+    as.integer(sum(nzchar(y))) - 1L
 }
 
 #' Is the value a pass
@@ -415,105 +418,107 @@ getNFields <- function(file, skip, verbose = getOption("verbose"))
 #' @author Richard Cotton
 isPass <- function(x)
 {
-  !is.na(x) & x == "PASS"
+    !is.na(x) & x == "PASS"
 }
 
 removeNonSamples <- function(sampleAndIntensityData)
 {
-  if(is.null(sampleAndIntensityData$SampleType))
-  {
-    warning(
-      "There is no 'SampleType' field, so QC/buffer/calibrator samples ",
-      "cannot be removed."
-    )
-  } else
-  {
-    okSampleRows <- sampleAndIntensityData$SampleType == "Sample"
-    if(!all(okSampleRows))
+    if(is.null(sampleAndIntensityData$SampleType))
     {
-      if(!all(okSampleRows))
-      {
-        nBadSamples <- sum(!okSampleRows)
-        message(
-          sprintf(
-            ngettext(
-              nBadSamples,
-              "Removing %d QC/buffer/calibrator sample.",
-              "Removing %d QC/buffer/calibrator samples.",
-              domain = NA # don't translate, at least for now
-            ),
-            nBadSamples
-          )
+        warning(
+            "There is no 'SampleType' field, so QC/buffer/calibrator samples ",
+            "cannot be removed."
         )
-      }
-      sampleAndIntensityData <- sampleAndIntensityData[okSampleRows]
+    } else
+    {
+        okSampleRows <- sampleAndIntensityData$SampleType == "Sample"
+        if(!all(okSampleRows))
+        {
+            if(!all(okSampleRows))
+            {
+                nBadSamples <- sum(!okSampleRows)
+                message(
+                    sprintf(
+                        ngettext(
+                            nBadSamples,
+                            "Removing %d QC/buffer/calibrator sample.",
+                            "Removing %d QC/buffer/calibrator samples.",
+                            domain = NA # don't translate, at least for now
+                        ),
+                        nBadSamples
+                    )
+                )
+            }
+            sampleAndIntensityData <- sampleAndIntensityData[okSampleRows]
+        }
     }
-  }
-  sampleAndIntensityData
+    sampleAndIntensityData
 }
 
 removeFailures <- function(sequenceData, sampleAndIntensityData)
 {
-  if(is.null(sequenceData$ColCheck))
-  {
-    warning(
-      "There is no 'ColCheck' field, so failing sequences cannot be removed."
-    )
-  } else
-  {
-    okSeqColumns <- isPass(sequenceData$ColCheck)
-    if(!all(okSeqColumns))
+    if(is.null(sequenceData$ColCheck))
     {
-      nBadSeqs <- sum(!okSeqColumns)
-      message(
-        sprintf(
-          ngettext(
-            nBadSeqs,
-            "Removing %d sequence that failed QC.",
-            "Removing %d sequences that failed QC.",
-            domain = NA # don't translate, at least for now
-          ),
-          nBadSeqs
+        warning(
+            "There is no 'ColCheck' field, so failing sequences cannot be ",
+            "removed."
         )
-      )
-      sequenceData <- sequenceData[okSeqColumns, ]
-      okColumns <- !colnamesStartWithSeqId(sampleAndIntensityData)
-      okColumns[!okColumns] <- okSeqColumns
-      sampleAndIntensityData <- sampleAndIntensityData[
-        j = okColumns,
-        with = FALSE
-      ]
-    }
-  }
-  if(is.null(sampleAndIntensityData$RowCheck))
-  {
-    warning(
-      "There is no 'RowCheck' field, so failing samples cannot be removed."
-    )
-  } else
-  {
-    okSampleRows <- isPass(sampleAndIntensityData$RowCheck)
-    if(!all(okSampleRows))
+    } else
     {
-      nBadSamples <- sum(!okSampleRows)
-      message(
-        sprintf(
-          ngettext(
-            nBadSamples,
-            "Removing %d sample that failed QC.",
-            "Removing %d samples that failed QC.",
-            domain = NA # don't translate, at least for now
-          ),
-          nBadSamples
-        )
-      )
-      sampleAndIntensityData <- sampleAndIntensityData[okSampleRows]
+        okSeqColumns <- isPass(sequenceData$ColCheck)
+        if(!all(okSeqColumns))
+        {
+            nBadSeqs <- sum(!okSeqColumns)
+            message(
+                sprintf(
+                    ngettext(
+                        nBadSeqs,
+                        "Removing %d sequence that failed QC.",
+                        "Removing %d sequences that failed QC.",
+                        domain = NA # don't translate, at least for now
+                    ),
+                    nBadSeqs
+                )
+            )
+            sequenceData <- sequenceData[okSeqColumns, ]
+            okColumns <- !colnamesStartWithSeqId(sampleAndIntensityData)
+            okColumns[!okColumns] <- okSeqColumns
+            sampleAndIntensityData <- sampleAndIntensityData[
+                j = okColumns,
+                with = FALSE
+                ]
+        }
     }
-  }
-  list(
-    sequenceData = sequenceData,
-    sampleAndIntensityData = sampleAndIntensityData
-  )
+    if(is.null(sampleAndIntensityData$RowCheck))
+    {
+        warning(
+            "There is no 'RowCheck' field, so failing samples cannot be ",
+            "removed."
+        )
+    } else
+    {
+        okSampleRows <- isPass(sampleAndIntensityData$RowCheck)
+        if(!all(okSampleRows))
+        {
+            nBadSamples <- sum(!okSampleRows)
+            message(
+                sprintf(
+                    ngettext(
+                        nBadSamples,
+                        "Removing %d sample that failed QC.",
+                        "Removing %d samples that failed QC.",
+                        domain = NA # don't translate, at least for now
+                    ),
+                    nBadSamples
+                )
+            )
+            sampleAndIntensityData <- sampleAndIntensityData[okSampleRows]
+        }
+    }
+    list(
+        sequenceData = sequenceData,
+        sampleAndIntensityData = sampleAndIntensityData
+    )
 }
 
 #' Transmute a field, if it exists
@@ -529,24 +534,24 @@ removeFailures <- function(sequenceData, sampleAndIntensityData)
 #' @noRd
 updateFields <- function(data, fields, transform, ...)
 {
-  transform <- match.fun(transform)
-  for(field in fields)
-  {
-    if(!is.null(data[[field]]))
+    transform <- match.fun(transform)
+    for(field in fields)
     {
-      data[[field]] <- transform(data[[field]], ...)
+        if(!is.null(data[[field]]))
+        {
+            data[[field]] <- transform(data[[field]], ...)
+        }
     }
-  }
-  data
+    data
 }
 
 #' @importFrom stringi stri_replace_all_regex
 fixMultiValueSeparators <- function(x)
 {
-  x %>%
-    as.character %>%
-    stri_replace_all_regex("[, ]+", " ") %>%
-    factor
+    x %>%
+        as.character %>%
+        stri_replace_all_regex("[, ]+", " ") %>%
+        factor
 }
 
 #' Replace "FAIL" with "FLAG"
@@ -560,13 +565,13 @@ fixMultiValueSeparators <- function(x)
 #' @noRd
 fixFailFlag <- function(x)
 {
-  x <- as.character(x)
-  if(any(x == "FAIL"))
-  {
-    warning("Changing 'FAIL' to 'FLAG'.")
-    x[x == "FAIL"] <- "FLAG"
-  }
-  factor(x, levels = c("PASS", "FLAG"))
+    x <- as.character(x)
+    if(any(x == "FAIL"))
+    {
+        warning("Changing 'FAIL' to 'FLAG'.")
+        x[x == "FAIL"] <- "FLAG"
+    }
+    factor(x, levels = c("PASS", "FLAG"))
 }
 
 #' Does the input contain Sequence ID column names?
@@ -583,7 +588,7 @@ fixFailFlag <- function(x)
 #' @export
 colnamesStartWithSeqId <- function(x)
 {
-  stri_detect_regex(colnames(x), "^SeqId\\.")
+    stri_detect_regex(colnames(x), "^SeqId\\.")
 }
 
 #' Convert SeqIds to Aptamers
@@ -597,5 +602,5 @@ colnamesStartWithSeqId <- function(x)
 #' @export
 convertSeqIdToAptamer <- function(seqId)
 {
-  stri_split_fixed(seqId, "_", n = 2, simplify = TRUE)[, 1L]
+    stri_split_fixed(seqId, "_", n = 2, simplify = TRUE)[, 1L]
 }

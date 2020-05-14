@@ -25,16 +25,16 @@
 #' @noRd
 list_depth <- function (l, prune_empty_elts = FALSE)
 {
-  if(prune_empty_elts && length(l) == 0L)
-  {
-    return(0L)
-  }
-  if(!is.list(l) || is.atomic(l))
-  {
-    return(0L)
-  }
-  n <- vapply(l, list_depth, integer(1L), prune_empty_elts = prune_empty_elts)
-  1L + max(n, 0L)
+    if(prune_empty_elts && length(l) == 0L)
+    {
+        return(0L)
+    }
+    if(!is.list(l) || is.atomic(l))
+    {
+        return(0L)
+    }
+    n <- vapply(l, list_depth, integer(1L), prune_empty_elts = prune_empty_elts)
+    1L + max(n, 0L)
 }
 
 #' Get the names of a list
@@ -61,41 +61,41 @@ list_depth <- function (l, prune_empty_elts = FALSE)
 #' @noRd
 list_names <- function(l, sep = "|")
 {
-  if(!is.list(l))
-  {
-    warning("Coercing 'l' to a list.")
-    l <- as.list(l)
-  }
-  nms <- list_names0(l, sep)
-  substring(nms, 1, nchar(nms) - 1)
+    if(!is.list(l))
+    {
+        warning("Coercing 'l' to a list.")
+        l <- as.list(l)
+    }
+    nms <- list_names0(l, sep)
+    substring(nms, 1, nchar(nms) - 1)
 }
 
 list_names0 <- function(l, sep = "|")
 {
-  if(!is.list(l) || is.atomic(l) || length(l) == 0L)
-  {
-    nms <- if(is.null(names(l)))
+    if(!is.list(l) || is.atomic(l) || length(l) == 0L)
     {
-      character(length(l))
-    } else
-    {
-      names(l)
+        nms <- if(is.null(names(l)))
+        {
+            character(length(l))
+        } else
+        {
+            names(l)
+        }
+        return(nms)
     }
-    return(nms)
-  }
-  n <- vapply(
-    l,
-    function(x)
-    {
-      length(unlist(x, use.names = FALSE))
-    },
-    integer(1)
-  )
-  paste(
-    rep(names(l), n),
-    do.call(c, lapply(l, list_names0)),
-    sep = sep
-  )
+    n <- vapply(
+        l,
+        function(x)
+        {
+            length(unlist(x, use.names = FALSE))
+        },
+        integer(1)
+    )
+    paste(
+        rep(names(l), n),
+        do.call(c, lapply(l, list_names0)),
+        sep = sep
+    )
 }
 
 #' Convert a list to a data frame
@@ -126,38 +126,39 @@ list_names0 <- function(l, sep = "|")
 #' @importFrom tidyr separate
 #' @noRd
 list_to_data.frame <- function(l,
-  names_variable = paste0("names", seq_len(list_depth(l))),
-  values_variable = "values", stringsAsFactors = getOption("stringsAsFactors"))
+    names_variable = paste0("names", seq_len(list_depth(l))),
+    values_variable = "values",
+    stringsAsFactors = getOption("stringsAsFactors"))
 {
-  ul <- unlist(l, use.names = FALSE)
-  if(is.null(ul))
-  {
-    ul <- logical()
-  }
-  d <- data.frame(
-    names            = list_names(l),
-    values           = ul,
-    stringsAsFactors = stringsAsFactors,
-    check.names      = FALSE, # not necessary
-    check.rows       = FALSE  # not necessary
-  )
-  colnames(d)[2] <- values_variable
+    ul <- unlist(l, use.names = FALSE)
+    if(is.null(ul))
+    {
+        ul <- logical()
+    }
+    d <- data.frame(
+        names            = list_names(l),
+        values           = ul,
+        stringsAsFactors = stringsAsFactors,
+        check.names      = FALSE, # not necessary
+        check.rows       = FALSE  # not necessary
+    )
+    colnames(d)[2] <- values_variable
 
-  depth <- list_depth(l)
-  names_variable <- rep_len(names_variable, depth)
+    depth <- list_depth(l)
+    names_variable <- rep_len(names_variable, depth)
 
-  # separate_ fails with zero row data frames
-  # https://github.com/hadley/tidyr/issues/100
-  if(nrow(d) == 0)
-  {
-    colnames(d)[1] <- names_variable[1]
-    return(d)
-  }
-  tidyr::separate_(
-    d,
-    "names",
-    names_variable,
-    sep = "\\|",
-    extra = "drop"
-  )
+    # separate_ fails with zero row data frames
+    # https://github.com/hadley/tidyr/issues/100
+    if(nrow(d) == 0)
+    {
+        colnames(d)[1] <- names_variable[1]
+        return(d)
+    }
+    tidyr::separate_(
+        d,
+        "names",
+        names_variable,
+        sep = "\\|",
+        extra = "drop"
+    )
 }
