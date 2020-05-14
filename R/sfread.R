@@ -59,9 +59,10 @@ sfread <- function(input, ..., colClasses = NULL, integer64 = "numeric") {
     dots <- within(list(...), {
         input <- input
     })
-    
+
     theHeader <- do.call(readHeader, dots)
-    colClasses <- switch(class(colClasses), character = fixCharacterColClasses(colClasses, 
+    colClasses <- switch(
+        class(colClasses), character = fixCharacterColClasses(colClasses,
         theHeader), list = fixListColClasses(colClasses, theHeader))
     fread(input, ..., colClasses = colClasses, integer64 = integer64)
 }
@@ -77,7 +78,7 @@ sfread <- function(input, ..., colClasses = NULL, integer64 = "numeric") {
 #' @importFrom data.table fread
 #' @noRd
 readHeader <- function(input, nrows = 0, header = TRUE, ...) {
-    DT <- suppressWarnings(fread(input, nrows = nrows, header = header, 
+    DT <- suppressWarnings(fread(input, nrows = nrows, header = header,
         ...))
     colnames(DT)
 }

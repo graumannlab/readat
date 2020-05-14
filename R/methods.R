@@ -348,7 +348,7 @@ setIntensities <- function(x, value, prependSeqIdToColNames = NA) {
         prependSeqIdToColNames <- if (any(seqIdPrefix)) {
             if (!all(seqIdPrefix)) {
                 stop("Some column names are prefixed with 'SeqId.' but not ",
-                  "others.")
+                    "others.")
             }
             FALSE
         } else {
@@ -361,8 +361,8 @@ setIntensities <- function(x, value, prependSeqIdToColNames = NA) {
 
     # If rows match in x and value, we can just cbind, otherwise
     # need to merge
-    sampleAndIntensityData <- if (are_identical(as.character(sampleData$ExtIdentifier),
-        rownames(value))) {
+    sampleAndIntensityData <- if (are_identical(
+        as.character(sampleData$ExtIdentifier), rownames(value))) {
         cbind(sampleData, value)
     } else {
         valueDF <- data.frame(ExtIdentifier = rownames(value),
