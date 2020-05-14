@@ -43,10 +43,10 @@ column as follows.
 \examples{
 # See ?writeSampleSubmissionForm for a more complete example
 withr::with_dir(
-  system.file("extdata", package = "readat"),
-  {
-    (slides <- readSlides())
-  }
+    system.file("extdata", package = "readat"),
+    {
+        (slides <- readSlides())
+    }
 )
 }
 \seealso{

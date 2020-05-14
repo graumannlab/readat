@@ -12,20 +12,15 @@
 #' unlink(somaFile)
 #' @importFrom SummarizedExperiment SummarizedExperiment
 #' @export
-as.SummarizedExperiment <- function(x, ...)
-{
+as.SummarizedExperiment <- function(x, ...) {
     UseMethod("as.SummarizedExperiment")
 }
 
 #' @rdname as.SummarizedExperiment
 #' @export
-as.SummarizedExperiment.WideSomaLogicData <- function(x, ...)
-{
-    SummarizedExperiment(
-        list(intensities = getIntensities(x, rowsContain = "sequences")),
-        rowData = getSequenceData(x),
-        colData = getSampleData(x),
-        metadata = getMetadata
-    )
+as.SummarizedExperiment.WideSomaLogicData <- function(x, ...) {
+    SummarizedExperiment(list(intensities = getIntensities(x, 
+        rowsContain = "sequences")), rowData = getSequenceData(x), 
+        colData = getSampleData(x), metadata = getMetadata)
 }
 

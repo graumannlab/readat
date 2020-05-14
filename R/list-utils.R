@@ -12,15 +12,15 @@
 #' @return A non-negative integer of the deepest depth of the list.
 #' @examples
 #' if (interactive()) {
-#'   list_depth(list(1))
-#'   list_depth(list(1, list(2:3, 4:6)))
+#'     list_depth(list(1))
+#'     list_depth(list(1, list(2:3, 4:6)))
 #'
-#'   # Atomic variables have depth 0
-#'   list_depth(1)
+#'     # Atomic variables have depth 0
+#'     list_depth(1)
 #'
-#'   # Empty elements can be pruned before counting
-#'   list_depth(list())
-#'   list_depth(list(), prune_empty_elts = TRUE)
+#'     # Empty elements can be pruned before counting
+#'     list_depth(list())
+#'     list_depth(list(), prune_empty_elts = TRUE)
 #' }
 #' @noRd
 list_depth <- function (l, prune_empty_elts = FALSE)
@@ -47,16 +47,16 @@ list_depth <- function (l, prune_empty_elts = FALSE)
 #' elements aren't numbered, and you can chose the separator.
 #' @examples
 #' if (interactive()) {
-#'   (l <- list(
-#'     a = 1,
-#'     2:3,                             # missing names are blank
-#'     c = list(ca = 4:6, 7:10, list(cca = 11:15)),
-#'     d = list()                       # empty elt's silently ignored
-#'   ))
-#'   list_names(l)
+#'     (l <- list(
+#'         a = 1,
+#'         2:3,                             # missing names are blank
+#'         c = list(ca = 4:6, 7:10, list(cca = 11:15)),
+#'         d = list()                       # empty elt's silently ignored
+#'     ))
+#'     list_names(l)
 #'
-#'   # For comparison
-#'   names(unlist(l))
+#'     # For comparison
+#'     names(unlist(l))
 #' }
 #' @noRd
 list_names <- function(l, sep = "|")
@@ -112,16 +112,16 @@ list_names0 <- function(l, sep = "|")
 #' \code{list_depth(l)}.  If it is shorter than this, the value are recycled.
 #' @examples
 #' if (interactive()) {
-#'   (l <- list(
-#'     a = 1,
-#'     2:3,                             # missing names are blank
-#'     c = list(ca = 4:6, 7:10, list(cca = 11:15)),
-#'     d = list()                       # empty elt's silently ignored
-#'   ))
-#'   list_to_data.frame(l)
+#'     (l <- list(
+#'       a = 1,
+#'       2:3,                             # missing names are blank
+#'       c = list(ca = 4:6, 7:10, list(cca = 11:15)),
+#'       d = list()                       # empty elt's silently ignored
+#'     ))
+#'     list_to_data.frame(l)
 #'
-#'   # Custom column names
-#'   list_to_data.frame(l, c("group", "subgroup", "subsubgroup"), "amount")
+#'     # Custom column names
+#'     list_to_data.frame(l, c("group", "subgroup", "subsubgroup"), "amount")
 #' }
 #' @importFrom tidyr separate
 #' @noRd

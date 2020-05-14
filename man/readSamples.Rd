@@ -36,10 +36,10 @@ Additional columns are ignored.
 \examples{
 # See ?writeSampleSubmissionForm for a more complete example
 withr::with_dir(
-  system.file("extdata", package = "readat"),
-  {
-    (samples <- readSamples())
-  }
+    system.file("extdata", package = "readat"),
+    {
+        (samples <- readSamples())
+    }
 )
 }
 \seealso{

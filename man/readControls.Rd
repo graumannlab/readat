@@ -35,10 +35,10 @@ columns as follows.
 \examples{
 # See ?writeSampleSubmissionForm for a more complete example
 withr::with_dir(
-  system.file("extdata", package = "readat"),
-  {
-    (controls <- readControls())
-  }
+    system.file("extdata", package = "readat"),
+    {
+        (controls <- readControls())
+    }
 )
 }
 \seealso{

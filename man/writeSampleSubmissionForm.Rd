@@ -23,13 +23,13 @@ Writes a SomaLogic sample submission form to Excel XLSX file.
 \examples{
 # Import the input files
 withr::with_dir(
-  system.file("extdata", package = "readat"),
-  {
-    slides <- readSlides()
-    controls <- readControls()
-    comments <- readComments()
-    samples <- readSamples()
-  }
+    system.file("extdata", package = "readat"),
+    {
+        slides <- readSlides()
+        controls <- readControls()
+        comments <- readComments()
+        samples <- readSamples()
+    }
 )
 
 # Create the sample submission form and write to Excel spreadsheet

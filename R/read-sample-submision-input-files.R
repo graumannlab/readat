@@ -49,10 +49,10 @@ orderPlatePosition <- function(pp)
 #' @examples
 #' # See ?writeSampleSubmissionForm for a more complete example
 #' withr::with_dir(
-#'   system.file("extdata", package = "readat"),
-#'   {
-#'     (slides <- readSlides())
-#'   }
+#'     system.file("extdata", package = "readat"),
+#'     {
+#'         (slides <- readSlides())
+#'     }
 #' )
 #' @importFrom assertive.base assert_all_are_not_false
 #' @importFrom data.table fread
@@ -103,10 +103,10 @@ readSlides <- function(file = "slides.csv")
 #' @examples
 #' # See ?writeSampleSubmissionForm for a more complete example
 #' withr::with_dir(
-#'   system.file("extdata", package = "readat"),
-#'   {
-#'     (controls <- readControls())
-#'   }
+#'     system.file("extdata", package = "readat"),
+#'     {
+#'         (controls <- readControls())
+#'     }
 #' )
 #' @importFrom magrittr %<>%
 #' @importFrom assertive.numbers assert_all_are_less_than_or_equal_to
@@ -154,10 +154,10 @@ readControls <- function(file = "controls.csv")
 #' @examples
 #' # See ?writeSampleSubmissionForm for a more complete example
 #' withr::with_dir(
-#'   system.file("extdata", package = "readat"),
-#'   {
-#'     (comments <- readComments())
-#'   }
+#'     system.file("extdata", package = "readat"),
+#'     {
+#'         (comments <- readComments())
+#'     }
 #' )
 #' @importFrom assertive.sets assert_is_subset
 #' @importFrom dplyr left_join
@@ -215,10 +215,10 @@ readComments <- function(file = "comments.csv")
 #' @examples
 #' # See ?writeSampleSubmissionForm for a more complete example
 #' withr::with_dir(
-#'   system.file("extdata", package = "readat"),
-#'   {
-#'     (samples <- readSamples())
-#'   }
+#'     system.file("extdata", package = "readat"),
+#'     {
+#'         (samples <- readSamples())
+#'     }
 #' )
 #' @importFrom dplyr select_
 #' @export
@@ -339,13 +339,13 @@ createSampleSubmission <- function(slides, controls, comments, samples,
 #' @examples
 #' # Import the input files
 #' withr::with_dir(
-#'   system.file("extdata", package = "readat"),
-#'   {
-#'     slides <- readSlides()
-#'     controls <- readControls()
-#'     comments <- readComments()
-#'     samples <- readSamples()
-#'   }
+#'     system.file("extdata", package = "readat"),
+#'     {
+#'         slides <- readSlides()
+#'         controls <- readControls()
+#'         comments <- readComments()
+#'         samples <- readSamples()
+#'     }
 #' )
 #'
 #' # Create the sample submission form and write to Excel spreadsheet

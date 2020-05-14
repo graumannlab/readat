@@ -11,7 +11,7 @@ extractSampleData(
 }
 \arguments{
 \item{somascanMenuVersion}{String describing which data file to extract.
-Either "1.3k" or "1.1k".}
+Either '1.3k' or '1.1k'.}
 
 \item{intermediateDir}{A path to a directory to extract the ADATY file into.}
 }
@@ -24,5 +24,5 @@ directory.
 }
 \examples{
 extractSampleData() ##1.3k dataset by default
-extractSampleData("1.1k")
+extractSampleData('1.1k')
 }

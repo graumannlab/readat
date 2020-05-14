@@ -28,9 +28,9 @@ Creates and object of class \code{WideSomaLogicData}.
 }
 \examples{
 wsld <- WideSomaLogicData(
-  data.frame(SampleStuff = letters, IntensityStuff = rnorm(26)),
-  data.frame(SequenceStuff = LETTERS),
-  list(MetadataStuff = Sys.Date())
+    data.frame(SampleStuff = letters, IntensityStuff = rnorm(26)),
+    data.frame(SequenceStuff = LETTERS),
+    list(MetadataStuff = Sys.Date())
 )
 str(wsld)
 }

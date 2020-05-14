@@ -1,7 +1,4 @@
-# Project: readat
-#
-# Author: Aditya Bhagwat
-###############################################################################
+# Project: readat Author: Aditya Bhagwat
 
 
 #' Convert objects into ExpressionSets or MSnSets.
@@ -18,7 +15,7 @@
 #' somaFile <- extractSampleData()
 #' wideSomaData <- readAdat(somaFile)
 #' as.ExpressionSet(wideSomaData)
-#' if(requireNamespace("MSnbase"))
+#' if(requireNamespace('MSnbase'))
 #' {
 #'     as.MSnSet(wideSomaData)
 #' }
@@ -30,60 +27,53 @@
 #' @importFrom Biobase pData
 #' @importFrom Biobase fData
 #' @export
-as.ExpressionSet <- function(x, log2Transform = TRUE, ...)
-{
+as.ExpressionSet <- function(x, log2Transform = TRUE, ...) {
     UseMethod("as.ExpressionSet")
 }
 
 #' @rdname as.ExpressionSet
 #' @export
-as.ExpressionSet.WideSomaLogicData <- function(x, log2Transform = TRUE, ...)
-{
+as.ExpressionSet.WideSomaLogicData <- function(x, log2Transform = TRUE, 
+    ...) {
     soma2eset(x, log2Transform = log2Transform)
 }
 
 #' @rdname as.ExpressionSet
 #' @importFrom Biobase   annotation<-   experimentData<-   preproc<-
 #' @export
-soma2eset <- function(somaObj, log2Transform = TRUE){
-
+soma2eset <- function(somaObj, log2Transform = TRUE) {
+    
     # assayData
-    myIntensities <- getIntensities(
-        somaObj, rowsContain = "sequences", reorder = TRUE
-    )
+    myIntensities <- getIntensities(somaObj, rowsContain = "sequences", 
+        reorder = TRUE)
     myMeta <- getMetadata(somaObj)
-
+    
     # fData
     featureDF <- getSequenceData(somaObj)
     featureDF <- data.frame(featureDF, row.names = featureDF$SeqId)
-
+    
     # pData
     sampleDF <- getSampleData(somaObj)
     sampleDF <- data.frame(sampleDF, row.names = somaObj$ExtIdentifier)
-
+    
     # forge eset
     myEset <- ExpressionSet(myIntensities)
     Biobase::pData(myEset) <- sampleDF
     Biobase::fData(myEset) <- featureDF
-    Biobase::annotation(myEset) <- 'somascan'
-
+    Biobase::annotation(myEset) <- "somascan"
+    
     # log2 transform
-    if (log2Transform){
+    if (log2Transform) {
         Biobase::exprs(myEset) <- log2(Biobase::exprs(myEset))
     }
-
+    
     # Add preprocessing and annotation info
     parameters <- attributes(somaObj)$Metadata
-    Biobase::preproc(Biobase::experimentData(myEset)) <-
-        list(
-            assay    = 'somascan',
-            entity   = 'epitope',
-            quantity = 'abundance',
-            software = 'somalogic',
-            parameters = parameters
-        )
+    Biobase::preproc(Biobase::experimentData(myEset)) <- list(assay = "somascan", 
+        entity = "epitope", quantity = "abundance", software = "somalogic", 
+        parameters = parameters)
     Biobase::annotation(myEset) <- parameters$StudyOrganism
-
+    
     # return eset
     return(myEset)
 }
@@ -93,8 +83,9 @@ soma2eset <- function(somaObj, log2Transform = TRUE){
 #' @return logical
 #' @importFrom Biobase   experimentData   preproc
 #' @export
-isSomaEset <- function(esetObj){
-    Biobase::preproc(Biobase::experimentData(esetObj))$assay == 'somascan'
+isSomaEset <- function(esetObj) {
+    Biobase::preproc(Biobase::experimentData(esetObj))$assay == 
+        "somascan"
 }
 
 #' Get name of sample id variable
@@ -103,8 +94,8 @@ isSomaEset <- function(esetObj){
 #' @examples
 #' getSampleIdVar()
 #' @export
-getSampleIdVar <- function(somaEset){
-    'SampleId'
+getSampleIdVar <- function(somaEset) {
+    "SampleId"
 }
 
 #' @rdname as.ExpressionSet
@@ -117,14 +108,10 @@ getSampleIdVar <- function(somaEset){
 #'     unlink(somaFile)
 #' }
 #' @export
-as.MSnSet.WideSomaLogicData <- function(x, log2Transform = FALSE, ...)
-{
-    if(!requireNamespace("MSnbase", quietly = TRUE))
-    {
-        stop(
-            'MSnbase is not available; try running\n',
-            'BiocManager::install("MSnbase")'
-        )
+as.MSnSet.WideSomaLogicData <- function(x, log2Transform = FALSE, 
+    ...) {
+    if (!requireNamespace("MSnbase", quietly = TRUE)) {
+        stop("MSnbase is not available; try running\n", "BiocManager::install(\"MSnbase\")")
     }
     e <- as.ExpressionSet(x, log2Transform = log2Transform)
     MSnbase::as.MSnSet.ExpressionSet(e)
@@ -132,7 +119,6 @@ as.MSnSet.WideSomaLogicData <- function(x, log2Transform = FALSE, ...)
 
 #' @rdname as.ExpressionSet
 #' @export
-as.MSnSet <- function(x, log2Transform = FALSE, ...)
-{
+as.MSnSet <- function(x, log2Transform = FALSE, ...) {
     UseMethod("as.MSnSet")
 }

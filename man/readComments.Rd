@@ -39,10 +39,10 @@ need to be in order.}
 \examples{
 # See ?writeSampleSubmissionForm for a more complete example
 withr::with_dir(
-  system.file("extdata", package = "readat"),
-  {
-    (comments <- readComments())
-  }
+    system.file("extdata", package = "readat"),
+    {
+        (comments <- readComments())
+    }
 )
 }
 \seealso{

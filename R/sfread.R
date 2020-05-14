@@ -32,44 +32,37 @@
 #' @seealso \code{\link[data.table]{fread}}
 #' @examples
 #' if (interactive()) {
-#'   # In both these examples, colClasses specifies behaviour for non-existent
-#'   # column "baz".
-#'   # List syntax
-#'   sfread("foo,bar\n1,a", colClasses = list(numeric = c("foo", "baz")))
-#'   # Character syntax
-#'   sfread("foo,bar\n1,a", colClasses = c(foo = "numeric", baz = "numeric"))
+#'     # In both these examples, colClasses specifies behaviour for non-existent
+#'     # column 'baz'.
+#'     # List syntax
+#'     sfread('foo,bar\n1,a', colClasses = list(numeric = c('foo', 'baz')))
+#'     # Character syntax
+#'     sfread('foo,bar\n1,a', colClasses = c(foo = 'numeric', baz = 'numeric'))
 #'
-#'   # Compare to fread
-#'   assertive.base::dont_stop(
-#'     data.table::fread(
-#'       "foo,bar\n1,a",
-#'       colClasses = list(numeric = c("foo", "baz"))
+#'     # Compare to fread
+#'     assertive.base::dont_stop(
+#'         data.table::fread(
+#'             'foo,bar\n1,a',
+#'             colClasses = list(numeric = c('foo', 'baz'))
+#'         )
 #'     )
-#'   )
-#'   assertive.base::dont_stop(
-#'     data.table::fread(
-#'       "foo,bar\n1,a",
-#'       colClasses = c(foo = "numeric", baz = "numeric")
+#'     assertive.base::dont_stop(
+#'         data.table::fread(
+#'             'foo,bar\n1,a',
+#'             colClasses = c(foo = 'numeric', baz = 'numeric')
+#'         )
 #'     )
-#'   )
 #' }
 #' @importFrom data.table fread
 #' @noRd
-sfread <- function(input, ..., colClasses = NULL, integer64 = 'numeric')
-{
-    dots <- within(
-        list(...),
-        {
-            input <- input
-        }
-    )
-
+sfread <- function(input, ..., colClasses = NULL, integer64 = "numeric") {
+    dots <- within(list(...), {
+        input <- input
+    })
+    
     theHeader <- do.call(readHeader, dots)
-    colClasses <- switch(
-        class(colClasses),
-        character = fixCharacterColClasses(colClasses, theHeader),
-        list      = fixListColClasses(colClasses, theHeader)
-    )
+    colClasses <- switch(class(colClasses), character = fixCharacterColClasses(colClasses, 
+        theHeader), list = fixListColClasses(colClasses, theHeader))
     fread(input, ..., colClasses = colClasses, integer64 = integer64)
 }
 
@@ -83,18 +76,16 @@ sfread <- function(input, ..., colClasses = NULL, integer64 = 'numeric')
 #' @return A character vector of column names.
 #' @importFrom data.table fread
 #' @noRd
-readHeader <- function(input, nrows = 0, header = TRUE,  ...)
-{
-    DT <- suppressWarnings(fread(input, nrows = nrows, header = header, ...))
+readHeader <- function(input, nrows = 0, header = TRUE, ...) {
+    DT <- suppressWarnings(fread(input, nrows = nrows, header = header, 
+        ...))
     colnames(DT)
 }
 
-fixCharacterColClasses <- function(colClasses, header)
-{
+fixCharacterColClasses <- function(colClasses, header) {
     intersect(colClasses, header)
 }
 
-fixListColClasses <- function(colClasses, header)
-{
+fixListColClasses <- function(colClasses, header) {
     lapply(colClasses, intersect, y = header)
 }

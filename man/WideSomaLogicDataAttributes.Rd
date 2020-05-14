@@ -67,7 +67,7 @@ columns are reordered by \code{SeqId}, alphabetically.}
 
 \item{value}{Value to set the attribute to.}
 
-\item{prependSeqIdToColNames}{Logical.  Should "SeqId." be prepended to the
+\item{prependSeqIdToColNames}{Logical.  Should 'SeqId.' be prepended to the
 column names of the intensities? If \code{NA}, auto-guess whether they
 should be.}
 }
@@ -75,7 +75,7 @@ should be.}
 \code{getIntensities} returns a numeric matrix of intensities for
 each protein. Row names are taken from the \code{ExtIdentifier} of the input.
 Column names are the protein sequence IDs.  (If you set
-\code{rowsContain = "sequences"}, then rows and columns and their names are
+\code{rowsContain = 'sequences'}, then rows and columns and their names are
 swapped.)
 
 \code{getSampleData} returns a data table containing the sample data.  That
@@ -89,7 +89,7 @@ by SomaLogic:
 \describe{
 \item{SampleId}{Character. The customer's original sample identifier. This is
 either the same as the subject identifier, or the calibrator and buffer
-separated by a hyphen. For example "1234" or "PPT-09".}
+separated by a hyphen. For example '1234' or 'PPT-09'.}
 \item{TimePoint}{Character or numeric.  The time point identified by the
 customer.}
 \item{SampleGroup}{Character. Cohort information provided by the customer.}
@@ -102,7 +102,7 @@ Common optional columns:
 this also functions as an experiment identifier.}
 \item{SlideId}{Character. Agilent slide barcode.}
 \item{Subarray}{Integer. Agilent subarray number from 1 to 8.}
-\item{SampleType}{Character. Either "Sample, "QC", "Buffer" or "Calibrator".}
+\item{SampleType}{Character. Either 'Sample, 'QC', 'Buffer' or 'Calibrator'.}
 \item{BarCode}{Character. 1D Barcode of aliquot.}
 \item{Barcode2d}{Character. 2D Barcode of aliquot.}
 \item{SiteId}{Character. The laboratory that ran the experiment, applicable
@@ -121,18 +121,18 @@ the sequences diluted to 0.005\% concentration. For example, 1.23.}
 sequences diluted to 1\% concentration. For example, 1.23.}
 \item{PercentDilution}{Numeric. How much was the sample diluted? Either 40,
 1, or 0.005.}
-\item{SampleMatrix}{Character. Either "EDTA-Plasma", "Sodium Citrate Plasma"
-or "Serum". Applicable if different matrices are used with different samples
+\item{SampleMatrix}{Character. Either 'EDTA-Plasma', 'Sodium Citrate Plasma'
+or 'Serum'. Applicable if different matrices are used with different samples
 in the file, otherwise use the StudyMatrix metadata value.}
 \item{SampleDescription}{Character. Free text describing the sample.}
 \item{TubeUniqueID}{Character. A unique identifier for every sample tube,
 assigned by the customer.}
-\item{RowCheck}{Character. Either "PASS" or "FAIL". Did the sample pass
+\item{RowCheck}{Character. Either 'PASS' or 'FAIL'. Did the sample pass
 quality control checks?}
 }
 
 \code{getSequenceData} returns a data table containing the sequence data.
-"Sequence" can be considered synonymous with "feature" or "SOMAmer reagent".
+'Sequence' can be considered synonymous with 'feature' or 'SOMAmer reagent'.
 The following columns are compulsory.
 \describe{
 \item{SeqId}{A unique identifer for the SOMAmer reagent.}
@@ -159,8 +159,8 @@ corresponding to the targeted proteins.}
 control checks?}
 \item{Units}{Character.  Unit of measurement for the SOMAmer reagent
 abundances. Should always be RFU.}
-\item{Type}{Character. One of "Spuriomer", "Protein",
-"Hybridization Control", "Non-human Protein".}
+\item{Type}{Character. One of 'Spuriomer', 'Protein',
+'Hybridization Control', 'Non-human Protein'.}
 \item{Cal_*PlateId*}{Numeric.  Calibration scale factor for each plate. For
 example, 1.23.}
 \item{CalReference}{Numeric. Calibration reference intensity, in RFU. For
@@ -190,21 +190,21 @@ sampleData <- getSampleData(wide_soma_data)
 # Intensities of a WideSomaLogicData object are a matrix
 intWideSamp <- getIntensities(wide_soma_data)
 if (interactive()) {
-# Not run due to side effects of View
-  View(intWideSamp, "Wide intensities, samples per row")
+    # Not run due to side effects of View
+    View(intWideSamp, 'Wide intensities, samples per row')
 }
 intWideSeq <- getIntensities(                 # The transpose
-  wide_soma_data,
-  rowsContain = "sequences"
+    wide_soma_data,
+    rowsContain = 'sequences'
 )
 if (interactive()) {
-  View(intWideSeq, "Wide intensities, seqs per row")
+    View(intWideSeq, 'Wide intensities, seqs per row')
 }
 
 # Sample data is always a data table
 sampWide <- getSampleData(wide_soma_data)
 if (interactive()) {
-  View(sampWide, "Wide sample data")
+    View(sampWide, 'Wide sample data')
 }
 
 # For LongSomaLogicData objects, the intensities are returned
@@ -212,13 +212,13 @@ if (interactive()) {
 long_soma_data <- reshape2::melt(wide_soma_data)
 intLong <- getIntensities(long_soma_data)
 if (interactive()) {
-  View(intLong, "Long intensities")
+    View(intLong, 'Long intensities')
 }
 
 # Sample data has a different shape now
 sampLong <- getSampleData(long_soma_data)
 if (interactive()) {
-  View(sampLong, "Long sample data")
+    View(sampLong, 'Long sample data')
 }
 }
 \seealso{

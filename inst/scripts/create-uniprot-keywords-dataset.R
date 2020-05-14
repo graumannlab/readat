@@ -11,43 +11,25 @@ source("inst/scripts/backend.R")
 
 load("data/aptamers.rda")
 
-uniProtIds <- aptamers %>%
-  filter_(~ Type != "Hybridization Control Elution") %$%
-  strsplit(UniProt, " ") %>%
-  unlist %>%
-  unique
+uniProtIds <- aptamers %>% filter_(~Type != "Hybridization Control Elution") %$% 
+    strsplit(UniProt, " ") %>% unlist %>% unique
 
-homoSapiens <- as.integer(
-  availableUniprotSpecies(pattern = "^Homo sapiens$")$`taxon ID`
-)
+homoSapiens <- as.integer(availableUniprotSpecies(pattern = "^Homo sapiens$")$`taxon ID`)
 uniprotWebService <- UniProt.ws(taxId = homoSapiens)
 
-keywordData <- select(uniprotWebService, uniProtIds, "KEYWORDS", "UNIPROTKB")
+keywordData <- select(uniprotWebService, uniProtIds, "KEYWORDS", 
+    "UNIPROTKB")
 
-keywordData %<>%
-  setNames(c("UniProt", "Keyword")) %>%
-  as.data.table %>%
-  mutate_(Keyword = ~ strsplit(Keyword, "; ", fixed = TRUE)) %>%
-  unnest_("Keyword")
+keywordData %<>% setNames(c("UniProt", "Keyword")) %>% as.data.table %>% 
+    mutate_(Keyword = ~strsplit(Keyword, "; ", fixed = TRUE)) %>% 
+    unnest_("Keyword")
 
-flatIds <- aptamers %>%
-  unnest_("UniProt")
+flatIds <- aptamers %>% unnest_("UniProt")
 
-joined <- flatIds %>%
-  inner_join(
-    keywordData,
-    by = "UniProt"
-  ) %>%
-  select_(~ AptamerId, ~ UniProt, ~ Keyword)
+joined <- flatIds %>% inner_join(keywordData, by = "UniProt") %>% 
+    select_(~AptamerId, ~UniProt, ~Keyword)
 
-uniprotKeywords <- joined %>%
-  as.data.frame %$%
-  split(., AptamerId) %>%
-  lapply(select_, ~ UniProt, ~ Keyword) %>%
-  lapply(distinct_)
+uniprotKeywords <- joined %>% as.data.frame %$% split(., AptamerId) %>% 
+    lapply(select_, ~UniProt, ~Keyword) %>% lapply(distinct_)
 
-save(
-  uniprotKeywords,
-  file = "data/uniprotKeywords.rda",
-  compress = "xz"
-)
+save(uniprotKeywords, file = "data/uniprotKeywords.rda", compress = "xz")

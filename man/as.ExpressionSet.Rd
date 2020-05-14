@@ -38,7 +38,7 @@ Converts objects into \code{ExpressionSet} or \code{MSnSet} instances.
 somaFile <- extractSampleData()
 wideSomaData <- readAdat(somaFile)
 as.ExpressionSet(wideSomaData)
-if(requireNamespace("MSnbase"))
+if(requireNamespace('MSnbase'))
 {
     as.MSnSet(wideSomaData)
 }

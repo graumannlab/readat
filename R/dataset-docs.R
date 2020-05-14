@@ -23,10 +23,10 @@
 #' associated with protein target.}
 #' \item{EntrezGeneSymbol}{List of character vectors. Entrez Gene symbols for
 #' the gene associated with protein target.}
-#' \item{Organism}{Either "Human" or the name of a virus.}
+#' \item{Organism}{Either 'Human' or the name of a virus.}
 #' \item{Units}{Should always be RFU, short for Relative Fluorescence Units.}
 #' \item{Type}{The protein standard source for the original SELEX performed for
-#' the sequence. "Protein" refers to human protein; a few sequences used rat
+#' the sequence. 'Protein' refers to human protein; a few sequences used rat
 #' protein standard sources in the SELEX.}
 #' \item{PlasmaDilution}{What dilution factor is used in plasma?}
 #' \item{SerumDilution}{What dilution factor is used in serum?}
