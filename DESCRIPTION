@@ -10,7 +10,7 @@ Description: This package contains functionality to import, transform and
 URL: https://bitbucket.org/graumannlabtools/readat
 BugReports: https://bitbucket.org/graumannlabtools/readat/issues
 Depends:
-    R (>= 4.0)
+    R (>= 3.6.3)
 Imports:
     assertive.base (>= 0.0-7),
     assertive.files (>= 0.0-2),
